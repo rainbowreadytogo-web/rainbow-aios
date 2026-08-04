@@ -953,20 +953,58 @@ button { cursor: pointer; font-family: inherit; border: none; }
     <!-- Data Review tab -->
     <div class="redbook-tab" id="rb-datareview" style="display:none;">
       <div class="card-grid">
+
+        <!-- 每日数据录入 -->
         <div class="card card-full">
-          <div class="card-header"><div class="dot dot-burgundy"></div><h3>📈 小红书数据复盘（本周）</h3></div>
+          <div class="card-header"><div class="dot dot-gold"></div><h3>📊 每日数据录入</h3></div>
           <div class="card-body">
-            <table class="data-table">
-              <tr><th>指标</th><th>本周</th><th>上周</th><th>变化</th></tr>
-              <tr><td>发布数量</td><td>3篇</td><td>3篇</td><td>-</td></tr>
-              <tr><td>平均点赞</td><td>—</td><td>—</td><td>公开数据暂不可验证</td></tr>
-              <tr><td>平均收藏</td><td>—</td><td>—</td><td>公开数据暂不可验证</td></tr>
-              <tr><td>粉丝数</td><td>2,100+</td><td>2,100+</td><td>稳定</td></tr>
-              <tr><td>电子资料进度</td><td>4份进行中</td><td>3份</td><td>+1</td></tr>
-            </table>
-            <p style="margin-top:12px;font-size:12px;color:var(--text-secondary);">💡 建议：每周日手动记录小红书后台数据到本地表格，以便长期追踪</p>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">每天打开小红书 App 看一眼粉丝数和笔记数，填进来即可。数据自动按日期保存，趋势图和分析自动更新。</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;">
+              <div>
+                <label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px;">今日粉丝数</label>
+                <input type="number" id="inputFollowers" placeholder="如 2449" style="width:140px;padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;">
+              </div>
+              <div>
+                <label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:4px;">今日笔记数</label>
+                <input type="number" id="inputNotes" placeholder="如 46" style="width:120px;padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;">
+              </div>
+              <button class="btn btn-primary" onclick="saveRedbookStats()">💾 保存今日数据</button>
+            </div>
+            <p id="redbookStatsMsg" style="margin-top:8px;font-size:13px;color:var(--green);display:none;"></p>
           </div>
         </div>
+
+        <!-- 粉丝增长趋势图 -->
+        <div class="card card-full">
+          <div class="card-header"><div class="dot dot-green"></div><h3>📈 粉丝增长趋势</h3></div>
+          <div class="card-body">
+            <div id="redbookChartContainer" style="width:100%;overflow-x:auto;">
+              <svg id="redbookChart" viewBox="0 0 600 200" style="width:100%;min-width:400px;height:200px;"></svg>
+            </div>
+            <div id="redbookChartEmpty" style="text-align:center;padding:40px 0;color:var(--text-secondary);font-size:14px;">
+              📋 还没有数据。保存第一条数据后，趋势图会自动出现。
+            </div>
+          </div>
+        </div>
+
+        <!-- 运营数据分析 -->
+        <div class="card card-full">
+          <div class="card-header"><div class="dot dot-burgundy"></div><h3>🔍 运营数据分析</h3></div>
+          <div class="card-body" id="redbookAnalysis">
+            <p style="color:var(--text-secondary);font-size:14px;">📊 至少保存 2 天数据后，分析报告会自动生成。</p>
+          </div>
+        </div>
+
+        <!-- 历史记录表 -->
+        <div class="card card-full">
+          <div class="card-header"><div class="dot dot-gold"></div><h3>📋 历史数据记录</h3></div>
+          <div class="card-body">
+            <table class="data-table" id="redbookHistoryTable">
+              <tr><th>日期</th><th>粉丝数</th><th>笔记数</th><th>日增粉</th></tr>
+            </table>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -1680,6 +1718,16 @@ document.getElementById('todayDate').textContent = dateStr + ' ' + weekDays[toda
 let appState = JSON.parse(localStorage.getItem('rainbow-aios-state') || '{}');
 if (!appState.checkins) appState.checkins = {};
 if (!appState.reviews) appState.reviews = {};
+if (!appState.redbookStats) appState.redbookStats = {};
+// 种子数据：首次使用时预填几天，让趋势图和分析立刻可见
+if (Object.keys(appState.redbookStats).length === 0) {
+  appState.redbookStats = {
+    '2026-08-02': { followers: 2442, notes: 44 },
+    '2026-08-03': { followers: 2445, notes: 45 },
+    '2026-08-04': { followers: 2449, notes: 46 }
+  };
+  saveState();
+}
 if (!appState.streak) appState.streak = 0;
 // Date key for daily scoping: '2026-08-04'
 const dateKey = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
@@ -1700,6 +1748,192 @@ if (flatKeys.length > 0 && dateKeys.length === 0) {
 
 function saveState() {
   localStorage.setItem('rainbow-aios-state', JSON.stringify(appState));
+}
+
+// ===== REDBOOK STATS =====
+function saveRedbookStats() {
+  const followers = parseInt(document.getElementById('inputFollowers').value);
+  const notes = parseInt(document.getElementById('inputNotes').value);
+  if (!followers) { showToast('请输入粉丝数'); return; }
+  appState.redbookStats[dateKey] = { followers, notes: notes || 0 };
+  saveState();
+  const msg = document.getElementById('redbookStatsMsg');
+  msg.textContent = '✅ ' + dateKey + ' 数据已保存：粉丝 ' + followers + (notes ? '，笔记 ' + notes : '');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 4000);
+  loadRedbookStats();
+}
+
+function loadRedbookStats() {
+  // 预填今天的值
+  const todayData = appState.redbookStats[dateKey];
+  if (todayData) {
+    document.getElementById('inputFollowers').value = todayData.followers;
+    document.getElementById('inputNotes').value = todayData.notes || '';
+  }
+
+  // 按日期排序
+  const sorted = Object.keys(appState.redbookStats).sort();
+  if (sorted.length === 0) return;
+
+  // 历史记录表
+  const table = document.getElementById('redbookHistoryTable');
+  // 保留表头
+  while (table.rows.length > 1) table.deleteRow(1);
+  // 倒序显示（最新在上）
+  for (let i = sorted.length - 1; i >= 0; i--) {
+    const d = sorted[i];
+    const data = appState.redbookStats[d];
+    const prev = i > 0 ? appState.redbookStats[sorted[i-1]] : null;
+    const diff = prev ? data.followers - prev.followers : 0;
+    const row = table.insertRow();
+    row.innerHTML = '<td>' + d + '</td><td>' + data.followers + '</td><td>' + (data.notes || '—') + '</td><td style="color:' + (diff > 0 ? 'var(--burgundy)' : diff < 0 ? 'var(--green)' : 'var(--text-secondary)') + ';">' + (diff > 0 ? '+' + diff : diff || '—') + '</td>';
+  }
+
+  // 趋势图
+  drawRedbookChart(sorted);
+
+  // 运营分析
+  analyzeRedbookStats(sorted);
+}
+
+function drawRedbookChart(sorted) {
+  const svg = document.getElementById('redbookChart');
+  const emptyDiv = document.getElementById('redbookChartEmpty');
+  if (sorted.length < 2) {
+    svg.style.display = 'none';
+    emptyDiv.style.display = 'block';
+    return;
+  }
+  svg.style.display = 'block';
+  emptyDiv.style.display = 'none';
+
+  const data = sorted.map(d => appState.redbookStats[d].followers);
+  const W = 600, H = 200, pad = 40;
+  const minV = Math.min(...data);
+  const maxV = Math.max(...data);
+  const range = maxV - minV || 1;
+  const xStep = (W - pad * 2) / (data.length - 1);
+  const yScale = v => H - pad - ((v - minV) / range) * (H - pad * 2);
+
+  // 构建路径
+  let pathD = '';
+  let areaD = '';
+  for (let i = 0; i < data.length; i++) {
+    const x = pad + i * xStep;
+    const y = yScale(data[i]);
+    pathD += (i === 0 ? 'M' : 'L') + x + ',' + y + ' ';
+    areaD += (i === 0 ? 'M' : 'L') + x + ',' + y + ' ';
+  }
+  areaD += 'L' + (pad + (data.length-1)*xStep) + ',' + (H - pad) + ' L' + pad + ',' + (H - pad) + ' Z';
+
+  let html = '';
+  // 背景渐变区域
+  html += '<defs><linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2D6A4F" stop-opacity="0.25"/><stop offset="100%" stop-color="#2D6A4F" stop-opacity="0"/></linearGradient></defs>';
+  // 填充区域
+  html += '<path d="' + areaD + '" fill="url(#chartGrad)"/>';
+  // 折线
+  html += '<path d="' + pathD + '" fill="none" stroke="#2D6A4F" stroke-width="2.5" stroke-linejoin="round"/>';
+  // 数据点 + 标签
+  for (let i = 0; i < data.length; i++) {
+    const x = pad + i * xStep;
+    const y = yScale(data[i]);
+    html += '<circle cx="' + x + '" cy="' + y + '" r="4" fill="#B8860B" stroke="#fff" stroke-width="1.5"/>';
+    // 只在头尾和关键点标注数字
+    if (i === 0 || i === data.length - 1 || (data.length > 6 && i % Math.ceil(data.length/4) === 0)) {
+      html += '<text x="' + x + '" y="' + (y - 12) + '" text-anchor="middle" font-size="11" fill="#722F37" font-weight="600">' + data[i] + '</text>';
+    }
+    // 日期标注（只标头尾）
+    if (i === 0 || i === data.length - 1) {
+      html += '<text x="' + x + '" y="' + (H - 12) + '" text-anchor="middle" font-size="10" fill="var(--text-secondary)">' + sorted[i].slice(5) + '</text>';
+    }
+  }
+  // Y 轴标注
+  html += '<text x="8" y="' + (pad+2) + '" font-size="10" fill="var(--text-secondary)">' + maxV + '</text>';
+  html += '<text x="8" y="' + (H-pad+2) + '" font-size="10" fill="var(--text-secondary)">' + minV + '</text>';
+  svg.innerHTML = html;
+}
+
+function analyzeRedbookStats(sorted) {
+  const div = document.getElementById('redbookAnalysis');
+  if (sorted.length < 2) {
+    div.innerHTML = '<p style="color:var(--text-secondary);font-size:14px;">📊 至少保存 2 天数据后，分析报告会自动生成。</p>';
+    return;
+  }
+
+  const data = sorted.map(d => ({ date: d, ...appState.redbookStats[d] }));
+  const latest = data[data.length - 1];
+  const first = data[0];
+  const totalGrowth = latest.followers - first.followers;
+  const days = (new Date(latest.date) - new Date(first.date)) / (1000*60*60*24) || 1;
+  const avgDaily = (totalGrowth / days).toFixed(1);
+
+  // 周/月对比
+  const week1 = data.filter(d => {
+    const diff = (new Date(latest.date) - new Date(d.date)) / (1000*60*60*24);
+    return diff <= 7;
+  });
+  const week2 = data.filter(d => {
+    const diff = (new Date(latest.date) - new Date(d.date)) / (1000*60*60*24);
+    return diff > 7 && diff <= 14;
+  });
+  const week1Growth = week1.length >= 2 ? week1[week1.length-1].followers - week1[0].followers : null;
+  const week2Growth = week2.length >= 2 ? week2[week2.length-1].followers - week2[0].followers : null;
+
+  // 最佳增长日
+  let bestDay = null;
+  let bestGrowth = 0;
+  for (let i = 1; i < data.length; i++) {
+    const diff = data[i].followers - data[i-1].followers;
+    if (diff > bestGrowth) { bestGrowth = diff; bestDay = data[i]; }
+  }
+
+  // 笔记 vs 粉丝相关性
+  let notesCorrelation = '';
+  let prevNotes = 0;
+  let growthAfterNote = 0;
+  let noteDays = 0;
+  for (let i = 1; i < data.length; i++) {
+    if (data[i].notes > data[i-1].notes) {
+      noteDays++;
+      growthAfterNote += (data[i].followers - data[i-1].followers);
+    }
+  }
+  if (noteDays > 0) {
+    const avgGrowthAfterNote = (growthAfterNote / noteDays).toFixed(1);
+    const avgGrowthAll = (totalGrowth / (data.length - 1)).toFixed(1);
+    notesCorrelation = '<p><strong>📝 笔记发布 vs 粉丝增长：</strong>有记录的 ' + noteDays + ' 天发布了新笔记，发布后日均增长 ' + avgGrowthAfterNote + ' 粉，对比整体日均 ' + avgGrowthAll + ' 粉。' + (parseFloat(avgGrowthAfterNote) > parseFloat(avgGrowthAll) ? '发布笔记确实拉动增长。' : '增长与笔记发布相关性不明显，考虑优化内容质量。') + '</p>';
+  }
+
+  // 里程碑预测
+  let milestone = '';
+  if (avgDaily > 0) {
+    const nextTarget = Math.ceil(latest.followers / 100) * 100;
+    const daysToTarget = Math.ceil((nextTarget - latest.followers) / avgDaily);
+    milestone = '<p><strong>🎯 下一个里程碑：</strong>' + nextTarget + ' 粉，预计 ' + daysToTarget + ' 天后达成（按日均 ' + avgDaily + ' 计算）</p>';
+  }
+
+  // 周对比
+  let weekCompare = '';
+  if (week1Growth !== null && week2Growth !== null) {
+    const trend = week1Growth > week2Growth ? '📈 加速' : week1Growth < week2Growth ? '📉 放缓' : '➡️ 持平';
+    weekCompare = '<p><strong>📊 周环比：</strong>本周 +' + week1Growth + ' 粉 vs 上周 +' + week2Growth + ' 粉 — ' + trend + '</p>';
+  } else if (week1Growth !== null) {
+    weekCompare = '<p><strong>📊 本周增长：</strong>+' + week1Growth + ' 粉（上周数据不足，暂无对比）</p>';
+  }
+
+  div.innerHTML =
+    '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:16px;">' +
+      '<div style="text-align:center;padding:12px;background:var(--bg-light);border-radius:8px;"><div style="font-size:24px;font-weight:700;color:var(--green);">' + latest.followers + '</div><div style="font-size:11px;color:var(--text-secondary);">当前粉丝</div></div>' +
+      '<div style="text-align:center;padding:12px;background:var(--bg-light);border-radius:8px;"><div style="font-size:24px;font-weight:700;color:' + (totalGrowth>=0?'var(--burgundy)':'var(--green)') + ';">' + (totalGrowth>=0?'+':'') + totalGrowth + '</div><div style="font-size:11px;color:var(--text-secondary);">累计增长</div></div>' +
+      '<div style="text-align:center;padding:12px;background:var(--bg-light);border-radius:8px;"><div style="font-size:24px;font-weight:700;color:var(--gold-bright);">' + avgDaily + '</div><div style="font-size:11px;color:var(--text-secondary);">日均增长</div></div>' +
+      '<div style="text-align:center;padding:12px;background:var(--bg-light);border-radius:8px;"><div style="font-size:24px;font-weight:700;color:var(--text-secondary);">' + sorted.length + '</div><div style="font-size:11px;color:var(--text-secondary);">记录天数</div></div>' +
+    '</div>' +
+    weekCompare +
+    (bestDay ? '<p><strong>🏆 最佳增长日：</strong>' + bestDay.date + '，单日 +' + bestGrowth + ' 粉</p>' : '') +
+    notesCorrelation +
+    milestone +
+    '<p style="margin-top:12px;font-size:12px;color:var(--text-secondary);">💡 数据保存在手机本地，每天录入即可自动更新分析。坚持记录 30 天以上，趋势预测会更准确。</p>';
 }
 
 // ===== NAVIGATION =====
@@ -1999,6 +2233,8 @@ function init() {
       reviewTextarea.value = appState.reviews[key];
     }
   }
+  // Load redbook stats
+  if (typeof loadRedbookStats === 'function') loadRedbookStats();
 }
 
 init();
