@@ -1685,8 +1685,16 @@ if (!appState.streak) appState.streak = 0;
 const dateKey = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
 // Migrate old flat checkin data to date-scoped format
 const oldKeys = Object.keys(appState.checkins);
-if (oldKeys.length > 0 && !oldKeys[0].startsWith('20')) {
-  appState.checkins = { [dateKey]: appState.checkins };
+const flatKeys = oldKeys.filter(k => !k.startsWith('20'));
+const dateKeys = oldKeys.filter(k => k.startsWith('20'));
+if (flatKeys.length > 0 && dateKeys.length === 0) {
+  // All flat keys — migrate to date-scoped format
+  const flatData = appState.checkins;
+  appState.checkins = { [dateKey]: flatData };
+  saveState();
+} else if (flatKeys.length > 0 && dateKeys.length > 0) {
+  // Mixed keys — remove stale flat keys to prevent migration loop
+  flatKeys.forEach(k => delete appState.checkins[k]);
   saveState();
 }
 
@@ -1874,11 +1882,12 @@ function renderCheckinHistory() {
 // ===== DUOLINGO CHECK =====
 function updateStreak() {
   const check = document.getElementById('duolingoCheck');
-  if (check && check.checked) {
-    appState.checkins['法语打卡'] = true;
+  if (check) {
+    if (!appState.checkins[dateKey]) appState.checkins[dateKey] = {};
+    appState.checkins[dateKey]['🇫🇷 法语打卡'] = check.checked;
     saveState();
     updateCheckinStats();
-    showToast('🇫🇷 法语打卡完成！Bien joué !');
+    if (check.checked) showToast('🇫🇷 法语打卡完成！Bien joué !');
   }
 }
 
@@ -1976,6 +1985,12 @@ function showToast(msg) {
 // ===== INIT =====
 function init() {
   loadCheckins();
+  // Sync Duolingo checkbox with today's checkin state
+  const duolingoCheck = document.getElementById('duolingoCheck');
+  if (duolingoCheck) {
+    const todayData = appState.checkins[dateKey] || {};
+    duolingoCheck.checked = !!todayData['🇫🇷 法语打卡'];
+  }
   // Load saved reviews
   const reviewTextarea = document.getElementById('dailyReview');
   if (reviewTextarea) {
