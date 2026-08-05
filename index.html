@@ -468,7 +468,7 @@ button { cursor: pointer; font-family: inherit; border: none; }
       <div class="stat-box"><div class="stat-num" id="streakDays">1</div><div class="stat-label">连续打卡天数</div></div>
       <div class="stat-box"><div class="stat-num" id="todayCompletion">0%</div><div class="stat-label">今日完成率</div></div>
       <div class="stat-box"><div class="stat-num" id="weekCompletion">0%</div><div class="stat-label">本周完成率</div></div>
-      <div class="stat-box"><div class="stat-num" style="color:var(--burgundy)">2,100+</div><div class="stat-label">小红书粉丝</div></div>
+      <div class="stat-box"><div class="stat-num" id="homeFollowerCount" style="color:var(--burgundy)">—</div><div class="stat-label">小红书粉丝</div></div>
     </div>
 
     <!-- 1. 今日三项最重要任务 -->
@@ -1587,7 +1587,7 @@ button { cursor: pointer; font-family: inherit; border: none; }
           <div class="card-body">
             <p><strong>📊 Q3季度目标回顾：</strong></p>
             <ul style="line-height:2;">
-              <li>小红书粉丝目标：2,500 → 当前 2,100+（Q3进行中）</li>
+              <li id="q3FollowerGoal">小红书粉丝目标：2,500 → 当前 —（Q3进行中）</li>
               <li>电子资料目标：完成6份 → 当前4份</li>
               <li>MBA Coursera课程完成1门 → 进行中</li>
               <li>同传笔记法熟练度提升 → 训练中</li>
@@ -1807,6 +1807,14 @@ function loadRedbookStats() {
   // 按日期排序
   const sorted = Object.keys(appState.redbookStats).sort();
   if (sorted.length === 0) return;
+
+  // 更新首页粉丝数（取最新一天的）
+  const latestFollowers = appState.redbookStats[sorted[sorted.length - 1]].followers;
+  const homeEl = document.getElementById('homeFollowerCount');
+  if (homeEl) homeEl.textContent = latestFollowers.toLocaleString();
+  // 更新复盘中心Q3目标行
+  const q3El = document.getElementById('q3FollowerGoal');
+  if (q3El) q3El.innerHTML = '小红书粉丝目标：2,500 → 当前 ' + latestFollowers.toLocaleString() + '（Q3进行中）';
 
   // 历史记录表
   const table = document.getElementById('redbookHistoryTable');
