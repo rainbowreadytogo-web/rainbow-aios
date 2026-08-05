@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#1B4332">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='36' fill='%231B4332'/><text x='90' y='120' text-anchor='middle' font-family='Georgia,serif' font-size='100' font-weight='bold' fill='%23B8860B'>R</text></svg>">
-<link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;Rainbow AI OS&quot;,&quot;short_name&quot;:&quot;Rainbow AI&quot;,&quot;start_url&quot;:&quot;.&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;%23FAF8F5&quot;,&quot;theme_color&quot;:&quot;%231B4332&quot;,&quot;icons&quot;:[{&quot;src&quot;:&quot;data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='36' fill='%231B4332'/><text x='90' y='120' text-anchor='middle' font-family='Georgia,serif' font-size='100' font-weight='bold' fill='%23B8860B'>R</text></svg>&quot;,&quot;sizes&quot;:&quot;180x180&quot;,&quot;type&quot;:&quot;image/svg+xml&quot;}]}">
+<link rel="manifest" href="manifest.json">
 <title>Rainbow AI OS — Your Personal CEO Assistant</title>
 <style>
 :root {
@@ -270,6 +270,39 @@ button { cursor: pointer; font-family: inherit; border: none; }
   transition: all 0.15s;
 }
 .checklist li.done .checkbox { background: var(--mid-green); }
+/* Schedule Grid */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+.schedule-day {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  border-left: 4px solid var(--mid-green);
+}
+.schedule-day.today { border-left-color: var(--gold); background: #FEF9E7; }
+.schedule-day .day-title { font-weight: 700; color: var(--dark-green); font-size: 14px; margin-bottom: 8px; }
+.schedule-day .day-meta { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
+.schedule-day .day-task { font-size: 13px; padding: 4px 0; border-top: 1px dashed var(--border); }
+/* Today banner */
+.today-banner { background: linear-gradient(135deg, var(--mid-green), var(--dark-green)); color: white; padding: 16px 20px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.today-banner .banner-title { font-size: 18px; font-weight: 700; }
+.today-banner .banner-sub { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+.today-banner .quick-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.today-banner .quick-btn { background: rgba(255,255,255,0.18); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+.today-banner .quick-btn:hover { background: rgba(255,255,255,0.3); }
+@media (max-width: 768px) { .today-banner { flex-direction: column; align-items: flex-start; } }
+/* Note record */
+.note-record { background: var(--light-green); border: 1px solid var(--mid-green); border-radius: 8px; padding: 12px; margin-top: 8px; }
+.note-record .note-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+.note-record .note-title { font-weight: 600; color: var(--dark-green); font-size: 14px; }
+.note-record .note-stats { display: flex; gap: 12px; margin-top: 6px; font-size: 12px; }
+.note-record .note-stats span { background: white; padding: 2px 8px; border-radius: 4px; }
+.note-record .note-roi { margin-top: 6px; font-size: 12px; color: var(--burgundy); font-weight: 600; }
 .checklist li.done .checkbox::after { content: "✓"; color: white; font-size: 12px; font-weight: 700; }
 /* Modal overlay */
 .modal-overlay {
@@ -440,16 +473,18 @@ button { cursor: pointer; font-family: inherit; border: none; }
     <div class="nav-item" data-page="review" onclick="switchPage('review')"><span class="icon">🔄</span>复盘中心</div>
     <div class="nav-item" data-page="materials" onclick="switchPage('materials')"><span class="icon">📁</span>资料管理</div>
     <div class="nav-item" data-page="knowledge" onclick="switchPage('knowledge')"><span class="icon">🧠</span>我的知识库</div>
+    <div class="nav-item" data-page="settings" onclick="switchPage('settings')"><span class="icon">⚙️</span>设置</div>
   </div>
 </aside>
 
 <!-- Bottom nav mobile -->
 <nav class="bottom-nav">
-  <div class="bottom-nav-item active" onclick="switchPage('briefing')"><span class="icon">📊</span>简报</div>
-  <div class="bottom-nav-item" onclick="switchPage('redbook')"><span class="icon">📕</span>小红书</div>
-  <div class="bottom-nav-item" onclick="switchPage('checkin')"><span class="icon">✅</span>打卡</div>
-  <div class="bottom-nav-item" onclick="switchPage('review')"><span class="icon">🔄</span>复盘</div>
-  <div class="bottom-nav-item" onclick="switchPage('knowledge')"><span class="icon">🧠</span>知识库</div>
+  <div class="bottom-nav-item active" onclick="switchPage('briefing')" data-page="briefing"><span class="icon">📊</span>简报</div>
+  <div class="bottom-nav-item" onclick="switchPage('redbook')" data-page="redbook"><span class="icon">📕</span>小红书</div>
+  <div class="bottom-nav-item" onclick="switchPage('checkin')" data-page="checkin"><span class="icon">✅</span>打卡</div>
+  <div class="bottom-nav-item" onclick="switchPage('review')" data-page="review"><span class="icon">🔄</span>复盘</div>
+  <div class="bottom-nav-item" onclick="switchPage('knowledge')" data-page="knowledge"><span class="icon">🧠</span>知识库</div>
+  <div class="bottom-nav-item" onclick="switchPage('settings')" data-page="settings"><span class="icon">⚙️</span>设置</div>
 </nav>
 
 <!-- Main content -->
@@ -469,6 +504,22 @@ button { cursor: pointer; font-family: inherit; border: none; }
       <div class="stat-box"><div class="stat-num" id="todayCompletion">0%</div><div class="stat-label">今日完成率</div></div>
       <div class="stat-box"><div class="stat-num" id="weekCompletion">0%</div><div class="stat-label">本周完成率</div></div>
       <div class="stat-box"><div class="stat-num" id="homeFollowerCount" style="color:var(--burgundy)">—</div><div class="stat-label">小红书粉丝</div></div>
+    </div>
+
+    <!-- 快速入口 -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;">
+      <div onclick="switchPage('checkin')" style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 4px;text-align:center;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--mid-green)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:24px;">✅</div><div style="font-size:11px;font-weight:600;color:var(--dark-green);margin-top:4px;">每日打卡</div>
+      </div>
+      <div onclick="switchPage('redbook')" style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 4px;text-align:center;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--mid-green)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:24px;">📕</div><div style="font-size:11px;font-weight:600;color:var(--dark-green);margin-top:4px;">写笔记</div>
+      </div>
+      <div onclick="switchPage('redbook')" style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 4px;text-align:center;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--mid-green)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:24px;">📊</div><div style="font-size:11px;font-weight:600;color:var(--dark-green);margin-top:4px;">录数据</div>
+      </div>
+      <div onclick="switchPage('english')" style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 4px;text-align:center;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--mid-green)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:24px;">🇬🇧</div><div style="font-size:11px;font-weight:600;color:var(--dark-green);margin-top:4px;">学英语</div>
+      </div>
     </div>
 
     <!-- 1. 今日三项最重要任务 -->
@@ -1035,6 +1086,37 @@ button { cursor: pointer; font-family: inherit; border: none; }
           </div>
         </div>
 
+        <!-- 发布记录 + ROI 分析 -->
+        <div class="card card-full">
+          <div class="card-header"><div class="dot dot-burgundy"></div><h3>📝 笔记发布记录 & ROI</h3></div>
+          <div class="card-body">
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">每发布一篇笔记后录入数据，系统自动计算ROI、找出最佳选题方向和发布时间。</p>
+
+            <!-- 录入表单 -->
+            <div style="background:var(--cream);border-radius:8px;padding:12px;margin-bottom:16px;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+                <input type="date" id="noteDate" value="" style="padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;">
+                <input type="text" id="noteTitle" placeholder="笔记标题" style="padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;">
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:8px;">
+                <input type="number" id="noteLikes" placeholder="👍 点赞" min="0" style="padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;">
+                <input type="number" id="noteSaves" placeholder="⭐ 收藏" min="0" style="padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;">
+                <input type="number" id="noteComments" placeholder="💬 评论" min="0" style="padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;">
+                <input type="text" id="noteTopic" placeholder="🏷️ 选题标签" style="padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;">
+              </div>
+              <button class="btn btn-primary" id="btnSaveNote" onclick="saveNoteRecord()" style="width:100%;">💾 保存发布记录</button>
+            </div>
+
+            <!-- ROI 分析 -->
+            <div id="noteROIAnalysis" style="margin-bottom:16px;"></div>
+
+            <!-- 发布记录表 -->
+            <table class="data-table" id="noteRecordsTable">
+              <tr><th>日期</th><th>标题</th><th>👍</th><th>⭐</th><th>💬</th><th>互动率</th><th></th></tr>
+            </table>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -1102,6 +1184,7 @@ button { cursor: pointer; font-family: inherit; border: none; }
       <button class="section-tab" onclick="switchEnglishTab('interp')">🎙️ 同传训练</button>
       <button class="section-tab" onclick="switchEnglishTab('speak')">🗣️ 口才逻辑</button>
       <button class="section-tab" onclick="switchEnglishTab('vocab')">📝 词汇卡片</button>
+      <button class="section-tab" onclick="switchEnglishTab('readaloud')">🔊 每日跟读</button>
     </div>
 
     <div class="english-tab active" id="en-biz">
@@ -1233,9 +1316,49 @@ button { cursor: pointer; font-family: inherit; border: none; }
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ===== PAGE: 周末教学 ===== -->
+    <!-- 每日跟读 -->
+    <div class="english-tab" id="en-readaloud" style="display:none;">
+      <div class="card-grid">
+        <div class="card card-full">
+          <div class="card-header"><div class="dot dot-burgundy"></div><h3>🔊 每日跟读训练</h3></div>
+          <div class="card-body">
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">点击「朗读」听标准发音，然后跟读练习。坚持30天，回听进步。</p>
+
+            <!-- 今日句子 -->
+            <div style="background:var(--cream);border-radius:12px;padding:20px;margin-bottom:16px;text-align:center;">
+              <p style="font-size:11px;color:var(--text-secondary);margin-bottom:8px;">📅 <span id="readAloudDate"></span> · 第 <span id="readAloudDay">1</span> 天</p>
+              <p id="readAloudSentence" style="font-size:20px;font-weight:700;color:var(--dark-green);line-height:1.6;margin-bottom:12px;">Things are moving fast on the AI initiative, and I'd like to align with you on next steps.</p>
+              <p id="readAloudTranslation" style="font-size:13px;color:var(--text-secondary);">AI项目进展很快，我想和你对齐一下下一步。</p>
+            </div>
+
+            <!-- 控制按钮 -->
+            <div style="display:flex;gap:8px;justify-content:center;margin-bottom:16px;flex-wrap:wrap;">
+              <button class="btn btn-primary" id="btnSpeak" onclick="speakSentence()">🔊 朗读</button>
+              <button class="btn btn-outline" onclick="nextSentence()">➡️ 换一句</button>
+              <button class="btn btn-outline" onclick="markReadDone()">✅ 今日已读</button>
+            </div>
+
+            <!-- 朗读速度 -->
+            <div style="text-align:center;margin-bottom:16px;">
+              <label style="font-size:12px;color:var(--text-secondary);">朗读速度：</label>
+              <select id="speakRate" style="padding:4px 8px;border:1px solid var(--border);border-radius:6px;font-size:12px;" onchange="speakSentence()">
+                <option value="0.7">慢速 0.7x</option>
+                <option value="0.85" selected>正常 0.85x</option>
+                <option value="1.0">快速 1.0x</option>
+              </select>
+            </div>
+
+            <!-- 历史记录 -->
+            <div style="background:var(--light-green);border-radius:8px;padding:12px;">
+              <p style="font-size:13px;font-weight:700;color:var(--dark-green);margin-bottom:8px;">📊 跟读统计</p>
+              <p style="font-size:12px;color:var(--text-secondary);" id="readAloudStats">已完成 0 天</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="page" id="page-teaching">
     <div class="page-header">
       <h2>📖 周末教学中心</h2>
@@ -1306,6 +1429,52 @@ button { cursor: pointer; font-family: inherit; border: none; }
         <div class="card-footer">
           <button class="btn btn-outline btn-sm" onclick="window.open('https://www.bilibili.com','_blank')">🔍 去B站搜索更多</button>
         </div>
+      </div>
+    </div>
+
+    <!-- 周末教学-底部三模块：课程进度、备课清单、教学资料 -->
+    <div class="card-grid" style="margin-top:20px;">
+      <div class="card">
+        <div class="card-header"><div class="dot dot-green"></div><h3>📊 课程进度</h3></div>
+        <div class="card-body">
+          <table class="data-table">
+            <tr><th>年级</th><th>本周章节</th><th>完成度</th></tr>
+            <tr><td>三年级</td><td>Unit 2 — Colors</td><td><div class="progress-bar"><div class="progress-fill" style="width:65%;background:var(--mid-green);"></div></div>65%</td></tr>
+            <tr><td>七年级</td><td>Unit 1 — Daily Routines</td><td><div class="progress-bar"><div class="progress-fill" style="width:40%;background:var(--mid-green);"></div></div>40%</td></tr>
+            <tr><td>八年级</td><td>Unit 3 — Travel Plans</td><td><div class="progress-bar"><div class="progress-fill" style="width:80%;background:var(--mid-green);"></div></div>80%</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="dot dot-burgundy"></div><h3>📋 周末备课清单</h3></div>
+        <div class="card-body">
+          <div id="weekendChecklist"></div>
+          <button class="btn btn-outline btn-sm" style="margin-top:10px;" onclick="resetWeekendChecklist()">🔄 重置清单</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="dot dot-gold"></div><h3>📚 教学资料库</h3></div>
+        <div class="card-body">
+          <ul style="line-height:2;">
+            <li><a href="https://www.bilibili.com" target="_blank">B站英语教学视频（搜索「初中英语」「小学英语」）</a></li>
+            <li><a href="https://space.bilibili.com/1545845028/lists?sid=2830179" target="_blank">DiuDiu教英语 — 2026新版人教七年级精讲合集</a></li>
+            <li><a href="https://space.bilibili.com/385979916?spm_id_from=333.337.0.0" target="_blank">Real麦克老师 — 发音与口语干货（98万+粉丝，适合小学到初中）</a></li>
+            <li>英语的平行世界 — B站最受欢迎的语法教学UP主之一（搜索"英语的平行世界 初中英语"）</li>
+            <li>英语兔 — 音标与语法讲解（搜索"英语兔 初中语法"）</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-outline btn-sm" onclick="window.open('https://www.bilibili.com','_blank')">🔍 去B站搜索更多</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 周末课表 - 自动生成 -->
+    <div class="card card-full" style="margin-top:20px;">
+      <div class="card-header"><div class="dot dot-gold"></div><h3>📅 周末课表（自动生成）</h3></div>
+      <div class="card-body">
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">本周：<span id="weekRange"></span>　|　根据今天日期自动判断今日课表</p>
+        <div id="weekendSchedule" class="schedule-grid"></div>
       </div>
     </div>
   </div>
@@ -1734,9 +1903,61 @@ button { cursor: pointer; font-family: inherit; border: none; }
     </div>
   </div>
 
-</div>
+  <!-- ===== PAGE: 设置 ===== -->
+  <div class="page" id="page-settings">
+    <div class="page-header">
+      <h2>⚙️ 设置</h2>
+      <p class="desc">数据管理、备份恢复与应用信息</p>
+    </div>
 
-<!-- Toast -->
+    <div class="card-grid">
+      <!-- 数据导出 -->
+      <div class="card">
+        <div class="card-header"><div class="dot dot-green"></div><h3>💾 数据备份</h3></div>
+        <div class="card-body">
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">将所有本地数据（打卡记录、复盘、粉丝数据、发布记录）导出为 JSON 文件，方便备份或迁移到新设备。</p>
+          <button class="btn btn-primary" id="btnExport" onclick="exportData()">📥 导出全部数据</button>
+        </div>
+      </div>
+
+      <!-- 数据导入 -->
+      <div class="card">
+        <div class="card-header"><div class="dot dot-gold"></div><h3>📂 数据恢复</h3></div>
+        <div class="card-body">
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">从之前导出的 JSON 文件恢复数据。<strong>注意：导入会覆盖当前数据。</strong></p>
+          <input type="file" id="importFile" accept=".json" style="display:none;" onchange="importData(event)">
+          <button class="btn btn-outline" onclick="document.getElementById('importFile').click()">📤 选择文件导入</button>
+        </div>
+      </div>
+
+      <!-- 缓存管理 -->
+      <div class="card">
+        <div class="card-header"><div class="dot dot-burgundy"></div><h3>🔄 缓存管理</h3></div>
+        <div class="card-body">
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">如果页面显示旧内容，可清除浏览器缓存强制加载最新版。</p>
+          <button class="btn btn-outline" onclick="forceRefresh()">🔄 强制刷新页面</button>
+          <p style="font-size:11px;color:var(--text-secondary);margin-top:8px;">提示：也可在浏览器地址栏链接后加 <code>?v=2</code> 强制刷新</p>
+        </div>
+      </div>
+
+      <!-- 应用信息 -->
+      <div class="card">
+        <div class="card-header"><div class="dot dot-green"></div><h3>ℹ️ 关于</h3></div>
+        <div class="card-body">
+          <table class="data-table">
+            <tr><td style="font-weight:600;">应用名称</td><td>Rainbow AI OS</td></tr>
+            <tr><td style="font-weight:600;">版本</td><td>v2.0 (PWA)</td></tr>
+            <tr><td style="font-weight:600;">部署方式</td><td>GitHub Pages 自动部署</td></tr>
+            <tr><td style="font-weight:600;">更新频率</td><td>每日 07:00 自动更新</td></tr>
+            <tr><td style="font-weight:600;">数据存储</td><td>浏览器本地 (localStorage)</td></tr>
+            <tr><td style="font-weight:600;">访问链接</td><td><a href="https://rainbowreadytogo-web.github.io/rainbow-aios/" target="_blank" style="font-size:11px;">rainbowreadytogo-web.github.io</a></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1761,6 +1982,15 @@ if (Object.keys(appState.redbookStats).length === 0) {
   saveState();
 }
 if (!appState.streak) appState.streak = 0;
+if (!appState.noteRecords) appState.noteRecords = [];
+// 种子数据：首次使用时预填示例，让ROI分析立刻可见
+if (appState.noteRecords.length === 0) {
+  appState.noteRecords = [
+    { date: '2026-08-02', title: '外企开会想反对老板？5句话专业又不得罪人', likes: 156, saves: 89, comments: 12, topic: '会议英语' },
+    { date: '2026-08-03', title: 'CC邮件心机学：3招让抄送变护身符', likes: 203, saves: 145, comments: 18, topic: '邮件技巧' }
+  ];
+  saveState();
+}
 // Date key for daily scoping: '2026-08-04'
 const dateKey = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
 // Migrate old flat checkin data to date-scoped format
@@ -1794,6 +2024,116 @@ function saveRedbookStats() {
   msg.style.display = 'block';
   setTimeout(() => msg.style.display = 'none', 4000);
   loadRedbookStats();
+}
+
+// ===== 笔记发布记录 =====
+function saveNoteRecord() {
+  const btn = document.getElementById('btnSaveNote');
+  if (btn) { btn.textContent = '⏳ 保存中...'; btn.disabled = true; }
+  const date = document.getElementById('noteDate').value || dateKey;
+  const title = document.getElementById('noteTitle').value.trim();
+  if (!title) {
+    showToast('❌ 请输入笔记标题');
+    if (btn) { btn.textContent = '💾 保存发布记录'; btn.disabled = false; }
+    return;
+  }
+  const record = {
+    id: Date.now(),
+    date: date,
+    title: title,
+    likes: parseInt(document.getElementById('noteLikes').value) || 0,
+    saves: parseInt(document.getElementById('noteSaves').value) || 0,
+    comments: parseInt(document.getElementById('noteComments').value) || 0,
+    topic: document.getElementById('noteTopic').value.trim() || '未分类'
+  };
+  appState.noteRecords.push(record);
+  appState.noteRecords.sort(function(a, b) { return a.date < b.date ? 1 : -1; });
+  saveState();
+  // 清空输入框
+  document.getElementById('noteTitle').value = '';
+  document.getElementById('noteLikes').value = '';
+  document.getElementById('noteSaves').value = '';
+  document.getElementById('noteComments').value = '';
+  document.getElementById('noteTopic').value = '';
+  loadNoteRecords();
+  showToast('✅ 发布记录已保存');
+  if (btn) { btn.textContent = '💾 保存发布记录'; btn.disabled = false; }
+}
+
+function deleteNoteRecord(id) {
+  if (!confirm('确定删除这条记录？')) return;
+  appState.noteRecords = appState.noteRecords.filter(function(r) { return r.id !== id; });
+  saveState();
+  loadNoteRecords();
+  showToast('已删除');
+}
+
+function loadNoteRecords() {
+  var table = document.getElementById('noteRecordsTable');
+  if (!table) return;
+  var html = '<tr><th>日期</th><th>标题</th><th>👍</th><th>⭐</th><th>💬</th><th>互动率</th><th></th></tr>';
+  appState.noteRecords.forEach(function(r) {
+    var engagement = r.likes + r.saves + r.comments;
+    var rate = engagement > 0 ? (engagement / Math.max(r.likes, 1) * 100).toFixed(0) + '%' : '—';
+    html += '<tr>' +
+      '<td style="font-size:11px;">' + r.date + '</td>' +
+      '<td style="font-size:12px;max-width:150px;overflow:hidden;text-overflow:ellipsis;">' + r.title + '</td>' +
+      '<td>' + r.likes + '</td>' +
+      '<td>' + r.saves + '</td>' +
+      '<td>' + r.comments + '</td>' +
+      '<td>' + rate + '</td>' +
+      '<td><button class="btn btn-outline btn-sm" style="font-size:10px;padding:2px 6px;" onclick="deleteNoteRecord(' + r.id + ')">🗑️</button></td>' +
+      '</tr>';
+  });
+  table.innerHTML = html;
+
+  // ROI 分析
+  var analysis = document.getElementById('noteROIAnalysis');
+  if (!analysis) return;
+  var records = appState.noteRecords;
+  if (records.length === 0) {
+    analysis.innerHTML = '<p style="font-size:13px;color:var(--text-secondary);">暂无发布记录，保存第一条后自动生成分析</p>';
+    return;
+  }
+  var totalLikes = 0, totalSaves = 0, totalComments = 0;
+  var topicStats = {};
+  records.forEach(function(r) {
+    totalLikes += r.likes;
+    totalSaves += r.saves;
+    totalComments += r.comments;
+    if (!topicStats[r.topic]) topicStats[r.topic] = { count: 0, likes: 0, saves: 0, comments: 0 };
+    topicStats[r.topic].count++;
+    topicStats[r.topic].likes += r.likes;
+    topicStats[r.topic].saves += r.saves;
+    topicStats[r.topic].comments += r.comments;
+  });
+  var avgEngagement = ((totalLikes + totalSaves + totalComments) / records.length).toFixed(0);
+  var bestTopic = Object.keys(topicStats).sort(function(a, b) {
+    var aEng = topicStats[a].likes + topicStats[a].saves + topicStats[a].comments;
+    var bEng = topicStats[b].likes + topicStats[b].saves + topicStats[b].comments;
+    return bEng - aEng;
+  })[0];
+  var bestRecord = records.slice().sort(function(a, b) {
+    return (b.likes + b.saves + b.comments) - (a.likes + a.saves + a.comments);
+  })[0];
+
+  analysis.innerHTML =
+    '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px;">' +
+      '<div style="background:var(--light-green);border-radius:8px;padding:10px;text-align:center;">' +
+        '<div style="font-size:24px;font-weight:800;color:var(--dark-green);">' + records.length + '</div>' +
+        '<div style="font-size:11px;color:var(--text-secondary);">已发布笔记</div></div>' +
+      '<div style="background:var(--gold-light);border-radius:8px;padding:10px;text-align:center;">' +
+        '<div style="font-size:24px;font-weight:800;color:var(--gold);">' + avgEngagement + '</div>' +
+        '<div style="font-size:11px;color:var(--text-secondary);">平均互动量</div></div>' +
+    '</div>' +
+    '<div style="background:var(--cream);border-radius:8px;padding:12px;margin-bottom:8px;">' +
+      '<p style="font-size:13px;margin-bottom:4px;">🏆 <strong>最佳选题方向：</strong>' + bestTopic + '</p>' +
+      '<p style="font-size:11px;color:var(--text-secondary);">总互动 ' + (topicStats[bestTopic].likes + topicStats[bestTopic].saves + topicStats[bestTopic].comments) + ' · 均篇 ' + Math.round((topicStats[bestTopic].likes + topicStats[bestTopic].saves + topicStats[bestTopic].comments) / topicStats[bestTopic].count) + '</p>' +
+    '</div>' +
+    '<div style="background:var(--light-burgundy);border-radius:8px;padding:12px;">' +
+      '<p style="font-size:13px;margin-bottom:4px;">🔥 <strong>最佳笔记：</strong>' + bestRecord.title + '</p>' +
+      '<p style="font-size:11px;color:var(--text-secondary);">👍' + bestRecord.likes + ' ⭐' + bestRecord.saves + ' 💬' + bestRecord.comments + ' · ' + bestRecord.date + '</p>' +
+    '</div>';
 }
 
 function loadRedbookStats() {
@@ -2256,6 +2596,216 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
+// ===== DATA EXPORT / IMPORT =====
+function exportData() {
+  const btn = document.getElementById('btnExport');
+  if (btn) { btn.textContent = '⏳ 导出中...'; btn.disabled = true; }
+  try {
+    const allData = {
+      appState: JSON.parse(localStorage.getItem('rainbow-aios-state') || '{}'),
+      exportDate: new Date().toISOString(),
+      version: '2.0'
+    };
+    const blob = new Blob([JSON.stringify(allData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'rainbow-aios-backup-' + dateStr + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('✅ 数据已导出');
+  } catch (e) {
+    showToast('❌ 导出失败：' + e.message);
+  }
+  if (btn) { btn.textContent = '📥 导出全部数据'; btn.disabled = false; }
+}
+
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  if (!confirm('⚠️ 导入将覆盖当前所有数据，确定继续？')) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data.appState) throw new Error('文件格式不正确');
+      localStorage.setItem('rainbow-aios-state', JSON.stringify(data.appState));
+      showToast('✅ 数据导入成功，正在刷新...');
+      setTimeout(() => location.reload(), 1500);
+    } catch (err) {
+      showToast('❌ 导入失败：' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function forceRefresh() {
+  if ('caches' in window) {
+    caches.keys().then(function(names) {
+      Promise.all(names.map(function(name) { return caches.delete(name); })).then(function() {
+        showToast('🔄 缓存已清除，正在刷新...');
+        setTimeout(function() { location.reload(true); }, 1000);
+      });
+    });
+  } else {
+    location.reload(true);
+  }
+}
+
+// ===== 每日跟读 =====
+var readAloudSentences = [
+  { en: "Things are moving fast on the AI initiative, and I'd like to align with you on next steps.", zh: "AI项目进展很快，我想和你对齐一下下一步。" },
+  { en: "I wanted to flag a potential risk before it becomes an issue for the team.", zh: "我想在它变成团队问题之前先标记一个潜在风险。" },
+  { en: "Could we carve out 15 minutes to walk through the proposal together?", zh: "我们能抽出15分钟一起过一下这个提案吗？" },
+  { en: "Based on the data, I recommend we pivot our strategy to focus on retention.", zh: "基于数据，我建议我们调整策略，聚焦留存。" },
+  { en: "I appreciate the feedback, and here's how I plan to address it.", zh: "感谢反馈，这是我的改进计划。" },
+  { en: "Let's circle back on this after we've gathered more input from the stakeholders.", zh: "等我们收集更多相关方意见后再回来讨论这个。" },
+  { en: "The key takeaway from today's meeting is that we need to act quickly.", zh: "今天会议的关键结论是我们需要快速行动。" },
+  { en: "I'd like to propose a different approach that might save us some time.", zh: "我想提出一个不同的方案，可能帮我们节省时间。" },
+  { en: "Can you walk me through your thought process on this decision?", zh: "你能带我过一下你做这个决定的思考过程吗？" },
+  { en: "I think there's an opportunity here that we shouldn't overlook.", zh: "我觉得这里有一个我们不应忽视的机会。" },
+  { en: "Let's make sure we're all on the same page before we move forward.", zh: "在推进之前，让我们确保大家认知一致。" },
+  { en: "I'd like to push back gently on that timeline — it might be too aggressive.", zh: "我想委婉地对那个时间线提出异议——可能太激进了。" },
+  { en: "What would success look like for this project, in your view?", zh: "在你看来，这个项目成功的标志是什么？" },
+  { en: "I'm confident we can deliver, but I want to set realistic expectations.", zh: "我有信心能交付，但我想设定合理的期望。" },
+  { en: "Let's leverage what worked well last quarter and improve from there.", zh: "让我们利用上季度行之有效的做法，在此基础上改进。" }
+];
+var readAloudIndex = 0;
+
+function initReadAloud() {
+  if (!appState.readAloud) appState.readAloud = {};
+  var dateEl = document.getElementById('readAloudDate');
+  if (dateEl) dateEl.textContent = dateKey;
+  var dayEl = document.getElementById('readAloudDay');
+  if (dayEl) {
+    var count = Object.keys(appState.readAloud).length;
+    dayEl.textContent = count + 1;
+  }
+  updateReadAloudStats();
+}
+
+function speakSentence() {
+  if (!('speechSynthesis' in window)) {
+    showToast('❌ 你的浏览器不支持语音朗读');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  var sentence = document.getElementById('readAloudSentence').textContent;
+  var utterance = new SpeechSynthesisUtterance(sentence);
+  utterance.lang = 'en-US';
+  utterance.rate = parseFloat(document.getElementById('speakRate').value) || 0.85;
+  var btn = document.getElementById('btnSpeak');
+  if (btn) { btn.textContent = '🔊 朗读中...'; btn.disabled = true; }
+  utterance.onend = function() {
+    if (btn) { btn.textContent = '🔊 朗读'; btn.disabled = false; }
+  };
+  window.speechSynthesis.speak(utterance);
+}
+
+function nextSentence() {
+  readAloudIndex = (readAloudIndex + 1) % readAloudSentences.length;
+  var s = readAloudSentences[readAloudIndex];
+  document.getElementById('readAloudSentence').textContent = s.en;
+  document.getElementById('readAloudTranslation').textContent = s.zh;
+}
+
+function markReadDone() {
+  appState.readAloud[dateKey] = { sentence: document.getElementById('readAloudSentence').textContent, time: new Date().toISOString() };
+  saveState();
+  updateReadAloudStats();
+  showToast('✅ 今日跟读完成！');
+}
+
+function updateReadAloudStats() {
+  var stats = document.getElementById('readAloudStats');
+  if (!stats) return;
+  var count = Object.keys(appState.readAloud || {}).length;
+  stats.textContent = '已完成 ' + count + ' 天' + (count >= 7 ? ' · 坚持1周了！💪' : count >= 30 ? ' · 坚持1月了！🎉' : '');
+}
+
+// ===== WEEKEND SCHEDULE =====
+function getWeekRange() {
+  var today = new Date();
+  var day = today.getDay();
+  var monday = new Date(today);
+  monday.setDate(today.getDate() - (day === 0 ? 6 : day - 1));
+  var sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+  var fmt = function(d) { return (d.getMonth()+1) + '/' + d.getDate(); };
+  return fmt(monday) + ' - ' + fmt(sunday);
+}
+
+function generateWeekendSchedule() {
+  var today = new Date();
+  var dayOfWeek = today.getDay();
+  var isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
+
+  var schedule = [
+    { day: '周六', time: '09:00-11:00', grade: '三年级', subject: 'Unit 2 — Colors & Shapes', tasks: ['复习颜色单词', '练习句型 What color is it?', '画图+标注颜色游戏'] },
+    { day: '周六', time: '11:00-12:00', grade: '七年级', subject: 'Unit 1 — Daily Routines', tasks: ['复习动词短语', '练习一般现在时', '写5句话描述自己的一天'] },
+    { day: '周六', time: '14:00-16:00', grade: '八年级', subject: 'Unit 3 — Travel Plans', tasks: ['阅读理解练习', 'will/be going to 语法对比', '写一篇旅行计划小作文'] },
+    { day: '周日', time: '09:00-10:00', grade: '三年级', subject: '复习+作业讲解', tasks: ['检查本周作业', '错题讲解', '趣味英语视频'] },
+    { day: '周日', time: '10:00-11:00', grade: '七年级', subject: '复习+作业讲解', tasks: ['检查本周作业', '错题讲解', '口语对话练习'] },
+    { day: '周日', time: '14:00-15:00', grade: '八年级', subject: '复习+作业讲解', tasks: ['检查本周作业', '错题讲解', '作文互改'] }
+  ];
+
+  var html = '';
+  schedule.forEach(function(s) {
+    var isToday = false;
+    if (isWeekend) {
+      var todayName = (dayOfWeek === 6) ? '周六' : '周日';
+      isToday = (s.day === todayName);
+    }
+    html += '<div class="schedule-day' + (isToday ? ' today' : '') + '">';
+    html += '<div class="day-title">' + s.day + ' ' + s.time + (isToday ? ' 🔵 今日' : '') + '</div>';
+    html += '<div class="day-meta">' + s.grade + ' · ' + s.subject + '</div>';
+    s.tasks.forEach(function(t) { html += '<div class="day-task">• ' + t + '</div>'; });
+    html += '</div>';
+  });
+
+  var container = document.getElementById('weekendSchedule');
+  if (container) container.innerHTML = html;
+
+  var rangeEl = document.getElementById('weekRange');
+  if (rangeEl) rangeEl.textContent = getWeekRange();
+}
+
+var weekendChecklistItems = [
+  '三年级教案已准备', '七年级教案已准备', '八年级教案已准备',
+  '打印练习题/讲义', '检查教学视频是否可播放', '准备课堂互动游戏/活动'
+];
+
+function loadWeekendChecklist() {
+  var key = 'weekend-checklist-' + getWeekRange();
+  var saved = appState[key] || {};
+  var html = '<ul class="checklist">';
+  weekendChecklistItems.forEach(function(item, i) {
+    var done = saved[item] ? 'done' : '';
+    html += '<li class="' + done + '" onclick="toggleWeekendItem(\'' + item + '\')">';
+    html += '<div class="checkbox">' + (done ? '✓' : '') + '</div>';
+    html += '<span>' + item + '</span></li>';
+  });
+  html += '</ul>';
+  var el = document.getElementById('weekendChecklist');
+  if (el) el.innerHTML = html;
+}
+
+function toggleWeekendItem(item) {
+  var key = 'weekend-checklist-' + getWeekRange();
+  if (!appState[key]) appState[key] = {};
+  appState[key][item] = !appState[key][item];
+  saveState();
+  loadWeekendChecklist();
+}
+
+function resetWeekendChecklist() {
+  var key = 'weekend-checklist-' + getWeekRange();
+  appState[key] = {};
+  saveState();
+  loadWeekendChecklist();
+  showToast('📋 备课清单已重置');
+}
+
 // ===== INIT =====
 function init() {
   loadCheckins();
@@ -2275,9 +2825,30 @@ function init() {
   }
   // Load redbook stats
   if (typeof loadRedbookStats === 'function') loadRedbookStats();
+  // Load note records
+  if (typeof loadNoteRecords === 'function') loadNoteRecords();
+  // Set default date for note record input
+  var noteDateInput = document.getElementById('noteDate');
+  if (noteDateInput) noteDateInput.value = dateKey;
+  // Init read aloud
+  if (typeof initReadAloud === 'function') initReadAloud();
+  // Init weekend schedule
+  generateWeekendSchedule();
+  loadWeekendChecklist();
 }
 
 init();
+
+// ===== Service Worker Registration (PWA) =====
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').then(() => {
+      console.log('[PWA] Service Worker registered');
+    }).catch((err) => {
+      console.log('[PWA] SW registration failed:', err);
+    });
+  });
+}
 </script>
 </body>
 </html>
