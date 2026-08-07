@@ -1,0 +1,51 @@
+name: Daily Auto Deploy
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get Beijing date
+        run: |
+          BEIJING_DATE=$(TZ='Asia/Shanghai' date '+%Y-%m-%d')
+          echo "TODAY=$BEIJING_DATE" >> $GITHUB_ENV
+          echo "Today (Beijing): $BEIJING_DATE"
+
+      - name: Check for scheduled content
+        id: check
+        run: |
+          if [ -f "content/${{ env.TODAY }}.html" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Found content file for ${{ env.TODAY }}"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "No content file for ${{ env.TODAY }}, skipping."
+          fi
+
+      - name: Deploy today's content
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          cp "content/${{ env.TODAY }}.html" index.html
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "auto-deploy ${{ env.TODAY }}"
+          git push
+          echo "Deployed content for ${{ env.TODAY }}"
+
+      - name: Cleanup old content (keep 14 days)
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          find content/ -name "*.html" -type f -mtime +14 -delete || true
+          git add content/
+          git diff --staged --quiet || (git commit -m "cleanup old content files" && git push)
+  
