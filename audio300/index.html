@@ -76,7 +76,7 @@
   <div class="gate-box">
     <h1>欢迎回来 🌈</h1>
     <p class="sub">请输入解锁口令</p>
-    <input id="codeInput" type="text" placeholder="请输入解锁口令" autocomplete="off">
+    <input id="codeInput" type="text" placeholder="请输入解锁口令" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" onblur="this.setAttribute('readonly','readonly')">
     <button id="codeBtn">解锁 300 句职场口语</button>
     <div style="color:#9c7d6d;font-size:12px;margin-top:8px">购后口令：rainbow300</div>
     <div class="err" id="err">口令错误，请联系卖家获取</div>
@@ -117,7 +117,7 @@
   <div class="footer">
     © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
     仅供个人学习使用·请勿用作商业用途<br>
-    <span style="color:#c8aa9a">v2b · 2026-09-03 · <span id="healthText">音频检测中…</span></span>
+    <span style="color:#c8aa9a">v2c · 2026-09-03 · <span id="healthText">音频检测中…</span></span>
   </div>
 </div>
 
