@@ -64,6 +64,10 @@
   .gate-box .brand{color:#c8aa9a;font-size:11px;margin-top:18px}
   .no-result{padding:30px;text-align:center;color:#9c7d6d;display:none;font-size:13px}
   .no-result.show{display:block}
+  .load-tip{padding:30px 16px;text-align:center;color:#9c7d6d;font-size:13px}
+  .page-error{background:#fff0f0;border:1px solid #e0b4b4;border-radius:12px;padding:14px 16px;margin:16px;color:#a94442;font-size:13px;line-height:1.6}
+  .page-error code{background:#fff;padding:2px 4px;border-radius:4px;font-size:12px}
+  .page-error button{margin-top:10px;padding:8px 14px;background:#c8623d;color:#fff;border:none;border-radius:8px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -72,8 +76,9 @@
   <div class="gate-box">
     <h1>欢迎回来 🌈</h1>
     <p class="sub">请输入解锁口令</p>
-    <input id="codeInput" type="text" placeholder="rainbow300" autocomplete="off">
+    <input id="codeInput" type="text" placeholder="请输入解锁口令" autocomplete="off">
     <button id="codeBtn">解锁 300 句职场口语</button>
+    <div style="color:#9c7d6d;font-size:12px;margin-top:8px">购后口令：rainbow300</div>
     <div class="err" id="err">口令错误，请联系卖家获取</div>
     <div class="brand">Rainbow 聊外企 · 音频版</div>
   </div>
@@ -105,8 +110,9 @@
     <div class="warn">音频按需加载,首次进入每课会预热 1-2 秒属正常</div>
   </details>
 
-  <div id="weeks"></div>
+  <div id="weeks"><div class="load-tip">正在加载 29 课内容…</div></div>
   <div class="no-result" id="noResult">没有找到匹配「<span id="kw"></span>」的句子,试试别的词</div>
+  <div id="pageError" class="page-error" style="display:none"></div>
 
   <div class="footer">
     © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
@@ -115,6 +121,20 @@
 </div>
 
 <script>
+/* ============== 全局错误兜底 ============== */
+function showError(msg) {
+  const box = document.getElementById('pageError');
+  if (!box) return;
+  box.style.display = 'block';
+  box.innerHTML = '<b>页面加载异常</b><br>' + msg + '<br><button onclick="location.reload(true)">强制刷新重试</button>';
+}
+window.addEventListener('error', e => {
+  showError(e.message + ' （行' + (e.lineno || '-') + '）');
+});
+window.addEventListener('unhandledrejection', e => {
+  showError('未处理的 Promise 错误：' + (e.reason && e.reason.message ? e.reason.message : String(e.reason)));
+});
+
 /* ============== 口令门 ============== */
 const ACCESS_CODE = "rainbow300";
 const UNLOCKED_KEY = "r300_unlocked_v2";
@@ -131,9 +151,16 @@ function tryUnlock() {
 function showApp() {
   document.getElementById('gate').style.display = 'none';
   document.getElementById('app').style.display = '';
-  if (!window._inited) { window._inited = true; renderWeeks(); initSearch(); }
+  if (!window._inited) {
+    window._inited = true;
+    try { renderWeeks(); initSearch(); }
+    catch (e) { showError('初始化内容失败：' + e.message); }
+  }
 }
-if (localStorage.getItem(UNLOCKED_KEY) === "1") showApp();
+if (localStorage.getItem(UNLOCKED_KEY) === "1") {
+  // 延迟一帧，确保 DOM 完全就绪
+  setTimeout(showApp, 0);
+}
 document.getElementById('codeBtn').addEventListener('click', tryUnlock);
 document.getElementById('codeInput').addEventListener('keypress', e => { if (e.key === 'Enter') tryUnlock(); });
 
@@ -150,6 +177,10 @@ let playAllQueue = [];
 
 /* ============== 渲染周 ============== */
 function renderWeeks() {
+  if (!Array.isArray(WEEKS) || WEEKS.length === 0) {
+    showError('课程数据未加载（WEEKS 为空）');
+    return;
+  }
   const box = document.getElementById('weeks');
   box.innerHTML = '';
   WEEKS.forEach((w, wi) => {
