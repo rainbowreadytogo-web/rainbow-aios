@@ -116,7 +116,8 @@
 
   <div class="footer">
     © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
-    仅供个人学习使用·请勿用作商业用途
+    仅供个人学习使用·请勿用作商业用途<br>
+    <span style="color:#c8aa9a">v2b · 2026-09-03 · <span id="healthText">音频检测中…</span></span>
   </div>
 </div>
 
@@ -155,6 +156,8 @@ function showApp() {
     window._inited = true;
     try { renderWeeks(); initSearch(); }
     catch (e) { showError('初始化内容失败：' + e.message); }
+    // 异步检测音频资源可用性
+    setTimeout(checkAudioHealth, 500);
   }
 }
 if (localStorage.getItem(UNLOCKED_KEY) === "1") {
@@ -272,6 +275,35 @@ function audioSrc(idx, speed) {
   const dayStr = String(dayNum).padStart(2, '0');
   const itemStr = String(itemNum).padStart(2, '0');
   return `audio/d${dayStr}_${itemStr}_${speed}.mp3`;
+}
+
+/* ============== 音频资源健康检测 ============== */
+function checkAudioHealth() {
+  const samples = [
+    audioSrc(0, 'n'),   // Day1 第1句 常速
+    audioSrc(9, 's'),   // Day1 最后1句 慢速
+    audioSrc(140, 'n'), // Day14 中间句
+    audioSrc(289, 's')  // Day29 最后1句 慢速
+  ];
+  let ok = 0, fail = 0, lastErr = '';
+  const healthText = document.getElementById('healthText');
+  function finish() {
+    if (healthText) healthText.textContent = '音频资源正常 (' + ok + '/' + samples.length + ')';
+    if (fail > 0) {
+      showError('部分音频文件加载失败（' + fail + '/' + samples.length + '）。如果一直无法播放，请联系卖家。' + (lastErr ? ' 错误：' + lastErr : ''));
+    }
+  }
+  samples.forEach((src, i) => {
+    fetch(src, { method: 'HEAD', cache: 'no-store' })
+      .then(r => {
+        if (r.ok) ok++; else { fail++; lastErr = src + ' ' + r.status; }
+        if (ok + fail === samples.length) finish();
+      })
+      .catch(e => {
+        fail++; lastErr = src + ' ' + e.message;
+        if (ok + fail === samples.length) finish();
+      });
+  });
 }
 
 function playOne(btn) {
