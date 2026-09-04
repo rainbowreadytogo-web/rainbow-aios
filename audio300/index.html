@@ -118,7 +118,7 @@
   <div class="footer">
     © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
     仅供个人学习使用·请勿用作商业用途<br>
-    <span style="color:#c8aa9a">v2d · 2026-09-04 · <span id="healthText">音频检测中…</span></span>
+    <span style="color:#c8aa9a">v2e · 2026-09-04 · <span id="healthText">音频检测中…</span></span>
   </div>
 </div>
 
@@ -281,10 +281,10 @@ function audioSrc(idx, speed) {
 /* ============== 音频资源健康检测 ============== */
 function checkAudioHealth() {
   const samples = [
-    audioSrc(0, 'n'),   // Day1 第1句 常速
-    audioSrc(9, 's'),   // Day1 最后1句 慢速
-    audioSrc(140, 'n'), // Day14 中间句
-    audioSrc(289, 's')  // Day29 最后1句 慢速
+    audioSrc(10, 'n'),  // Day1 第1句 常速
+    audioSrc(19, 's'),  // Day1 最后1句 慢速
+    audioSrc(144, 'n'), // Day14 中间句
+    audioSrc(299, 's')  // Day29 最后1句 慢速
   ];
   let ok = 0, fail = 0, lastErr = '';
   const healthText = document.getElementById('healthText');
