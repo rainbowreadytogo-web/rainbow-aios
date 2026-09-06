@@ -1,0 +1,15 @@
+{
+  "name": "外企生存英语手册 · 音频版",
+  "short_name": "外企生存手册",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#8f3f24",
+  "theme_color": "#8f3f24",
+  "description": "外企职场英语生存指南：650条真实场景表达，一句一音频，点开即学。",
+  "icons": [
+    { "src": "icon-180.png", "sizes": "180x180" },
+    { "src": "icon-192.png", "sizes": "192x192" },
+    { "src": "icon-512.png", "sizes": "512x512" },
+    { "src": "icon-1024.png", "sizes": "1024x1024" }
+  ]
+}
