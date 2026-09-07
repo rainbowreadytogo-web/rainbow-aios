@@ -179,8 +179,7 @@ document.getElementById('codeBtn').addEventListener('click', tryUnlock);
 document.getElementById('codeInput').addEventListener('keypress', e => { if (e.key === 'Enter') tryUnlock(); });
 
 /* ============== 数据 ============== */
-const DATA = null;
-const CHAPTERS = null;
+let DATA = null;
 /* ============== 状态 ============== */
 let curSpeed = 'n';  // 'n' 常速, 's' 慢速
 let currentAudio = null;
