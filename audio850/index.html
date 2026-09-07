@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#c8623d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="850 句通勤磨耳朵">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.json">
+<title>职场全英交流·无非这 850 句 · 音频版</title>
+<style>
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#fdf8f5;color:#2a2a2a;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(253,248,245,.95);backdrop-filter:blur(10px);padding:14px 16px 10px;border-bottom:1px solid #f0e6dc}
+  .topbar h1{margin:0 0 2px;font-size:18px;font-weight:700}
+  .topbar .sub{margin:0;color:#9c7d6d;font-size:12px}
+  .controls{margin-top:10px;display:flex;gap:8px;align-items:center}
+  .search{flex:1;padding:9px 12px;border:1px solid #ead9c9;border-radius:20px;background:#fff;font-size:14px;outline:none}
+  .speed-toggle{display:flex;background:#f0e6dc;border-radius:20px;overflow:hidden;flex-shrink:0}
+  .speed-toggle button{border:none;background:transparent;padding:8px 14px;font-size:13px;color:#9c7d6d;cursor:pointer;font-weight:600}
+  .speed-toggle button.on{background:#c8623d;color:#fff}
+  .help{background:#fff5ed;border:1px solid #f4d4bf;border-radius:12px;padding:12px 14px;margin:12px 16px;font-size:13px;color:#7a5640}
+  .help summary{font-weight:700;color:#c8623d;cursor:pointer;list-style:none;outline:none}
+  .help summary::-webkit-details-marker{display:none}
+  .help summary::before{content:"? ";display:inline-block;width:18px;height:18px;border-radius:50%;background:#c8623d;color:#fff;text-align:center;line-height:18px;font-weight:700;margin-right:4px;font-size:12px}
+  .help ul{margin:10px 0 0;padding:0;list-style:none}
+  .help li{margin:5px 0;padding-left:14px;position:relative}
+  .help li::before{content:"·";position:absolute;left:4px;color:#c8623d;font-weight:700}
+  .help b{color:#c8623d}
+  .help .warn{margin-top:8px;padding-top:8px;border-top:1px dashed #ead9c9;color:#9c7d6d;font-size:12px}
+  .week{margin:18px 16px}
+  .week-h{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#fff;border:1px solid #ead9c9;border-radius:14px;cursor:pointer}
+  .week-h h2{margin:0;font-size:16px;color:#c8623d;font-weight:700;flex:1}
+  .week-h .count{font-size:12px;color:#9c7d6d;margin-right:8px}
+  .week-h .arrow{transition:transform .2s;color:#c8623d;font-size:18px}
+  .week.open .week-h .arrow{transform:rotate(90deg)}
+  .week.open .week-content{display:block}
+  .week-content{display:none;padding-top:14px}
+  .day{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(180,140,110,.06)}
+  .day-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px;flex-wrap:wrap}
+  .day-tag{background:#c8623d;color:#fff;border-radius:6px;padding:3px 8px;font-size:11px;font-weight:700;letter-spacing:.5px;flex-shrink:0}
+  .day-title{font-weight:700;font-size:15px;color:#2a2a2a;flex:1;min-width:0}
+  .scene-tip{font-size:12px;color:#9c7d6d;margin:0 0 12px;line-height:1.5}
+  .scene-tip b{color:#7a5640;font-weight:600}
+  .play-all{padding:5px 10px;border:1px solid #c8623d;background:#fff;color:#c8623d;border-radius:14px;font-size:12px;cursor:pointer;font-weight:600}
+  .play-all.playing{background:#c8623d;color:#fff}
+  .card-list{display:flex;flex-direction:column;gap:8px}
+  .card{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fdf8f5;border-radius:10px;border:1px solid #f4ebdf;transition:background .15s}
+  .card:active{background:#faf0e6}
+  .card.playing{background:#fce8db;border-color:#c8623d}
+  .card .en{font-weight:600;color:#2a2a2a;font-size:15px;flex:1}
+  .card .cn{color:#7a5640;font-size:13px;flex:1}
+  .play-btn{width:38px;height:38px;border-radius:50%;background:#c8623d;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+  .play-btn.playing{background:#a04d2d}
+  .play-btn:disabled{opacity:.5}
+  .empty{padding:40px 16px;text-align:center;color:#9c7d6d;font-size:13px}
+  .footer{margin:30px 16px 20px;text-align:center;color:#c8aa9a;font-size:11px;line-height:1.7}
+  /* 口令门 */
+  #gate{position:fixed;inset:0;z-index:999;background:linear-gradient(135deg,#fdf8f5 0%,#f5e6d6 100%);display:flex;align-items:center;justify-content:center;padding:20px}
+  .gate-box{background:#fff;padding:36px 28px;border-radius:20px;max-width:340px;width:100%;text-align:center;box-shadow:0 10px 40px rgba(180,140,110,.18)}
+  .gate-box .icon{width:56px;height:56px;margin:0 auto 18px;color:#b8a79b}
+  .gate-box h1{margin:0 0 10px;color:#2a2a2a;font-size:22px;font-weight:700;line-height:1.35}
+  .gate-box .sub{color:#9c7d6d;font-size:13px;margin:0 0 24px;line-height:1.6}
+  .gate-box input{width:100%;padding:13px;border:2px solid #ead9c9;border-radius:14px;font-size:15px;text-align:center;letter-spacing:2px;outline:none;margin-bottom:14px;background:#fff}
+  .gate-box input:focus{border-color:#c8623d}
+  .gate-box button{width:100%;padding:14px;background:#c8623d;color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:600;cursor:pointer}
+  .gate-box .err{color:#c0392b;font-size:13px;margin-top:12px;display:none}
+  .gate-box .brand{color:#b8a79b;font-size:12px;margin-top:24px;line-height:1.7}
+  .no-result{padding:30px;text-align:center;color:#9c7d6d;display:none;font-size:13px}
+  .no-result.show{display:block}
+  .load-tip{padding:30px 16px;text-align:center;color:#9c7d6d;font-size:13px}
+  .page-error{background:#fff0f0;border:1px solid #e0b4b4;border-radius:12px;padding:14px 16px;margin:16px;color:#a94442;font-size:13px;line-height:1.6}
+  .page-error code{background:#fff;padding:2px 4px;border-radius:4px;font-size:12px}
+  .page-error button{margin-top:10px;padding:8px 14px;background:#c8623d;color:#fff;border:none;border-radius:8px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gate-box">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-1a8 8 0 0 1 16 0v1"/><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z"/><path d="M21 14h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z"/></svg>
+    <h1>职场全英交流<br>无非这 850 句 · 音频版</h1>
+    <p class="sub">43 个真实场景 · 通勤磨耳朵大全<br>请输入购买后收到的口令解锁</p>
+    <input id="codeInput" type="text" placeholder="请输入口令" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text" name="r850code" style="-webkit-autofill:off">
+    <button id="codeBtn">解锁学习</button>
+    <div class="err" id="err">口令错误，请联系卖家获取</div>
+    <div class="brand">Rainbow聊外企 · 仅供购买者本人使用<br>口令问题请联系卖家</div>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+  <div class="topbar">
+    <h1>职场全英交流·无非这 850 句·音频版</h1>
+    <p class="sub">Rainbow 聊外企 · 43 章节 × 850 句 × 双速朗读</p>
+    <div class="controls">
+      <input class="search" id="search" placeholder="搜句子 / 中文… (全 850 句)">
+      <div class="speed-toggle">
+        <button id="btnN" class="on">常速</button>
+        <button id="btnS">慢速</button>
+      </div>
+    </div>
+  </div>
+
+  <details class="help">
+    <summary>使用帮助（首次使用请点开）</summary>
+    <ul>
+      <li><b>双速切换</b>:顶部「常速/慢速」,跟读练习用慢速(降30%,听清每个词)</li>
+      <li><b>连播本课</b>:每课右上角「连播」,通勤当听力自动放</li>
+      <li><b>搜索</b>:顶部搜索框,中英文都能搜</li>
+      <li><b>收藏方法</b>:链接收藏到浏览器书签,或微信里「浮窗」保存,随时点开学</li>
+      <li><b>学习节奏</b>:每天 1-2 章节(约 20-40 句),通勤听常速练耳→跟读用慢速,43 章节≈1-2 个月</li>
+      <li>需要离线文件版,或使用遇到问题: 联系卖家 Rainbow</li>
+    </ul>
+    <div class="warn">音频按需加载,首次进入每课会预热 1-2 秒属正常</div>
+  </details>
+
+  <div id="weeks"><div class="load-tip">正在加载 850 句…</div></div>
+  <div class="no-result" id="noResult">没有找到匹配「<span id="kw"></span>」的句子,试试别的词</div>
+  <div id="pageError" class="page-error" style="display:none"></div>
+
+  <div class="footer">
+    © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
+    仅供个人学习使用·请勿用作商业用途<br>
+    <span style="color:#c8aa9a">v1.0 · 2026-09-07 · <span id="healthText">音频检测中…</span></span>
+  </div>
+</div>
+
+<script>
+/* ============== 全局错误兜底 ============== */
+function showError(msg) {
+  const box = document.getElementById('pageError');
+  if (!box) return;
+  box.style.display = 'block';
+  box.innerHTML = '<b>页面加载异常</b><br>' + msg + '<br><button onclick="location.reload(true)">强制刷新重试</button>';
+}
+window.addEventListener('error', e => {
+  showError(e.message + ' （行' + (e.lineno || '-') + '）');
+});
+window.addEventListener('unhandledrejection', e => {
+  showError('未处理的 Promise 错误：' + (e.reason && e.reason.message ? e.reason.message : String(e.reason)));
+});
+
+/* ============== 口令门 ============== */
+const ACCESS_CODE = "rainbow850";
+const UNLOCKED_KEY = "r850_unlocked_v1";
+function tryUnlock() {
+  const v = (document.getElementById('codeInput').value || "").trim();
+  if (v === ACCESS_CODE) {
+    localStorage.setItem(UNLOCKED_KEY, "1");
+    showApp();
+  } else {
+    document.getElementById('err').style.display = 'block';
+    document.getElementById('codeInput').select();
+  }
+}
+function showApp() {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('app').style.display = '';
+  if (!window._inited) {
+    window._inited = true;
+    (async () => {
+      try {
+        const json = await loadData();
+        DATA = json; // 全局句数组
+        renderChapters();
+        initSearch();
+      } catch (e) { showError('初始化失败：' + e.message); }
+    })();
+    setTimeout(checkAudioHealth, 1500);
+  }
+}
+if (localStorage.getItem(UNLOCKED_KEY) === "1") {
+  // 延迟一帧，确保 DOM 完全就绪
+  setTimeout(showApp, 0);
+}
+document.getElementById('codeBtn').addEventListener('click', tryUnlock);
+document.getElementById('codeInput').addEventListener('keypress', e => { if (e.key === 'Enter') tryUnlock(); });
+
+/* ============== 数据 ============== */
+const DATA = null;
+const CHAPTERS = null;
+/* ============== 状态 ============== */
+let curSpeed = 'n';  // 'n' 常速, 's' 慢速
+let currentAudio = null;
+let currentCard = null;
+let playAllMode = false;
+let playAllQueue = [];
+
+/* ============== 渲染章节 ============== */
+let CHAPTERS = [];
+
+async function loadData() {
+  const r = await fetch('data.json?_=' + Date.now(), {cache: 'no-store'});
+  if (!r.ok) throw new Error('data.json 加载失败 (HTTP ' + r.status + ')');
+  const json = await r.json();
+  CHAPTERS = json.chapters;
+  return json;
+}
+
+function renderChapters() {
+  if (!Array.isArray(CHAPTERS) || CHAPTERS.length === 0) {
+    showError('章节数据未加载');
+    return;
+  }
+  const box = document.getElementById('weeks');
+  box.innerHTML = '';
+  CHAPTERS.forEach((ch, ci) => {
+    const section = document.createElement('div');
+    section.className = 'week' + (ci === 0 ? ' open' : '');
+    section.dataset.chIdx = ci;
+    section.innerHTML = `
+      <div class="week-h" onclick="toggleChapter(${ci})">
+        <h2>${escapeHtml(ch.no)} · ${escapeHtml(ch.title)}</h2>
+        <span class="count">${ch.sentences ? ch.sentences.length : (ch.end_idx - ch.start_idx + 1)}句</span>
+        <span class="arrow">›</span>
+      </div>
+      <div class="week-content" id="wc${ci}"></div>
+    `;
+    box.appendChild(section);
+  });
+  // 渲染全部（章节数适中，不懒加载）
+  CHAPTERS.forEach((_, ci) => renderChapter(ci));
+}
+
+function toggleChapter(ci) {
+  const section = document.querySelectorAll('.week')[ci];
+  section.classList.toggle('open');
+  if (section.classList.contains('open')) {
+    renderChapter(ci);
+    setTimeout(() => section.scrollIntoView({behavior:'smooth', block:'start'}), 50);
+  }
+}
+
+function renderChapter(ci) {
+  const target = document.getElementById('wc' + ci);
+  if (!target || target.dataset.rendered === '1') return;
+  const ch = CHAPTERS[ci];
+  // 取出该章的所有句子（通过章节 no → data.sentences 过滤）
+  const items = DATA.sentences.filter(s => s.idx >= ch.start_idx && s.idx <= ch.end_idx);
+  let html = `
+    <div class="day" data-ch="${ci}">
+      <div class="day-head">
+        <span class="day-tag">${ch.no}</span>
+        <span class="day-title">${escapeHtml(ch.title)} · ${items.length} 句</span>
+        <button class="play-all" onclick="playAll(${ci})">▶ 连播本章</button>
+      </div>
+      <div class="card-list" data-cards>${items.map((s, ii) => cardHTML(ci, ii, s)).join('')}</div>
+    </div>
+  `;
+  target.innerHTML = html;
+  target.dataset.rendered = '1';
+  registerAudioLazyLoad(target);
+}
+
+function cardHTML(ci, ii, s) {
+  return `
+    <div class="card" data-en="${escapeAttr(s.en)}" data-cn="${escapeAttr(s.cn)}" data-idx="${s.idx}">
+      <div style="flex:1;min-width:0">
+        <div class="en">${escapeHtml(s.en)}<span style="color:#c8aa9a;font-weight:400;font-size:11px;margin-left:6px">#${s.idx}</span></div>
+        <div class="cn">${escapeHtml(s.cn)}</div>
+      </div>
+      <button class="play-btn" onclick="playOne(this)">▶</button>
+    </div>
+  `;
+}
+
+/* ============== IntersectionObserver 懒加载音频 ============== */
+const audioObserver = new IntersectionObserver((entries) => {
+  entries.forEach(en => {
+    if (en.isIntersecting) {
+      // 不立即播放，只是预热 DOM 监听，用户的点击再 play()
+      // 这里其实只是确保 DOM 进入视口时才被 scroll listener 注意到
+    }
+  });
+}, {rootMargin: '200px 0px'});
+
+function registerAudioLazyLoad(root) {
+  root.querySelectorAll('.card').forEach(c => audioObserver.observe(c));
+}
+
+/* ============== 播放单句 ============== */
+function audioSrc(idx, speed) {
+  const idxStr = String(idx).padStart(3, "0");
+  return `audio/s${idxStr}_${speed}.mp3`;
+}
+
+/* ============== 音频资源健康检测 ============== */
+function checkAudioHealth() {
+  const samples = [
+    audioSrc(1, 'n'),   // 第1句
+    audioSrc(20, 's'),  // 第1章最后1句
+    audioSrc(450, 'n'), // 中间句
+    audioSrc(850, 's')  // 末句
+  ];
+  let ok = 0, fail = 0, lastErr = '';
+  const healthText = document.getElementById('healthText');
+  function finish() {
+    if (healthText) healthText.textContent = '音频资源正常 (' + ok + '/' + samples.length + ')';
+    if (fail > 0) {
+      showError('部分音频文件加载失败（' + fail + '/' + samples.length + '）。如果一直无法播放，请联系卖家。' + (lastErr ? ' 错误：' + lastErr : ''));
+    }
+  }
+  samples.forEach((src, i) => {
+    fetch(src, { method: 'HEAD', cache: 'no-store' })
+      .then(r => {
+        if (r.ok) ok++; else { fail++; lastErr = src + ' ' + r.status; }
+        if (ok + fail === samples.length) finish();
+      })
+      .catch(e => {
+        fail++; lastErr = src + ' ' + e.message;
+        if (ok + fail === samples.length) finish();
+      });
+  });
+}
+
+function playOne(btn) {
+  if (currentAudio && !currentAudio.paused) {
+    currentAudio.pause();
+    if (currentCard) currentCard.classList.remove('playing');
+    if (currentBtn) currentBtn.classList.remove('playing');
+  }
+  if (playAllMode) { stopPlayAll(); return; }
+  const card = btn.closest('.card');
+  currentCard = card;
+  currentBtn = btn;
+  const idx = parseInt(card.dataset.idx, 10);
+  const a = new Audio(audioSrc(idx, curSpeed));
+  a.playbackRate = curSpeed === 's' ? 0.7 : 1.0;
+  a.play().catch(e => console.warn('播放失败', e));
+  currentAudio = a;
+  card.classList.add('playing');
+  btn.classList.add('playing');
+  a.onended = () => {
+    card.classList.remove('playing');
+    btn.classList.remove('playing');
+    if (currentAudio === a) { currentAudio = null; currentCard = null; currentBtn = null; }
+  };
+}
+
+let currentBtn = null;
+
+/* ============== 连播本课 ============== */
+function playAll(ci) {
+  if (playAllMode) { stopPlayAll(); return; }
+  playAllMode = true;
+  playAllQueue = [];
+  const dayEl = document.querySelectorAll('.week')[ci].querySelector('.day');
+  dayEl.querySelectorAll('.card').forEach(c => playAllQueue.push(c));
+  const btn = dayEl.querySelector('.play-all');
+  btn.classList.add('playing');
+  btn.textContent = '■ 停止';
+  playQueue();
+}
+function playQueue() {
+  if (!playAllMode || !playAllQueue.length) { stopPlayAll(); return; }
+  const c = playAllQueue.shift();
+  const idx = parseInt(c.dataset.idx, 10);
+  if (currentAudio) { currentAudio.pause(); }
+  if (currentCard) currentCard.classList.remove('playing');
+  const btn = c.querySelector('.play-btn');
+  currentCard = c;
+  currentBtn = btn;
+  const a = new Audio(audioSrc(idx, curSpeed));
+  a.playbackRate = curSpeed === 's' ? 0.7 : 1.0;
+  a.play().catch(() => {});
+  currentAudio = a;
+  c.classList.add('playing');
+  btn.classList.add('playing');
+  // 滚到视口
+  c.scrollIntoView({behavior:'smooth', block:'center'});
+  a.onended = () => {
+    c.classList.remove('playing');
+    btn.classList.remove('playing');
+    if (playAllQueue.length) {
+      setTimeout(playQueue, 300);
+    } else {
+      stopPlayAll();
+    }
+  };
+}
+function stopPlayAll() {
+  playAllMode = false;
+  playAllQueue = [];
+  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+  document.querySelectorAll('.play-all.playing').forEach(b => { b.classList.remove('playing'); b.textContent = '▶ 连播本章'; });
+  if (currentCard) currentCard.classList.remove('playing');
+  if (currentBtn) currentBtn.classList.remove('playing');
+}
+
+/* ============== 常慢速切换 ============== */
+document.getElementById('btnN').addEventListener('click', () => setSpeed('n'));
+document.getElementById('btnS').addEventListener('click', () => setSpeed('s'));
+function setSpeed(s) {
+  curSpeed = s;
+  document.getElementById('btnN').classList.toggle('on', s === 'n');
+  document.getElementById('btnS').classList.toggle('on', s === 's');
+  // 当前播放的不变（避免打断）
+}
+
+/* ============== 搜索 ============== */
+function initSearch() {
+  const s = document.getElementById('search');
+  let timer;
+  s.addEventListener('input', e => {
+    clearTimeout(timer);
+    timer = setTimeout(() => doSearch(e.target.value.trim().toLowerCase()), 200);
+  });
+}
+function doSearch(kw) {
+  const noRes = document.getElementById('noResult');
+  document.getElementById('kw').textContent = kw;
+  if (!kw) {
+    noRes.classList.remove('show');
+    document.querySelectorAll('.card').forEach(c => c.style.display = '');
+    return;
+  }
+  let match = 0;
+  document.querySelectorAll('.card').forEach(c => {
+    const en = (c.dataset.en || '').toLowerCase();
+    const cn = c.dataset.cn || '';
+    const hit = en.includes(kw) || cn.toLowerCase().includes(kw) || cn.includes(kw);
+    c.style.display = hit ? '' : 'none';
+    if (hit) match++;
+  });
+  noRes.classList.toggle('show', match === 0);
+  // 自动展开所有周
+  CHAPTERS.forEach((_, ci) => {
+    const sec = document.querySelectorAll('.week')[ci];
+    if (sec && !sec.classList.contains('open')) {
+      sec.classList.add('open');
+      renderChapter(ci);
+    }
+  });
+}
+
+/* ============== 工具 ============== */
+function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function escapeAttr(s){return escapeHtml(s);}
+</script>
+</body>
+</html>
