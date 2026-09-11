@@ -378,6 +378,9 @@ function playAll(ci, pi) {
   btn.textContent = '■ 停止';
   playQueue();
 }
+/* 连播本节：边播边预载下一句并复用，单句失败自动跳过 */
+let preloadAudio = null;
+let preloadAudioSrc = null;
 function playQueue() {
   if (!playAllMode || !playAllQueue.length) { stopPlayAll(); return; }
   const btn = playAllQueue.shift();
@@ -386,19 +389,35 @@ function playQueue() {
   const slow = isMain && curSpeed === 's';
   stopCurrent();
   const file = isMain ? `audio/m${pad3(parseInt(btn.dataset.idx, 10))}_${curSpeed}.mp3` : btn.dataset.file;
-  const a = new Audio(file);
+  // 复用已预载的音频（避免重复下载，消除远程加载卡顿）
+  let a;
+  if (preloadAudio && preloadAudioSrc === file) { a = preloadAudio; preloadAudio = null; preloadAudioSrc = null; }
+  else { a = new Audio(file); }
+  a.preload = 'auto';
   a.playbackRate = slow ? 0.7 : 1.0;
-  a.play().catch(() => {});
   currentAudio = a; currentCard = card; currentBtn = btn;
   card.classList.add('playing');
   btn.classList.add('playing');
   card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  a.onended = () => {
+  // 预载下一句
+  if (playAllQueue.length) {
+    const nb = playAllQueue[0];
+    const nisMain = nb.classList.contains('play-btn');
+    const nfile = nisMain ? `audio/m${pad3(parseInt(nb.dataset.idx, 10))}_${curSpeed}.mp3` : nb.dataset.file;
+    preloadAudioSrc = nfile;
+    preloadAudio = new Audio(nfile);
+    preloadAudio.preload = 'auto';
+    try { preloadAudio.load(); } catch (e) {}
+  } else { preloadAudio = null; preloadAudioSrc = null; }
+  const advance = () => {
     card.classList.remove('playing');
     btn.classList.remove('playing');
-    if (playAllQueue.length) setTimeout(playQueue, 300);
+    if (playAllQueue.length) setTimeout(playQueue, 150);
     else stopPlayAll();
   };
+  a.onended = advance;
+  a.onerror = () => { console.warn('音频加载失败，跳过', file); advance(); };
+  a.play().catch(() => { setTimeout(() => a.play().catch(() => advance()), 250); });
 }
 function stopPlayAll() {
   playAllMode = false;

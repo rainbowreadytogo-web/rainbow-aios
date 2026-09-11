@@ -350,8 +350,9 @@ function playAll(wi, di) {
   btn.textContent = '■ 停止';
   playQueue();
 }
-/* 连播：边播边预载下一句，且单句失败自动跳过，避免连播链卡死 */
+/* 连播：边播边预载下一句并复用，单句失败自动跳过，避免连播链卡死/卡顿 */
 let preloadAudio = null;
+let preloadAudioSrc = null;
 function playQueue() {
   if (!playAllMode || !playAllQueue.length) { stopPlayAll(); return; }
   const c = playAllQueue.shift();
@@ -361,20 +362,25 @@ function playQueue() {
   const btn = c.querySelector('.play-btn');
   currentCard = c;
   currentBtn = btn;
-  const a = new Audio(audioSrc(idx, curSpeed));
+  const src = audioSrc(idx, curSpeed);
+  // 复用已预载的音频（避免重复下载，消除远程加载卡顿）
+  let a;
+  if (preloadAudio && preloadAudioSrc === src) { a = preloadAudio; preloadAudio = null; preloadAudioSrc = null; }
+  else { a = new Audio(src); }
   a.preload = 'auto';
   a.playbackRate = curSpeed === 's' ? 0.7 : 1.0;
   currentAudio = a;
   c.classList.add('playing');
   btn.classList.add('playing');
   c.scrollIntoView({behavior:'smooth', block:'center'});
-  // 预载下一句：当前句播放时并行下载下一句，消除远程加载卡顿
+  // 预载下一句：当前句播放时并行下载下一句
   if (playAllQueue.length) {
     const nidx = parseInt(playAllQueue[0].dataset.idx, 10);
-    preloadAudio = new Audio(audioSrc(nidx, curSpeed));
+    preloadAudioSrc = audioSrc(nidx, curSpeed);
+    preloadAudio = new Audio(preloadAudioSrc);
     preloadAudio.preload = 'auto';
     try { preloadAudio.load(); } catch (e) {}
-  } else { preloadAudio = null; }
+  } else { preloadAudio = null; preloadAudioSrc = null; }
   const advance = () => {
     c.classList.remove('playing');
     btn.classList.remove('playing');
