@@ -348,6 +348,11 @@ function playAudio(card, btn, file, slow) {
     if (btn) btn.classList.remove('playing');
     if (currentAudio === a) { currentAudio = null; currentCard = null; currentBtn = null; }
   };
+  a.onerror = () => {
+    if (card) card.classList.remove('playing');
+    if (btn) btn.classList.remove('playing');
+    if (currentAudio === a) { currentAudio = null; currentCard = null; currentBtn = null; }
+  };
 }
 
 function playMain(btn) {
