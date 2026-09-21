@@ -49,7 +49,7 @@ header p{margin:8px 0 0;font-size:12px;opacity:.85;line-height:1.7}
 /* 试听行 */
 .listen{display:flex;gap:8px;align-items:center;margin-top:8px;background:var(--soft);
   border-radius:10px;padding:9px 12px}
-.listen:first-of-type{margin-top:12px}
+.listen:first-child{margin-top:12px}
 .pbtn{flex:0 0 32px;height:32px;border-radius:50%;border:1px solid var(--line);background:#fff;
   color:var(--brand);font-size:12px;line-height:30px;text-align:center;cursor:pointer}
 .pbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
@@ -59,8 +59,8 @@ header p{margin:8px 0 0;font-size:12px;opacity:.85;line-height:1.7}
 .spd{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 9px;
   font-size:11px;color:var(--sub);cursor:pointer}
 .spd.on{background:var(--brand);color:#fff;border-color:var(--brand)}
-
-/* 底部按钮 */
+.more{display:block;width:100%;margin-top:10px;border:1px dashed var(--line);background:#fff;
+  border-radius:10px;padding:9px;font-size:13px;color:var(--brand-d)}
 .row{display:flex;gap:8px;margin-top:12px}
 .btn{flex:1;text-align:center;border:1px solid var(--line);background:#fff;border-radius:10px;
   padding:9px 12px;font-size:13px;color:var(--brand-d);text-decoration:none;font-weight:600}
@@ -94,29 +94,16 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
   <div class="meta">22 题 · 110 句 · 220 条音频 · 逐词时间戳驱动</div>
 </div>
 
-<div class="sec">在售三品 · 每个免费试听 3 句<em>点 ▶ 直接听，无需解锁</em></div>
+<div class="sec">在售三品 · 每个免费试听 10 句<em>点 ▶ 直接听，无需解锁</em></div>
 
 <div class="card">
   <span class="price">¥5.98<small> 引流款</small></span>
   <span class="badge">入职期 · 每日开口</span>
   <h2>外企老外职场口语 300 句 · 音频版</h2>
   <p class="desc">30 天 · 每天 10 句最常用的外企口语，场景从早晨打招呼到跨部门沟通，常速+慢速双音频。</p>
-  <div class="meta">300 句 · 600 条音频 · 30 天打卡节奏 · 试听：Day 1「万能回应」</div>
-  <div class="listen">
-    <div class="pbtn" data-k="a1n">▶</div>
-    <div class="lbody"><div class="len">Sure thing.</div><div class="lcn">没问题 · 万能回应（Day 1 · 第 2 句）</div></div>
-    <button class="spd" data-k="a1s">慢速</button>
-  </div>
-  <div class="listen">
-    <div class="pbtn" data-k="a2n">▶</div>
-    <div class="lbody"><div class="len">Will do.</div><div class="lcn">这就做 · 万能回应（Day 1 · 第 3 句）</div></div>
-    <button class="spd" data-k="a2s">慢速</button>
-  </div>
-  <div class="listen">
-    <div class="pbtn" data-k="a3n">▶</div>
-    <div class="lbody"><div class="len">On it.</div><div class="lcn">马上办 · 万能回应（Day 1 · 第 4 句）</div></div>
-    <button class="spd" data-k="a3s">慢速</button>
-  </div>
+  <div class="meta">300 句 · 600 条音频 · 30 天打卡节奏 · 试听：Day 1 全部 10 句</div>
+  <div id="boxA"></div>
+  <button class="more" data-box="A" data-open="0">展开全部 10 句试听 ▾</button>
   <div class="row"><a class="btn primary" href="../audio300/">进入完整版 · 共 300 句</a></div>
 </div>
 
@@ -125,22 +112,9 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
   <span class="badge">入职期 · 全场景覆盖</span>
   <h2>职场全英交流 · 无非这 850 句</h2>
   <p class="desc">43 个章节覆盖职场全场景：会议、邮件、汇报、闲聊……把「会考试」变成「能交流」。</p>
-  <div class="meta">850 句 · 1700 条音频 · 43 章节 · 试听：第 1 章「听懂与澄清」</div>
-  <div class="listen">
-    <div class="pbtn" data-k="b1n">▶</div>
-    <div class="lbody"><div class="len">Got it</div><div class="lcn">明白了 · 听懂与澄清（第 001 句）</div></div>
-    <button class="spd" data-k="b1s">慢速</button>
-  </div>
-  <div class="listen">
-    <div class="pbtn" data-k="b2n">▶</div>
-    <div class="lbody"><div class="len">Makes sense</div><div class="lcn">有道理 · 听懂与澄清（第 002 句）</div></div>
-    <button class="spd" data-k="b2s">慢速</button>
-  </div>
-  <div class="listen">
-    <div class="pbtn" data-k="b3n">▶</div>
-    <div class="lbody"><div class="len">I see what you mean</div><div class="lcn">我明白你的意思 · 听懂与澄清（第 003 句）</div></div>
-    <button class="spd" data-k="b3s">慢速</button>
-  </div>
+  <div class="meta">850 句 · 1700 条音频 · 43 章节 · 试听：第 1 章「听懂与澄清」前 10 句</div>
+  <div id="boxB"></div>
+  <button class="more" data-box="B" data-open="0">展开全部 10 句试听 ▾</button>
   <div class="row"><a class="btn primary" href="../audio850/">进入完整版 · 共 850 句</a></div>
 </div>
 
@@ -149,22 +123,9 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
   <span class="badge">站稳期 · 体系化生存</span>
   <h2>外企生存手册 · 音频版</h2>
   <p class="desc">6 章 55 节 550 句 + 100 高频短语动词，每句带场景讲解和 Why，外企翻译视角写成，适合想在外企长期站稳的你。</p>
-  <div class="meta">650+ 句 · 2500 条音频 · 6 章 55 节 · 试听：第 1 节「初次见面」</div>
-  <div class="listen">
-    <div class="pbtn" data-k="c1n">▶</div>
-    <div class="lbody"><div class="len">Hi, I'm Emma. I just joined the Finance team.</div><div class="lcn">你好，我是 Emma，刚加入财务团队 · 初次见面</div></div>
-    <button class="spd" data-k="c1s">慢速</button>
-  </div>
-  <div class="listen">
-    <div class="pbtn" data-k="c2n">▶</div>
-    <div class="lbody"><div class="len">It's great to meet you.</div><div class="lcn">很高兴认识你 · 初次见面</div></div>
-    <button class="spd" data-k="c2s">慢速</button>
-  </div>
-  <div class="listen">
-    <div class="pbtn" data-k="c3n">▶</div>
-    <div class="lbody"><div class="len">What team are you on?</div><div class="lcn">你是哪个团队的？ · 初次见面</div></div>
-    <button class="spd" data-k="c3s">慢速</button>
-  </div>
+  <div class="meta">650+ 句 · 2500 条音频 · 6 章 55 节 · 试听：第 1 节「初次见面」前 10 句</div>
+  <div id="boxC"></div>
+  <button class="more" data-box="C" data-open="0">展开全部 10 句试听 ▾</button>
   <div class="row"><a class="btn primary" href="../manual/">进入完整版 · 共 650+ 句</a></div>
 </div>
 
@@ -176,17 +137,40 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
 </footer>
 
 <script>
-var SRC = {
-  a1n:'../audio300/audio/d01_01_n.mp3', a1s:'../audio300/audio/d01_01_s.mp3',
-  a2n:'../audio300/audio/d01_02_n.mp3', a2s:'../audio300/audio/d01_02_s.mp3',
-  a3n:'../audio300/audio/d01_03_n.mp3', a3s:'../audio300/audio/d01_03_s.mp3',
-  b1n:'../audio850/audio/s001_n.mp3',   b1s:'../audio850/audio/s001_s.mp3',
-  b2n:'../audio850/audio/s002_n.mp3',   b2s:'../audio850/audio/s002_s.mp3',
-  b3n:'../audio850/audio/s003_n.mp3',   b3s:'../audio850/audio/s003_s.mp3',
-  c1n:'../manual/audio/m001_n.mp3',     c1s:'../manual/audio/m001_s.mp3',
-  c2n:'../manual/audio/m002_n.mp3',     c2s:'../manual/audio/m002_s.mp3',
-  c3n:'../manual/audio/m003_n.mp3',     c3s:'../manual/audio/m003_s.mp3'
+/* ---------- 试听样本（与各产品 data 逐一核对） ---------- */
+var SAMPLES = {
+  A: { tag:'万能回应 · Day 1', items:[
+    ["Got it.","收到"],["Sure thing.","没问题"],["Will do.","这就做"],["On it.","马上办"],
+    ["Noted.","知道了"],["Sounds good.","听起来不错"],["Works for me.","我可以"],
+    ["Fine by me.","我没意见"],["No worries.","别担心"],["No problem.","没问题"]]},
+  B: { tag:'听懂与澄清 · 第 1 章', items:[
+    ["Got it","明白了。"],["Makes sense","有道理。"],["I see what you mean","我明白你的意思。"],
+    ["I see your point","我理解你的观点。"],["I'm with you","我同意你的看法。"],
+    ["I'm following you","我跟上了。"],["That makes sense to me","这样说得通。"],
+    ["Just to clarify,","我确认一下……"],["Just to make sure I understand,","确认一下我的理解……"],
+    ["If I understand correctly,","如果我理解得没错……"]]},
+  C: { tag:'初次见面 · 第 1 节', items:[
+    ["Hi, I'm Emma. I just joined the Finance team.","你好，我是 Emma，刚加入财务团队。"],
+    ["It's great to meet you.","很高兴认识你。"],["What team are you on?","你是哪个团队的？"],
+    ["What do you do on the team?","你在团队里负责什么？"],["How long have you been with the company?","你来公司多久了？"],
+    ["Where are you based?","你在哪个办公室？"],["Do you work with the Marketing team often?","你常和市场部合作吗？"],
+    ["Thanks for taking the time to chat.","谢谢你抽时间聊。"],["I'm looking forward to working with you.","期待合作。"],
+    ["See you around!","回头见！"]]}
 };
+
+/* ---------- 音频路径（相对路径复用三品现有文件，零重复存储） ---------- */
+var SRC = {};
+for (var i=1;i<=10;i++){
+  var d='audio300/audio/d01_'+String(i-1).padStart(2,'0');
+  var s='audio850/audio/s'+String(i).padStart(3,'0');
+  var m='manual/audio/m'+String(i).padStart(3,'0');
+  SRC['a'+i+'n']=d+'_n.mp3'; SRC['a'+i+'s']=d+'_s.mp3';
+  SRC['b'+i+'n']=s+'_n.mp3'; SRC['b'+i+'s']=s+'_s.mp3';
+  SRC['c'+i+'n']=m+'_n.mp3'; SRC['c'+i+'s']=m+'_s.mp3';
+}
+/* 部署后同源相对路径：learn/ 下的 ../ 指向仓库根 */
+for (var k in SRC){ SRC[k] = '../'+SRC[k]; }
+
 var RATE = {n:1.0, s:0.7};
 var cur = null, curBtn = null;
 
@@ -203,12 +187,34 @@ function stop(){
   if(cur){ try{cur.pause();}catch(e){} cur=null; }
   resetBtns(); curBtn=null;
 }
+
+/* ---------- 渲染试听列表 ---------- */
+Object.keys(SAMPLES).forEach(function(box){
+  var conf=SAMPLES[box], host=document.getElementById('box'+box);
+  conf.items.forEach(function(it,i){
+    var k=(box.toLowerCase())+(i+1);
+    var row=document.createElement('div'); row.className='listen'+(i>=3?' extra':'');
+    if(i>=3) row.style.display='none';
+    var pb=document.createElement('div'); pb.className='pbtn'; pb.textContent='▶'; pb.dataset.k=k+'n';
+    var body=document.createElement('div'); body.className='lbody';
+    var en=document.createElement('div'); en.className='len'; en.textContent=it[0];
+    var cn=document.createElement('div'); cn.className='lcn';
+    cn.textContent=it[1]+' · '+conf.tag+'（第 '+String(i+1).padStart(3,'0')+' 句）';
+    body.appendChild(en); body.appendChild(cn);
+    var sp=document.createElement('button'); sp.className='spd'; sp.textContent='慢速'; sp.dataset.k=k+'s';
+    row.appendChild(pb); row.appendChild(body); row.appendChild(sp);
+    host.appendChild(row);
+  });
+});
+
+/* ---------- 播放控制 ---------- */
 document.querySelectorAll('.pbtn').forEach(function(b){
   b.onclick=function(){
     var k=b.dataset.k, spd=k.slice(-1);
     if(curBtn===b && cur && !cur.paused){ stop(); return; }
     stop();
-    var a=new Audio(SRC[k]); a.playbackRate=RATE[spd]; cur=a; curBtn=b;
+    var a=new Audio((typeof EMBED!=='undefined'&&EMBED[k])||SRC[k]);
+    a.playbackRate=RATE[spd]; cur=a; curBtn=b;
     b.classList.add('on'); b.textContent='■';
     if(spd==='s'){ var sp=document.querySelector('.spd[data-k="'+k+'"]'); if(sp) sp.classList.add('on'); }
     a.onended=function(){ stop(); };
@@ -221,6 +227,15 @@ document.querySelectorAll('.spd').forEach(function(b){
     var nkey=b.dataset.k.slice(0,-1)+'n';
     var pb=document.querySelector('.pbtn[data-k="'+nkey+'"]');
     if(pb) pb.onclick();
+  };
+});
+document.querySelectorAll('.more').forEach(function(b){
+  b.onclick=function(){
+    var box=document.getElementById('box'+b.dataset.box);
+    var open=b.dataset.open==='1';
+    box.querySelectorAll('.extra').forEach(function(r){ r.style.display=open?'none':'flex'; });
+    b.dataset.open=open?'0':'1';
+    b.textContent=open?'展开全部 10 句试听 ▾':'收起试听 ▴';
   };
 });
 </script>
