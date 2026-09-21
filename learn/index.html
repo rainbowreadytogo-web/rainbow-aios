@@ -65,6 +65,9 @@ header p{margin:8px 0 0;font-size:12px;opacity:.85;line-height:1.7}
 .btn{flex:1;text-align:center;border:1px solid var(--line);background:#fff;border-radius:10px;
   padding:9px 12px;font-size:13px;color:var(--brand-d);text-decoration:none;font-weight:600}
 .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+.step{display:flex;gap:10px;align-items:baseline;background:var(--soft);border-radius:10px;
+  padding:10px 12px;margin-top:8px;font-size:12px;color:var(--sub);line-height:1.6}
+.step b{flex:0 0 auto;color:var(--brand-d);font-size:13px}
 
 #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:#2a2a2a;color:#fff;
   font-size:13px;padding:10px 16px;border-radius:10px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:99}
@@ -94,10 +97,10 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
   <div class="meta">22 题 · 110 句 · 220 条音频 · 逐词时间戳驱动</div>
 </div>
 
-<div class="sec">在售三品 · 每个免费试听 10 句<em>点 ▶ 直接听，无需解锁</em></div>
+<div class="sec">音频产品 · 每款免费试听 10 句<em>点 ▶ 直接听，无需解锁</em></div>
 
 <div class="card">
-  <span class="price">¥5.98<small> 引流款</small></span>
+  <span class="price">¥5.98</span>
   <span class="badge">入职期 · 每日开口</span>
   <h2>外企老外职场口语 300 句 · 音频版</h2>
   <p class="desc">30 天 · 每天 10 句最常用的外企口语，场景从早晨打招呼到跨部门沟通，常速+慢速双音频。</p>
@@ -108,7 +111,7 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
 </div>
 
 <div class="card">
-  <span class="price">¥12.98<small> 主力款</small></span>
+  <span class="price">¥12.98</span>
   <span class="badge">入职期 · 全场景覆盖</span>
   <h2>职场全英交流 · 无非这 850 句</h2>
   <p class="desc">43 个章节覆盖职场全场景：会议、邮件、汇报、闲聊……把「会考试」变成「能交流」。</p>
@@ -119,7 +122,7 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
 </div>
 
 <div class="card">
-  <span class="price">¥19.9<small> 利润款</small></span>
+  <span class="price">¥19.9</span>
   <span class="badge">站稳期 · 体系化生存</span>
   <h2>外企生存手册 · 音频版</h2>
   <p class="desc">6 章 55 节 550 句 + 100 高频短语动词，每句带场景讲解和 Why，外企翻译视角写成，适合想在外企长期站稳的你。</p>
@@ -127,6 +130,14 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
   <div id="boxC"></div>
   <button class="more" data-box="C" data-open="0">展开全部 10 句试听 ▾</button>
   <div class="row"><a class="btn primary" href="../manual/">进入完整版 · 共 650+ 句</a></div>
+</div>
+
+<div class="sec">如何获取完整版？<em>三步解锁</em></div>
+<div class="card">
+  <div class="step"><b>① 购买</b>在小红书找到对应产品笔记，点击笔记上的商品直接下单（搜索：rainbow_work）</div>
+  <div class="step"><b>② 收口令</b>下单后系统自动发货，你会收到一个解锁口令</div>
+  <div class="step"><b>③ 解锁</b>回到本页点上面的「进入完整版」，在页面输入口令即永久解锁</div>
+  <div class="meta" style="margin-top:12px">口令长期有效 · 内容持续可听 · 已购用户不受任何影响</div>
 </div>
 
 <div id="toast"></div>
@@ -172,7 +183,30 @@ for (var i=1;i<=10;i++){
 for (var k in SRC){ SRC[k] = '../'+SRC[k]; }
 
 var RATE = {n:1.0, s:0.7};
-var cur = null, curBtn = null;
+
+/* ---------- 渲染试听列表 ---------- */
+Object.keys(SAMPLES).forEach(function(box){
+  var conf=SAMPLES[box], host=document.getElementById('box'+box);
+  conf.items.forEach(function(it,i){
+    var k=(box.toLowerCase())+(i+1);            /* 行键，如 a1 */
+    var row=document.createElement('div'); row.className='listen'+(i>=3?' extra':'');
+    if(i>=3) row.style.display='none';
+    var pb=document.createElement('div'); pb.className='pbtn'; pb.textContent='▶';
+    pb.dataset.row=k;                            /* ▶ = 常速 */
+    var body=document.createElement('div'); body.className='lbody';
+    var en=document.createElement('div'); en.className='len'; en.textContent=it[0];
+    var cn=document.createElement('div'); cn.className='lcn';
+    cn.textContent=it[1]+' · '+conf.tag+'（第 '+String(i+1).padStart(3,'0')+' 句）';
+    body.appendChild(en); body.appendChild(cn);
+    var sp=document.createElement('button'); sp.className='spd'; sp.textContent='慢速';
+    sp.dataset.row=k;                            /* 慢速 = 慢速音频 */
+    row.appendChild(pb); row.appendChild(body); row.appendChild(sp);
+    host.appendChild(row);
+  });
+});
+
+/* ---------- 播放控制 ---------- */
+var cur=null, curRow=null;   /* curRow = 当前播放的行键 */
 
 function toast(msg){
   var t=document.getElementById('toast');
@@ -185,49 +219,29 @@ function resetBtns(){
 }
 function stop(){
   if(cur){ try{cur.pause();}catch(e){} cur=null; }
-  resetBtns(); curBtn=null;
+  resetBtns(); curRow=null;
 }
-
-/* ---------- 渲染试听列表 ---------- */
-Object.keys(SAMPLES).forEach(function(box){
-  var conf=SAMPLES[box], host=document.getElementById('box'+box);
-  conf.items.forEach(function(it,i){
-    var k=(box.toLowerCase())+(i+1);
-    var row=document.createElement('div'); row.className='listen'+(i>=3?' extra':'');
-    if(i>=3) row.style.display='none';
-    var pb=document.createElement('div'); pb.className='pbtn'; pb.textContent='▶'; pb.dataset.k=k+'n';
-    var body=document.createElement('div'); body.className='lbody';
-    var en=document.createElement('div'); en.className='len'; en.textContent=it[0];
-    var cn=document.createElement('div'); cn.className='lcn';
-    cn.textContent=it[1]+' · '+conf.tag+'（第 '+String(i+1).padStart(3,'0')+' 句）';
-    body.appendChild(en); body.appendChild(cn);
-    var sp=document.createElement('button'); sp.className='spd'; sp.textContent='慢速'; sp.dataset.k=k+'s';
-    row.appendChild(pb); row.appendChild(body); row.appendChild(sp);
-    host.appendChild(row);
-  });
-});
-
-/* ---------- 播放控制 ---------- */
+function play(k){                              /* k = 'a1n' 或 'a1s' */
+  if(curRow===k && cur && !cur.paused){ stop(); return; }
+  stop();
+  var a=new Audio((typeof EMBED!=='undefined'&&EMBED[k])||SRC[k]);
+  a.playbackRate=RATE[k.slice(-1)];
+  cur=a; curRow=k;
+  var pb=document.querySelector('.pbtn[data-row="'+k.slice(0,-1)+'"]');
+  if(pb){ pb.classList.add('on'); pb.textContent='■'; }
+  if(k.slice(-1)==='s'){
+    var sp=document.querySelector('.spd[data-row="'+k.slice(0,-1)+'"]');
+    if(sp) sp.classList.add('on');
+  }
+  a.onended=function(){ stop(); };
+  a.onerror=function(){ toast('试听音频加载失败，请检查网络后重试'); stop(); };
+  a.play().catch(function(){ toast('播放被浏览器拦截，请再点一次'); stop(); });
+}
 document.querySelectorAll('.pbtn').forEach(function(b){
-  b.onclick=function(){
-    var k=b.dataset.k, spd=k.slice(-1);
-    if(curBtn===b && cur && !cur.paused){ stop(); return; }
-    stop();
-    var a=new Audio((typeof EMBED!=='undefined'&&EMBED[k])||SRC[k]);
-    a.playbackRate=RATE[spd]; cur=a; curBtn=b;
-    b.classList.add('on'); b.textContent='■';
-    if(spd==='s'){ var sp=document.querySelector('.spd[data-k="'+k+'"]'); if(sp) sp.classList.add('on'); }
-    a.onended=function(){ stop(); };
-    a.onerror=function(){ toast('试听音频加载失败，请检查网络后重试'); stop(); };
-    a.play().catch(function(){ toast('播放被浏览器拦截，请再点一次'); stop(); });
-  };
+  b.onclick=function(){ play(b.dataset.row+'n'); };
 });
 document.querySelectorAll('.spd').forEach(function(b){
-  b.onclick=function(){
-    var nkey=b.dataset.k.slice(0,-1)+'n';
-    var pb=document.querySelector('.pbtn[data-k="'+nkey+'"]');
-    if(pb) pb.onclick();
-  };
+  b.onclick=function(){ play(b.dataset.row+'s'); };
 });
 document.querySelectorAll('.more').forEach(function(b){
   b.onclick=function(){
