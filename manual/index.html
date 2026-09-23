@@ -500,7 +500,7 @@ function escapeHtml(s) { return String(s || '').replace(/[&<>"']/g, m => ({ '&':
 function escapeAttr(s) { return escapeHtml(s); }
 </script>
 <script>
-/* 学习进度 v1.2：总进度随标题小字 + 章节行内迷你进度（不动原有播放逻辑） */
+/* 学习进度 v1.3：总进度随标题小字 + 章节行内迷你进度（不动原有播放逻辑） */
 (function(){
   var CFG = {'key':'pmnl_seen','total':550,'idRe':/(m\d{3})/};
   function seen(){try{return JSON.parse(localStorage.getItem(CFG.key)||'{}')}catch(e){return{}}}
@@ -553,7 +553,7 @@ function escapeAttr(s) { return escapeHtml(s); }
   new MutationObserver(function(){
     if(tm) return; tm=setTimeout(function(){tm=null;decorate();},120);
   }).observe(document.body,{childList:true,subtree:true});
-  document.addEventListener('play',function(e){
+  function onPlayMedia(e){
     var t=e.target;if(!t||!t.currentSrc&&!t.src)return;
     var m=((t.currentSrc||t.src)+'').match(CFG.idRe);if(!m)return;
     var s=seen();if(!s[m[1]]){s[m[1]]=1;save(s);
@@ -561,7 +561,14 @@ function escapeAttr(s) { return escapeHtml(s); }
       if(totText) totText.nodeValue=fmt(n);
       ups.forEach(function(u){u();});
     }
-  },true);
+  }
+  document.addEventListener('play',onPlayMedia,true);
+  /* v1.3 关键修复：页面 new Audio() 的播放器不挂 DOM，play 事件不冒泡经过 document —— 劫持 Audio 构造器，创建时直接挂监听 */
+  (function(){
+    var Orig=window.Audio;
+    window.Audio=function(src){var a=(src===undefined)?new Orig():new Orig(src);a.addEventListener('play',onPlayMedia);return a;};
+    window.Audio.prototype=Orig.prototype;
+  })();
 })();
 </script>
 </body>
