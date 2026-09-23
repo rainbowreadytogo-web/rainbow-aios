@@ -131,7 +131,7 @@
   <div class="footer">
     © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
     仅供个人学习使用·请勿用作商业用途<br>
-    <span style="color:#c8aa9a">v1.1 · 2026-09-23 · <span id="healthText">音频检测中…</span></span>
+    <span style="color:#c8aa9a">v1.2 · 2026-09-23 · <span id="healthText">音频检测中…</span></span>
   </div>
 </div>
 
@@ -500,23 +500,68 @@ function escapeHtml(s) { return String(s || '').replace(/[&<>"']/g, m => ({ '&':
 function escapeAttr(s) { return escapeHtml(s); }
 </script>
 <script>
-/* 学习进度 + 学习库入口（v1.1 追加，不动原有播放逻辑） */
+/* 学习进度 v1.2：总进度随标题小字 + 章节行内迷你进度（不动原有播放逻辑） */
 (function(){
-  var CFG={key:'pmnl_seen',total:550,unit:'句',idRe:/(m\d{3})/,label:'生存手册'};
+  var CFG = {'key':'pmnl_seen','total':550,'idRe':/(m\d{3})/};
   function seen(){try{return JSON.parse(localStorage.getItem(CFG.key)||'{}')}catch(e){return{}}}
   function save(o){try{localStorage.setItem(CFG.key,JSON.stringify(o))}catch(e){}}
-  var strip=document.createElement('div');
-  strip.style.cssText='display:flex;align-items:center;gap:10px;padding:7px 14px;background:#fff7f2;border-bottom:1px solid #f0e0d6;font-size:12px;color:#7a5640';
-  var txt=document.createElement('span');txt.style.cssText='flex:0 0 auto';
-  var track=document.createElement('div');track.style.cssText='flex:1;height:6px;border-radius:3px;background:#f0e0d6;overflow:hidden;min-width:40px';
-  var fill=document.createElement('div');fill.style.cssText='height:100%;width:0%;background:#c8623d;border-radius:3px;transition:width .3s';
-  var link=document.createElement('a');link.href='../learn/';link.textContent='学习库总入口 →';
-  link.style.cssText='flex:0 0 auto;color:#c8623d;text-decoration:none;font-weight:600';
-  track.appendChild(fill);strip.appendChild(txt);strip.appendChild(track);strip.appendChild(link);
-  document.body.insertBefore(strip,document.body.firstChild);
-  function render(){var n=Object.keys(seen()).length;txt.textContent=CFG.label+' · 已听 '+n+' / '+CFG.total+' '+CFG.unit;fill.style.width=Math.min(100,100*n/CFG.total)+'%';}
-  document.addEventListener('play',function(e){var t=e.target;if(!t||!t.currentSrc&&!t.src)return;var m=((t.currentSrc||t.src)+'').match(CFG.idRe);if(!m)return;var s=seen();if(!s[m[1]]){s[m[1]]=1;save(s);render();}},true);
-  render();
+  function pad2(n){return String(n).padStart(2,'0')}
+  function pad3(n){return String(n).padStart(3,'0')}
+  var ups=[], totText=null;
+  function fmt(n){return '已听 '+n+' / '+CFG.total+' 句 · '+Math.round(100*n/CFG.total)+'%';}
+  document.querySelectorAll('#app h1').forEach(function(h){
+    var s=document.createElement('span');
+    s.style.cssText='font-size:12px;font-weight:400;color:#9c7d6d;margin-left:12px;white-space:nowrap';
+    totText=document.createTextNode(fmt(Object.keys(seen()).length));
+    s.appendChild(totText);
+    var a=document.createElement('a');a.href='../learn/';a.textContent='学习库总入口 →';
+    a.style.cssText='color:#c8623d;text-decoration:none;font-weight:600;margin-left:8px';
+    s.appendChild(a); h.appendChild(s);
+  });
+  function addProg(h,keys,anchor){
+    var bar=document.createElement('span');
+    bar.style.cssText='display:inline-block;width:56px;height:5px;border-radius:3px;background:#f0e0d6;overflow:hidden;flex:0 0 auto';
+    var fill=document.createElement('span');
+    fill.style.cssText='display:block;height:100%;width:0%;background:#c8623d;border-radius:3px;transition:width .3s';
+    bar.appendChild(fill);
+    var txt=document.createElement('span');
+    txt.style.cssText='font-size:11px;color:#9c7d6d;white-space:nowrap;flex:0 0 auto';
+    var wrap=document.createElement('span');
+    wrap.className='cprog';
+    wrap.style.cssText='display:inline-flex;align-items:center;gap:6px;flex:0 0 auto';
+    wrap.appendChild(bar);wrap.appendChild(txt);
+    if(anchor) h.insertBefore(wrap,anchor); else h.appendChild(wrap);
+    function upd(){
+      var done=keys.filter(function(k){return seen()[k];}).length;
+      if(done===0){ bar.style.display='none'; txt.textContent='0/'+keys.length; txt.style.color='#c8aa9a'; }
+      else if(done===keys.length){ bar.style.display='inline-block'; fill.style.width='100%'; fill.style.background='#3B6D11'; txt.textContent='已完成 ✓'; txt.style.color='#3B6D11'; }
+      else { bar.style.display='inline-block'; fill.style.width=Math.round(100*done/keys.length)+'%'; txt.textContent=done+'/'+keys.length; txt.style.color='#9c7d6d'; }
+    }
+    upd(); ups.push(upd);
+  }
+  function decorate(){
+
+    document.querySelectorAll('.part[data-ch]').forEach(function(sec){
+      var h=sec.querySelector('.part-head');
+      if(!h||h.querySelector('.cprog'))return;
+      var ci=+sec.dataset.ch;if(ci>=CHAPTERS.length)return;
+      var pt=CHAPTERS[ci].parts[+sec.dataset.pt];if(!pt)return;
+      addProg(h,pt.items.map(function(it){return 'm'+pad3(it.i);}),h.querySelector('.play-all'));
+    });
+  }
+  var tm=null;
+  new MutationObserver(function(){
+    if(tm) return; tm=setTimeout(function(){tm=null;decorate();},120);
+  }).observe(document.body,{childList:true,subtree:true});
+  document.addEventListener('play',function(e){
+    var t=e.target;if(!t||!t.currentSrc&&!t.src)return;
+    var m=((t.currentSrc||t.src)+'').match(CFG.idRe);if(!m)return;
+    var s=seen();if(!s[m[1]]){s[m[1]]=1;save(s);
+      var n=Object.keys(s).length;
+      if(totText) totText.nodeValue=fmt(n);
+      ups.forEach(function(u){u();});
+    }
+  },true);
 })();
 </script>
 </body>

@@ -252,7 +252,7 @@ document.querySelectorAll('.more').forEach(function(b){
     b.textContent=open?'展开全部 10 句试听 ▾':'收起试听 ▴';
   };
 });
-/* ---------- 已拥有识别（读各产品本地的解锁与进度记录，仅本机生效） ---------- */
+/* ---------- 已购识别（读各产品本地的解锁与进度记录，仅本机生效） ---------- */
 (function(){
   var LIB=[
     {unlock:'r300_unlocked_v2',seen:'p300_seen',total:300},
@@ -269,10 +269,9 @@ document.querySelectorAll('.more').forEach(function(b){
       if(meta) meta.textContent+=' · 已听 '+n+'/'+cfg.total+' 句';
     }
     if(owned){
-      var price=card.querySelector('.price');
-      if(price){price.textContent='已拥有 ✓';price.style.color='#3B6D11';}
       var btn=card.querySelector('.btn.primary');
-      if(btn) btn.textContent='继续学习 · 已解锁';
+      if(btn){btn.textContent='继续学习 · 已解锁';
+        btn.style.background='#fff';btn.style.borderColor='#3B6D11';btn.style.color='#3B6D11';}
     }
   });
 })();
