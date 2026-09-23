@@ -494,7 +494,7 @@ function escapeAttr(s){return escapeHtml(s);}
   }
   function decorate(){
 
-    document.querySelectorAll('.week[data-chIdx]').forEach(function(sec){
+    document.querySelectorAll('.week[data-ch-idx]').forEach(function(sec){
       var h=sec.querySelector('.week-h');
       if(!h||h.querySelector('.cprog'))return;
       var ch=CHAPTERS[+sec.dataset.chIdx];if(!ch)return;

@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-title" content="Rainbow 学习库">
 <meta name="theme-color" content="#c8623d">
 <link rel="apple-touch-icon" href="../audio300/icon-180.png">
-<title>Rainbow 聊外企 · 职场英语学习库</title>
+<title>Rainbow · 职场英语学习库</title>
 <style>
 :root{
   --brand:#c8623d; --brand-d:#a94e2e; --brand-l:#f9e6dc;
@@ -19,7 +19,7 @@
 body{margin:0;background:var(--bg);color:var(--ink);
   font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding-bottom:40px}
 header{padding:26px 18px 18px;background:var(--brand);color:#fff}
-header .kicker{font-size:11px;letter-spacing:2px;opacity:.85;margin-bottom:6px}
+header .kicker{font-size:13px;letter-spacing:3px;font-weight:800;opacity:.95;margin-bottom:8px}
 header h1{margin:0;font-size:22px;font-weight:700;line-height:1.4}
 header p{margin:8px 0 0;font-size:12px;opacity:.85;line-height:1.7}
 
@@ -77,9 +77,9 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
 </head>
 <body>
 <header>
-  <div class="kicker">RAINBOW 聊外企</div>
+  <div class="kicker">RAINBOW · 职场英语</div>
   <h1>职场英语学习库</h1>
-  <p>跟着职场旅程走的英语资料体系：求职前 · 入职期 · 站稳期，一块一块补齐你在外企开口用的英语。</p>
+  <p>跟着你的职场旅程走的英语资料体系：求职期 · 入职期 · 站稳期，一块一块补齐你开口说英语的底气。</p>
 </header>
 
 <div class="journey">
@@ -93,8 +93,8 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
 <div class="card locked">
   <span class="badge soon">V0.3 内测中 · 即将上线</span>
   <h2>面试英语 × STAR</h2>
-  <p class="desc">22 道外企高频面试题，每题按 STAR 拆成 5 句标准答案，常速+慢速逐词高亮跟读，附挖空自测。行为面试题，用结构拿分。</p>
-  <div class="meta">22 题 · 110 句 · 220 条音频 · 逐词时间戳驱动</div>
+  <p class="desc">40 道职场高频面试题，每题按 STAR 拆成 5 句标准答案，常速+慢速逐词高亮跟读，附挖空自测。行为面试题，用结构拿分。</p>
+  <div class="meta">40 题 · 200 句 · 400 条音频 · 逐词时间戳驱动</div>
 </div>
 
 <div class="sec">音频产品 · 每款免费试听 10 句<em>点 ▶ 直接听，无需解锁</em></div>
@@ -103,7 +103,7 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
   <span class="price">¥5.98</span>
   <span class="badge">入职期 · 每日开口</span>
   <h2>外企老外职场口语 300 句 · 音频版</h2>
-  <p class="desc">30 天 · 每天 10 句最常用的外企口语，场景从早晨打招呼到跨部门沟通，常速+慢速双音频。</p>
+  <p class="desc">30 天 · 每天 10 句最常用的职场口语，场景从早晨打招呼到跨部门沟通，常速+慢速双音频。</p>
   <div class="meta">300 句 · 600 条音频 · 30 天打卡节奏 · 试听：Day 1 全部 10 句</div>
   <div id="boxA"></div>
   <button class="more" data-box="A" data-open="0">展开全部 10 句试听 ▾</button>
@@ -269,8 +269,15 @@ document.querySelectorAll('.more').forEach(function(b){
       if(meta) meta.textContent+=' · 已听 '+n+'/'+cfg.total+' 句';
     }
     if(owned){
+      /* v1.4：已解锁隐藏试听区，突出进入完整版 */
+      var box=card.querySelector('[id^="box"]');
+      if(box) box.style.display='none';
+      var more=card.querySelector('.more');
+      if(more) more.style.display='none';
+      var meta=card.querySelector('.meta');
+      if(meta) meta.textContent=meta.textContent.replace(/·\s*试听：[^·]*/,'');
       var btn=card.querySelector('.btn.primary');
-      if(btn){btn.textContent='继续学习 · 已解锁';
+      if(btn){btn.textContent='已解锁 · 进入完整版 →';
         btn.style.background='#fff';btn.style.borderColor='#3B6D11';btn.style.color='#3B6D11';}
     }
   });
