@@ -40,6 +40,10 @@
   .ch-content{display:none;padding-top:14px}
   .part{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(180,140,110,.06)}
   .part-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px;flex-wrap:wrap}
+  .part-head{cursor:pointer}
+  .part-head .arrow{transition:transform .2s;color:#c8623d;font-size:18px;flex-shrink:0}
+  .part.open .part-head .arrow{transform:rotate(90deg)}
+  .part:not(.open) .card-list{display:none}
   .part-tag{background:#c8623d;color:#fff;border-radius:6px;padding:3px 8px;font-size:11px;font-weight:700;letter-spacing:.5px;flex-shrink:0}
   .part-title{font-weight:700;font-size:15px;color:#2a2a2a;flex:1;min-width:0}
   .play-all{padding:5px 10px;border:1px solid #c8623d;background:#fff;color:#c8623d;border-radius:14px;font-size:12px;cursor:pointer;font-weight:600}
@@ -250,10 +254,11 @@ function renderCh(i) {
       const cards = pt.items.map(it => mainCardHTML(i, pi, it)).join('');
       html += `
         <div class="part" data-ch="${i}" data-pt="${pi}">
-          <div class="part-head">
+          <div class="part-head" onclick="togglePart(this)">
             <span class="part-tag">${i + 1}-${pi + 1}</span>
             <span class="part-title">${escapeHtml(pt.t)}</span>
-            <button class="play-all" onclick="playAll(${i},${pi})">▶ 连播本节</button>
+            <button class="play-all" onclick="event.stopPropagation();playAll(${i},${pi})">▶ 连播本节</button>
+            <span class="arrow">›</span>
           </div>
           <div class="card-list">${cards}</div>
         </div>
@@ -264,10 +269,11 @@ function renderCh(i) {
       const cards = pt.items.map(it => bonusCardHTML(pi, it)).join('');
       html += `
         <div class="part" data-ch="${i}" data-pt="${pi}">
-          <div class="part-head">
+          <div class="part-head" onclick="togglePart(this)">
             <span class="part-tag">B${pi + 1}</span>
             <span class="part-title">${escapeHtml(pt.t)}</span>
-            <button class="play-all" onclick="playAll(${i},${pi})">▶ 连播例句</button>
+            <button class="play-all" onclick="event.stopPropagation();playAll(${i},${pi})">▶ 连播例句</button>
+            <span class="arrow">›</span>
           </div>
           <div class="card-list">${cards}</div>
         </div>
@@ -276,6 +282,31 @@ function renderCh(i) {
   }
   target.innerHTML = html;
   target.dataset.rendered = '1';
+  autoOpenParts(target);
+}
+
+/* v1.6 节折叠：点击节头展开/收起 */
+function togglePart(head) {
+  head.closest('.part').classList.toggle('open');
+}
+
+/* v1.6 智能默认展开：重置后展开第一个未学完的节（全完成→第1节；加餐章→第1组） */
+function autoOpenParts(container) {
+  let seen = {};
+  try { seen = JSON.parse(localStorage.getItem('pmnl_seen') || '{}'); } catch (e) {}
+  const parts = [...container.querySelectorAll('.part')];
+  parts.forEach(p => p.classList.remove('open'));
+  let target = null;
+  parts.forEach(p => {
+    const ci = +p.dataset.ch, pi = +p.dataset.pt;
+    if (target !== null) return;
+    if (ci >= CHAPTERS.length || !CHAPTERS[ci] || !CHAPTERS[ci].parts[pi]) return;
+    const items = CHAPTERS[ci].parts[pi].items;
+    const done = items.filter(it => seen['m' + pad3(it.i)]).length;
+    if (done < items.length) target = p;
+  });
+  if (!target) target = parts[0];
+  if (target) target.classList.add('open');
 }
 
 function searchTextOf(it) {
@@ -452,6 +483,9 @@ function doSearch(kw) {
   if (!kw) {
     noRes.classList.remove('show');
     document.querySelectorAll('.card').forEach(c => c.style.display = '');
+    document.querySelectorAll('.ch').forEach((sec, i) => {
+      if (sec.classList.contains('open')) autoOpenParts(document.getElementById('cc' + i));
+    });
     return;
   }
   let match = 0;
@@ -469,6 +503,7 @@ function doSearch(kw) {
       renderCh(i);
     }
   });
+  document.querySelectorAll('.part').forEach(p => p.classList.add('open'));
 }
 
 /* ============== 音频资源健康检测 ============== */
@@ -500,7 +535,7 @@ function escapeHtml(s) { return String(s || '').replace(/[&<>"']/g, m => ({ '&':
 function escapeAttr(s) { return escapeHtml(s); }
 </script>
 <script>
-/* 学习进度 v1.5：章/节行内迷你进度 + 学习库入口右上角（不动原有播放逻辑） */
+/* 学习进度 v1.6：章/节行内迷你进度 + 学习库入口右上角（不动原有播放逻辑） */
 (function(){
   var CFG = {'key':'pmnl_seen','total':550,'idRe':/(m\d{3})/};
   function seen(){try{return JSON.parse(localStorage.getItem(CFG.key)||'{}')}catch(e){return{}}}
