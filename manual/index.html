@@ -14,7 +14,7 @@
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#fdf8f5;color:#2a2a2a;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
   .topbar{position:sticky;top:0;z-index:50;background:rgba(253,248,245,.95);backdrop-filter:blur(10px);padding:14px 16px 10px;border-bottom:1px solid #f0e6dc}
-  .topbar h1{margin:0 0 2px;font-size:18px;font-weight:700}
+  .topbar h1{margin:0 0 2px;font-size:18px;font-weight:700;display:flow-root}
   .topbar .sub{margin:0;color:#9c7d6d;font-size:12px}
   .controls{margin-top:10px;display:flex;gap:8px;align-items:center}
   .search{flex:1;padding:9px 12px;border:1px solid #ead9c9;border-radius:20px;background:#fff;font-size:14px;outline:none}
@@ -39,13 +39,13 @@
   .ch.open .ch-content{display:block}
   .ch-content{display:none;padding-top:14px}
   .part{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(180,140,110,.06)}
-  .part-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px;flex-wrap:wrap}
+  .part-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px;row-gap:6px;flex-wrap:wrap}
   .part-head{cursor:pointer}
   .part-head .arrow{transition:transform .2s;color:#c8623d;font-size:18px;flex-shrink:0}
   .part.open .part-head .arrow{transform:rotate(90deg)}
   .part:not(.open) .card-list{display:none}
   .part-tag{background:#c8623d;color:#fff;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;letter-spacing:.5px;flex-shrink:0}
-  .part-title{font-weight:700;font-size:15px;color:#2a2a2a;flex:1;min-width:0}
+  .part-title{font-weight:700;font-size:15px;color:#2a2a2a;flex:1 1 auto;min-width:8em}
   .play-all{padding:5px 10px;border:1px solid #c8623d;background:#fff;color:#c8623d;border-radius:14px;font-size:12px;cursor:pointer;font-weight:600}
   .play-all.playing{background:#c8623d;color:#fff}
   .card-list{display:flex;flex-direction:column;gap:10px}
@@ -87,9 +87,10 @@
   .page-error button{margin-top:10px;padding:8px 14px;background:#c8623d;color:#fff;border:none;border-radius:8px;cursor:pointer}
 
   /* v1.8：学习库总入口立体按钮（凸起键帽感，按下下沉） */
-  .learn-entry-btn{float:right;font-size:13px;font-weight:700;color:#c8623d;text-decoration:none;line-height:1;white-space:nowrap;padding:15px 16px;background:#fff;border:1px solid #f0d9cd;border-radius:10px;box-shadow:0 3px 0 #e8c4b2,0 4px 8px rgba(160,90,50,.15);transition:transform .08s ease,box-shadow .08s ease}
-  .learn-entry-btn:hover{background:#fff7f2}
-  .learn-entry-btn:active{transform:translateY(3px);box-shadow:0 0 0 #e8c4b2,0 1px 3px rgba(160,90,50,.15)}
+  .learn-entry-btn{display:inline-block;position:relative;font-size:13px;font-weight:700;color:#a94e2e;text-decoration:none;line-height:1;white-space:nowrap;padding:12px 16px;background:#f9ede2;border-radius:18px;transition:background .15s}
+  .learn-entry-btn::after{content:'';position:absolute;left:0;right:0;top:-3px;bottom:-3px}
+  .learn-entry-btn:hover{background:#f5e3d3}
+  .learn-entry-btn:active{background:#f0d9c9}
 
   /* v1.9 移动端优化：点击热区补到 44px（视觉尺寸不变，用伪元素扩展） */
   .play-all{position:relative}
@@ -122,7 +123,7 @@
 <div id="app" style="display:none">
   <div class="topbar">
     <h1>外企生存英语手册·音频版</h1>
-    <p class="sub">Rainbow 聊外企 · 6 章 55 节 · 550 句 + 100 短语动词 · 双速朗读</p>
+    <p class="sub">Rainbow 聊外企 · 550 句 + 100 短语动词 · 双速朗读</p>
     <div class="controls">
       <input class="search" id="search" placeholder="搜句子 / 中文 / 场景…">
       <div class="speed-toggle">
@@ -563,13 +564,19 @@ function escapeAttr(s) { return escapeHtml(s); }
   function fmt(n){return '已听 '+n+' / '+CFG.total+' 句 · '+Math.round(100*n/CFG.total)+'%';}
   /* v1.5：标题旁总进度移除（在学习库首页产品卡体现），「学习库总入口 →」移至最右、放大加粗 */
   document.querySelectorAll('#app h1').forEach(function(h){
+    var box=h.closest('.topbar')||h.parentNode;
+    if(box.querySelector('.learn-entry-btn'))return;
     var a=document.createElement('a');a.href='../learn/';a.textContent='学习库总入口 →';
     a.className='learn-entry-btn';
-    h.appendChild(a);
+    var row=document.createElement('div');
+    row.className='entry-row';
+    row.style.cssText='text-align:right;margin-top:8px';
+    row.appendChild(a);
+    box.appendChild(row);
   });
   function addProg(h,keys,anchor){
     var bar=document.createElement('span');
-    bar.style.cssText='display:inline-block;width:56px;height:5px;border-radius:3px;background:#f0e0d6;overflow:hidden;flex:0 0 auto';
+    bar.style.cssText='display:inline-block;width:46px;height:5px;border-radius:3px;background:#f0e0d6;overflow:hidden;flex:0 0 auto';
     var fill=document.createElement('span');
     fill.style.cssText='display:block;height:100%;width:0%;background:#c8623d;border-radius:3px;transition:width .3s';
     bar.appendChild(fill);
@@ -577,7 +584,7 @@ function escapeAttr(s) { return escapeHtml(s); }
     txt.style.cssText='font-size:12px;color:#9c7d6d;white-space:nowrap;flex:0 0 auto';
     var wrap=document.createElement('span');
     wrap.className='cprog';
-    wrap.style.cssText='display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;margin-right:8px';
+    wrap.style.cssText='display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;margin-right:6px';
     wrap.appendChild(bar);wrap.appendChild(txt);
     if(anchor) h.insertBefore(wrap,anchor); else h.appendChild(wrap);
     function upd(){
