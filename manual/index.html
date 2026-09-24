@@ -18,8 +18,8 @@
   .topbar .sub{margin:0;color:#9c7d6d;font-size:12px}
   .controls{margin-top:10px;display:flex;gap:8px;align-items:center}
   .search{flex:1;padding:9px 12px;border:1px solid #ead9c9;border-radius:20px;background:#fff;font-size:14px;outline:none}
-  .speed-toggle{display:flex;background:#f0e6dc;border-radius:20px;overflow:hidden;flex-shrink:0}
-  .speed-toggle button{border:none;background:transparent;padding:8px 14px;font-size:13px;color:#9c7d6d;cursor:pointer;font-weight:600}
+  .speed-toggle{display:flex;background:#f0e6dc;border-radius:24px;overflow:hidden;flex-shrink:0}
+  .speed-toggle button{border:none;background:transparent;padding:14px 16px;font-size:13px;color:#9c7d6d;cursor:pointer;font-weight:600}
   .speed-toggle button.on{background:#c8623d;color:#fff}
   .help{background:#fff5ed;border:1px solid #f4d4bf;border-radius:12px;padding:12px 14px;margin:12px 16px;font-size:13px;color:#7a5640}
   .help summary{font-weight:700;color:#c8623d;cursor:pointer;list-style:none;outline:none}
@@ -44,7 +44,7 @@
   .part-head .arrow{transition:transform .2s;color:#c8623d;font-size:18px;flex-shrink:0}
   .part.open .part-head .arrow{transform:rotate(90deg)}
   .part:not(.open) .card-list{display:none}
-  .part-tag{background:#c8623d;color:#fff;border-radius:6px;padding:3px 8px;font-size:11px;font-weight:700;letter-spacing:.5px;flex-shrink:0}
+  .part-tag{background:#c8623d;color:#fff;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;letter-spacing:.5px;flex-shrink:0}
   .part-title{font-weight:700;font-size:15px;color:#2a2a2a;flex:1;min-width:0}
   .play-all{padding:5px 10px;border:1px solid #c8623d;background:#fff;color:#c8623d;border-radius:14px;font-size:12px;cursor:pointer;font-weight:600}
   .play-all.playing{background:#c8623d;color:#fff}
@@ -55,19 +55,19 @@
   .en-line{display:flex;align-items:flex-start;gap:10px}
   .card .en{font-weight:600;color:#2a2a2a;font-size:15px;flex:1}
   .card .cn{color:#7a5640;font-size:13px;margin-top:2px}
-  .play-btn{width:38px;height:38px;border-radius:50%;background:#c8623d;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+  .play-btn{width:44px;height:44px;border-radius:50%;background:#c8623d;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
   .play-btn.playing{background:#a04d2d}
-  .mini-btn{width:28px;height:28px;border-radius:50%;background:#e8d5c4;color:#7a4a2d;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;padding:0}
+  .mini-btn{width:28px;height:28px;border-radius:50%;background:#e8d5c4;color:#7a4a2d;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;padding:0}
   .mini-btn.playing{background:#c8623d;color:#fff}
   .meta{font-size:12px;color:#9c7d6d;margin-top:7px;line-height:1.55;display:flex;gap:6px;align-items:flex-start}
-  .mtag{flex-shrink:0;background:#f0e6dc;color:#7a5640;border-radius:5px;padding:1px 6px;font-size:11px;font-weight:600;margin-top:1px}
+  .mtag{flex-shrink:0;background:#f0e6dc;color:#7a5640;border-radius:5px;padding:1px 6px;font-size:12px;font-weight:600;margin-top:1px}
   .mtag.why{background:#f5ead9}
-  .sims{margin-top:8px;padding-top:8px;border-top:1px dashed #ead9c9;display:flex;flex-direction:column;gap:5px}
-  .sim-label{font-size:11px;color:#b8a79b;font-weight:600}
+  .sims{margin-top:8px;padding-top:8px;border-top:1px dashed #ead9c9;display:flex;flex-direction:column;gap:12px}
+  .sim-label{font-size:12px;color:#b8a79b;font-weight:600}
   .sim-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#5d4635}
   .ex-line{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:13px;color:#5d4635;font-style:italic}
   .empty{padding:40px 16px;text-align:center;color:#9c7d6d;font-size:13px}
-  .footer{margin:30px 16px 20px;text-align:center;color:#c8aa9a;font-size:11px;line-height:1.7}
+  .footer{margin:30px 16px 20px;text-align:center;color:#c8aa9a;font-size:12px;line-height:1.7}
   /* 口令门 */
   #gate{position:fixed;inset:0;z-index:999;background:linear-gradient(135deg,#fdf8f5 0%,#f5e6d6 100%);display:flex;align-items:center;justify-content:center;padding:20px}
   .gate-box{background:#fff;padding:36px 28px;border-radius:20px;max-width:340px;width:100%;text-align:center;box-shadow:0 10px 40px rgba(180,140,110,.18)}
@@ -87,9 +87,22 @@
   .page-error button{margin-top:10px;padding:8px 14px;background:#c8623d;color:#fff;border:none;border-radius:8px;cursor:pointer}
 
   /* v1.8：学习库总入口立体按钮（凸起键帽感，按下下沉） */
-  .learn-entry-btn{float:right;font-size:13px;font-weight:700;color:#c8623d;text-decoration:none;line-height:1;white-space:nowrap;padding:9px 14px;background:#fff;border:1px solid #f0d9cd;border-radius:10px;box-shadow:0 3px 0 #e8c4b2,0 4px 8px rgba(160,90,50,.15);transition:transform .08s ease,box-shadow .08s ease}
+  .learn-entry-btn{float:right;font-size:13px;font-weight:700;color:#c8623d;text-decoration:none;line-height:1;white-space:nowrap;padding:15px 16px;background:#fff;border:1px solid #f0d9cd;border-radius:10px;box-shadow:0 3px 0 #e8c4b2,0 4px 8px rgba(160,90,50,.15);transition:transform .08s ease,box-shadow .08s ease}
   .learn-entry-btn:hover{background:#fff7f2}
   .learn-entry-btn:active{transform:translateY(3px);box-shadow:0 0 0 #e8c4b2,0 1px 3px rgba(160,90,50,.15)}
+
+  /* v1.9 移动端优化：点击热区补到 44px（视觉尺寸不变，用伪元素扩展） */
+  .play-all{position:relative}
+  .play-all::after{content:'';position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);height:44px}
+  .mini-btn{position:relative}
+  .mini-btn::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px}
+  @media (max-width:400px){
+    .speed-toggle button{padding:14px 12px}
+    .mtag{padding:2px 6px}
+  }
+  /* v1.9b 热区修正 */
+  .learn-entry-btn{position:relative;z-index:2}
+  .mini-btn{width:34px;height:34px}
 </style>
 </head>
 <body>
@@ -140,7 +153,7 @@
   <div class="footer">
     © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
     仅供个人学习使用·请勿用作商业用途<br>
-    <span style="color:#c8aa9a">v1.7</span>
+    <span style="color:#c8aa9a">v1.8</span>
   </div>
 </div>
 
@@ -561,7 +574,7 @@ function escapeAttr(s) { return escapeHtml(s); }
     fill.style.cssText='display:block;height:100%;width:0%;background:#c8623d;border-radius:3px;transition:width .3s';
     bar.appendChild(fill);
     var txt=document.createElement('span');
-    txt.style.cssText='font-size:11px;color:#9c7d6d;white-space:nowrap;flex:0 0 auto';
+    txt.style.cssText='font-size:12px;color:#9c7d6d;white-space:nowrap;flex:0 0 auto';
     var wrap=document.createElement('span');
     wrap.className='cprog';
     wrap.style.cssText='display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;margin-right:8px';
