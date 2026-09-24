@@ -8,20 +8,22 @@
 <meta name="apple-mobile-web-app-title" content="Rainbow 学习库">
 <meta name="theme-color" content="#c8623d">
 <link rel="apple-touch-icon" href="https://rainbowreadytogo-web.github.io/rainbow-aios/audio300/icon-180.png">
+<link rel="manifest" href="manifest.json">
 <title>Rainbow · 职场英语学习库</title>
 <style>
 :root{
   --brand:#c8623d; --brand-d:#a94e2e; --brand-l:#f9e6dc;
-  --bg:#fdf8f5; --card:#fff; --ink:#2a2a2a; --sub:#7a5640; --muted:#9c7d6d;
+  --bg:#fdf8f5; --card:#fff; --ink:#2a2a2a; --sub:#7a5640; --muted:#8a6a58;
+  --brand-a11y:#a94e2e;   /* v1.7：大面积橙底专用（白字对比度 5.5:1，原 #c8623d 仅 3.98:1）*/
   --line:#c8aa9a; --line-l:#f0e6dc; --soft:#f5ece5;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--bg);color:var(--ink);
   font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding-bottom:40px}
-header{padding:26px 18px 18px;background:var(--brand);color:#fff}
+header{padding:26px 18px 18px;background:var(--brand-a11y);color:#fff}
 header .kicker{font-size:13px;letter-spacing:3px;font-weight:800;opacity:.95;margin-bottom:8px}
 header h1{margin:0;font-size:22px;font-weight:700;line-height:1.4}
-header p{margin:8px 0 0;font-size:12px;opacity:.85;line-height:1.7}
+header p{margin:8px 0 0;font-size:12px;opacity:.95;line-height:1.7}
 /* 头部 IP 签名卡（信任背书，不做推销） */
 header .hwrap{display:flex;gap:16px;align-items:flex-start;justify-content:space-between}
 header .htext{flex:1;min-width:0}
@@ -45,12 +47,18 @@ header .htext{flex:1;min-width:0}
 .jstep.on b{color:var(--brand-d)}
 .jstep.soon{border-style:dashed;background:transparent;border-color:var(--line)}
 .jstep.soon b{color:var(--muted)}
+/* v1.7：可跳转的旅程卡加手势+箭头提示（解决「长得像卡片却不可点」的暗示错误） */
+.jstep[data-goto]{cursor:pointer;transition:background .15s,border-color .15s}
+.jstep[data-goto]:hover{background:var(--brand-l);border-color:var(--brand)}
+.jstep[data-goto]:active{background:var(--soft)}
+.jstep[data-goto]::after{content:'›';float:right;font-size:16px;line-height:1;color:var(--line)}
 
 .sec{margin:18px 14px 6px;font-size:15px;font-weight:700;color:var(--ink)}
 .sec em{font-style:normal;font-size:11px;color:var(--muted);font-weight:400;margin-left:8px}
 
 /* 板块卡 */
-.card{background:var(--card);border:1px solid var(--line-l);border-radius:16px;margin:10px 14px;padding:16px}
+.card{background:var(--card);border:1px solid var(--line-l);border-radius:16px;margin:10px 14px;padding:16px;
+  box-shadow:0 1px 2px rgba(90,50,30,.04),0 4px 14px rgba(90,50,30,.05)}
 .card.locked{opacity:.92}
 .badge{display:inline-block;font-size:11px;color:var(--brand-d);background:var(--brand-l);
   border-radius:6px;padding:3px 8px;margin-bottom:8px}
@@ -65,21 +73,21 @@ header .htext{flex:1;min-width:0}
 .listen{display:flex;gap:8px;align-items:center;margin-top:8px;background:var(--soft);
   border-radius:10px;padding:9px 12px}
 .listen:first-child{margin-top:12px}
-.pbtn{flex:0 0 32px;height:32px;border-radius:50%;border:1px solid var(--line);background:#fff;
-  color:var(--brand);font-size:12px;line-height:30px;text-align:center;cursor:pointer}
+.pbtn{flex:0 0 44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;
+  color:var(--brand);font-size:14px;line-height:42px;text-align:center;cursor:pointer}
 .pbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 .lbody{flex:1;min-width:0}
 .len{font-size:14px;line-height:1.45;color:var(--ink)}
-.lcn{font-size:11px;color:var(--muted);margin-top:2px}
-.spd{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 9px;
+.lcn{font-size:11px;color:var(--sub);margin-top:2px}
+.spd{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px 14px;min-width:62px;min-height:44px;
   font-size:11px;color:var(--sub);cursor:pointer}
 .spd.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 .more{display:block;width:100%;margin-top:10px;border:1px dashed var(--line);background:#fff;
-  border-radius:10px;padding:9px;font-size:13px;color:var(--brand-d)}
+  border-radius:10px;padding:13px;font-size:13px;color:var(--brand-d);cursor:pointer}
 .row{display:flex;gap:8px;margin-top:12px}
 .btn{flex:1;text-align:center;border:1px solid var(--line);background:#fff;border-radius:10px;
-  padding:9px 12px;font-size:13px;color:var(--brand-d);text-decoration:none;font-weight:600}
-.btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+  padding:13px 12px;font-size:13px;color:var(--brand-d);text-decoration:none;font-weight:600}
+.btn.primary{background:var(--brand-a11y);color:#fff;border-color:var(--brand-a11y)}
 .step{display:flex;gap:10px;align-items:baseline;background:var(--soft);border-radius:10px;
   padding:10px 12px;margin-top:8px;font-size:12px;color:var(--sub);line-height:1.6}
 .step b{flex:0 0 auto;color:var(--brand-d);font-size:13px}
@@ -107,22 +115,15 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
 </header>
 
 <div class="journey">
-  <div class="jstep on"><b>① 求职期</b>面试英语 · 内测中</div>
-  <div class="jstep on"><b>② 入职期</b>300 句 · 850 句</div>
-  <div class="jstep on"><b>③ 站稳期</b>生存手册</div>
+  <div class="jstep on" data-goto="#interview"><b>① 求职期</b>面试英语 · 内测中</div>
+  <div class="jstep on" data-goto="#shelf"><b>② 入职期</b>300 句 · 850 句</div>
+  <div class="jstep on" data-goto="#c-manual"><b>③ 站稳期</b>生存手册</div>
   <div class="jstep soon"><b>④ 进阶期</b>管理 · 专题（筹备中）</div>
 </div>
 
-<div class="sec">学习库板块<em>按职场旅程持续上新</em></div>
-
-<div class="card locked">
-  <span class="badge soon">V0.3 内测中 · 即将上线</span>
-  <h2>面试英语 × STAR</h2>
-  <p class="desc">40 道职场高频面试题，每题按 STAR 拆成 5 句标准答案，常速+慢速逐词高亮跟读，附挖空自测。行为面试题，用结构拿分。</p>
-  <div class="meta">40 题 · 200 句 · 400 条音频 · 逐词时间戳驱动</div>
 </div>
 
-<div class="sec">已上线课程 · 每款免费试听 10 句<em>点 ▶ 直接听，无需解锁</em></div>
+<div class="sec" id="shelf">已上线课程 · 每款免费试听 10 句<em>点 ▶ 直接听，无需解锁</em></div>
 
 <div class="card">
   <span class="price">¥5.98</span>
@@ -132,7 +133,7 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
   <div class="meta">300 句 · 600 条音频 · 30 天打卡节奏 · 试听：Day 1 全部 10 句</div>
   <div id="boxA"></div>
   <button class="more" data-box="A" data-open="0">展开全部 10 句试听 ▾</button>
-  <div class="row"><a class="btn primary" href="https://rainbowreadytogo-web.github.io/rainbow-aios/audio300/">进入完整版 · 共 300 句</a></div>
+  <div class="row"><a class="btn primary" href="https://rainbowreadytogo-web.github.io/rainbow-aios/audio300/">查看完整版 · 共 300 句</a></div>
 </div>
 
 <div class="card">
@@ -143,18 +144,27 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
   <div class="meta">850 句 · 1700 条音频 · 43 章节 · 试听：第 1 章「听懂与澄清」前 10 句</div>
   <div id="boxB"></div>
   <button class="more" data-box="B" data-open="0">展开全部 10 句试听 ▾</button>
-  <div class="row"><a class="btn primary" href="https://rainbowreadytogo-web.github.io/rainbow-aios/audio850/">进入完整版 · 共 850 句</a></div>
+  <div class="row"><a class="btn primary" href="https://rainbowreadytogo-web.github.io/rainbow-aios/audio850/">查看完整版 · 共 850 句</a></div>
 </div>
 
-<div class="card">
+<div class="card" id="c-manual">
   <span class="price">¥19.98</span>
   <span class="badge">站稳期 · 体系化生存</span>
   <h2>外企生存手册 · 音频版</h2>
   <p class="desc">6 章 55 节 550 句 + 100 高频短语动词，每句带场景讲解和 Why，外企翻译视角写成，适合想在外企长期站稳的你。</p>
-  <div class="meta">650+ 句 · 2500 条音频 · 6 章 55 节 · 试听：第 1 节「初次见面」前 10 句</div>
+  <div class="meta">550 句主课 · 100 短语动词 · 2500 条音频 · 6 章 55 节 · 试听：第 1 节「初次见面」前 10 句</div>
   <div id="boxC"></div>
   <button class="more" data-box="C" data-open="0">展开全部 10 句试听 ▾</button>
-  <div class="row"><a class="btn primary" href="https://rainbowreadytogo-web.github.io/rainbow-aios/manual/">进入完整版 · 共 650+ 句</a></div>
+  <div class="row"><a class="btn primary" href="https://rainbowreadytogo-web.github.io/rainbow-aios/manual/">查看完整版 · 6 章 55 节</a></div>
+</div>
+
+<div class="sec">即将上新<em>按职场旅程持续上新</em></div>
+
+<div class="card locked" id="interview">
+  <span class="badge soon">V0.3 内测中 · 即将上线</span>
+  <h2>面试英语 × STAR</h2>
+  <p class="desc">40 道职场高频面试题，每题按 STAR 拆成 5 句标准答案，常速+慢速逐词高亮跟读，附挖空自测。行为面试题，用结构拿分。</p>
+  <div class="meta">40 题 · 200 句 · 400 条音频 · 逐词时间戳驱动</div>
 </div>
 
 <div class="sec">如何获取完整版？<em>三步解锁</em></div>
@@ -169,7 +179,9 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
 
 <footer>
   Rainbow 聊外企 · 职场英语学习库<br>
-  内容原创 · 音频由本人制作 · 小红书号 rainbow_work<br><span style="color:#a94e2e">本地验收版 · 60 条试听音频已内嵌，「进入完整版」跳线上页</span>
+  内容原创 · 音频由本人制作 · 小红书号
+  <span id="xhsid" role="button" tabindex="0" style="color:var(--brand-d);border-bottom:1px dashed var(--brand-d);cursor:pointer">rainbow_work</span>
+  <span style="opacity:.6"> · v1.7</span>
 </footer>
 
 <script>
@@ -281,9 +293,9 @@ document.querySelectorAll('.more').forEach(function(b){
 /* ---------- 已购识别（读各产品本地的解锁与进度记录，仅本机生效） ---------- */
 (function(){
   var LIB=[
-    {unlock:'r300_unlocked_v2',seen:'p300_seen',total:300},
-    {unlock:'r850_unlocked_v1',seen:'p850_seen',total:850},
-    {unlock:'manual_unlocked_v1',seen:'pmnl_seen',total:550}
+    {unlock:'r300_unlocked_v2',seen:'p300_seen',total:300,unit:' 句'},
+    {unlock:'r850_unlocked_v1',seen:'p850_seen',total:850,unit:' 句'},
+    {unlock:'manual_unlocked_v1',seen:'pmnl_seen',total:550,unit:' 句主课'}
   ];
   var cards=document.querySelectorAll('.card:not(.locked)');
   LIB.forEach(function(cfg,i){
@@ -292,7 +304,7 @@ document.querySelectorAll('.more').forEach(function(b){
     var n=0; try{n=Object.keys(JSON.parse(localStorage.getItem(cfg.seen)||'{}')).length;}catch(e){}
     if(n>0){
       var meta=card.querySelector('.meta');
-      if(meta) meta.textContent+=' · 已听 '+n+'/'+cfg.total+' 句';
+      if(meta) meta.textContent+=' · 已听 '+n+'/'+cfg.total+cfg.unit;
     }
     if(owned){
       /* v1.4：已解锁隐藏试听区，突出进入完整版 */
@@ -307,6 +319,40 @@ document.querySelectorAll('.more').forEach(function(b){
         btn.style.background='#fff';btn.style.borderColor='#3B6D11';btn.style.color='#3B6D11';}
     }
   });
+})();
+
+/* ---------- v1.7：旅程卡锚点跳转（键盘可达） ---------- */
+(function(){
+  document.querySelectorAll('.jstep[data-goto]').forEach(function(el){
+    el.setAttribute('role','button'); el.setAttribute('tabindex','0');
+    el.setAttribute('aria-label','跳转到' + (el.querySelector('b')||el).textContent);
+    function go(){
+      var t=document.querySelector(el.dataset.goto);
+      if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+    el.onclick=go;
+    el.onkeydown=function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } };
+  });
+})();
+
+/* ---------- v1.7：小红书号点击复制 ---------- */
+(function(){
+  var el=document.getElementById('xhsid'); if(!el) return;
+  function copy(){
+    var txt=el.textContent.trim(), done=function(){ toast('小红书号已复制：'+txt); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var ta=document.createElement('textarea'); ta.value=txt;
+      ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){ toast('小红书号：'+txt); }
+      document.body.removeChild(ta);
+    }
+  }
+  el.onclick=copy;
+  el.onkeydown=function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); copy(); } };
 })();
 </script>
 </body>

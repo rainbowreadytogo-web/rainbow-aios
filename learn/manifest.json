@@ -1,0 +1,14 @@
+{
+  "name": "Rainbow · 职场英语学习库",
+  "short_name": "职场英语学习库",
+  "description": "跟着职场旅程走的英语资料体系：求职期 · 入职期 · 站稳期，一块一块补齐你开口说英语的底气",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fdf8f5",
+  "theme_color": "#a94e2e",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "../audio300/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "../audio300/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
