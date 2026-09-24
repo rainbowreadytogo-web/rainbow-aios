@@ -500,7 +500,7 @@ function escapeHtml(s) { return String(s || '').replace(/[&<>"']/g, m => ({ '&':
 function escapeAttr(s) { return escapeHtml(s); }
 </script>
 <script>
-/* 学习进度 v1.3：总进度随标题小字 + 章节行内迷你进度（不动原有播放逻辑） */
+/* 学习进度 v1.5：章/节行内迷你进度 + 学习库入口右上角（不动原有播放逻辑） */
 (function(){
   var CFG = {'key':'pmnl_seen','total':550,'idRe':/(m\d{3})/};
   function seen(){try{return JSON.parse(localStorage.getItem(CFG.key)||'{}')}catch(e){return{}}}
@@ -509,14 +509,11 @@ function escapeAttr(s) { return escapeHtml(s); }
   function pad3(n){return String(n).padStart(3,'0')}
   var ups=[], totText=null;
   function fmt(n){return '已听 '+n+' / '+CFG.total+' 句 · '+Math.round(100*n/CFG.total)+'%';}
+  /* v1.5：标题旁总进度移除（在学习库首页产品卡体现），「学习库总入口 →」移至最右、放大加粗 */
   document.querySelectorAll('#app h1').forEach(function(h){
-    var s=document.createElement('span');
-    s.style.cssText='font-size:12px;font-weight:400;color:#9c7d6d;margin-left:12px;white-space:nowrap';
-    totText=document.createTextNode(fmt(Object.keys(seen()).length));
-    s.appendChild(totText);
     var a=document.createElement('a');a.href='../learn/';a.textContent='学习库总入口 →';
-    a.style.cssText='color:#c8623d;text-decoration:none;font-weight:600;margin-left:8px';
-    s.appendChild(a); h.appendChild(s);
+    a.style.cssText='float:right;font-size:13px;font-weight:700;color:#c8623d;text-decoration:none;line-height:2;white-space:nowrap';
+    h.appendChild(a);
   });
   function addProg(h,keys,anchor){
     var bar=document.createElement('span');
@@ -528,7 +525,7 @@ function escapeAttr(s) { return escapeHtml(s); }
     txt.style.cssText='font-size:11px;color:#9c7d6d;white-space:nowrap;flex:0 0 auto';
     var wrap=document.createElement('span');
     wrap.className='cprog';
-    wrap.style.cssText='display:inline-flex;align-items:center;gap:6px;flex:0 0 auto';
+    wrap.style.cssText='display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;margin-right:8px';
     wrap.appendChild(bar);wrap.appendChild(txt);
     if(anchor) h.insertBefore(wrap,anchor); else h.appendChild(wrap);
     function upd(){
@@ -541,6 +538,15 @@ function escapeAttr(s) { return escapeHtml(s); }
   }
   function decorate(){
 
+    /* v1.5：章级迷你进度（加餐章跳过） */
+    document.querySelectorAll('.ch[data-ci]').forEach(function(sec){
+      var h=sec.querySelector('.ch-h');
+      if(!h||h.querySelector('.cprog'))return;
+      var ci=+sec.dataset.ci;if(ci>=CHAPTERS.length)return;
+      var keys=[];
+      CHAPTERS[ci].parts.forEach(function(pt){pt.items.forEach(function(it){keys.push('m'+pad3(it.i));});});
+      addProg(h,keys,h.querySelector('.count'));
+    });
     document.querySelectorAll('.part[data-ch]').forEach(function(sec){
       var h=sec.querySelector('.part-head');
       if(!h||h.querySelector('.cprog'))return;

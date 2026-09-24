@@ -453,7 +453,7 @@ function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;',
 function escapeAttr(s){return escapeHtml(s);}
 </script>
 <script>
-/* 学习进度 v1.3：总进度随标题小字 + 章节行内迷你进度（不动原有播放逻辑） */
+/* 学习进度 v1.5：章/节行内迷你进度 + 学习库入口右上角（不动原有播放逻辑） */
 (function(){
   var CFG = {'key':'p300_seen','total':300,'idRe':/(d\d{2}_\d{2})/};
   function seen(){try{return JSON.parse(localStorage.getItem(CFG.key)||'{}')}catch(e){return{}}}
@@ -462,14 +462,11 @@ function escapeAttr(s){return escapeHtml(s);}
   function pad3(n){return String(n).padStart(3,'0')}
   var ups=[], totText=null;
   function fmt(n){return '已听 '+n+' / '+CFG.total+' 句 · '+Math.round(100*n/CFG.total)+'%';}
+  /* v1.5：标题旁总进度移除（在学习库首页产品卡体现），「学习库总入口 →」移至最右、放大加粗 */
   document.querySelectorAll('#app h1').forEach(function(h){
-    var s=document.createElement('span');
-    s.style.cssText='font-size:12px;font-weight:400;color:#9c7d6d;margin-left:12px;white-space:nowrap';
-    totText=document.createTextNode(fmt(Object.keys(seen()).length));
-    s.appendChild(totText);
     var a=document.createElement('a');a.href='../learn/';a.textContent='学习库总入口 →';
-    a.style.cssText='color:#c8623d;text-decoration:none;font-weight:600;margin-left:8px';
-    s.appendChild(a); h.appendChild(s);
+    a.style.cssText='float:right;font-size:13px;font-weight:700;color:#c8623d;text-decoration:none;line-height:2;white-space:nowrap';
+    h.appendChild(a);
   });
   function addProg(h,keys,anchor){
     var bar=document.createElement('span');
@@ -481,7 +478,7 @@ function escapeAttr(s){return escapeHtml(s);}
     txt.style.cssText='font-size:11px;color:#9c7d6d;white-space:nowrap;flex:0 0 auto';
     var wrap=document.createElement('span');
     wrap.className='cprog';
-    wrap.style.cssText='display:inline-flex;align-items:center;gap:6px;flex:0 0 auto';
+    wrap.style.cssText='display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;margin-right:8px';
     wrap.appendChild(bar);wrap.appendChild(txt);
     if(anchor) h.insertBefore(wrap,anchor); else h.appendChild(wrap);
     function upd(){
@@ -494,6 +491,18 @@ function escapeAttr(s){return escapeHtml(s);}
   }
   function decorate(){
 
+    /* v1.5：周级迷你进度（数据驱动，周未展开也能算） */
+    if(typeof WEEKS!=='undefined'){
+      WEEKS.forEach(function(wd,wi){
+        var sec=document.querySelectorAll('.week')[wi];
+        if(!sec)return;
+        var h=sec.querySelector('.week-h');
+        if(!h||h.querySelector('.cprog'))return;
+        var keys=[];
+        wd.items.forEach(function(d){var i;for(i=0;i<10;i++)keys.push('d'+pad2(d.day_num)+'_'+pad2(i));});
+        addProg(h,keys,h.querySelector('.count'));
+      });
+    }
     document.querySelectorAll('.day[data-day]').forEach(function(sec){
       var h=sec.querySelector('.day-head');
       if(!h||h.querySelector('.cprog'))return;
