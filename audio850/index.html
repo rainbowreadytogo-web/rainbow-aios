@@ -452,7 +452,7 @@ function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;',
 function escapeAttr(s){return escapeHtml(s);}
 </script>
 <script>
-/* 学习进度 v1.5：章/节行内迷你进度 + 学习库入口右上角（不动原有播放逻辑） */
+/* 学习进度 v1.7：章/节行内迷你进度 + 学习库入口右上角（不动原有播放逻辑） */
 (function(){
   var CFG = {'key':'p850_seen','total':850,'idRe':/(s\d{3})/};
   function seen(){try{return JSON.parse(localStorage.getItem(CFG.key)||'{}')}catch(e){return{}}}
@@ -490,14 +490,14 @@ function escapeAttr(s){return escapeHtml(s);}
   }
   function decorate(){
 
-    /* v1.5：迷你进度移到内层章节行（参考手册），章头保持纯「N句」 */
-    document.querySelectorAll('.day[data-ch]').forEach(function(sec){
-      var h=sec.querySelector('.day-head');
+    /* v1.7：迷你进度挂章头右侧（「N句」前），收起也能看进度 */
+    document.querySelectorAll('.week[data-ch-idx]').forEach(function(sec){
+      var h=sec.querySelector('.week-h');
       if(!h||h.querySelector('.cprog'))return;
-      var ch=CHAPTERS[+sec.dataset.ch];if(!ch)return;
+      var ch=CHAPTERS[+sec.dataset.chIdx];if(!ch)return;
       var keys=[],i;
       for(i=ch.start_idx;i<=ch.end_idx;i++)keys.push('s'+pad3(i));
-      addProg(h,keys,h.querySelector('.play-all'));
+      addProg(h,keys,h.querySelector('.count'));
     });
   }
   var tm=null;
