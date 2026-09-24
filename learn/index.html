@@ -22,6 +22,19 @@ header{padding:26px 18px 18px;background:var(--brand);color:#fff}
 header .kicker{font-size:13px;letter-spacing:3px;font-weight:800;opacity:.95;margin-bottom:8px}
 header h1{margin:0;font-size:22px;font-weight:700;line-height:1.4}
 header p{margin:8px 0 0;font-size:12px;opacity:.85;line-height:1.7}
+/* 头部 IP 签名卡（信任背书，不做推销） */
+header .hwrap{display:flex;gap:16px;align-items:flex-start;justify-content:space-between}
+header .htext{flex:1;min-width:0}
+.ipcard{flex:0 0 auto;max-width:236px;background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.28);border-radius:12px;padding:10px 12px}
+.ipcard .ip1{font-size:13px;font-weight:700;line-height:1.5}
+.ipcard .ip2{font-size:11px;opacity:.92;margin-top:5px;line-height:1.6}
+.ipcard .ip3{font-size:11px;opacity:.88;margin-top:6px;padding-top:6px;
+  border-top:1px solid rgba(255,255,255,.25)}
+@media(max-width:640px){
+  header .hwrap{flex-direction:column;gap:12px}
+  .ipcard{max-width:none;width:100%}
+}
 
 /* 旅程条 */
 .journey{display:flex;gap:6px;padding:14px 14px 2px;flex-wrap:wrap}
@@ -30,6 +43,8 @@ header p{margin:8px 0 0;font-size:12px;opacity:.85;line-height:1.7}
 .jstep b{display:block;font-size:13px;color:var(--ink)}
 .jstep.on{border-color:var(--brand)}
 .jstep.on b{color:var(--brand-d)}
+.jstep.soon{border-style:dashed;background:transparent;border-color:var(--line)}
+.jstep.soon b{color:var(--muted)}
 
 .sec{margin:18px 14px 6px;font-size:15px;font-weight:700;color:var(--ink)}
 .sec em{font-style:normal;font-size:11px;color:var(--muted);font-weight:400;margin-left:8px}
@@ -77,15 +92,25 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
 </head>
 <body>
 <header>
-  <div class="kicker">RAINBOW · 职场英语</div>
-  <h1>职场英语学习库</h1>
-  <p>跟着你的职场旅程走的英语资料体系：求职期 · 入职期 · 站稳期，一块一块补齐你开口说英语的底气。</p>
+  <div class="hwrap">
+    <div class="htext">
+      <div class="kicker">RAINBOW · 职场英语</div>
+      <h1>职场英语学习库</h1>
+      <p>跟着你的职场旅程走的英语资料体系：求职期 · 入职期 · 站稳期，一块一块补齐你开口说英语的底气。</p>
+    </div>
+    <div class="ipcard">
+      <div class="ip1">Rainbow · 外企翻译 &amp; 团队管理</div>
+      <div class="ip2">7 年外企一线实战 · TEM-8 · BEC 高级</div>
+      <div class="ip3">小红书 @rainbow_work</div>
+    </div>
+  </div>
 </header>
 
 <div class="journey">
   <div class="jstep on"><b>① 求职期</b>面试英语 · 内测中</div>
   <div class="jstep on"><b>② 入职期</b>300 句 · 850 句</div>
   <div class="jstep on"><b>③ 站稳期</b>生存手册</div>
+  <div class="jstep soon"><b>④ 进阶期</b>管理 · 专题（筹备中）</div>
 </div>
 
 <div class="sec">学习库板块<em>按职场旅程持续上新</em></div>
