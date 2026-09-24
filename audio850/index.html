@@ -40,6 +40,7 @@
   .week-content{display:none;padding-top:14px}
   .day{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(180,140,110,.06)}
   .day-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px;flex-wrap:wrap}
+  .day[data-ch] .day-head{justify-content:flex-end}
   .day-tag{background:#c8623d;color:#fff;border-radius:6px;padding:3px 8px;font-size:11px;font-weight:700;letter-spacing:.5px;flex-shrink:0}
   .day-title{font-weight:700;font-size:15px;color:#2a2a2a;flex:1;min-width:0}
   .scene-tip{font-size:12px;color:#9c7d6d;margin:0 0 12px;line-height:1.5}
@@ -241,8 +242,6 @@ function renderChapter(ci) {
   let html = `
     <div class="day" data-ch="${ci}">
       <div class="day-head">
-        <span class="day-tag">${ch.no}</span>
-        <span class="day-title">${escapeHtml(ch.title)} · ${items.length} 句</span>
         <button class="play-all" onclick="playAll(${ci})">▶ 连播本章</button>
       </div>
       <div class="card-list" data-cards>${items.map((s, ii) => cardHTML(ci, ii, s)).join('')}</div>
