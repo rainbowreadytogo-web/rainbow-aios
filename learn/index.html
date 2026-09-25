@@ -183,7 +183,7 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
   Rainbow 聊外企 · 职场英语学习库<br>
   内容原创 · 音频由本人制作 · 小红书号
   <span id="xhsid" role="button" tabindex="0" style="color:var(--brand-d);cursor:pointer">rainbow_work</span>
-  <span style="opacity:.6"> · v1.8</span>
+  <span style="opacity:.6"> · v1.10</span>
 </footer>
 
 <script>
@@ -301,19 +301,24 @@ document.querySelectorAll('.more').forEach(function(b){
 });
 /* ---------- 已购识别（读各产品本地的解锁与进度记录，仅本机生效） ---------- */
 (function(){
+  /* v1.10：按卡片内链接定位（此前按位置对号，插入面试卡后整体错位导致手册卡永远显示未购） */
   var LIB=[
-    {unlock:'r300_unlocked_v2',seen:'p300_seen',total:300,unit:' 句'},
-    {unlock:'r850_unlocked_v1',seen:'p850_seen',total:850,unit:' 句'},
-    {unlock:'manual_unlocked_v1',seen:'pmnl_seen',total:550,unit:' 句主课'}
+    {href:'../interview/',unlock:'interview_unlocked_v1',seen:null,total:200,unit:' 句'},
+    {href:'../audio300/',unlock:'r300_unlocked_v2',seen:'p300_seen',total:300,unit:' 句'},
+    {href:'../audio850/',unlock:'r850_unlocked_v1',seen:'p850_seen',total:850,unit:' 句'},
+    {href:'../manual/',unlock:'manual_unlocked_v1',seen:'pmnl_seen',total:550,unit:' 句主课'}
   ];
-  var cards=document.querySelectorAll('.card:not(.locked)');
-  LIB.forEach(function(cfg,i){
-    var card=cards[i]; if(!card) return;
+  LIB.forEach(function(cfg){
+    var link=document.querySelector('.card a.btn.primary[href="'+cfg.href+'"]');
+    if(!link) return;
+    var card=link.closest('.card'); if(!card) return;
     var owned=false; try{owned=localStorage.getItem(cfg.unlock)==='1';}catch(e){}
-    var n=0; try{n=Object.keys(JSON.parse(localStorage.getItem(cfg.seen)||'{}')).length;}catch(e){}
-    if(n>0){
-      var meta=card.querySelector('.meta');
-      if(meta) meta.textContent+=' · 已听 '+n+'/'+cfg.total+cfg.unit;
+    if(cfg.seen){
+      var n=0; try{n=Object.keys(JSON.parse(localStorage.getItem(cfg.seen)||'{}')).length;}catch(e){}
+      if(n>0){
+        var meta=card.querySelector('.meta');
+        if(meta) meta.textContent+=' · 已听 '+n+'/'+cfg.total+cfg.unit;
+      }
     }
     if(owned){
       /* v1.4：已解锁隐藏试听区，突出进入完整版 */
