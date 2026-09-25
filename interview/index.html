@@ -17,9 +17,10 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--bg);color:var(--ink);
   font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding-bottom:56px}
-header{padding:22px 18px 14px;background:var(--brand);color:#fff}
-header h1{margin:0;font-size:19px;font-weight:600}
-header p{margin:6px 0 0;font-size:12px;opacity:.85;line-height:1.6}
+header{position:sticky;top:0;z-index:50;padding:14px 16px 10px;background:rgba(253,248,245,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #f0e6dc;color:#3d2c23}
+header h1{margin:0 0 2px;font-size:18px;font-weight:700}
+header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
+.search{width:100%;box-sizing:border-box;margin-top:10px;padding:9px 12px;border:1px solid #ead9c9;border-radius:20px;background:#fff;font-size:14px;outline:none}
 
 /* 板块 tab */
 .tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 18px 2px}
@@ -99,11 +100,12 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 </head>
 <body data-page-node-id="NcPYkMb1L8msZKIHV4o4vd">
 <header data-page-node-id="HzFjdntsGZOwhPYvT7XrSC">
-  <h1 data-page-node-id="zjG8Lm83uIkYr6OVKiRCo6">面试英语 × STAR</h1>
-  <p data-page-node-id="eapZbgR3GNNcKmjoCGFOUX">40 道外企高频题 · 每题按 STAR 拆成 5 句 · 播放时逐词高亮</p>
+  <h1 data-page-node-id="zjG8Lm83uIkYr6OVKiRCo6">面试英语 × STAR · 音频版</h1>
+  <p data-page-node-id="eapZbgR3GNNcKmjoCGFOUX">Rainbow 聊外企 · 40 道外企高频题 · 每题按 STAR 拆成 5 句 · 播放时逐词高亮</p>
+  <div style="margin-top:2px"><input class="search" id="search" placeholder="搜句子 / 中文…"></div>
 
   <div class="entry-row" style="margin-top:12px;text-align:right">
-    <a href="../learn/" style="display:inline-flex;align-items:center;min-height:44px;padding:12px 16px;background:#fff;color:#a94e2e;border-radius:18px;font-size:13px;font-weight:700;text-decoration:none">学习库总入口 →</a>
+    <a href="../learn/" style="display:inline-flex;align-items:center;min-height:44px;padding:12px 16px;background:#f9ede2;color:#a94e2e;border-radius:18px;font-size:13px;font-weight:700;text-decoration:none">学习库总入口 →</a>
   </div>
 </header>
 
@@ -165,12 +167,14 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 <p class="hint" id="hint" data-page-node-id="E2Q17zZhi6v1b4AIAsgI9P">点句子左边的 ▶ 单独播放，或点「连播本题」从头跟读；播放时说到哪个词，哪个词会高亮。</p>
 
 <div id="list" data-page-node-id="qEE71K7eAWD3bQUnPxXlld"></div>
+<div id="nores" style="display:none;margin:20px 18px;text-align:center;color:#9c7d6d;font-size:13px">没找到相关内容，换个词试试</div>
 
 <div id="toast" data-page-node-id="yHe9ygkUOlQkI3zqCrzpL1"></div>
 
 <footer data-page-node-id="bhk3GTpMfIVHysyTVo1piN">
-  Rainbow 职场英语学习库 · 面试板块 v0.4（40 题 / 200 句 / 400 条音频 · 常速+慢速）<br data-page-node-id="IeHp3SV2RAwptCwJ31PPol">
-  内容原创，音频由本人制作，逐词时间戳驱动高亮与挖空。
+  © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br data-page-node-id="IeHp3SV2RAwptCwJ31PPol">
+  仅供个人学习使用·请勿用作商业用途<br>
+  <span style="color:#c8aa9a">v1.0</span>
 </footer>
 
 <script src="data.js"></script>
@@ -455,12 +459,15 @@ buildTabs(); render();
 #gateBtn{width:100%;border:none;background:#c2410c;color:#fff;border-radius:12px;padding:12px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px}
 #gerr{font-size:12px;color:#dc2626;margin-top:10px;height:16px}
 .gfoot{margin-top:18px;font-size:11px;color:#b0aea8;line-height:1.6}
-.help{background:#fff7ed;border:1px solid #fdba74;border-radius:12px;margin:12px 14px;padding:10px 14px;font-size:13px;color:#7c2d12}
-.help summary{cursor:pointer;font-weight:700;color:#c2410c;font-size:13.5px;list-style:none;display:flex;align-items:center;gap:6px;min-height:32px}
-.help summary::before{content:"?"}
+.help{background:#fff5ed;border:1px solid #f4d4bf;border-radius:12px;margin:12px 14px;padding:12px 14px;font-size:13px;color:#7a5640}
+.help summary{font-weight:700;color:#c8623d;cursor:pointer;list-style:none;outline:none}
 .help summary::-webkit-details-marker{display:none}
-.help ul{margin:8px 0 2px;padding-left:18px;line-height:1.9;color:#57534e}
-.help b{color:#c2410c}
+.help summary::before{content:"? ";display:inline-block;width:18px;height:18px;border-radius:50%;background:#c8623d;color:#fff;text-align:center;line-height:18px;font-weight:700;margin-right:4px;font-size:12px}
+.help ul{margin:10px 0 0;padding:0;list-style:none}
+.help li{margin:5px 0;padding-left:14px;position:relative}
+.help li::before{content:"·";position:absolute;left:4px;color:#c8623d;font-weight:700}
+.help b{color:#c8623d}
+.help .warn{margin-top:8px;padding-top:8px;border-top:1px dashed #ead9c9;color:#9c7d6d;font-size:12px}
 </style>
 
 <div id="gate">
@@ -496,15 +503,44 @@ const ACCESS_CODE = "juniper3027";
   help.className="help";
   help.innerHTML="<summary>使用帮助（首次使用请点开）</summary>"+
     "<ul>"+
-    "<li><b>怎么练</b>：先看完「STAR 讲解」，再按板块逐题跟读，每题 5 句构成一个完整回答</li>"+
-    "<li><b>逐词高亮</b>：播放时屏幕会跟着读到的词同步高亮，跟着念效果最好</li>"+
-    "<li><b>双速</b>：顶部「常速/慢速」，先用慢速听清结构，再用常速完整练一遍</li>"+
-    "<li><b>连播</b>：每页右上角「▶ 连播」，通勤路上当听力素材自动播放</li>"+
-    "<li><b>收藏</b>：把本链接加到浏览器书签，或「添加到主屏幕」像 App 一样随时打开</li>"+
-    "<li>遇到问题：联系卖家 Rainbow</li>"+
-    "</ul>";
+    "<li><b>怎么练</b>:先看完「STAR 讲解」,再按板块逐题跟读,每题 5 句构成一个完整回答</li>"+
+    "<li><b>逐词高亮</b>:播放时屏幕跟着读到的词同步高亮,跟着念效果最好</li>"+
+    "<li><b>双速</b>:顶部「常速/慢速」,先用慢速听清结构,再用常速完整练一遍</li>"+
+    "<li><b>连播</b>:每页右上角「▶ 连播」,通勤路上当听力素材自动播放</li>"+
+    "<li><b>搜索</b>:顶部搜索框,题目、句子、中文都能搜</li>"+
+    "<li><b>收藏方法</b>:链接收藏到浏览器书签,或微信里「浮窗」保存,随时点开学</li>"+
+    "<li><b>学习节奏</b>:每天练 2-3 题,慢速听清结构→常速完整回答,40 题≈2-3 周</li>"+
+    "<li>使用遇到问题: 联系卖家 Rainbow</li>"+
+    "</ul>"+
+    "<div class=\"warn\">音频按需加载,首次进入每题会预热 1-2 秒属正常</div>";
   var tabs=document.querySelector(".tabs");
   if(tabs&&tabs.parentNode) tabs.parentNode.insertBefore(help,tabs);
+})();
+</script>
+<script>
+(function(){
+  var box=document.getElementById('search');
+  if(!box) return;
+  var nores=document.getElementById('nores');
+  box.addEventListener('input',function(){
+    var v=box.value.trim().toLowerCase();
+    var cards=document.querySelectorAll('.qcard');
+    if(!v){
+      cards.forEach(function(c){ c.style.display=''; });
+      if(nores) nores.style.display='none';
+      return;
+    }
+    var any=false;
+    QS.forEach(function(q){
+      var hay=(q.q_en+' '+q.q_cn+' '+q.cat+' '+q.items.map(function(it){ return it.en+' '+it.cn; }).join(' ')).toLowerCase();
+      var card=document.getElementById('q'+q.id);
+      if(!card) return;
+      var hit=hay.indexOf(v)>=0;
+      card.style.display=hit?'':'none';
+      if(hit){ any=true; if(!openQ[q.id]) toggleQ(q.id); }
+    });
+    if(nores) nores.style.display=any?'none':'block';
+  });
 })();
 </script>
 
