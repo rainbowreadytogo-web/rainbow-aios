@@ -1,5 +1,5 @@
 // Rainbow AI OS Service Worker
-// 缓存策略：根页面 network-first（每日更新可见）；audio300/、manual/、audio850/ 子目录永不缓存（售卖交付页保新鲜）
+// 缓存策略：根页面 network-first（每日更新可见）；audio300/、manual/、audio850/、interview/ 子目录永不缓存（售卖交付页保新鲜）
 
 const CACHE_NAME = 'rainbow-aios-v5';
 const ASSETS = ['./', './index.html', './manifest.json'];
@@ -26,9 +26,9 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
-  // 【关键】audio300/、manual/、audio850/、learn/ 子目录不拦截，永走网络，零缓存
+  // 【关键】audio300/、manual/、audio850/、learn/、interview/ 子目录不拦截，永走网络，零缓存
   // 这是售卖交付页，每次都拿最新版，避免口令不匹配等缓存异常
-  if (event.request.url.includes('/audio300/') || event.request.url.includes('/manual/') || event.request.url.includes('/audio850/') || event.request.url.includes('/learn/')) {
+  if (event.request.url.includes('/audio300/') || event.request.url.includes('/manual/') || event.request.url.includes('/audio850/') || event.request.url.includes('/learn/') || event.request.url.includes('/interview/')) {
     return;
   }
 

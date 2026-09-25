@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="F301E8nfeJ4yfk2voxzoe0">
+<head data-page-node-id="ItUAvZCLzPjBXnE6LED3oF">
+<meta charset="utf-8" data-page-node-id="3WZAAujVfd7xrj8ofQbGUj">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" data-page-node-id="jDGexmec7JRoys0pSzZwkb">
+<meta name="apple-mobile-web-app-capable" content="yes" data-page-node-id="WraOG9lfDRCEszWMKpu6R4">
+<meta name="apple-mobile-web-app-status-bar-style" content="default" data-page-node-id="asNpGCMhVKQDTib3vgHqT0">
+<meta name="apple-mobile-web-app-title" content="面试英语" data-page-node-id="Vp2JWeNEFTJVPZ6ISbuQQM">
+<meta name="theme-color" content="#c8623d" data-page-node-id="513boIgOx6lqh7YkjpFcTm">
+<title>面试英语 × STAR · Rainbow 职场英语学习库</title>
+<style>
+:root{
+  --brand:#c8623d; --brand-d:#a94e2e; --brand-l:#f9e6dc;
+  --bg:#fdf8f5; --card:#fff; --ink:#2a2a2a; --sub:#7a5640; --muted:#9c7d6d;
+  --line:#c8aa9a; --line-l:#f0e6dc; --soft:#f5ece5;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding-bottom:56px}
+header{padding:22px 18px 14px;background:var(--brand);color:#fff}
+header h1{margin:0;font-size:19px;font-weight:600}
+header p{margin:6px 0 0;font-size:12px;opacity:.85;line-height:1.6}
+
+/* 板块 tab */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 18px 2px}
+.tab{flex:0 0 auto;padding:7px 14px;border-radius:999px;border:1px solid var(--line);
+  background:var(--card);font-size:13px;color:var(--sub);white-space:nowrap}
+.tab.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.tab.off{opacity:.5}
+
+/* STAR 入门讲解 */
+.guide{background:var(--card);border:1px solid var(--line-l);border-radius:14px;margin:12px 14px;padding:16px}
+.guide h2{margin:0 0 4px;font-size:16px;color:var(--brand);font-weight:600}
+.guide .sub{font-size:12px;color:var(--muted);margin:0 0 12px;line-height:1.6}
+.srow{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px dashed var(--line-l)}
+.skey{flex:0 0 34px;height:34px;line-height:34px;text-align:center;border-radius:9px;
+  background:var(--brand);color:#fff;font-weight:700;font-size:15px}
+.sbody{flex:1;min-width:0}
+.sname{font-size:14px;font-weight:600;color:var(--ink)}
+.sname em{font-style:normal;font-size:11px;color:var(--muted);margin-left:6px;font-weight:400}
+.sdesc{font-size:12px;color:var(--sub);line-height:1.65;margin-top:2px}
+.smap{margin:12px 0 0;padding:10px 12px;background:var(--soft);border-radius:9px;
+  font-size:12px;color:var(--sub);line-height:1.75}
+.smap b{color:var(--brand)}
+.gtoggle{display:block;width:100%;margin-top:12px;border:1px solid var(--line);background:#fff;
+  border-radius:9px;padding:8px;font-size:13px;color:var(--brand)}
+
+/* 控制条 */
+.bar{display:flex;gap:8px;align-items:center;padding:10px 18px;flex-wrap:wrap}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+.seg button{border:0;background:transparent;padding:8px 14px;font-size:13px;color:var(--sub)}
+.seg button.on{background:var(--brand);color:#fff}
+.hint{margin:0 18px 10px;font-size:12px;color:var(--muted);line-height:1.6}
+
+/* 题目卡：题头条与在售三品 week-h 同款（标题左 + › 箭头右，旋转展开） */
+.qcard{background:var(--card);border:1px solid var(--line-l);border-radius:14px;margin:0 14px 14px;padding:12px}
+.qcard:not(.open) .qbody{display:none}
+.qtop{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;
+  user-select:none;background:var(--soft);border-radius:10px;padding:10px 12px}
+.qmain{flex:1;min-width:0}
+.qhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.cat{font-size:11px;color:var(--brand-d);background:var(--brand-l);border-radius:6px;padding:3px 8px;white-space:nowrap}
+.no{font-size:11px;color:var(--muted)}
+.qen{font-size:16px;font-weight:600;line-height:1.5;color:var(--ink)}
+.qcn{font-size:12px;color:var(--muted);margin-top:2px}
+.chev{flex:0 0 auto;color:var(--brand);font-size:20px;font-weight:700;line-height:1;transition:transform .2s}
+.qcard.open .chev{transform:rotate(90deg)}
+
+/* 句条 */
+.item{border-top:1px dashed var(--line-l);padding:10px 0 8px;display:flex;gap:10px;align-items:flex-start}
+.item.playing{background:var(--brand-l);border-radius:8px;padding-left:8px;padding-right:8px}
+.pbtn{flex:0 0 32px;height:32px;margin-top:2px;border-radius:50%;border:1px solid var(--line);
+  background:#fff;color:var(--brand);font-size:13px;line-height:30px;text-align:center;cursor:pointer}
+.pbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.ibody{flex:1;min-width:0}
+.lab{display:inline-block;font-size:11px;color:var(--brand-d);background:var(--soft);
+  border-radius:6px;padding:2px 7px;margin-bottom:5px}
+.en{font-size:17px;line-height:1.75}
+.w{border-radius:4px;transition:background .12s,color .12s}
+.w.hi{background:var(--brand);color:#fff}
+.blank{display:inline-block;min-width:50px;border-bottom:2px solid var(--brand);color:transparent;
+  background:var(--soft);border-radius:4px;text-align:center;cursor:pointer}
+.blank.show{color:var(--brand-d);background:var(--brand-l)}
+.cn{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6}
+
+.tip{font-size:12px;color:var(--sub);background:var(--soft);border-radius:8px;
+  padding:8px 10px;margin-top:12px;line-height:1.65}
+.tip b{color:var(--brand-d)}
+.row{display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 14px;font-size:13px;color:var(--sub)}
+.btn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+/* 提示条 */
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:#2a2a2a;color:#fff;
+  font-size:13px;padding:10px 16px;border-radius:10px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:99;max-width:88vw;text-align:center}
+#toast.show{opacity:.95}
+footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
+</style>
+</head>
+<body data-page-node-id="NcPYkMb1L8msZKIHV4o4vd">
+<header data-page-node-id="HzFjdntsGZOwhPYvT7XrSC">
+  <h1 data-page-node-id="zjG8Lm83uIkYr6OVKiRCo6">面试英语 × STAR</h1>
+  <p data-page-node-id="eapZbgR3GNNcKmjoCGFOUX">40 道外企高频题 · 每题按 STAR 拆成 5 句 · 播放时逐词高亮</p>
+
+  <div class="entry-row" style="margin-top:12px;text-align:right">
+    <a href="../learn/" style="display:inline-flex;align-items:center;min-height:44px;padding:12px 16px;background:#fff;color:#a94e2e;border-radius:18px;font-size:13px;font-weight:700;text-decoration:none">学习库总入口 →</a>
+  </div>
+</header>
+
+<div class="tabs" id="tabs" data-page-node-id="Fka44AW9LZBFI5qFCEvC9F"></div>
+
+<!-- STAR 入门讲解 -->
+<div class="guide" id="guide" data-page-node-id="JyteDGdZ2UMsXZtMQcMgTH">
+  <h2 data-page-node-id="QoQXrAr2IDHtx4XB8QVJ1X">先搞懂 STAR，再练这 40 题</h2>
+  <p class="sub" data-page-node-id="r59TSpQnv3cyp4p5nemkrD">外企行为面试题（"Tell me about a time…"）几乎全部用 STAR 打分。面试官不在乎你的词汇多漂亮，只在乎你的回答有没有结构。</p>
+  <div id="gbody" data-page-node-id="eBFpEN2lhUPC4ZYfPWYxXp">
+    <div class="srow" data-page-node-id="Otzf8kVnmJ9mdvlDZVTzHn">
+      <div class="skey" data-page-node-id="D6mrApbwCbGkDSqIvhZjrv">S</div>
+      <div class="sbody" data-page-node-id="pGHkmCDJP8wm3k4f0e4nO6">
+        <div class="sname" data-page-node-id="Qtaf8kYja8ZKW7KQl2O4CT">Situation <em data-page-node-id="H1aGJNScU4m6XZku8E8EKs">情境 · 10–15 秒</em></div>
+        <div class="sdesc" data-page-node-id="qV3eGPt2wGPC9LDp2CzHTy">一句话交代背景：什么时候、什么项目、什么状况。别铺垫太多，面试官要的是重点不是故事。</div>
+      </div>
+    </div>
+    <div class="srow" data-page-node-id="DoiIHGAcOd3CWPeEGJE0KS">
+      <div class="skey" data-page-node-id="CAiZqLpxMNvSXxZIHTXXt4">T</div>
+      <div class="sbody" data-page-node-id="ANLi3R7mDekuTwpGHfxFtO">
+        <div class="sname" data-page-node-id="0vSeK9VrvscWsHStMwHiCw">Task <em data-page-node-id="Byy60lUsyKeg1fCoEazGOc">任务 · 5–10 秒</em></div>
+        <div class="sdesc" data-page-node-id="yAG5UBASih4LcLGgTj6bCc">当时你要解决什么、目标是什么。这一步最短，但决定了后面 A 的方向。</div>
+      </div>
+    </div>
+    <div class="srow" data-page-node-id="d8ioWejzaASYd1ehr5KamT">
+      <div class="skey" data-page-node-id="EsVPOmgOVJw3zrXQ81Tooj">A</div>
+      <div class="sbody" data-page-node-id="dsTc65Z3cb7pZFjK51eEfk">
+        <div class="sname" data-page-node-id="Qod72ekuUxQnvmndKZF8cZ">Action <em data-page-node-id="XUCa3q1Ohql4jzEgaYIgBj">行动 · 30–45 秒 · 最关键</em></div>
+        <div class="sdesc" data-page-node-id="sPQajq9akIeVt4DSGREveN">你具体做了什么，一步一步说。<b data-page-node-id="lHtlrsrSOvCmUIjKCufiB0">用 I 不用 we</b>——面试官要听你的个人贡献，不是团队成绩。</div>
+      </div>
+    </div>
+    <div class="srow" data-page-node-id="eBiyYHTwScP8KHsYH0k7Il">
+      <div class="skey" data-page-node-id="CfHYf8VIvTyUjmADA2EO6V">R</div>
+      <div class="sbody" data-page-node-id="qeBUkPEB42jmFQIx1Cran2">
+        <div class="sname" data-page-node-id="CAxKECSDlOS92M0gWV2x33">Result <em data-page-node-id="K47lXZOnDEG9wKITLIequi">结果 · 15–20 秒</em></div>
+        <div class="sdesc" data-page-node-id="I1ZZFL4hXpuX7NAZUUBlqu">带来了什么改变，尽量给数字；没有数字就说清楚影响。最后可以加一句你学到了什么。</div>
+      </div>
+    </div>
+    <div class="smap" data-page-node-id="x2U7mHCSZhA2aXGQMbyQsr">
+      <b data-page-node-id="KM4edD5jRHORkxyx1fGcR5">本题的 5 句怎么对应 STAR：</b><br data-page-node-id="2tElmhvAHDztDdNcy3joyJ">
+      「现状」= <b data-page-node-id="4lkxOpRa2dK1XjqCJ5E8Fy">S</b> 情境 → 「动机」= <b data-page-node-id="qCdsFdKE3oZyg4A1SfctLY">T</b> 任务 → 「行动」= <b data-page-node-id="eeAFncQGswTZAlDjjvIHCA">A</b> 行动 → 「目标」= <b data-page-node-id="PdRH7UD16FZUvZ9tnvJuiF">R</b> 结果 → 「加分句」= 收尾，把答案扣回你应聘的这个岗位。<br data-page-node-id="6iqBVzswe2mMxMAs3FhXFH">
+      整题控制在 <b data-page-node-id="AJq1TErn5pI0aFMoBRzWTo">60–90 秒</b>。最常见的失误：情境讲了 40 秒，行动和结果草草两句收场。
+    </div>
+  </div>
+  <button class="gtoggle" id="gtoggle" data-page-node-id="mwdSS7quP7K3vES5Qllzst">收起讲解</button>
+</div>
+
+<div class="bar" data-page-node-id="XHpKSdGxeJq9JOvSlHpbus">
+  <div class="seg" id="mode" data-page-node-id="zvPed7szJjqGS7eGYHXGMW">
+    <button data-m="ktv" class="on" data-page-node-id="elf0PFAoeoO36GM3KrzdPV">逐词高亮</button>
+    <button data-m="blank" data-page-node-id="kXuDPJTCWPhYbBihzhxcGb">挖空练习</button>
+  </div>
+  <div class="seg" id="speed" data-page-node-id="JbuHZ5WrBodojOak425F2u">
+    <button data-s="n" class="on" data-page-node-id="mUD4UFOcpODKni1eOKLbx1">常速</button>
+    <button data-s="s" data-page-node-id="XAYHTSIUcHwq42PzInH5bD">慢速</button>
+  </div>
+</div>
+
+<p class="hint" id="hint" data-page-node-id="E2Q17zZhi6v1b4AIAsgI9P">点句子左边的 ▶ 单独播放，或点「连播本题」从头跟读；播放时说到哪个词，哪个词会高亮。</p>
+
+<div id="list" data-page-node-id="qEE71K7eAWD3bQUnPxXlld"></div>
+
+<div id="toast" data-page-node-id="yHe9ygkUOlQkI3zqCrzpL1"></div>
+
+<footer data-page-node-id="bhk3GTpMfIVHysyTVo1piN">
+  Rainbow 职场英语学习库 · 面试板块 v0.4（40 题 / 200 句 / 400 条音频 · 常速+慢速）<br data-page-node-id="IeHp3SV2RAwptCwJ31PPol">
+  内容原创，音频由本人制作，逐词时间戳驱动高亮与挖空。
+</footer>
+
+<script src="data.js"></script>
+<script>
+var QS = (window.INTERVIEW && window.INTERVIEW.questions) || [];
+var BOARDS = [
+  {name:'面试英语 × STAR', on:true},
+  {name:'客户接待', on:false},
+  {name:'邮件话术', on:false},
+  {name:'管理模型库', on:false},
+  {name:'外贸英语', on:false}
+];
+var mode='ktv', speed='n';
+var openQ={}; /* 折叠状态：默认收起，mode/speed 切换重渲染时保留 */
+function toggleQ(id){
+  var card=document.getElementById('q'+id); if(!card) return;
+  card.classList.toggle('open');
+  openQ[id]=card.classList.contains('open');
+}
+function openCard(card){
+  if(!card || card.classList.contains('open')) return;
+  card.classList.add('open');
+  var m=(card.id||'').match(/\d+/); if(m) openQ[+m[0]]=true;
+}
+var STOP={the:1,a:1,an:1,of:1,to:1,and:1,in:1,for:1,on:1,with:1,that:1,is:1,was:1,it:1,i:1,my:1,you:1,me:1,our:1,they:1,we:1};
+
+/* toast：音频出错时给用户可见反馈，而不是静默跳过 */
+var toastTimer=null;
+function toast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){ t.classList.remove('show'); },2600);
+}
+
+function buildTabs(){
+  var box=document.getElementById('tabs');
+  BOARDS.forEach(function(b){
+    var d=document.createElement('div');
+    d.className='tab'+(b.on?' on':' off');
+    d.textContent=b.name+(b.on?'':' · 即将上线');
+    box.appendChild(d);
+  });
+}
+
+function tokenize(en, words){
+  var out=[], p=0;
+  var low=en.toLowerCase();
+  function isWordChar(c){ return /[A-Za-z0-9']/.test(c); }
+  words.forEach(function(w){
+    var clean=w.w.replace(/[^A-Za-z0-9']/g,'').toLowerCase();
+    if(!clean) return;
+    /* 从 p 起滑动扫描：允许词内夹标点/空格、大小写不敏感 */
+    for(var i=p;i<=en.length-clean.length;i++){
+      if(!isWordChar(low[i]) || low[i]!==clean[0]) continue;
+      var j=i,k=0;
+      while(j<en.length && k<clean.length){
+        var c=low[j];
+        if(isWordChar(c)){
+          if(c===clean[k]) k++; else break;
+        }
+        j++; /* 标点/空格跳过 */
+      }
+      if(k===clean.length){
+        if(i>p) out.push({t:en.slice(p,i)});
+        out.push({t:en.slice(i,j), s:w.s, d:w.d});
+        p=j;
+        return;
+      }
+    }
+    /* 兜底：全文找不到该词（TTS 分词异常），原样输出不推进 p */
+    out.push({t:w.w, s:w.s, d:w.d});
+  });
+  if(p<en.length) out.push({t:en.slice(p)});
+  return out;
+}
+
+function blanksOf(words){
+  var cand=words.filter(function(w){
+    var c=w.w.replace(/[^A-Za-z']/g,'');
+    return c.length>=5 && !STOP[c.toLowerCase()];
+  });
+  var pick=[];
+  for(var i=0;i<cand.length && pick.length<3;i+=2) pick.push(cand[i].w);
+  return pick;
+}
+
+function render(){
+  var list=document.getElementById('list'); list.innerHTML='';
+  QS.forEach(function(q){
+    var card=document.createElement('div'); card.className='qcard'; card.id='q'+q.id;
+    var qtop=document.createElement('div'); qtop.className='qtop';
+    var qmain=document.createElement('div'); qmain.className='qmain';
+    var head=document.createElement('div'); head.className='qhead';
+    var no=document.createElement('span'); no.className='no'; no.textContent='Q'+q.id;
+    var cat=document.createElement('span'); cat.className='cat'; cat.textContent=q.cat;
+    head.appendChild(no); head.appendChild(cat);
+    var qen=document.createElement('div'); qen.className='qen'; qen.textContent=q.q_en;
+    var qcn=document.createElement('div'); qcn.className='qcn'; qcn.textContent=q.q_cn;
+    qmain.appendChild(head); qmain.appendChild(qen); qmain.appendChild(qcn);
+    var chev=document.createElement('span'); chev.className='chev'; chev.textContent='›';
+    qtop.appendChild(qmain); qtop.appendChild(chev);
+    card.appendChild(qtop);
+    qtop.onclick=function(){ toggleQ(q.id); };
+    var qbody=document.createElement('div'); qbody.className='qbody'; card.appendChild(qbody);
+    if(openQ[q.id]) card.classList.add('open');
+
+    q.items.forEach(function(it){
+      var box=document.createElement('div'); box.className='item'; box.id='it'+it.idx;
+      var pb=document.createElement('div'); pb.className='pbtn'; pb.textContent='▶';
+      pb.title='播放这一句';
+      pb.onclick=function(e){
+        e.stopPropagation();
+        if(audio && audio.dataset.id==String(it.idx) && !audio.paused){ stopAll(); return; }
+        playOne(it.idx);
+      };
+      box.appendChild(pb);
+
+      var body=document.createElement('div'); body.className='ibody';
+      var lab=document.createElement('span'); lab.className='lab'; lab.textContent=it.label; body.appendChild(lab);
+      var toks=tokenize(it.en, it.words[speed]);
+      var blanks=blanksOf(it.words[speed]);
+      var en=document.createElement('div'); en.className='en';
+      toks.forEach(function(tk){
+        var sp=document.createElement('span');
+        if(!tk.s && tk.s!==0){ sp.textContent=tk.t; }
+        else{
+          var clean=tk.t.replace(/[^A-Za-z0-9']/g,'');
+          var isB=mode==='blank' && blanks.indexOf(tk.t.replace(/[^A-Za-z']/g,''))>=0;
+          sp.className='w'+(isB?' blank':'');
+          sp.dataset.word=clean; sp.dataset.s=tk.s; sp.dataset.d=tk.d;
+          if(isB){
+            sp.textContent=clean.replace(/[A-Za-z]/g,' ');
+            sp.onclick=function(e){
+              e.stopPropagation();
+              var show=sp.classList.toggle('show');
+              sp.textContent=show?tk.t:clean.replace(/[A-Za-z]/g,' ');
+            };
+          } else sp.textContent=tk.t;
+        }
+        en.appendChild(sp);
+      });
+      body.appendChild(en);
+      var cn=document.createElement('div'); cn.className='cn'; cn.textContent=it.cn; body.appendChild(cn);
+      box.appendChild(body);
+      box.onclick=function(e){ if(e.target.classList.contains('blank')) return; playOne(it.idx); };
+      qbody.appendChild(box);
+    });
+
+    var tip=document.createElement('div'); tip.className='tip'; tip.innerHTML='<b>Why</b> · '+q.tip; qbody.appendChild(tip);
+    var row=document.createElement('div'); row.className='row';
+    var b1=document.createElement('button'); b1.className='btn'; b1.textContent='连播本题';
+    b1.onclick=function(e){ e.stopPropagation(); if(curQ===q.id && playing){ stopAll(); return; } startQ(q.id); };
+    var b2=document.createElement('button'); b2.className='btn'; b2.textContent='显示答案';
+    b2.onclick=function(e){ e.stopPropagation();
+      card.querySelectorAll('.blank').forEach(function(b){ b.classList.add('show'); b.textContent=b.dataset.word; });
+    };
+    if(mode==='ktv') b2.style.display='none';
+    row.appendChild(b1); row.appendChild(b2); qbody.appendChild(row);
+    list.appendChild(card);
+  });
+}
+
+/* ---------- 播放 ---------- */
+var audio=null, pre=null, preSrc='', playing=false, curQ=null, queue=[];
+function src(i,sp){ return 'audio/i'+String(i).padStart(3,'0')+'_'+sp+'.mp3'; }
+function rate(sp){ return sp==='s'?0.7:1.0; }
+function clearHi(){ document.querySelectorAll('.w.hi').forEach(function(w){w.classList.remove('hi');}); }
+function clearPlayBtn(){ document.querySelectorAll('.pbtn.on').forEach(function(b){b.classList.remove('on');b.textContent='▶';}); }
+function markItem(i){
+  document.querySelectorAll('.item.playing').forEach(function(x){x.classList.remove('playing');});
+  clearPlayBtn();
+  var el=document.getElementById('it'+i);
+  if(el){
+    openCard(el.closest('.qcard'));
+    el.classList.add('playing');
+    var pb=el.querySelector('.pbtn'); if(pb){ pb.classList.add('on'); pb.textContent='■'; }
+    el.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+}
+function tick(a){
+  if(audio!==a) return;
+  var t=a.currentTime*1000;
+  var el=document.getElementById('it'+a.dataset.id);
+  if(el){
+    var spans=el.querySelectorAll('.w'), found=-1;
+    for(var i=0;i<spans.length;i++){
+      if(!spans[i].dataset.word) continue;
+      var s=parseFloat(spans[i].dataset.s||'0'), d=parseFloat(spans[i].dataset.d||'0');
+      if(t>=s && t<=s+d+60){ found=i; break; }
+    }
+    if(found!==el._hi){
+      spans.forEach(function(x){x.classList.remove('hi');});
+      if(found>=0) spans[found].classList.add('hi');
+      el._hi=found;
+    }
+  }
+  if(!a.paused && !a.ended) requestAnimationFrame(function(){ tick(a); });
+}
+function stopAll(){
+  if(audio){ try{audio.pause();}catch(e){} audio=null; }
+  clearHi();
+  document.querySelectorAll('.item.playing').forEach(function(x){x.classList.remove('playing');});
+  clearPlayBtn();
+  document.querySelectorAll('.btn.on').forEach(function(b){ if(b.textContent.indexOf('连播')>=0){b.classList.remove('on');b.textContent='连播本题';} });
+  playing=false; curQ=null; queue=[];
+}
+function playOne(i){
+  queue=[]; playing=false;
+  if(audio){ try{audio.pause();}catch(e){} audio=null; }
+  clearHi();
+  var a=new Audio(src(i,speed));
+  a.preload='auto';
+  a.playbackRate=rate(speed); a.dataset.id=i; audio=a;
+  markItem(i);
+  a.addEventListener('timeupdate',function(){ tick(a); });
+  a.onended=function(){ clearHi(); var el=document.getElementById('it'+i); if(el) el.classList.remove('playing'); clearPlayBtn(); };
+  a.onerror=function(){ toast('这条音频没能加载，请检查网络后重试'); clearPlayBtn(); };
+  a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){}); },250); });
+}
+function startQ(qid){
+  stopAll();
+  var q=QS.filter(function(x){return x.id===qid;})[0]; if(!q) return;
+  openCard(document.getElementById('q'+qid));
+  curQ=qid; playing=true;
+  queue=q.items.map(function(x){return x.idx;});
+  var btn=document.querySelector('#q'+qid+' .btn');
+  if(btn){ btn.classList.add('on'); btn.textContent='停止连播'; }
+  next();
+}
+function next(){
+  if(!queue.length){ stopAll(); return; }
+  var i=queue.shift();
+  var s=src(i,speed), a;
+  if(pre && preSrc===s){ a=pre; pre=null; preSrc=''; }
+  else { a=new Audio(s); a.preload='auto'; }
+  a.playbackRate=rate(speed); a.dataset.id=i; audio=a;
+  markItem(i);
+  a.addEventListener('timeupdate',function(){ tick(a); });
+  a.onended=function(){ clearHi(); var el=document.getElementById('it'+i); if(el) el.classList.remove('playing'); if(playing) next(); };
+  a.onerror=function(){ toast('第 '+i+' 句音频加载失败，已跳过'); if(playing) next(); };
+  a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){ if(playing) next(); }); },250); });
+  if(queue.length){
+    var ns=src(queue[0],speed);
+    if(ns!==preSrc){ pre=new Audio(ns); pre.preload='auto'; preSrc=ns; try{pre.load();}catch(e){} }
+  }
+}
+document.getElementById('mode').onclick=function(e){
+  var t=e.target.closest('button'); if(!t) return;
+  mode=t.dataset.m;
+  [].forEach.call(this.children,function(x){x.classList.toggle('on',x===t);});
+  stopAll(); render();
+  document.getElementById('hint').textContent = mode==='ktv'
+    ? '点句子左边的 ▶ 单独播放，或点「连播本题」从头跟读；播放时说到哪个词，哪个词会高亮。'
+    : '关键词已挖空，点空格看答案；建议先连播听一遍再自测。';
+};
+document.getElementById('speed').onclick=function(e){
+  var t=e.target.closest('button'); if(!t) return;
+  speed=t.dataset.s;
+  [].forEach.call(this.children,function(x){x.classList.toggle('on',x===t);});
+  pre=null; preSrc=''; stopAll(); render();
+};
+var gt=document.getElementById('gtoggle'), gb=document.getElementById('gbody');
+gt.onclick=function(){
+  var hidden=gb.style.display==='none';
+  gb.style.display=hidden?'':'none';
+  gt.textContent=hidden?'收起讲解':'展开 STAR 讲解';
+};
+buildTabs(); render();
+</script>
+
+<!-- ===== 口令门 ===== -->
+<style>
+#gate{position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,#fffaf5 0%,#fdf2e9 60%,#fbe8d8 100%);display:flex;align-items:center;justify-content:center;padding:24px}
+#gate.hide{display:none}
+.gbox{max-width:340px;width:100%;text-align:center;background:#fff;border-radius:20px;padding:34px 26px 30px;box-shadow:0 12px 40px rgba(194,65,12,.14);border:1px solid #f3e3d3}
+.gbox .logo{font-size:34px;margin-bottom:10px}
+.gbox h1{font-size:18px;color:#1a1a22;margin-bottom:6px;line-height:1.5}
+.gbox p{font-size:12.5px;color:#8a8a93;margin-bottom:22px;line-height:1.7}
+#gateInput{width:100%;border:2px solid #e7d5c2;border-radius:12px;padding:12px 14px;font-size:16px;text-align:center;letter-spacing:2px;outline:none;margin-bottom:12px}
+#gateInput:focus{border-color:#c2410c}
+#gateBtn{width:100%;border:none;background:#c2410c;color:#fff;border-radius:12px;padding:12px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px}
+#gerr{font-size:12px;color:#dc2626;margin-top:10px;height:16px}
+.gfoot{margin-top:18px;font-size:11px;color:#b0aea8;line-height:1.6}
+.help{background:#fff7ed;border:1px solid #fdba74;border-radius:12px;margin:12px 14px;padding:10px 14px;font-size:13px;color:#7c2d12}
+.help summary{cursor:pointer;font-weight:700;color:#c2410c;font-size:13.5px;list-style:none;display:flex;align-items:center;gap:6px;min-height:32px}
+.help summary::before{content:"?"}
+.help summary::-webkit-details-marker{display:none}
+.help ul{margin:8px 0 2px;padding-left:18px;line-height:1.9;color:#57534e}
+.help b{color:#c2410c}
+</style>
+
+<div id="gate">
+  <div class="gbox">
+    <div class="logo">🎧</div>
+    <h1>面试英语 × STAR<br>40 道高频题 · 逐词高亮</h1>
+    <p>本资料为付费内容，请输入购买后收到的口令解锁</p>
+    <input id="gateInput" type="password" placeholder="请输入口令" autocomplete="off">
+    <button id="gateBtn">解锁学习</button>
+    <div id="gerr"></div>
+    <div class="gfoot">Rainbow聊外企 · 仅供购买者本人使用<br>口令问题请联系卖家</div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:24px 16px 8px;font-size:12px;color:#9c7d6d;line-height:1.9">
+  面试英语 × STAR · v1.0<br>仅供个人学习使用·请勿用作商业用途
+</div>
+
+<script>
+const ACCESS_CODE = "juniper3027";
+(function(){
+  var gate=document.getElementById("gate"),input=document.getElementById("gateInput"),err=document.getElementById("gerr");
+  try{ if(localStorage.getItem("interview_unlocked_v1")==="1") gate.classList.add("hide"); }catch(e){}
+  function unlock(){
+    if(input.value.trim()===ACCESS_CODE){ try{localStorage.setItem("interview_unlocked_v1","1");}catch(e){}; gate.classList.add("hide"); }
+    else{ err.textContent="口令不对，请检查后重试（注意区分大小写）"; input.value=""; input.focus(); }
+  }
+  document.getElementById("gateBtn").addEventListener("click",unlock);
+  input.addEventListener("keydown",function(e){ if(e.key==="Enter") unlock(); });
+  input.focus();
+
+  var help=document.createElement("details");
+  help.className="help";
+  help.innerHTML="<summary>使用帮助（首次使用请点开）</summary>"+
+    "<ul>"+
+    "<li><b>怎么练</b>：先看完「STAR 讲解」，再按板块逐题跟读，每题 5 句构成一个完整回答</li>"+
+    "<li><b>逐词高亮</b>：播放时屏幕会跟着读到的词同步高亮，跟着念效果最好</li>"+
+    "<li><b>双速</b>：顶部「常速/慢速」，先用慢速听清结构，再用常速完整练一遍</li>"+
+    "<li><b>连播</b>：每页右上角「▶ 连播」，通勤路上当听力素材自动播放</li>"+
+    "<li><b>收藏</b>：把本链接加到浏览器书签，或「添加到主屏幕」像 App 一样随时打开</li>"+
+    "<li>遇到问题：联系卖家 Rainbow</li>"+
+    "</ul>";
+  var tabs=document.querySelector(".tabs");
+  if(tabs&&tabs.parentNode) tabs.parentNode.insertBefore(help,tabs);
+})();
+</script>
+
+</body>
+</html>

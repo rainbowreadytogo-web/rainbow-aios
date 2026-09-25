@@ -115,7 +115,7 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
 </header>
 
 <div class="journey">
-  <div class="jstep on" data-goto="#interview"><b>① 求职期</b>面试英语 · 内测中</div>
+  <div class="jstep on" data-goto="#interview"><b>① 求职期</b>面试英语 × STAR</div>
   <div class="jstep on" data-goto="#shelf"><b>② 入职期</b>300 句 · 850 句</div>
   <div class="jstep on" data-goto="#c-manual"><b>③ 站稳期</b>生存手册</div>
   <div class="jstep soon"><b>④ 进阶期</b>管理 · 专题（筹备中）</div>
@@ -123,7 +123,18 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
 
 </div>
 
-<div class="sec" id="shelf">已上线课程 · 每款免费试听 10 句<em>点 ▶ 直接听，无需解锁</em></div>
+<div class="sec" id="shelf">已上线课程 · 每款都能先听再买<em>点 ▶ 直接听，无需解锁</em></div>
+<div class="card" id="interview">
+  <span class="price">¥19.98</span>
+  <span class="badge">求职期 · 40 题通关</span>
+  <h2>面试英语 × STAR</h2>
+  <p class="desc">40 道外企高频面试题，每题按 STAR 拆成 5 句成品答案，常速+慢速双音频，播放时逐词同步高亮。跳槽、外企面试前用它过一遍。</p>
+  <div class="meta">40 题 · 200 句 · 400 条音频 · 逐词高亮跟读 · 试听：第 1 题「请介绍一下你自己」全部 5 句</div>
+  <div id="boxD"></div>
+  <button class="more" data-box="D" data-open="0">展开全部 5 句试听 ▾</button>
+  <div class="row"><a class="btn primary" href="../interview/">查看完整版 · 40 题完整面试库</a></div>
+</div>
+
 
 <div class="card">
   <span class="price">¥5.98</span>
@@ -156,15 +167,6 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
   <div id="boxC"></div>
   <button class="more" data-box="C" data-open="0">展开全部 10 句试听 ▾</button>
   <div class="row"><a class="btn primary" href="../manual/">查看完整版 · 6 章 55 节</a></div>
-</div>
-
-<div class="sec">即将上新<em>按职场旅程持续上新</em></div>
-
-<div class="card locked" id="interview">
-  <span class="badge soon">V0.3 内测中 · 即将上线</span>
-  <h2>面试英语 × STAR</h2>
-  <p class="desc">40 道职场高频面试题，每题按 STAR 拆成 5 句标准答案，常速+慢速逐词高亮跟读，附挖空自测。行为面试题，用结构拿分。</p>
-  <div class="meta">40 题 · 200 句 · 400 条音频 · 逐词时间戳驱动</div>
 </div>
 
 <div class="sec">如何获取完整版？<em>三步解锁</em></div>
@@ -203,7 +205,13 @@ var SAMPLES = {
     ["What do you do on the team?","你在团队里负责什么？"],["How long have you been with the company?","你来公司多久了？"],
     ["Where are you based?","你在哪个办公室？"],["Do you work with the Marketing team often?","你常和市场部合作吗？"],
     ["Thanks for taking the time to chat.","谢谢你抽时间聊。"],["I'm looking forward to working with you.","期待合作。"],
-    ["See you around!","回头见！"]]}
+    ["See you around!","回头见！"]]},
+  D: { tag:'自我介绍 · 第 1 题', items:[
+    ["I joined my current company five years ago as a translator supporting the R&D VP.","我五年前加入现在的公司，做研发副总裁的翻译。"],
+    ["Over time my role grew into coordinating cross-team schedules and leadership meetings.","后来我的职责扩展到协调跨部门日程和高层会议。"],
+    ["I built a weekly reporting template that cut meeting prep time by about forty percent.","我做了一个周报模板，把会议准备时间减少了大约四成。"],
+    ["Last year I supported seventeen departments through two company-wide reviews.","去年我支持了十七个部门完成两轮全公司汇报。"],
+    ["That's the background I would bring to this role.","这就是我能带到这个岗位上的背景。"]]},
 };
 
 /* ---------- 音频路径（相对路径复用三品现有文件，零重复存储） ---------- */
@@ -218,6 +226,8 @@ for (var i=1;i<=10;i++){
 }
 /* 部署后同源相对路径：learn/ 下的 ../ 指向仓库根 */
 for (var k in SRC){ SRC[k] = '../'+SRC[k]; }
+/* D：面试板块（复用新板 audio，零重复存储） */
+for (var i=1;i<=5;i++){ var iv='../interview/audio/i'+String(i).padStart(3,'0'); SRC['d'+i+'n']=iv+'_n.mp3'; SRC['d'+i+'s']=iv+'_s.mp3'; }
 
 var RATE = {n:1.0, s:0.7};
 
@@ -286,7 +296,7 @@ document.querySelectorAll('.more').forEach(function(b){
     var open=b.dataset.open==='1';
     box.querySelectorAll('.extra').forEach(function(r){ r.style.display=open?'none':'flex'; });
     b.dataset.open=open?'0':'1';
-    b.textContent=open?'展开全部 10 句试听 ▾':'收起试听 ▴';
+    b.textContent=open?('展开全部 '+SAMPLES[b.dataset.box].items.length+' 句试听 ▾'):'收起试听 ▴';
   };
 });
 /* ---------- 已购识别（读各产品本地的解锁与进度记录，仅本机生效） ---------- */
