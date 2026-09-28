@@ -426,11 +426,19 @@ function playAll(ci, pi) {
   const btn = partEl.querySelector('.play-all');
   btn.classList.add('playing');
   btn.textContent = '■ 停止';
+  // 手势内预热：激活同一个常驻播放器，后续换源播放不再被浏览器/微信拦
+  const a = ensureAudio();
+  try { a.muted = true; a.play().then(() => { a.pause(); a.muted = false; }).catch(() => {}); } catch (e) {}
   playQueue();
 }
-/* 连播本节：边播边预载下一句并复用，单句失败自动跳过 */
-let preloadAudio = null;
-let preloadAudioSrc = null;
+/* 连播本节：复用单个常驻播放器换源；单句失败重试 2 次，仍失败停下提示（不再静默快进） */
+let sharedAudio = null;
+let failCount = 0;
+let loadTimeout = null;
+function ensureAudio() {
+  if (!sharedAudio) { sharedAudio = new Audio(); sharedAudio.preload = 'auto'; }
+  return sharedAudio;
+}
 function playQueue() {
   if (!playAllMode || !playAllQueue.length) { stopPlayAll(); return; }
   const btn = playAllQueue.shift();
@@ -439,39 +447,64 @@ function playQueue() {
   const slow = isMain && curSpeed === 's';
   stopCurrent();
   const file = isMain ? `audio/m${pad3(parseInt(btn.dataset.idx, 10))}_${curSpeed}.mp3` : btn.dataset.file;
-  // 复用已预载的音频（避免重复下载，消除远程加载卡顿）
-  let a;
-  if (preloadAudio && preloadAudioSrc === file) { a = preloadAudio; preloadAudio = null; preloadAudioSrc = null; }
-  else { a = new Audio(file); }
-  a.preload = 'auto';
-  a.playbackRate = slow ? 0.7 : 1.0;
-  currentAudio = a; currentCard = card; currentBtn = btn;
+  currentCard = card; currentBtn = btn;
   card.classList.add('playing');
   btn.classList.add('playing');
   card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  // 预载下一句
-  if (playAllQueue.length) {
-    const nb = playAllQueue[0];
-    const nisMain = nb.classList.contains('play-btn');
-    const nfile = nisMain ? `audio/m${pad3(parseInt(nb.dataset.idx, 10))}_${curSpeed}.mp3` : nb.dataset.file;
-    preloadAudioSrc = nfile;
-    preloadAudio = new Audio(nfile);
-    preloadAudio.preload = 'auto';
-    try { preloadAudio.load(); } catch (e) {}
-  } else { preloadAudio = null; preloadAudioSrc = null; }
+  failCount = 0;
+  playChainFile(file, slow, card, btn);
+}
+function playChainFile(file, slow, card, btn) {
+  const a = ensureAudio();
+  a.muted = false;
+  a.playbackRate = slow ? 0.7 : 1.0;
+  currentAudio = a;
+  clearTimeout(loadTimeout);
+  loadTimeout = setTimeout(() => onChainFail(file, slow, card, btn), 8000);
   const advance = () => {
+    clearTimeout(loadTimeout);
     card.classList.remove('playing');
     btn.classList.remove('playing');
     if (playAllQueue.length) setTimeout(playQueue, 150);
     else stopPlayAll();
   };
   a.onended = advance;
-  a.onerror = () => { console.warn('音频加载失败，跳过', file); advance(); };
-  a.play().catch(() => { setTimeout(() => a.play().catch(() => advance()), 250); });
+  a.onerror = () => { clearTimeout(loadTimeout); onChainFail(file, slow, card, btn); };
+  a.src = file;
+  a.load();
+  a.play().then(() => {}).catch(() => { clearTimeout(loadTimeout); onChainFail(file, slow, card, btn); });
+}
+function onChainFail(file, slow, card, btn) {
+  if (!playAllMode) return;
+  if (failCount < 2) {
+    failCount++;
+    setTimeout(() => { if (playAllMode) playChainFile(file, slow, card, btn); }, failCount === 1 ? 500 : 1200);
+    return;
+  }
+  // 重试 2 次仍失败：停下连播 + 提示（记入失败清单，便于售后定位）
+  stopPlayAll();
+  card.classList.add('playing');
+  btn.classList.add('playing');
+  try { const f = JSON.parse(localStorage.getItem('pmnl_fail') || '{}'); f[file] = Date.now(); localStorage.setItem('pmnl_fail', JSON.stringify(f)); } catch (e) {}
+  toast('这一句加载失败（网络可能不稳定），已停在当前句，稍后重新点「连播本节」即可继续');
+}
+function toast(msg) {
+  let t = document.getElementById('pa_toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'pa_toast';
+    t.style.cssText = 'position:fixed;left:16px;right:16px;bottom:24px;z-index:9999;background:rgba(44,44,42,.92);color:#fff;padding:12px 16px;border-radius:12px;font-size:14px;line-height:1.5;text-align:center;';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.display = 'block';
+  clearTimeout(toast._tm);
+  toast._tm = setTimeout(() => { t.style.display = 'none'; }, 4000);
 }
 function stopPlayAll() {
   playAllMode = false;
   playAllQueue = [];
+  clearTimeout(loadTimeout);
   if (currentAudio) { currentAudio.pause(); currentAudio = null; }
   document.querySelectorAll('.play-all.playing').forEach(b => { b.classList.remove('playing'); b.textContent = '▶ 连播本节'; });
   if (currentCard) currentCard.classList.remove('playing');

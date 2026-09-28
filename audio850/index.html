@@ -367,11 +367,18 @@ function playAll(ci) {
   const btn = dayEl.querySelector('.play-all');
   btn.classList.add('playing');
   btn.textContent = '■ 停止';
+  const a = ensureAudio();
+  try { a.muted = true; a.play().then(() => { a.pause(); a.muted = false; }).catch(() => {}); } catch (e) {}
   playQueue();
 }
-/* 连播：边播边预载下一句并复用，单句失败自动跳过，避免连播链卡死/卡顿 */
-let preloadAudio = null;
-let preloadAudioSrc = null;
+/* 连播：复用单个常驻播放器换源；单句失败重试 2 次，仍失败停下提示（不再静默快进） */
+let sharedAudio = null;
+let failCount = 0;
+let loadTimeout = null;
+function ensureAudio() {
+  if (!sharedAudio) { sharedAudio = new Audio(); sharedAudio.preload = 'auto'; }
+  return sharedAudio;
+}
 function playQueue() {
   if (!playAllMode || !playAllQueue.length) { stopPlayAll(); return; }
   const c = playAllQueue.shift();
@@ -382,37 +389,61 @@ function playQueue() {
   currentCard = c;
   currentBtn = btn;
   const src = audioSrc(idx, curSpeed);
-  // 复用已预载的音频（避免重复下载，消除远程加载卡顿）
-  let a;
-  if (preloadAudio && preloadAudioSrc === src) { a = preloadAudio; preloadAudio = null; preloadAudioSrc = null; }
-  else { a = new Audio(src); }
-  a.preload = 'auto';
-  a.playbackRate = curSpeed === 's' ? 0.7 : 1.0;
-  currentAudio = a;
   c.classList.add('playing');
   btn.classList.add('playing');
   c.scrollIntoView({behavior:'smooth', block:'center'});
-  // 预载下一句：当前句播放时并行下载下一句
-  if (playAllQueue.length) {
-    const nidx = parseInt(playAllQueue[0].dataset.idx, 10);
-    preloadAudioSrc = audioSrc(nidx, curSpeed);
-    preloadAudio = new Audio(preloadAudioSrc);
-    preloadAudio.preload = 'auto';
-    try { preloadAudio.load(); } catch (e) {}
-  } else { preloadAudio = null; preloadAudioSrc = null; }
+  failCount = 0;
+  playChainFile(src, c, btn);
+}
+function playChainFile(src, c, btn) {
+  const a = ensureAudio();
+  a.playbackRate = curSpeed === 's' ? 0.7 : 1.0;
+  currentAudio = a;
+  clearTimeout(loadTimeout);
+  loadTimeout = setTimeout(() => onChainFail(src, c, btn), 8000);
   const advance = () => {
+    clearTimeout(loadTimeout);
     c.classList.remove('playing');
     btn.classList.remove('playing');
     if (playAllQueue.length) { setTimeout(playQueue, 150); }
     else { stopPlayAll(); }
   };
   a.onended = advance;
-  a.onerror = () => { console.warn('音频加载失败，跳过第', idx, '句'); advance(); };
-  a.play().catch(() => { setTimeout(() => a.play().catch(() => advance()), 250); });
+  a.onerror = () => { clearTimeout(loadTimeout); onChainFail(src, c, btn); };
+  a.src = src;
+  a.load();
+  a.play().then(() => {}).catch(() => { clearTimeout(loadTimeout); onChainFail(src, c, btn); });
+}
+function onChainFail(src, c, btn) {
+  if (!playAllMode) return;
+  if (failCount < 2) {
+    failCount++;
+    setTimeout(() => { if (playAllMode) playChainFile(src, c, btn); }, failCount === 1 ? 500 : 1200);
+    return;
+  }
+  stopPlayAll();
+  c.classList.add('playing');
+  btn.classList.add('playing');
+  try { const f = JSON.parse(localStorage.getItem('p850_fail') || '{}'); f[src] = Date.now(); localStorage.setItem('p850_fail', JSON.stringify(f)); } catch (e) {}
+  toast('这一句加载失败（网络可能不稳定），已停在当前句，稍后重新点「连播本课」即可继续');
+}
+function toast(msg) {
+  let t = document.getElementById('pa_toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'pa_toast';
+    t.style.cssText = 'position:fixed;left:16px;right:16px;bottom:24px;z-index:9999;background:rgba(44,44,42,.92);color:#fff;padding:12px 16px;border-radius:12px;font-size:14px;line-height:1.5;text-align:center;';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.display = 'block';
+  clearTimeout(toast._tm);
+  toast._tm = setTimeout(() => { t.style.display = 'none'; }, 4000);
 }
 function stopPlayAll() {
   playAllMode = false;
   playAllQueue = [];
+  clearTimeout(loadTimeout);
   if (currentAudio) { currentAudio.pause(); currentAudio = null; }
   document.querySelectorAll('.play-all.playing').forEach(b => { b.classList.remove('playing'); b.textContent = '▶ 连播本章'; });
   if (currentCard) currentCard.classList.remove('playing');

@@ -340,6 +340,11 @@ function render(){
 
 /* ---------- 播放 ---------- */
 var audio=null, pre=null, preSrc='', playing=false, curQ=null, queue=[];
+var sharedA=null, failCount=0, loadTimeout=null;
+function ensureShared(){
+  if(!sharedA){ sharedA=new Audio(); sharedA.preload='auto'; }
+  return sharedA;
+}
 function src(i,sp){ return 'audio/i'+String(i).padStart(3,'0')+'_'+sp+'.mp3'; }
 function rate(sp){ return sp==='s'?0.7:1.0; }
 function clearHi(){ document.querySelectorAll('.w.hi').forEach(function(w){w.classList.remove('hi');}); }
@@ -403,24 +408,46 @@ function startQ(qid){
   queue=q.items.map(function(x){return x.idx;});
   var btn=document.querySelector('#q'+qid+' .btn');
   if(btn){ btn.classList.add('on'); btn.textContent='停止连播'; }
+  // 手势内预热常驻播放器
+  var sh=ensureShared();
+  try{ sh.muted=true; sh.play().then(function(){ sh.pause(); sh.muted=false; }).catch(function(){}); }catch(e){}
   next();
 }
 function next(){
   if(!queue.length){ stopAll(); return; }
   var i=queue.shift();
-  var s=src(i,speed), a;
-  if(pre && preSrc===s){ a=pre; pre=null; preSrc=''; }
-  else { a=new Audio(s); a.preload='auto'; }
-  a.playbackRate=rate(speed); a.dataset.id=i; audio=a;
+  var s=src(i,speed);
+  var a=ensureShared();
+  a.muted=false;
+  a.dataset.id=i;
+  a.playbackRate=rate(speed);
+  audio=a;
   markItem(i);
-  a.addEventListener('timeupdate',function(){ tick(a); });
-  a.onended=function(){ clearHi(); var el=document.getElementById('it'+i); if(el) el.classList.remove('playing'); if(playing) next(); };
-  a.onerror=function(){ toast('第 '+i+' 句音频加载失败，已跳过'); if(playing) next(); };
-  a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){ if(playing) next(); }); },250); });
-  if(queue.length){
-    var ns=src(queue[0],speed);
-    if(ns!==preSrc){ pre=new Audio(ns); pre.preload='auto'; preSrc=ns; try{pre.load();}catch(e){} }
+  a.ontimeupdate=function(){ tick(a); };
+  failCount=0;
+  clearTimeout(loadTimeout);
+  loadTimeout=setTimeout(function(){ onFail(s,i); },8000);
+  a.onended=function(){ clearTimeout(loadTimeout); clearHi(); var el=document.getElementById('it'+i); if(el) el.classList.remove('playing'); if(playing) next(); };
+  a.onerror=function(){ clearTimeout(loadTimeout); onFail(s,i); };
+  a.src=s; a.load();
+  a.play().then(function(){}).catch(function(){ clearTimeout(loadTimeout); onFail(s,i); });
+}
+function onFail(s,i){
+  if(!playing) return;
+  if(failCount<2){
+    failCount++;
+    setTimeout(function(){
+      if(!playing) return;
+      var a=ensureShared();
+      a.src=s; a.load();
+      clearTimeout(loadTimeout);
+      loadTimeout=setTimeout(function(){ onFail(s,i); },8000);
+      a.play().then(function(){}).catch(function(){ onFail(s,i); });
+    }, failCount===1?500:1200);
+    return;
   }
+  stopAll();
+  toast('第 '+i+' 句加载失败（网络可能不稳定），已停在当前句，重新点「连播本题」即可继续');
 }
 document.getElementById('mode').onclick=function(e){
   var t=e.target.closest('button'); if(!t) return;
