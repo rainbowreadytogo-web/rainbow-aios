@@ -763,8 +763,9 @@ buildTabs(); render();
       h+='<div class="tip" style="margin-top:10px"><b>面试官视角</b> · '+esc(q.tip)+'</div>';
       h+='</div>';
       h+='<div class="trow">'
-        +'<button class="tbtn" id="tmkRev">'+LBL.rev+'</button>'
-        +'<button class="tbtn" id="tmkDone">'+LBL.done+'</button>'
+        +'<button class="tbtn'+(M[q.id]==='rev'?' on':'')+'" id="tmkRev">'+LBL.rev+'</button>'
+        +'<button class="tbtn'+(M[q.id]==='done'?' on':'')+'" id="tmkDone">'+LBL.done+'</button>'
+        +'<button class="tbtn'+(M[q.id]==='star'?' on':'')+'" id="tmkStar">'+LBL.star+'</button>'
         +'<button class="tbtn pri" id="tnext">'+(T.pos<T.ids.length-1?'下一题':'完成，看总结')+'</button>'
         +'</div>';
     }
@@ -817,10 +818,18 @@ buildTabs(); render();
     document.getElementById('treset').onclick=function(){ stopTimer(); T.left=CFG[T.mode].sec; draw(); };
     var rv=document.getElementById('treveal');
     if(rv) rv.onclick=function(){ stopTimer(); T.revealed=true; draw(); };
-    var mr=document.getElementById('tmkRev');
-    if(mr) mr.onclick=function(){ M[q.id]='rev'; save(); syncCard(q.id, document.getElementById('q'+q.id)); buildFilt(); applyFilter(); toast('已加入复习本'); };
-    var md=document.getElementById('tmkDone');
-    if(md) md.onclick=function(){ M[q.id]='done'; save(); syncCard(q.id, document.getElementById('q'+q.id)); buildFilt(); applyFilter(); toast('已标记为已掌握'); };
+    function mkHandler(key){
+      return function(){
+        var was=(M[q.id]===key);
+        if(was){ delete M[q.id]; } else { M[q.id]=key; }
+        save(); syncCard(q.id, document.getElementById('q'+q.id)); buildFilt(); applyFilter();
+        toast(was? ('已取消「'+LBL[key]+'」') : ('已标记为「'+LBL[key]+'」'));
+        draw();
+      };
+    }
+    var mr=document.getElementById('tmkRev'); if(mr) mr.onclick=mkHandler('rev');
+    var md=document.getElementById('tmkDone'); if(md) md.onclick=mkHandler('done');
+    var ms=document.getElementById('tmkStar'); if(ms) ms.onclick=mkHandler('star');
     var nx=document.getElementById('tnext');
     if(nx) nx.onclick=function(){
       stopTimer(); stopTAudio();
