@@ -394,8 +394,7 @@ function render(){
       pb.title='播放这一句';
       pb.onclick=function(e){
         e.stopPropagation();
-        if(audio && audio.dataset.id==String(it.idx) && !audio.paused){ stopAll(); return; }
-        playOne(it.idx);
+        toggleMain(it.idx);
       };
       box.appendChild(pb);
 
@@ -426,7 +425,7 @@ function render(){
       body.appendChild(en);
       var cn=document.createElement('div'); cn.className='cn'; cn.textContent=it.cn; body.appendChild(cn);
       box.appendChild(body);
-      box.onclick=function(e){ if(e.target.classList.contains('blank')) return; playOne(it.idx); };
+      box.onclick=function(e){ if(e.target.classList.contains('blank')) return; toggleMain(it.idx); };
       qbody.appendChild(box);
     });
 
@@ -487,6 +486,24 @@ function stopAll(){
   clearPlayBtn();
   document.querySelectorAll('.btn.on').forEach(function(b){ if(b.textContent.indexOf('连播')>=0){b.classList.remove('on');b.textContent='连播本题';} });
   playing=false; curQ=null; queue=[];
+}
+function toggleMain(i){
+  if(audio && audio.dataset.id==String(i) && !audio.paused && !audio.ended){
+    audio.pause();
+    var el=document.getElementById('it'+i);
+    var pb=el&&el.querySelector('.pbtn');
+    if(pb){ pb.classList.remove('on'); pb.textContent='▶'; }
+    return;
+  }
+  if(audio && audio.dataset.id==String(i) && audio.paused && !audio.ended){
+    var r=audio.play(); if(r&&r.catch) r.catch(function(){});
+    var el2=document.getElementById('it'+i);
+    var pb2=el2&&el2.querySelector('.pbtn');
+    if(pb2){ pb2.classList.add('on'); pb2.textContent='■'; }
+    requestAnimationFrame(function(){ if(audio) tick(audio); });
+    return;
+  }
+  playOne(i);
 }
 function playOne(i){
   queue=[]; playing=false;
