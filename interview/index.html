@@ -72,7 +72,7 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .item.playing{background:var(--brand-l);border-radius:8px;padding-left:8px;padding-right:8px}
 .pbtn{flex:0 0 32px;height:32px;margin-top:2px;border-radius:50%;border:1px solid var(--line);
   background:#fff;color:var(--brand);font-size:13px;line-height:30px;text-align:center;cursor:pointer}
-.pbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.pbtn.on{background:var(--brand);color:#fff;border-color:var(--brand);font-size:17px}
 .ibody{flex:1;min-width:0}
 .lab{display:inline-block;font-size:11px;color:var(--brand-d);background:var(--soft);
   border-radius:6px;padding:2px 7px;margin-bottom:5px}
@@ -96,18 +96,105 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
   font-size:13px;padding:10px 16px;border-radius:10px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:99;max-width:88vw;text-align:center}
 #toast.show{opacity:.95}
 footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
+
+/* ===== V2 训练工作台 ===== */
+.sec{margin:12px 14px;background:var(--card);border:1px solid var(--line-l);border-radius:14px;padding:14px}
+.sec h2{margin:0 0 4px;font-size:15px;color:var(--brand);font-weight:600}
+.sec .ssub{margin:0 0 8px;font-size:12px;color:var(--muted);line-height:1.6}
+.step{display:flex;gap:9px;padding:7px 0;border-top:1px dashed var(--line-l)}
+.step:first-of-type{border-top:0}
+.snum{flex:0 0 20px;height:20px;line-height:20px;text-align:center;border-radius:50%;
+  background:var(--brand);color:#fff;font-size:11px;font-weight:700;margin-top:2px}
+.stext{flex:1;min-width:0;font-size:13px;line-height:1.65;color:var(--sub)}
+.stext b{color:var(--ink)}
+.hero{margin:12px 14px;background:var(--brand-l);border:1px solid #f0cdb4;border-radius:14px;padding:14px}
+.hero .ht{display:block;font-size:15px;font-weight:600;color:var(--brand-d)}
+.hero .hd{display:block;font-size:12px;color:#a06a4a;margin-top:3px;line-height:1.5}
+.hbtn{display:block;width:100%;margin-top:11px;border:none;background:var(--brand);color:#fff;
+  border-radius:11px;padding:12px;font-size:14.5px;font-weight:700;cursor:pointer;min-height:44px}
+.mrow{display:flex;gap:8px;margin:0 14px 12px}
+.mrow .ecard{flex:1;min-height:0;padding:10px 6px;text-align:center;border-radius:11px}
+.mrow .et{display:block;font-size:13px;font-weight:600;color:var(--ink)}
+.mrow .ed{display:block;font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
+.mrow .ec{display:block;font-size:11px;color:var(--brand-d);margin-top:3px}
+.howtoBox{background:#fff5ed;border:1px solid #f4d4bf;border-radius:12px;margin:12px 14px;padding:12px 14px}
+.howtoBox summary{font-weight:700;color:#c8623d;cursor:pointer;list-style:none;outline:none}
+.howtoBox summary::-webkit-details-marker{display:none}
+.howtoBox summary::before{content:"! ";display:inline-block;width:18px;height:18px;border-radius:50%;
+  background:#c8623d;color:#fff;text-align:center;line-height:18px;font-weight:700;margin-right:4px;font-size:12px}
+.ecard{background:var(--card);border:1px solid var(--line-l);border-radius:14px;padding:12px;text-align:left;cursor:pointer;min-height:44px}
+.ecard .et{display:block;font-size:14px;font-weight:600;color:var(--ink)}
+.ecard .ed{display:block;font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.55}
+.ecard .ec{display:block;font-size:11px;color:var(--brand-d);margin-top:6px}
+.filtrow{display:flex;gap:8px;overflow-x:auto;padding:2px 18px 6px}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+  border-radius:999px;padding:7px 14px;font-size:12.5px;min-height:34px}
+.chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.qplay{flex:0 0 32px;height:32px;margin-right:8px;border-radius:50%;border:1px solid var(--line);
+  background:#fff;color:var(--brand);font-size:13px;line-height:30px;text-align:center;cursor:pointer}
+.qplay.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.mkbar{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.mk{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 14px;font-size:13px;color:var(--sub);min-height:38px}
+.mk.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.mbadge{font-size:11px;border-radius:6px;padding:2px 7px}
+.mbadge.rev{background:#fdecea;color:#a32d2d}
+.mbadge.done{background:#e1f5ee;color:#0f6e56}
+.mbadge.star{background:#faeeda;color:#854f0b}
+
+/* 训练浮层 */
+#train{position:fixed;inset:0;background:var(--bg);z-index:200;overflow-y:auto;display:none;
+  padding:calc(env(safe-area-inset-top) + 14px) 14px 40px}
+#train.show{display:block}
+#train .tbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+#train .tprog{font-size:12.5px;color:var(--muted)}
+#train .tclose{border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 14px;font-size:13px;color:var(--sub);min-height:40px}
+#train .tcard{background:var(--card);border:1px solid var(--line-l);border-radius:14px;padding:14px}
+#train .tq{font-size:18px;font-weight:600;line-height:1.5;margin:8px 0 4px}
+#train .tqc{font-size:12.5px;color:var(--muted);margin-bottom:6px}
+#train .tenmask{margin:8px 0;border:1px dashed var(--line);border-radius:9px;padding:10px;
+  text-align:center;color:var(--muted);font-size:13px;background:var(--soft);min-height:40px}
+#train .trow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+#train .tbtn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:10px 14px;font-size:13.5px;color:var(--sub);min-height:44px}
+#train .tbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+#train .tbtn.pri{background:var(--brand);color:#fff;border-color:var(--brand)}
+#train .tbtn:active{background:var(--soft)}
+#train .tbtn.pri:active{background:var(--brand-d)}
+#train .tclose:active{background:var(--soft)}
+#train .tbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+#train .tcount{font-size:24px;font-weight:700;color:var(--brand-d);letter-spacing:1px;min-width:62px;text-align:center}
+#train .trev{margin-top:12px;border-top:1px dashed var(--line-l);padding-top:8px}
+#train .tsent{padding:8px 0;border-bottom:1px dashed var(--line-l);display:flex;gap:10px;align-items:flex-start}
+#train .tsent .sen{font-size:16px;line-height:1.7}
+#train .tsent .scn{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.6}
+#train .tsum{font-size:13px;color:var(--sub);line-height:1.75}
+#train .tsum b{color:var(--brand-d)}
+@media (max-width:360px){ .mrow{flex-wrap:wrap} .mrow .ecard{flex:1 1 40%} }
+
 </style>
 </head>
 <body data-page-node-id="NcPYkMb1L8msZKIHV4o4vd">
 <header data-page-node-id="HzFjdntsGZOwhPYvT7XrSC">
   <h1 data-page-node-id="zjG8Lm83uIkYr6OVKiRCo6">面试英语 × STAR · 音频版</h1>
   <p data-page-node-id="eapZbgR3GNNcKmjoCGFOUX">Rainbow 聊外企 · 40 道外企高频题 · 每题按 STAR 拆成 5 句 · 播放时逐词高亮</p>
-  <div style="margin-top:2px"><input class="search" id="search" placeholder="搜句子 / 中文…"></div>
 
   <div class="entry-row" style="margin-top:12px;text-align:right">
     <a href="../learn/" style="display:inline-flex;align-items:center;min-height:44px;padding:12px 16px;background:#f9ede2;color:#a94e2e;border-radius:18px;font-size:13px;font-weight:700;text-decoration:none">学习库总入口 →</a>
   </div>
 </header>
+
+<!-- V2 首屏：主推卡 + 次入口 -->
+<div class="hero" id="hero">
+  <span class="ht">听题训练</span>
+  <span class="hd">先听题 · 60 秒组织答案 · 再对照参考回答</span>
+  <button class="hbtn" id="heroStart">▶ 开始第 1 题</button>
+</div>
+<div class="mrow" id="entries">
+  <div class="ecard" data-m="mock"><span class="et">模拟演练</span><span class="ed">随机 10 题 · 每题 90 秒</span></div>
+  <div class="ecard" data-m="quick"><span class="et">快问快答</span><span class="ed">每题 20 秒 · 练反应</span></div>
+  <div class="ecard" data-m="rev"><span class="et">复习本</span><span class="ec" id="revCount">0 题待复习</span></div>
+</div>
+<!-- /V2 首屏 -->
+
 
 <div class="tabs" id="tabs" data-page-node-id="Fka44AW9LZBFI5qFCEvC9F"></div>
 
@@ -115,7 +202,7 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 <div class="guide" id="guide" data-page-node-id="JyteDGdZ2UMsXZtMQcMgTH">
   <h2 data-page-node-id="QoQXrAr2IDHtx4XB8QVJ1X">先搞懂 STAR，再练这 40 题</h2>
   <p class="sub" data-page-node-id="r59TSpQnv3cyp4p5nemkrD">外企行为面试题（"Tell me about a time…"）几乎全部用 STAR 打分。面试官不在乎你的词汇多漂亮，只在乎你的回答有没有结构。</p>
-  <div id="gbody" data-page-node-id="eBFpEN2lhUPC4ZYfPWYxXp">
+  <div id="gbody" data-page-node-id="eBFpEN2lhUPC4ZYfPWYxXp" style="display:none">
     <div class="srow" data-page-node-id="Otzf8kVnmJ9mdvlDZVTzHn">
       <div class="skey" data-page-node-id="D6mrApbwCbGkDSqIvhZjrv">S</div>
       <div class="sbody" data-page-node-id="pGHkmCDJP8wm3k4f0e4nO6">
@@ -150,7 +237,7 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
       整题控制在 <b data-page-node-id="AJq1TErn5pI0aFMoBRzWTo">60–90 秒</b>。最常见的失误：情境讲了 40 秒，行动和结果草草两句收场。
     </div>
   </div>
-  <button class="gtoggle" id="gtoggle" data-page-node-id="mwdSS7quP7K3vES5Qllzst">收起讲解</button>
+  <button class="gtoggle" id="gtoggle" data-page-node-id="mwdSS7quP7K3vES5Qllzst">展开 STAR 讲解</button>
 </div>
 
 <div class="bar" data-page-node-id="XHpKSdGxeJq9JOvSlHpbus">
@@ -166,15 +253,34 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 
 <p class="hint" id="hint" data-page-node-id="E2Q17zZhi6v1b4AIAsgI9P">点句子左边的 ▶ 单独播放，或点「连播本题」从头跟读；播放时说到哪个词，哪个词会高亮。</p>
 
+<div style="margin:12px 14px 0"><input class="search" id="search" placeholder="搜句子 / 中文…" style="margin-top:0"></div>
+
+<div class="filtrow" id="filt"></div>
 <div id="list" data-page-node-id="qEE71K7eAWD3bQUnPxXlld"></div>
 <div id="nores" style="display:none;margin:20px 18px;text-align:center;color:#9c7d6d;font-size:13px">没找到相关内容，换个词试试</div>
 
 <div id="toast" data-page-node-id="yHe9ygkUOlQkI3zqCrzpL1"></div>
 
+<details class="howtoBox" id="howto">
+  <summary>怎么用这套题 · 首次使用点开</summary>
+  <div style="margin-top:10px">
+    <p class="ssub" style="margin:0 0 8px">不要急着背答案。这套题的用法是先练嘴，再对照。</p>
+    <div class="step"><span class="snum">1</span><div class="stext"><b>听题</b>：点上面的「听题训练」，先听题目音频。没听清就再放一遍，英文原文点一下才显示——这一关考的是耳朵。</div></div>
+    <div class="step"><span class="snum">2</span><div class="stext"><b>开口说</b>：按下计时，自己先说一遍完整答案，别看文字。卡住的地方记下来。</div></div>
+    <div class="step"><span class="snum">3</span><div class="stext"><b>对照并标记</b>：看完参考答案后给这题打个状态。标成「待复习」的会进复习本，下次专门练它。</div></div>
+    <button class="gtoggle" id="hsToggle">把学习库添加到手机主屏</button>
+    <div id="hsBody" style="display:none;margin-top:10px;font-size:12.5px;color:var(--sub);line-height:1.8">
+      <b>iPhone</b>：用 Safari 打开本页，点底部「分享」按钮，选择「添加到主屏幕」。<br>
+      <b>安卓</b>：用浏览器打开本页，点右上角菜单，选择「添加到主屏幕」。<br>
+      添加后像 App 一样一点就开，你的标记和进度都存在本机，不会被清掉。
+    </div>
+  </div>
+</details>
+
 <footer data-page-node-id="bhk3GTpMfIVHysyTVo1piN">
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br data-page-node-id="IeHp3SV2RAwptCwJ31PPol">
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v1.0</span>
+  <span style="color:#c8aa9a">v2.0</span>
 </footer>
 
 <script src="data.js"></script>
@@ -340,11 +446,6 @@ function render(){
 
 /* ---------- 播放 ---------- */
 var audio=null, pre=null, preSrc='', playing=false, curQ=null, queue=[];
-var sharedA=null, failCount=0, loadTimeout=null;
-function ensureShared(){
-  if(!sharedA){ sharedA=new Audio(); sharedA.preload='auto'; }
-  return sharedA;
-}
 function src(i,sp){ return 'audio/i'+String(i).padStart(3,'0')+'_'+sp+'.mp3'; }
 function rate(sp){ return sp==='s'?0.7:1.0; }
 function clearHi(){ document.querySelectorAll('.w.hi').forEach(function(w){w.classList.remove('hi');}); }
@@ -408,46 +509,24 @@ function startQ(qid){
   queue=q.items.map(function(x){return x.idx;});
   var btn=document.querySelector('#q'+qid+' .btn');
   if(btn){ btn.classList.add('on'); btn.textContent='停止连播'; }
-  // 手势内预热常驻播放器
-  var sh=ensureShared();
-  try{ sh.muted=true; sh.play().then(function(){ sh.pause(); sh.muted=false; }).catch(function(){}); }catch(e){}
   next();
 }
 function next(){
   if(!queue.length){ stopAll(); return; }
   var i=queue.shift();
-  var s=src(i,speed);
-  var a=ensureShared();
-  a.muted=false;
-  a.dataset.id=i;
-  a.playbackRate=rate(speed);
-  audio=a;
+  var s=src(i,speed), a;
+  if(pre && preSrc===s){ a=pre; pre=null; preSrc=''; }
+  else { a=new Audio(s); a.preload='auto'; }
+  a.playbackRate=rate(speed); a.dataset.id=i; audio=a;
   markItem(i);
-  a.ontimeupdate=function(){ tick(a); };
-  failCount=0;
-  clearTimeout(loadTimeout);
-  loadTimeout=setTimeout(function(){ onFail(s,i); },8000);
-  a.onended=function(){ clearTimeout(loadTimeout); clearHi(); var el=document.getElementById('it'+i); if(el) el.classList.remove('playing'); if(playing) next(); };
-  a.onerror=function(){ clearTimeout(loadTimeout); onFail(s,i); };
-  a.src=s; a.load();
-  a.play().then(function(){}).catch(function(){ clearTimeout(loadTimeout); onFail(s,i); });
-}
-function onFail(s,i){
-  if(!playing) return;
-  if(failCount<2){
-    failCount++;
-    setTimeout(function(){
-      if(!playing) return;
-      var a=ensureShared();
-      a.src=s; a.load();
-      clearTimeout(loadTimeout);
-      loadTimeout=setTimeout(function(){ onFail(s,i); },8000);
-      a.play().then(function(){}).catch(function(){ onFail(s,i); });
-    }, failCount===1?500:1200);
-    return;
+  a.addEventListener('timeupdate',function(){ tick(a); });
+  a.onended=function(){ clearHi(); var el=document.getElementById('it'+i); if(el) el.classList.remove('playing'); if(playing) next(); };
+  a.onerror=function(){ toast('第 '+i+' 句音频加载失败，已跳过'); if(playing) next(); };
+  a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){ if(playing) next(); }); },250); });
+  if(queue.length){
+    var ns=src(queue[0],speed);
+    if(ns!==preSrc){ pre=new Audio(ns); pre.preload='auto'; preSrc=ns; try{pre.load();}catch(e){} }
   }
-  stopAll();
-  toast('第 '+i+' 句加载失败（网络可能不稳定），已停在当前句，重新点「连播本题」即可继续');
 }
 document.getElementById('mode').onclick=function(e){
   var t=e.target.closest('button'); if(!t) return;
@@ -471,6 +550,371 @@ gt.onclick=function(){
   gt.textContent=hidden?'收起讲解':'展开 STAR 讲解';
 };
 buildTabs(); render();
+</script>
+
+
+<div id="train" role="dialog" aria-label="面试训练">
+  <div class="tcard">
+    <div class="tbar">
+      <span class="tprog" id="tprog"></span>
+      <button class="tclose" id="tclose">退出训练</button>
+    </div>
+    <div id="tbody"></div>
+  </div>
+</div>
+
+
+<script>
+/* ===== V2 训练工作台 ===== */
+(function(){
+  var KEY='iv_mark_v1';
+  var M={};
+  try{ M=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ M={}; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(M)); }catch(e){} }
+  var LBL={rev:'待复习', done:'已掌握', star:'收藏'};
+  var CLS={rev:'rev', done:'done', star:'star'};
+
+  function qsrc(id,sp){ return 'audio/q'+String(id).padStart(2,'0')+'_'+sp+'.mp3'; }
+  function isrc(i,sp){ return 'audio/i'+String(i).padStart(3,'0')+'_'+sp+'.mp3'; }
+  function rates(sp){ return sp==='s'?0.7:1.0; }
+  function csp(){ return (typeof speed!=='undefined')?speed:'n'; }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  /* ---------- 题目音频（列表内） ---------- */
+  var qa=null;
+  function clearQBtn(){
+    document.querySelectorAll('.qplay.on').forEach(function(b){ b.classList.remove('on'); b.textContent='▶'; });
+  }
+  function playQAudio(id){
+    if(typeof stopAll==='function') stopAll();
+    if(qa){ try{qa.pause();}catch(e){} qa=null; }
+    clearQBtn();
+    var a=new Audio(qsrc(id,csp())); a.playbackRate=rates(csp()); qa=a;
+    var el=document.querySelector('#q'+id+' .qplay');
+    if(el){ el.classList.add('on'); el.textContent='■'; }
+    a.onended=function(){ clearQBtn(); qa=null; };
+    a.onerror=function(){ if(typeof toast==='function') toast('题目音频没能加载，请检查网络后重试'); clearQBtn(); };
+    a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){}); },250); });
+  }
+
+  /* ---------- 三态标记 ---------- */
+  function setMark(id,k){
+    if(M[id]===k) delete M[id]; else M[id]=k;
+    save();
+    var card=document.getElementById('q'+id);
+    if(card) syncCard(id,card);
+    buildFilt(); applyFilter();
+    if(typeof toast==='function') toast(M[id]? ('已标记为「'+LBL[k]+'」') : ('已取消「'+LBL[k]+'」'));
+  }
+  function syncCard(id,card){
+    [].forEach.call(card.querySelectorAll('.mk'),function(b){
+      b.classList.toggle('on', M[id]===b.dataset.mk);
+    });
+    var old=card.querySelector('.mbadge'); if(old) old.remove();
+    if(M[id]){
+      var s=document.createElement('span');
+      s.className='mbadge '+CLS[M[id]]; s.textContent=LBL[M[id]];
+      card.querySelector('.qhead').appendChild(s);
+    }
+  }
+  function counts(){
+    var c={rev:0,done:0,star:0};
+    QS.forEach(function(q){ if(M[q.id]) c[M[q.id]]=(c[M[q.id]]||0)+1; });
+    return c;
+  }
+  var filt='all';
+  function buildFilt(){
+    var box=document.getElementById('filt'); if(!box) return;
+    var c=counts();
+    var items=[['all','全部 40 题'],['rev','待复习 '+c.rev],['done','已掌握 '+c.done],['star','收藏 '+c.star]];
+    box.innerHTML='';
+    items.forEach(function(it){
+      var b=document.createElement('button');
+      b.className='chip'+(filt===it[0]?' on':''); b.dataset.f=it[0]; b.textContent=it[1];
+      b.onclick=function(){ filt=it[0]; buildFilt(); applyFilter(); };
+      box.appendChild(b);
+    });
+    var rc=document.getElementById('revCount');
+    if(rc) rc.textContent=c.rev+' 题待复习';
+  }
+  function applyFilter(){
+    QS.forEach(function(q){
+      var card=document.getElementById('q'+q.id); if(!card) return;
+      card.style.display=(filt==='all'||M[q.id]===filt)?'':'none';
+    });
+    var none=document.getElementById('nores');
+    var any=QS.some(function(q){ return filt==='all'||M[q.id]===filt; });
+    if(none) none.style.display=any?'none':'block';
+  }
+
+  /* ---------- 卡片增强 ---------- */
+  function decorate(){
+    QS.forEach(function(q){
+      var card=document.getElementById('q'+q.id);
+      if(!card || card.dataset.v2) return;
+      card.dataset.v2='1';
+      var top=card.querySelector('.qtop'), body=card.querySelector('.qbody');
+      if(!top||!body) return;
+      var qp=document.createElement('div'); qp.className='qplay'; qp.textContent='▶';
+      qp.title='播放题目：'+q.q_en;
+      qp.onclick=function(e){ e.stopPropagation(); playQAudio(q.id); };
+      top.insertBefore(qp, top.querySelector('.chev'));
+      var row=document.createElement('div'); row.className='mkbar';
+      ['rev','done','star'].forEach(function(k){
+        var b=document.createElement('button'); b.className='mk'; b.dataset.mk=k; b.textContent=LBL[k];
+        b.onclick=function(e){ e.stopPropagation(); setMark(q.id,k); };
+        row.appendChild(b);
+      });
+      body.appendChild(row);
+      syncCard(q.id,card);
+    });
+  }
+
+  /* ---------- 训练浮层 ---------- */
+  var CFG={
+    listen:{name:'听题训练', sec:60, tip:'先听懂题目，给自己 60 秒组织答案，再对照参考。'},
+    quick:{name:'快问快答',  sec:20, tip:'只有 20 秒，练的是不假思索地开口。'},
+    mock:{name:'模拟演练',   sec:90, tip:'按真实面试节奏来：听完题连续说满，再复盘。'}
+  };
+  var T=null, timerId=null;
+
+  function shuffle(a){
+    for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+    return a;
+  }
+  function startTrain(mode, revOnly){
+    if(typeof stopAll==='function') stopAll();
+    var ids=QS.map(function(q){ return q.id; });
+    if(revOnly){
+      ids=ids.filter(function(id){ return M[id]==='rev'||M[id]==='star'; });
+      if(!ids.length){ if(typeof toast==='function') toast('还没有标记的题，先在列表里点「待复习」加几道'); return; }
+      startRun(mode, ids, true);
+      return;
+    }
+    if(mode==='mock'){ ids=shuffle(ids.slice()).slice(0,10); }
+    else if(mode==='rev'){ return; }
+    startRun(mode==='rev'?'listen':mode, ids, false);
+  }
+  function startRun(mode, ids, only){
+    stopTAudio();
+    T={mode:mode, ids:ids, only:only, pos:0, revealed:false, left:CFG[mode].sec, running:false};
+    document.getElementById('train').classList.add('show');
+    window.scrollTo(0,0);
+    draw();
+  }
+  function curQObj(){
+    if(!T) return null;
+    return QS.filter(function(x){ return x.id===T.ids[T.pos]; })[0]||null;
+  }
+  function draw(){
+    var box=document.getElementById('tbody'); if(!box||!T) return;
+    var q=curQObj(); if(!q) return;
+    var cfg=CFG[T.mode];
+    document.getElementById('tprog').textContent='第 '+(T.pos+1)+' / '+T.ids.length+' · '+cfg.name;
+
+    var h='';
+    h+='<div><span class="cat">'+esc(q.cat)+'</span></div>';
+    h+='<div class="tqc">'+esc(q.q_cn)+'</div>';
+    if(!T.revealed){
+      h+='<div class="tenmask" id="tenmask">英文原文已隐藏，先听题 · 点这里查看</div>';
+    }else{
+      h+='<div class="tq">'+esc(q.q_en)+'</div>';
+    }
+    h+='<div class="trow">'
+      +'<button class="tbtn" id="tplay">▶ 播放题目</button>'
+      +'<button class="tbtn" id="tslow">慢速</button>'
+      +'</div>';
+    h+='<div class="trow">'
+      +'<span class="tcount" id="tcount">'+fmt(T.left)+'</span>'
+      +'<button class="tbtn'+(T.running?' on':'')+'" id="tstart">'+(T.running?'暂停':'开始计时')+'</button>'
+      +'<button class="tbtn" id="treset">重来</button>'
+      +'</div>';
+    if(!T.revealed){
+      h+='<div class="trow"><button class="tbtn pri" id="treveal">我答完了，看参考答案</button></div>';
+    }else{
+      h+='<div class="trev">';
+      h+='<div class="lab" style="display:inline-block">参考答案 · STAR 拆句</div>';
+      q.items.forEach(function(it){
+        h+='<div class="tsent" id="tw'+it.idx+'">'
+          +'<div class="pbtn" data-pl="'+it.idx+'">▶</div>'
+          +'<div style="flex:1;min-width:0">'
+          +'<span class="lab">'+esc(it.label)+'</span>'
+          +'<div class="sen" data-en="'+esc(it.en)+'">'+esc(it.en)+'</div>'
+          +'<div class="scn">'+esc(it.cn)+'</div>'
+          +'</div></div>';
+      });
+      h+='<div class="tip" style="margin-top:10px"><b>面试官视角</b> · '+esc(q.tip)+'</div>';
+      h+='</div>';
+      h+='<div class="trow">'
+        +'<button class="tbtn" id="tmkRev">'+LBL.rev+'</button>'
+        +'<button class="tbtn" id="tmkDone">'+LBL.done+'</button>'
+        +'<button class="tbtn pri" id="tnext">'+(T.pos<T.ids.length-1?'下一题':'完成，看总结')+'</button>'
+        +'</div>';
+    }
+    box.innerHTML=h;
+    bind();
+  }
+  function fmt(s){ var m=Math.floor(s/60), ss=s%60; return (m>0? m+':'+(ss<10?'0':'') : '')+ss+(m>0?'':' 秒'); }
+  function stopTimer(){
+    if(timerId){ clearInterval(timerId); timerId=null; }
+    if(T) T.running=false;
+  }
+  function bind(){
+    var q=curQObj();
+    var ms=document.getElementById('tenmask');
+    if(ms) ms.onclick=function(){ T.revealed=true; draw(); };
+    var tp=document.getElementById('tplay');
+    tp.onclick=function(){
+      var btn=this;
+      if(ta && ta._qid===q.id && !ta.paused && !ta.ended){
+        ta.pause(); btn.classList.remove('on'); btn.textContent='▶ 继续播放'; return;
+      }
+      if(ta && ta._qid===q.id && ta.paused && !ta.ended){
+        var r=ta.play(); if(r&&r.catch) r.catch(function(){});
+        btn.classList.add('on'); btn.textContent='暂停播放'; return;
+      }
+      playT(q.id, csp());
+      btn.classList.add('on'); btn.textContent='暂停播放';
+    };
+    document.getElementById('tslow').onclick=function(){
+      var p=document.getElementById('tplay');
+      if(p){ p.classList.remove('on'); p.textContent='▶ 播放题目'; }
+      playT(q.id,'s'); this.classList.add('on');
+    };
+    if(ta && ta._qid===q.id && !ta.paused && !ta.ended){
+      if(ta._sp==='s'){ document.getElementById('tslow').classList.add('on'); }
+      else{ tp.classList.add('on'); tp.textContent='暂停播放'; }
+    }
+    document.getElementById('tstart').onclick=function(){
+      if(T.running){ stopTimer(); }
+      else{
+        T.running=true;
+        timerId=setInterval(function(){
+          T.left--;
+          var el=document.getElementById('tcount'); if(el) el.textContent=fmt(T.left);
+          if(T.left<=0){ stopTimer(); if(typeof toast==='function') toast('时间到，点「我答完了」看参考答案'); }
+        },1000);
+      }
+      draw();
+    };
+    document.getElementById('treset').onclick=function(){ stopTimer(); T.left=CFG[T.mode].sec; draw(); };
+    var rv=document.getElementById('treveal');
+    if(rv) rv.onclick=function(){ stopTimer(); T.revealed=true; draw(); };
+    var mr=document.getElementById('tmkRev');
+    if(mr) mr.onclick=function(){ M[q.id]='rev'; save(); syncCard(q.id, document.getElementById('q'+q.id)); buildFilt(); applyFilter(); toast('已加入复习本'); };
+    var md=document.getElementById('tmkDone');
+    if(md) md.onclick=function(){ M[q.id]='done'; save(); syncCard(q.id, document.getElementById('q'+q.id)); buildFilt(); applyFilter(); toast('已标记为已掌握'); };
+    var nx=document.getElementById('tnext');
+    if(nx) nx.onclick=function(){
+      stopTimer(); stopTAudio();
+      if(T.pos<T.ids.length-1){ T.pos++; T.revealed=false; T.left=CFG[T.mode].sec; draw(); window.scrollTo(0,0); }
+      else finish();
+    };
+    document.querySelectorAll('#tbody [data-pl]').forEach(function(b){
+      b.onclick=function(){ playSent(+b.dataset.pl, b); };
+    });
+  }
+  function finish(){
+    var c={rev:0,done:0,star:0};
+    T.ids.forEach(function(id){ if(M[id]) c[M[id]]++; });
+    var h='<div class="tsum">这一轮 <b>'+T.ids.length+'</b> 题练完了。<br>';
+    h+='标为已掌握 <b>'+c.done+'</b> 题，放进复习本 <b>'+c.rev+'</b> 题。<br>';
+    h+='下次直接打开「复习本」，只练标出来的那些。</div>';
+    h+='<div class="trow"><button class="tbtn pri" id="tagain">再来一轮</button>'
+      +'<button class="tbtn" id="tback">返回题目列表</button></div>';
+    document.getElementById('tbody').innerHTML=h;
+    document.getElementById('tprog').textContent='本轮完成 · '+CFG[T.mode].name;
+    document.getElementById('tagain').onclick=function(){ var m=T.mode, o=T.only; close() ; startTrain(o?'rev':m, o); };
+    document.getElementById('tback').onclick=function(){ close(); };
+    buildFilt(); applyFilter();
+  }
+  function close(){
+    stopTimer(); stopTAudio();
+    document.getElementById('train').classList.remove('show');
+    T=null;
+    buildFilt(); applyFilter();
+  }
+
+  /* 浮层内的音频：题目 + 单句（带逐词高亮） */
+  var ta=null;
+  function stopTAudio(){ if(ta){ try{ta.pause();}catch(e){} ta=null; } }
+  function resetTBtns(){
+    var p=document.getElementById('tplay'); if(p){ p.classList.remove('on'); p.textContent='▶ 播放题目'; }
+    var s=document.getElementById('tslow'); if(s){ s.classList.remove('on'); s.textContent='慢速'; }
+  }
+  function playT(id, sp){
+    stopTAudio();
+    var a=new Audio(qsrc(id,sp)); a.playbackRate=rates(sp); ta=a; a._qid=id; a._sp=sp;
+    a.onended=function(){ if(ta&&ta!==a) return; resetTBtns(); };
+    a.onerror=function(){ toast('题目音频没能加载，请检查网络后重试'); if(ta&&ta!==a) return; resetTBtns(); };
+    a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){}); },250); });
+  }
+  function playSent(idx, btn){
+    stopTAudio();
+    document.querySelectorAll('#tbody .pbtn').forEach(function(b){ b.classList.remove('on'); b.textContent='▶'; });
+    var it=null;
+    for(var i=0;i<QS.length;i++){ var f=QS[i].items.filter(function(x){return x.idx===idx;}); if(f.length){ it=f[0]; break; } }
+    if(!it) return;
+    if(btn){ btn.classList.add('on'); btn.textContent='■'; }
+    var sp=csp(), a=new Audio(isrc(idx,sp)); a.playbackRate=rates(sp); ta=a;
+    var host=document.getElementById('tw'+idx);
+    if(host){
+      var body=host.querySelector('.sen');
+      if(body && typeof tokenize==='function'){
+        body.innerHTML='';
+        tokenize(it.en,(it.words||{})[sp]||[]).forEach(function(tk){
+          var s=document.createElement('span');
+          s.textContent=tk.t;
+          if(tk.s!==undefined){ s.className='w'; s.dataset.s=tk.s; s.dataset.d=tk.d; }
+          body.appendChild(s);
+        });
+      }
+      a.addEventListener('timeupdate',function(){ tTick(a, host); });
+    }
+    a.onerror=function(){ toast('这条音频没能加载，请检查网络后重试'); };
+    a.onended=function(){ if(btn){ btn.classList.remove('on'); btn.textContent='▶'; } };
+    a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){}); },250); });
+  }
+  function tTick(a, host){
+    if(ta!==a) return;
+    var t=a.currentTime*1000, spans=host.querySelectorAll('.w'), found=-1;
+    for(var i=0;i<spans.length;i++){
+      var s=parseFloat(spans[i].dataset.s||'0'), d=parseFloat(spans[i].dataset.d||'0');
+      if(t>=s && t<=s+d+60){ found=i; break; }
+    }
+    if(found!==host._hi){
+      spans.forEach(function(x){ x.classList.remove('hi'); });
+      if(found>=0) spans[found].classList.add('hi');
+      host._hi=found;
+    }
+    if(!a.paused && !a.ended) requestAnimationFrame(function(){ tTick(a,host); });
+  }
+
+  /* ---------- 入口绑定 + render 钩子 ---------- */
+  var hero=document.getElementById('hero');
+  function heroGo(){ startTrain('listen', false); var tp=document.getElementById('tplay'); if(tp) tp.click(); }
+  if(hero) hero.onclick=heroGo;
+  var hsb=document.getElementById('heroStart');
+  if(hsb) hsb.onclick=function(e){ e.stopPropagation(); heroGo(); };
+  document.getElementById('entries').addEventListener('click',function(e){
+    var c=e.target.closest('.ecard'); if(!c) return;
+    var m=c.dataset.m;
+    if(m==='rev') startTrain('listen', true);
+    else startTrain(m, false);
+  });
+  document.getElementById('tclose').onclick=function(){ close(); };
+  var ht=document.getElementById('hsToggle'), hb=document.getElementById('hsBody');
+  if(ht) ht.onclick=function(){
+    var hidden=hb.style.display==='none';
+    hb.style.display=hidden?'':'none';
+    ht.textContent=hidden?'收起主屏说明':'把学习库添加到手机主屏';
+  };
+
+  var origRender=window.render;
+  window.render=function(){ origRender.apply(null,arguments); decorate(); buildFilt(); applyFilter(); };
+
+  decorate(); buildFilt(); applyFilter();
+})();
 </script>
 
 <!-- ===== 口令门 ===== -->
@@ -528,20 +972,20 @@ const ACCESS_CODE = "juniper3027";
 
   var help=document.createElement("details");
   help.className="help";
-  help.innerHTML="<summary>使用帮助（首次使用请点开）</summary>"+
+  help.innerHTML="<summary>使用帮助 · 常见问题</summary>"+
     "<ul>"+
-    "<li><b>怎么练</b>:先看完「STAR 讲解」,再按板块逐题跟读,每题 5 句构成一个完整回答</li>"+
+    "<li><b>怎么练</b>:点「听题训练」开始第一题,先听题开口答,再对照 STAR 参考回答</li>"+
     "<li><b>逐词高亮</b>:播放时屏幕跟着读到的词同步高亮,跟着念效果最好</li>"+
-    "<li><b>双速</b>:顶部「常速/慢速」,先用慢速听清结构,再用常速完整练一遍</li>"+
+    "<li><b>双速</b>:题目列表上方「常速/慢速」,先用慢速听清结构,再用常速完整练一遍</li>"+
     "<li><b>连播</b>:每页右上角「▶ 连播」,通勤路上当听力素材自动播放</li>"+
-    "<li><b>搜索</b>:顶部搜索框,题目、句子、中文都能搜</li>"+
+    "<li><b>搜索</b>:题目列表上方的搜索框,题目、句子、中文都能搜</li>"+
     "<li><b>收藏方法</b>:链接收藏到浏览器书签,或微信里「浮窗」保存,随时点开学</li>"+
     "<li><b>学习节奏</b>:每天练 2-3 题,慢速听清结构→常速完整回答,40 题≈2-3 周</li>"+
     "<li>使用遇到问题: 联系卖家 Rainbow</li>"+
     "</ul>"+
     "<div class=\"warn\">音频按需加载,首次进入每题会预热 1-2 秒属正常</div>";
-  var tabs=document.querySelector(".tabs");
-  if(tabs&&tabs.parentNode) tabs.parentNode.insertBefore(help,tabs);
+  var ft=document.querySelector("footer");
+  if(ft&&ft.parentNode) ft.parentNode.insertBefore(help,ft);
 })();
 </script>
 <script>
