@@ -879,6 +879,7 @@ buildTabs(); render();
   function playT(id, sp){
     stopTAudio(); tq=[]; setChainBtn(false);
     document.querySelectorAll('#tbody .pbtn').forEach(function(b){ b.classList.remove('on'); b.textContent='▶'; });
+    document.querySelectorAll('#tbody .w.hi').forEach(function(w){ w.classList.remove('hi'); });
     var a=new Audio(qsrc(id,sp)); a.playbackRate=rates(sp); ta=a; a._qid=id; a._sp=sp;
     a.onended=function(){ if(ta&&ta!==a) return; resetTBtns(); };
     a.onerror=function(){ toast('题目音频没能加载，请检查网络后重试'); if(ta&&ta!==a) return; resetTBtns(); };
@@ -891,10 +892,15 @@ buildTabs(); render();
     }
     if(ta && ta._sent===idx && ta.paused && !ta.ended){
       var r0=ta.play(); if(r0&&r0.catch) r0.catch(function(){});
-      if(btn){ btn.classList.add('on'); btn.textContent='■'; } return;
+      if(btn){ btn.classList.add('on'); btn.textContent='■'; }
+      var h0=document.getElementById('tw'+idx);
+      if(h0) requestAnimationFrame(function(){ if(ta) tTick(ta,h0); });
+      return;
     }
     stopTAudio();
     document.querySelectorAll('#tbody .pbtn').forEach(function(b){ b.classList.remove('on'); b.textContent='▶'; });
+    document.querySelectorAll('#tbody .w.hi').forEach(function(w){ w.classList.remove('hi'); });
+    document.querySelectorAll('#tbody .tsent').forEach(function(x){ x._hi=-1; });
     var it=null;
     for(var i=0;i<QS.length;i++){ var f=QS[i].items.filter(function(x){return x.idx===idx;}); if(f.length){ it=f[0]; break; } }
     if(!it) return;
