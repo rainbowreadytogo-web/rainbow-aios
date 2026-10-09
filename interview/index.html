@@ -739,7 +739,10 @@ buildTabs(); render();
     }
     h+='<div class="trow">'
       +'<button class="tbtn" id="tplay">▶ 播放题目</button>'
-      +'<button class="tbtn" id="tslow">慢速</button>'
+      +'<span class="seg" id="tspeed">'
+      +'<button data-s="n"'+(csp()==='n'?' class="on"':'')+'>常速</button>'
+      +'<button data-s="s"'+(csp()==='s'?' class="on"':'')+'>慢速</button>'
+      +'</span>'
       +'</div>';
     h+='<div class="trow">'
       +'<span class="tcount" id="tcount">'+fmt(T.left)+'</span>'
@@ -796,14 +799,19 @@ buildTabs(); render();
       playT(q.id, csp());
       btn.classList.add('on'); btn.textContent='暂停播放';
     };
-    document.getElementById('tslow').onclick=function(){
-      var p=document.getElementById('tplay');
-      if(p){ p.classList.remove('on'); p.textContent='▶ 播放题目'; }
-      playT(q.id,'s'); this.classList.add('on');
+    var tspd=document.getElementById('tspeed');
+    if(tspd) tspd.onclick=function(e){
+      var t=e.target.closest('button'); if(!t) return;
+      speed=t.dataset.s;
+      [].forEach.call(this.children,function(x){ x.classList.toggle('on',x===t); });
+      document.querySelectorAll('#speed button').forEach(function(x){ x.classList.toggle('on', x.dataset.s===speed); });
+      stopTAudio(); tq=[]; setChainBtn(false); resetTBtns();
+      document.querySelectorAll('#tbody .pbtn').forEach(function(b){ b.classList.remove('on'); b.textContent='▶'; });
+      document.querySelectorAll('#tbody .w.hi').forEach(function(w){ w.classList.remove('hi'); });
+      toast(speed==='s'?'已切换为慢速，之后的播放均使用慢速':'已切换为常速，之后的播放均使用常速');
     };
     if(ta && ta._qid===q.id && !ta.paused && !ta.ended){
-      if(ta._sp==='s'){ document.getElementById('tslow').classList.add('on'); }
-      else{ tp.classList.add('on'); tp.textContent='暂停播放'; }
+      tp.classList.add('on'); tp.textContent='暂停播放';
     }
     document.getElementById('tstart').onclick=function(){
       if(T.running){ stopTimer(); }
@@ -874,7 +882,6 @@ buildTabs(); render();
   function stopTAudio(){ if(ta){ try{ta.pause();}catch(e){} ta=null; } }
   function resetTBtns(){
     var p=document.getElementById('tplay'); if(p){ p.classList.remove('on'); p.textContent='▶ 播放题目'; }
-    var s=document.getElementById('tslow'); if(s){ s.classList.remove('on'); s.textContent='慢速'; }
   }
   function playT(id, sp){
     stopTAudio(); tq=[]; setChainBtn(false);
