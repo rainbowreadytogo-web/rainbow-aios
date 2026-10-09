@@ -747,10 +747,11 @@ buildTabs(); render();
       +'<button class="tbtn" id="treset">重来</button>'
       +'</div>';
     if(!T.revealed){
-      h+='<div class="trow"><button class="tbtn pri" id="treveal">我答完了，看参考答案</button></div>';
+      h+='<div class="trow">'+(T.pos>0?'<button class="tbtn" id="tprev">上一题</button>':'')+'<button class="tbtn pri" id="treveal">我答完了，看参考答案</button></div>';
     }else{
       h+='<div class="trev">';
       h+='<div class="lab" style="display:inline-block">参考答案 · STAR 拆句</div>';
+      h+='<div class="trow"><button class="tbtn" id="tchain">▶ 连读答案</button></div>';
       q.items.forEach(function(it){
         h+='<div class="tsent" id="tw'+it.idx+'">'
           +'<div class="pbtn" data-pl="'+it.idx+'">▶</div>'
@@ -763,6 +764,7 @@ buildTabs(); render();
       h+='<div class="tip" style="margin-top:10px"><b>面试官视角</b> · '+esc(q.tip)+'</div>';
       h+='</div>';
       h+='<div class="trow">'
+        +(T.pos>0?'<button class="tbtn" id="tprev">上一题</button>':'')
         +'<button class="tbtn'+(M[q.id]==='rev'?' on':'')+'" id="tmkRev">'+LBL.rev+'</button>'
         +'<button class="tbtn'+(M[q.id]==='done'?' on':'')+'" id="tmkDone">'+LBL.done+'</button>'
         +'<button class="tbtn'+(M[q.id]==='star'?' on':'')+'" id="tmkStar">'+LBL.star+'</button>'
@@ -830,9 +832,15 @@ buildTabs(); render();
     var mr=document.getElementById('tmkRev'); if(mr) mr.onclick=mkHandler('rev');
     var md=document.getElementById('tmkDone'); if(md) md.onclick=mkHandler('done');
     var ms=document.getElementById('tmkStar'); if(ms) ms.onclick=mkHandler('star');
+    var tc=document.getElementById('tchain'); if(tc) tc.onclick=startChain;
+    var pv=document.getElementById('tprev');
+    if(pv) pv.onclick=function(){
+      stopTimer(); stopTAudio(); tq=[]; T.pos--;
+      T.revealed=false; T.left=CFG[T.mode].sec; draw(); window.scrollTo(0,0);
+    };
     var nx=document.getElementById('tnext');
     if(nx) nx.onclick=function(){
-      stopTimer(); stopTAudio();
+      stopTimer(); stopTAudio(); tq=[];
       if(T.pos<T.ids.length-1){ T.pos++; T.revealed=false; T.left=CFG[T.mode].sec; draw(); window.scrollTo(0,0); }
       else finish();
     };
@@ -855,7 +863,7 @@ buildTabs(); render();
     buildFilt(); applyFilter();
   }
   function close(){
-    stopTimer(); stopTAudio();
+    stopTimer(); stopTAudio(); tq=[];
     document.getElementById('train').classList.remove('show');
     T=null;
     buildFilt(); applyFilter();
@@ -869,14 +877,15 @@ buildTabs(); render();
     var s=document.getElementById('tslow'); if(s){ s.classList.remove('on'); s.textContent='慢速'; }
   }
   function playT(id, sp){
-    stopTAudio();
+    stopTAudio(); tq=[]; setChainBtn(false);
     document.querySelectorAll('#tbody .pbtn').forEach(function(b){ b.classList.remove('on'); b.textContent='▶'; });
     var a=new Audio(qsrc(id,sp)); a.playbackRate=rates(sp); ta=a; a._qid=id; a._sp=sp;
     a.onended=function(){ if(ta&&ta!==a) return; resetTBtns(); };
     a.onerror=function(){ toast('题目音频没能加载，请检查网络后重试'); if(ta&&ta!==a) return; resetTBtns(); };
     a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){}); },250); });
   }
-  function playSent(idx, btn){
+  function playSent(idx, btn, fromChain){
+    if(!fromChain){ tq=[]; setChainBtn(false); }
     if(ta && ta._sent===idx && !ta.paused && !ta.ended){
       ta.pause(); if(btn){ btn.classList.remove('on'); btn.textContent='▶'; } return;
     }
@@ -905,8 +914,8 @@ buildTabs(); render();
       }
       a.addEventListener('timeupdate',function(){ tTick(a, host); });
     }
-    a.onerror=function(){ toast('这条音频没能加载，请检查网络后重试'); if(ta&&ta!==a) return; if(btn){ btn.classList.remove('on'); btn.textContent='▶'; } };
-    a.onended=function(){ if(ta&&ta!==a) return; if(btn){ btn.classList.remove('on'); btn.textContent='▶'; } };
+    a.onerror=function(){ toast('这条音频没能加载，请检查网络后重试'); if(ta&&ta!==a) return; if(btn){ btn.classList.remove('on'); btn.textContent='▶'; } if(a._chainNext){ var fe=a._chainNext; a._chainNext=null; fe(); } };
+    a.onended=function(){ if(ta&&ta!==a) return; if(btn){ btn.classList.remove('on'); btn.textContent='▶'; } if(a._chainNext){ var fc=a._chainNext; a._chainNext=null; fc(); } };
     a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){}); },250); });
   }
   function tTick(a, host){
@@ -922,6 +931,30 @@ buildTabs(); render();
       host._hi=found;
     }
     if(!a.paused && !a.ended) requestAnimationFrame(function(){ tTick(a,host); });
+  }
+
+  /* 连读：五句 STAR 自动连播 */
+  var tq=[];
+  function setChainBtn(on){
+    var b=document.getElementById('tchain'); if(!b) return;
+    if(on){ b.classList.add('on'); b.textContent='停止连读'; }
+    else{ b.classList.remove('on'); b.textContent='▶ 连读答案'; }
+  }
+  function chainNext(){
+    if(!tq.length){ setChainBtn(false); return; }
+    var idx=tq.shift();
+    var btn=document.querySelector('#tw'+idx+' .pbtn');
+    playSent(idx, btn, true);
+    if(ta) ta._chainNext=chainNext;
+  }
+  function startChain(){
+    var q=curQObj(); if(!q) return;
+    if(tq.length){ tq=[]; stopTAudio(); setChainBtn(false); return; }
+    stopTAudio();
+    document.querySelectorAll('#tbody .pbtn').forEach(function(b){ b.classList.remove('on'); b.textContent='▶'; });
+    tq=q.items.map(function(x){ return x.idx; });
+    setChainBtn(true);
+    chainNext();
   }
 
   /* ---------- 入口绑定 + render 钩子 ---------- */
