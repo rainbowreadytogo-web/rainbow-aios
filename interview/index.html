@@ -23,12 +23,6 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .search{width:100%;box-sizing:border-box;margin-top:10px;padding:9px 12px;border:1px solid #ead9c9;border-radius:20px;background:#fff;font-size:14px;outline:none}
 
 /* 板块 tab */
-.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 18px 2px}
-.tab{flex:0 0 auto;padding:7px 14px;border-radius:999px;border:1px solid var(--line);
-  background:var(--card);font-size:13px;color:var(--sub);white-space:nowrap}
-.tab.on{background:var(--brand);color:#fff;border-color:var(--brand)}
-.tab.off{opacity:.5}
-
 /* STAR 入门讲解 */
 .guide{background:var(--card);border:1px solid var(--line-l);border-radius:14px;margin:12px 14px;padding:16px}
 .guide h2{margin:0 0 4px;font-size:16px;color:var(--brand);font-weight:600}
@@ -195,9 +189,6 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 </div>
 <!-- /V2 首屏 -->
 
-
-<div class="tabs" id="tabs" data-page-node-id="Fka44AW9LZBFI5qFCEvC9F"></div>
-
 <!-- STAR 入门讲解 -->
 <div class="guide" id="guide" data-page-node-id="JyteDGdZ2UMsXZtMQcMgTH">
   <h2 data-page-node-id="QoQXrAr2IDHtx4XB8QVJ1X">先搞懂 STAR，再练这 40 题</h2>
@@ -286,13 +277,7 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 <script src="data.js"></script>
 <script>
 var QS = (window.INTERVIEW && window.INTERVIEW.questions) || [];
-var BOARDS = [
-  {name:'面试英语 × STAR', on:true},
-  {name:'客户接待', on:false},
-  {name:'邮件话术', on:false},
-  {name:'管理模型库', on:false},
-  {name:'外贸英语', on:false}
-];
+var BOARDS_REMOVED=0; /* 品类预告 chips 已移至学习库 learn/ */
 var mode='ktv', speed='n';
 var openQ={}; /* 折叠状态：默认收起，mode/speed 切换重渲染时保留 */
 function toggleQ(id){
@@ -314,16 +299,6 @@ function toast(msg){
   t.textContent=msg; t.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer=setTimeout(function(){ t.classList.remove('show'); },2600);
-}
-
-function buildTabs(){
-  var box=document.getElementById('tabs');
-  BOARDS.forEach(function(b){
-    var d=document.createElement('div');
-    d.className='tab'+(b.on?' on':' off');
-    d.textContent=b.name+(b.on?'':' · 即将上线');
-    box.appendChild(d);
-  });
 }
 
 function tokenize(en, words){
@@ -566,7 +541,7 @@ gt.onclick=function(){
   gb.style.display=hidden?'':'none';
   gt.textContent=hidden?'收起讲解':'展开 STAR 讲解';
 };
-buildTabs(); render();
+render();
 </script>
 
 
