@@ -114,8 +114,8 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
   background:#fff;color:var(--brand);font-size:13px;line-height:30px;text-align:center;cursor:pointer;padding:0;position:relative}
 .pbtn::after{content:"";position:absolute;inset:-6px}
 .pbtn.on{background:var(--brand);color:#fff;border-color:var(--brand);font-size:17px;font-weight:700}
-.pbtn.slow{width:auto;min-width:56px;padding:0 12px;border-radius:16px;font-size:11px;font-weight:600;letter-spacing:1px}
-.pbtn.slow.sel{background:var(--brand);color:#fff;border-color:var(--brand)}
+.pbtn.spd,.pbtn.slow{width:auto;min-width:56px;padding:0 12px;border-radius:16px;font-size:11px;font-weight:600;letter-spacing:1px}
+.pbtn.spd.sel,.pbtn.slow.sel{background:var(--brand);color:#fff;border-color:var(--brand)}
 .copy{border:1px solid var(--line);background:#fff;color:var(--brand-d);border-radius:8px;
   padding:5px 10px;font-size:12px;cursor:pointer;min-height:32px;margin-top:8px}
 .copy:active{background:var(--brand-l)}
@@ -210,7 +210,7 @@ Rainbow</div>
 <div class="empty" id="empty">没有匹配的场景，换个关键词试试</div>
 
 <footer>
-  外企邮件 & 写作库 · v1.2<br>
+  外企邮件 & 写作库 · v1.3<br>
   Rainbow聊外企 · 仅供个人学习使用 · 请勿用作商业用途
 </footer>
 
@@ -315,7 +315,8 @@ function h256(s){
     return '<div class="blk blk-mail"><span class="blab">📄 完整邮件</span>'
       +'<div class="item"><div class="abtns">'
       +'<button class="pbtn" data-a="'+code+'_m" aria-label="播放整封（当前所选语速）">▶</button>'
-      +'<button class="pbtn slow" aria-label="切换慢速" aria-pressed="false">慢速</button>'
+      +'<button class="pbtn spd sel" aria-label="选择常速" aria-pressed="true">常速</button>'
+      +'<button class="pbtn slow" aria-label="选择慢速" aria-pressed="false">慢速</button>'
       +'</div><div class="ibody"><div class="mailbody">'+esc(m.en)+'</div>'
       +(m.cn?'<div class="mailcn">'+esc(m.cn)+'</div>':'')
       +'<div class="copyrow"><button class="copy" data-copy="'+esc(m.en).replace(/\n/g,"&#10;")+'">复制整封</button></div>'
@@ -331,7 +332,8 @@ function h256(s){
     if(en && tier!=="NOAUDIO"){
       h+='<div class="item"><div class="abtns">'
         +'<button class="pbtn" data-a="'+scene+'_'+tier+'" aria-label="播放（当前所选语速）">▶</button>'
-        +'<button class="pbtn slow" aria-label="切换慢速" aria-pressed="false">慢速</button>'
+        +'<button class="pbtn spd sel" aria-label="选择常速" aria-pressed="true">常速</button>'
+      +'<button class="pbtn slow" aria-label="选择慢速" aria-pressed="false">慢速</button>'
         +'</div><div class="ibody"><div class="en">'+esc(en)+'</div>'
         +(gloss?'<div class="gloss">'+esc(gloss)+'</div>':'')
         +'<div class="copyrow"><button class="copy" data-copy="'+esc(en)+'">复制句子</button></div>'
@@ -361,21 +363,23 @@ function h256(s){
       // 首次展开：预加载本卡全部音频（常速+慢速），点播放时基本无延迟
       if(d.classList.contains("open") && !d.dataset.pre){
         d.dataset.pre="1";
-        d.querySelectorAll(".pbtn:not(.slow)").forEach(function(b){ prefetch("audio/"+b.dataset.a+"_n.mp3"); prefetch("audio/"+b.dataset.a+"_s.mp3"); });
+        d.querySelectorAll(".pbtn[data-a]").forEach(function(b){ prefetch("audio/"+b.dataset.a+"_n.mp3"); prefetch("audio/"+b.dataset.a+"_s.mp3"); });
       }
     });
-    d.querySelectorAll(".pbtn.slow").forEach(function(b){
+    d.querySelectorAll(".pbtn.spd,.pbtn.slow").forEach(function(b){
       b.addEventListener("click",function(e){
         e.stopPropagation();
-        var sel=b.classList.toggle("sel");
-        b.setAttribute("aria-pressed",sel?"true":"false");
-        var base=b.parentNode.querySelector(".pbtn").dataset.a;
-        prefetch("audio/"+base+(sel?"_s":"_n")+".mp3");
+        if(b.classList.contains("sel")) return; // 已选中不重复响应
+        var p=b.parentNode;
+        p.querySelectorAll(".pbtn.spd,.pbtn.slow").forEach(function(x){ x.classList.remove("sel"); x.setAttribute("aria-pressed","false"); });
+        b.classList.add("sel"); b.setAttribute("aria-pressed","true");
+        var base=p.querySelector(".pbtn[data-a]").dataset.a;
+        prefetch("audio/"+base+(b.classList.contains("slow")?"_s":"_n")+".mp3");
         // 正在播的这一句如果切了语速，先停掉，避免新旧速度混淆
-        if(curBtn && curBtn.parentNode===b.parentNode) stopAudio();
+        if(curBtn && curBtn.parentNode===p) stopAudio();
       });
     });
-    d.querySelectorAll(".pbtn:not(.slow)").forEach(function(b){
+    d.querySelectorAll(".pbtn[data-a]").forEach(function(b){
       b.addEventListener("click",function(e){
         e.stopPropagation();
         var slow=b.parentNode.querySelector(".pbtn.slow");
