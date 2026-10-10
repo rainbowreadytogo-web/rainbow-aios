@@ -40,8 +40,8 @@ header .htext{flex:1;min-width:0}
 .ipcard .ip3t{min-width:0}
 .ipcard .ip3t b{display:block;font-size:12px;font-weight:700;line-height:1.5}
 .ipcard .ip3t span{display:block;font-size:10.5px;opacity:.8;margin-top:2px;line-height:1.5}
-/* 页内所有小红书号：点击复制 */
-.xhscopy{color:var(--brand-d);cursor:pointer;font-weight:600;border-bottom:1px dotted currentColor}
+/* 页内所有小红书号：点击复制（无下划线，与页脚一致） */
+.xhscopy{color:var(--brand-d);cursor:pointer;font-weight:600}
 .xhscopy:active{opacity:.7}
 @media(max-width:640px){
   header .hwrap{flex-direction:column;gap:12px}
@@ -212,7 +212,7 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
 
 <div class="sec">如何获取完整版？<em>三步解锁</em></div>
 <div class="card">
-  <div class="step"><b>① 购买</b>在小红书找到对应产品笔记，点击笔记上的商品直接下单（搜索：<span class="xhscopy" data-copy="rainbow_work" role="button" tabindex="0">rainbow_work</span>，点击复制）</div>
+  <div class="step"><b>① 购买</b>在小红书找到对应产品笔记，点击笔记上的商品直接下单；小红书搜索 <span class="xhscopy" data-copy="rainbow_work" role="button" tabindex="0">rainbow_work</span>（点击复制）</div>
   <div class="step"><b>② 收口令</b>下单后系统自动发货，你会收到一个解锁口令</div>
   <div class="step"><b>③ 解锁</b>回到本页点上面的「进入完整版」，在页面输入口令即永久解锁</div>
   <div class="meta" style="margin-top:12px">口令长期有效 · 内容持续可听 · 已购用户不受任何影响<br>已购小贴士：同一浏览器自动识别解锁记录，无需重输口令；换设备或换浏览器首次打开需输一次口令，之后永久有效</div>
@@ -223,8 +223,8 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
 <footer>
   Rainbow 聊外企 · 职场英语学习库<br>
   内容原创 · 音频由本人制作 · 小红书号
-  <span id="xhsid" class="xhscopy" data-copy="rainbow_work" role="button" tabindex="0" style="border-bottom:none">rainbow_work</span>
-  <span style="opacity:.6"> · v1.11</span>
+  <span id="xhsid" class="xhscopy" data-copy="rainbow_work" role="button" tabindex="0">rainbow_work</span>
+  <span style="opacity:.6"> · v1.12</span>
 </footer>
 
 <script>
