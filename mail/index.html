@@ -31,8 +31,13 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .tab.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 
 /* 拼装示例 */
-.assemble{background:var(--card);border:1px solid var(--line-l);border-radius:14px;margin:12px 14px;padding:16px}
-.assemble h2{margin:0 0 4px;font-size:16px;color:var(--brand);font-weight:600}
+.assemble{background:var(--card);border:1px solid var(--line-l);border-radius:14px;margin:12px 14px;padding:12px 16px}
+.aghead{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding:2px 0;min-height:44px}
+.aghead h2{margin:0;font-size:16px;color:var(--brand);font-weight:600}
+.aghead .aghint{font-size:11.5px;color:var(--muted);font-weight:400}
+.aghead .agchev{margin-left:auto;color:var(--brand);font-size:16px;font-weight:700;transition:transform .2s}
+.assemble.closed .agchev{transform:rotate(-90deg)}
+.assemble.closed .agbody{display:none}
 .assemble .sub{font-size:12px;color:var(--muted);margin:0 0 10px;line-height:1.6}
 .prow{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px dashed var(--line-l)}
 .pkey{flex:0 0 auto;font-size:11px;color:var(--brand-d);background:var(--brand-l);border-radius:6px;padding:3px 8px;font-weight:600;white-space:nowrap;margin-top:2px}
@@ -41,7 +46,7 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .sample .prow:first-child{border-top:none}
 .pbody{flex:1;min-width:0;font-size:14px;line-height:1.7;color:var(--ink)}
 .pbody em{font-style:normal;font-size:11px;color:var(--muted);display:block;margin-top:2px}
-.plink{font-style:normal;font-size:11.5px;color:var(--brand-d);display:inline-block;margin-top:3px;text-decoration:underline;cursor:pointer}
+.plink{font-style:normal;font-size:10.5px;color:var(--brand-d);background:var(--brand-l);border:1px solid #eccbb8;border-radius:999px;padding:1px 8px;margin-top:3px;display:inline-block;cursor:pointer;text-decoration:none;white-space:nowrap}
 .mrow{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 6px 32px}
 .mchip{font-size:11.5px;color:var(--brand-d);background:var(--brand-l);border:1px solid #eccbb8;border-radius:999px;padding:4px 10px;cursor:pointer;font-weight:600;min-height:0;line-height:1.4}
 .mchip:active{background:#eccbb8}
@@ -94,8 +99,9 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .pbtn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
   background:#fff;color:var(--brand);font-size:13px;line-height:30px;text-align:center;cursor:pointer;padding:0;position:relative}
 .pbtn::after{content:"";position:absolute;inset:-6px}
-.pbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.pbtn.on{background:var(--brand);color:#fff;border-color:var(--brand);font-size:17px;font-weight:700}
 .pbtn.slow{width:auto;min-width:56px;padding:0 12px;border-radius:16px;font-size:11px;font-weight:600;letter-spacing:1px}
+.pbtn.slow.sel{background:var(--brand);color:#fff;border-color:var(--brand)}
 .copy{border:1px solid var(--line);background:#fff;color:var(--brand-d);border-radius:8px;
   padding:5px 10px;font-size:12px;cursor:pointer;min-height:32px;margin-top:8px}
 .copy:active{background:var(--brand-l)}
@@ -144,10 +150,11 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
   <div class="entry-row"><a href="../learn/">学习库总入口 →</a></div>
 </header>
 
-<!-- 拼装示例 -->
-<div class="assemble">
-  <h2>三步写出一封完整的邮件</h2>
-  <div class="step"><span class="snum">1</span><div class="stext"><b>找场景</b>：下方模块是 50 个场景的分类，不是邮件的段落——邮件只分开头、主体、结尾三段。B–F 模块按事项分类（催进度、道歉、拒绝等），均为主体部分的备选句；A 模块收录开头与结尾的常用句。先明确要办的事，再点下方模块进入，或在顶部搜索框输入关键词（如「催进度」「道歉」「约会议」）：</div></div>
+<!-- 拼装示例（可折叠，默认收起） -->
+<div class="assemble closed">
+  <div class="aghead" id="aghead"><h2>三步写出一封完整的邮件</h2><span class="aghint">点开看用法</span><span class="agchev">▾</span></div>
+  <div class="agbody">
+  <div class="step"><span class="snum">1</span><div class="stext"><b>找场景</b>：点下面的分类，或在顶部搜索（如「催进度」「道歉」「约会议」），打开你要的场景卡。</div></div>
   <div class="mrow">
     <button class="mchip" data-mod="A">A 开口与收尾</button>
     <button class="mchip" data-mod="B">B 请求与推动</button>
@@ -156,15 +163,15 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
     <button class="mchip" data-mod="E">E 道歉与补救</button>
     <button class="mchip" data-mod="F">F 向上与对外</button>
   </div>
-  <div class="step"><span class="snum">2</span><div class="stext"><b>选写法</b>：如果想快点发出去——就在下方点开那个场景，点「📄 完整邮件」里的<b>复制整封</b>，改掉名字、日期、数字，直接发。如果想更像自己写的——只挑 ✅ 或 ⬆️ 里的单句，按下面的结构拼成一封。</div></div>
-  <div class="step"><span class="snum">3</span><div class="stext"><b>补开头和结尾</b>：开头去 <button class="mchip" data-mod="A">A 开口与收尾</button> 挑（A1 冷邮件、A2 开头、A4 结尾），结尾也回这个模块收口（A4 / A8）。</div></div>
-  <p class="sub">下面是拼好的成品——一封「催进度」的邮件，可以直接复制去用。左边标出每段来自哪个场景，点「来自 ××」能跳到那个场景看更多同类说法：</p>
+  <div class="step"><span class="snum">2</span><div class="stext"><b>选写法</b>：最省事——点开场景卡，用「📄 完整邮件」里的复制整封，改掉名字、日期、数字，直接发。想更像自己写的——只挑 ✅ 或 ⬆️ 的单句，照下面的样子拼成一封。</div></div>
+  <div class="step"><span class="snum">3</span><div class="stext"><b>补开头结尾</b>：开头、结尾都去 <button class="mchip" data-mod="A">A 开口与收尾</button> 挑（A2 开头 / A4 结尾）。</div></div>
+  <p class="sub">下面是拼好的成品——一封「催进度」邮件，可以直接复制去用。句子旁的小标签是它的出处，点一下就跳到那个场景：</p>
   <div class="sample">
     <div class="prow"><span class="pkey fix">主题</span><div class="pbody">Subject: Following up — Friday deadline at risk</div></div>
     <div class="prow"><span class="pkey fix">称呼</span><div class="pbody">Hi David,</div></div>
-    <div class="prow"><span class="pkey">开头</span><div class="pbody">Thanks for the update — quick note below.<a class="plink" data-go="A2">来自 A2 邮件开头 →</a></div></div>
-    <div class="prow"><span class="pkey">主体</span><div class="pbody">I haven't heard back, so I wanted to flag that we're now at risk of missing Friday's deadline.<a class="plink" data-go="B5">来自 B5 催进度（第二次升级）→</a></div></div>
-    <div class="prow"><span class="pkey">结尾</span><div class="pbody">Let me know if you'd like me to take this further.<a class="plink" data-go="A4">来自 A4 邮件收尾 →</a></div></div>
+    <div class="prow"><span class="pkey">开头</span><div class="pbody">Thanks for the update — quick note below.<a class="plink" data-go="A2">A2 开头</a></div></div>
+    <div class="prow"><span class="pkey">主体</span><div class="pbody">I haven't heard back, so I wanted to flag that we're now at risk of missing Friday's deadline.<a class="plink" data-go="B5">B5 催进度</a></div></div>
+    <div class="prow"><span class="pkey">结尾</span><div class="pbody">Let me know if you'd like me to take this further.<a class="plink" data-go="A4">A4 收尾</a></div></div>
     <div class="prow"><span class="pkey fix">落款</span><div class="pbody">Best regards,<br>Rainbow</div></div>
     <div class="mailcn">主题：跟进——周五截止日有风险
 
@@ -180,7 +187,8 @@ David 你好，
 Rainbow</div>
     <div class="copyrow"><button class="copy" data-copy="Subject: Following up — Friday deadline at risk&#10;&#10;Hi David,&#10;&#10;Thanks for the update — quick note below.&#10;&#10;I haven't heard back, so I wanted to flag that we're now at risk of missing Friday's deadline.&#10;&#10;Let me know if you'd like me to take this further.&#10;&#10;Best regards,&#10;Rainbow">复制这封示例邮件</button></div>
   </div>
-  <div class="atotal">💡 三个句子来自三个场景——真实邮件就是这样「拼」出来的。邮件里的「主体」不一定要自己写：先按你的事找到对应场景，抄一句 ✅ 或 ⬆️ 放进主体，再去 A 模块补开头和结尾。想省事就直接开场景卡，用「📄 完整邮件」复制整封。</div>
+  <div class="atotal">💡 这封邮件就是从 3 个场景各抄一句拼出来的。最省事的用法：打开场景卡，点「📄 完整邮件」里的复制整封，改掉名字和数字就能发。</div>
+  </div>
 </div>
 
 <div class="tabs" id="tabs"></div>
@@ -189,7 +197,7 @@ Rainbow</div>
 <div class="empty" id="empty">没有匹配的场景，换个关键词试试</div>
 
 <footer>
-  外企邮件 & 写作库 · v1.0<br>
+  外企邮件 & 写作库 · v1.1<br>
   Rainbow聊外企 · 仅供个人学习使用 · 请勿用作商业用途
 </footer>
 
@@ -273,15 +281,18 @@ function h256(s){
 
   // ---- audio ----
   var curAudio=null, curBtn=null;
-  function stopAudio(){ if(curAudio){ curAudio.pause(); } if(curBtn){ curBtn.classList.remove("on"); curBtn=null; } curAudio=null; }
+  function stopAudio(){ if(curAudio){ curAudio.pause(); } if(curBtn){ curBtn.classList.remove("on"); curBtn.textContent="▶"; curBtn=null; } curAudio=null; }
   function play(btn,src){
     if(curBtn===btn && curAudio){ stopAudio(); return; }
     stopAudio();
-    curAudio=new Audio(src); curBtn=btn; btn.classList.add("on");
+    curAudio=new Audio(src); curBtn=btn;
+    btn.classList.add("on"); btn.textContent="■";
     curAudio.addEventListener("ended",stopAudio);
     curAudio.addEventListener("error",function(){ say("音频加载失败，请检查网络"); stopAudio(); });
     curAudio.play().catch(function(){});
   }
+  // 预加载：卡片展开 / 切换语速时提前拉取音频，降低点播放后的延迟
+  function prefetch(src){ try{ var a=new Audio(); a.preload="auto"; a.src=src; a.load(); }catch(e){} }
 
   // ---- copy ----
   function doCopy(text,btn){
@@ -303,8 +314,8 @@ function h256(s){
     var m=(window.MAILS||{})[code]; if(!m||!m.en) return "";
     return '<div class="blk blk-mail"><span class="blab">📄 完整邮件</span>'
       +'<div class="item"><div class="abtns">'
-      +'<button class="pbtn" data-a="'+code+'_m_n.mp3" aria-label="播放整封（正常语速）">▶</button>'
-      +'<button class="pbtn slow" data-a="'+code+'_m_s.mp3" aria-label="播放整封（慢速）">慢速</button>'
+      +'<button class="pbtn" data-a="'+code+'_m" aria-label="播放整封（当前所选语速）">▶</button>'
+      +'<button class="pbtn slow" aria-label="切换慢速" aria-pressed="false">慢速</button>'
       +'</div><div class="ibody"><div class="mailbody">'+esc(m.en)+'</div>'
       +(m.cn?'<div class="mailcn">'+esc(m.cn)+'</div>':'')
       +'<div class="copyrow"><button class="copy" data-copy="'+esc(m.en).replace(/\n/g,"&#10;")+'">复制整封</button></div>'
@@ -319,8 +330,8 @@ function h256(s){
     var h='<div class="blk '+cls+'"><span class="blab">'+lab+'</span>';
     if(en && tier!=="NOAUDIO"){
       h+='<div class="item"><div class="abtns">'
-        +'<button class="pbtn" data-a="'+scene+'_'+tier+'_n.mp3" aria-label="播放正常语速">▶</button>'
-        +'<button class="pbtn slow" data-a="'+scene+'_'+tier+'_s.mp3" aria-label="播放慢速">慢速</button>'
+        +'<button class="pbtn" data-a="'+scene+'_'+tier+'" aria-label="播放（当前所选语速）">▶</button>'
+        +'<button class="pbtn slow" aria-label="切换慢速" aria-pressed="false">慢速</button>'
         +'</div><div class="ibody"><div class="en">'+esc(en)+'</div>'
         +(gloss?'<div class="gloss">'+esc(gloss)+'</div>':'')
         +'<div class="copyrow"><button class="copy" data-copy="'+esc(en)+'">复制句子</button></div>'
@@ -345,9 +356,32 @@ function h256(s){
       +itemBlock("blk-warn","⚠️ 别这么写",s.warn,"照抄反面教材，对方一眼看出你是新手","","NOAUDIO")
       +itemBlock("blk-cn","💡 中文拆解","",'<div class="cntext">'+esc(s.cn)+'</div>',"")
       +'</div>';
-    d.querySelector(".stop").addEventListener("click",function(){ d.classList.toggle("open"); });
-    d.querySelectorAll(".pbtn").forEach(function(b){
-      b.addEventListener("click",function(e){ e.stopPropagation(); play(b,"audio/"+b.dataset.a); });
+    d.querySelector(".stop").addEventListener("click",function(){
+      d.classList.toggle("open");
+      // 首次展开：预加载本卡全部音频（常速+慢速），点播放时基本无延迟
+      if(d.classList.contains("open") && !d.dataset.pre){
+        d.dataset.pre="1";
+        d.querySelectorAll(".pbtn:not(.slow)").forEach(function(b){ prefetch("audio/"+b.dataset.a+"_n.mp3"); prefetch("audio/"+b.dataset.a+"_s.mp3"); });
+      }
+    });
+    d.querySelectorAll(".pbtn.slow").forEach(function(b){
+      b.addEventListener("click",function(e){
+        e.stopPropagation();
+        var sel=b.classList.toggle("sel");
+        b.setAttribute("aria-pressed",sel?"true":"false");
+        var base=b.parentNode.querySelector(".pbtn").dataset.a;
+        prefetch("audio/"+base+(sel?"_s":"_n")+".mp3");
+        // 正在播的这一句如果切了语速，先停掉，避免新旧速度混淆
+        if(curBtn && curBtn.parentNode===b.parentNode) stopAudio();
+      });
+    });
+    d.querySelectorAll(".pbtn:not(.slow)").forEach(function(b){
+      b.addEventListener("click",function(e){
+        e.stopPropagation();
+        var slow=b.parentNode.querySelector(".pbtn.slow");
+        var sp=(slow && slow.classList.contains("sel"))?"_s":"_n";
+        play(b,"audio/"+b.dataset.a+sp+".mp3");
+      });
     });
     d.querySelectorAll(".copy").forEach(function(b){
       b.addEventListener("click",function(e){ e.stopPropagation(); doCopy(b.dataset.copy,b); });
@@ -373,6 +407,14 @@ function h256(s){
   var scBtn=document.querySelector(".sample .copy");
   if(scBtn) scBtn.addEventListener("click",function(){ doCopy(scBtn.dataset.copy,scBtn); });
   document.querySelector(".assemble").addEventListener("click",function(e){
+    var head=e.target.closest(".aghead");
+    if(head){
+      var asm=head.parentNode;
+      asm.classList.toggle("closed");
+      var hint=asm.querySelector(".aghint");
+      if(hint) hint.textContent = asm.classList.contains("closed") ? "点开看用法" : "点这里收起";
+      return;
+    }
     var mc=e.target.closest(".mchip");
     if(mc){
       curMod=mc.dataset.mod; curQ="";
