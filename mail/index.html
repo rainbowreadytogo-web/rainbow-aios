@@ -30,6 +30,20 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
   background:var(--card);font-size:13px;color:var(--sub);white-space:nowrap}
 .tab.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 
+/* 模块手风琴分组 */
+.mgroup{margin:0 14px 12px;background:var(--card);border:1px solid var(--line-l);border-radius:14px;overflow:hidden}
+.mghead{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;user-select:none;min-height:48px}
+.mghead:active{background:var(--soft)}
+.mgcode{font-size:12px;font-weight:700;color:#fff;background:var(--brand);border-radius:7px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.mgname{flex:1;min-width:0;font-size:14.5px;font-weight:600;color:var(--ink)}
+.mgcount{font-size:11px;color:var(--muted);flex:0 0 auto;white-space:nowrap}
+.mgchev{color:var(--brand);font-size:18px;font-weight:700;line-height:1;transition:transform .2s;flex:0 0 auto}
+.mgroup.open .mgchev{transform:rotate(90deg)}
+.mgbody{display:none;padding:4px 10px 10px}
+.mgroup.open .mgbody{display:block}
+.mgroup.hit{border-color:var(--brand)}
+.mgbody .scard{margin:0 0 10px}
+
 /* 拼装示例 */
 .assemble{background:var(--card);border:1px solid var(--line-l);border-radius:14px;margin:12px 14px;padding:12px 16px}
 .aghead{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding:2px 0;min-height:44px}
@@ -152,7 +166,7 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 
 <!-- 拼装示例（可折叠，默认收起） -->
 <div class="assemble closed">
-  <div class="aghead" id="aghead"><h2>三步写出一封完整的邮件</h2><span class="aghint">点开看用法</span><span class="agchev">▾</span></div>
+  <div class="aghead" id="aghead"><h2>三步写出一封完整的邮件</h2><span class="aghint">使用指引</span><span class="agchev">▾</span></div>
   <div class="agbody">
   <div class="step"><span class="snum">1</span><div class="stext"><b>找场景</b>：点下面的分类，或在顶部搜索（如「催进度」「道歉」「约会议」），打开你要的场景卡。</div></div>
   <div class="mrow">
@@ -191,13 +205,12 @@ Rainbow</div>
   </div>
 </div>
 
-<div class="tabs" id="tabs"></div>
-<div class="modhead" id="modhead"></div>
+<div class="modhead" id="modhead" style="display:none"></div>
 <div id="list"></div>
 <div class="empty" id="empty">没有匹配的场景，换个关键词试试</div>
 
 <footer>
-  外企邮件 & 写作库 · v1.1<br>
+  外企邮件 & 写作库 · v1.2<br>
   Rainbow聊外企 · 仅供个人学习使用 · 请勿用作商业用途
 </footer>
 
@@ -256,24 +269,11 @@ function h256(s){
   ginput.addEventListener("keydown",function(e){ if(e.key==="Enter") unlock(); });
   if(!gate.classList.contains("hide")) ginput.focus();
 
-  var D=window.MAIL, list=document.getElementById("list"), tabs=document.getElementById("tabs"),
+  var D=window.MAIL, list=document.getElementById("list"),
       modhead=document.getElementById("modhead"), empty=document.getElementById("empty");
-  var curMod="ALL", curQ="";
+  var curQ="";
+  var openMods={};
   var TAGN={"对内":"对内","对外":"对外","对上":"对上","通用":"通用"};
-
-  // ---- tabs ----
-  var tabAll=document.createElement("button");
-  function mkTab(id,name,count){
-    var b=document.createElement("button"); b.className="tab"; b.textContent=name+" "+count;
-    b.dataset.mod=id;
-    b.addEventListener("click",function(){ curMod=id; syncTabs(); render(); });
-    return b;
-  }
-  tabAll=mkTab("ALL","全部",D.scenes.length); tabs.appendChild(tabAll);
-  D.modules.forEach(function(m){ tabs.appendChild(mkTab(m.id,m.id+" "+m.name,m.count)); });
-  function syncTabs(){
-    [].forEach.call(tabs.children,function(b){ b.className="tab"+(b.dataset.mod===curMod?" on":""); });
-  }
 
   // ---- toast ----
   var toast=document.getElementById("toast"),tt=null;
@@ -391,17 +391,35 @@ function h256(s){
   function render(){
     list.innerHTML=""; stopAudio();
     var n=0;
-    D.scenes.forEach(function(s){
-      if(curMod!=="ALL" && s.mod!==curMod) return;
-      var c=card(s);
-      if(curQ && c.dataset.key.indexOf(curQ)<0) return;
-      list.appendChild(c); n++;
+    D.modules.forEach(function(m){
+      var wrap=document.createElement("div"); wrap.className="mgroup"; wrap.id="mod-"+m.id;
+      var head=document.createElement("div"); head.className="mghead";
+      head.setAttribute("role","button"); head.setAttribute("tabindex","0");
+      head.setAttribute("aria-label","展开或收起 "+m.id+" "+m.name);
+      head.innerHTML='<span class="mgcode">'+m.id+'</span><span class="mgname">'+esc(m.name)
+        +'</span><span class="mgcount">'+m.count+' 个场景</span><span class="mgchev">›</span>';
+      var body=document.createElement("div"); body.className="mgbody";
+      var cnt=0;
+      D.scenes.forEach(function(s){
+        if(s.mod!==m.id) return;
+        var c=card(s);
+        if(curQ && c.dataset.key.indexOf(curQ)<0) return;
+        body.appendChild(c); cnt++; n++;
+      });
+      if(curQ && !cnt) return; // 搜索时隐藏无命中的模块
+      wrap.appendChild(head); wrap.appendChild(body); list.appendChild(wrap);
+      if(curQ && cnt){ wrap.classList.add("open","hit"); }
+      else if(openMods[m.id]){ wrap.classList.add("open"); }
+      head.addEventListener("click",function(){
+        var open=wrap.classList.toggle("open");
+        openMods[m.id]=open;
+      });
     });
-    modhead.textContent = curMod==="ALL" ? ("共 50 个场景 · 当前显示 "+n+" 个")
-      : (curMod+" "+D.modules.filter(function(m){return m.id===curMod;})[0].name+" · "+n+" 个场景");
-    empty.style.display = n? "none":"block";
+    modhead.textContent="找到 "+n+" 个场景";
+    modhead.style.display = curQ ? "block" : "none";
+    empty.style.display = n ? "none" : "block";
   }
-  syncTabs(); render();
+  render();
 
   // 拼装示例「来自 ××」→ 跳转到场景卡并展开；模块按钮 → 筛选并滚到列表
   var scBtn=document.querySelector(".sample .copy");
@@ -412,29 +430,32 @@ function h256(s){
       var asm=head.parentNode;
       asm.classList.toggle("closed");
       var hint=asm.querySelector(".aghint");
-      if(hint) hint.textContent = asm.classList.contains("closed") ? "点开看用法" : "点这里收起";
+      if(hint) hint.textContent = asm.classList.contains("closed") ? "使用指引" : "收起";
       return;
     }
     var mc=e.target.closest(".mchip");
     if(mc){
-      curMod=mc.dataset.mod; curQ="";
+      curQ="";
       var si2=document.getElementById("search"); if(si2) si2.value="";
-      syncTabs(); render();
-      document.getElementById("tabs").scrollIntoView({behavior:"smooth",block:"start"});
+      render();
+      var g=list.querySelector("#mod-"+mc.dataset.mod);
+      if(g){ g.classList.add("open"); openMods[mc.dataset.mod]=true; g.scrollIntoView({behavior:"smooth",block:"start"}); }
       return;
     }
     var t=e.target.closest(".plink"); if(!t) return;
     var code=t.dataset.go;
-    curMod="ALL"; curQ="";
+    curQ="";
     var si=document.getElementById("search"); if(si) si.value="";
-    syncTabs(); render();
-    var card=list.querySelector('.scard[data-code="'+code+'"]');
-    if(!card) return;
-    card.classList.add("open");
-    card.scrollIntoView({behavior:"smooth",block:"start"});
-    card.style.transition="box-shadow .3s";
-    card.style.boxShadow="0 0 0 2px var(--brand)";
-    setTimeout(function(){ card.style.boxShadow=""; },1800);
+    render();
+    var g2=list.querySelector("#mod-"+code.slice(0,1));
+    if(g2){ g2.classList.add("open"); openMods[code.slice(0,1)]=true; }
+    var target=list.querySelector('.scard[data-code="'+code+'"]');
+    if(!target) return;
+    target.classList.add("open");
+    target.scrollIntoView({behavior:"smooth",block:"start"});
+    target.style.transition="box-shadow .3s";
+    target.style.boxShadow="0 0 0 2px var(--brand)";
+    setTimeout(function(){ target.style.boxShadow=""; },1800);
   });
 
   document.getElementById("search").addEventListener("input",function(e){
