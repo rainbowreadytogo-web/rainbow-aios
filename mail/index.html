@@ -102,6 +102,8 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .blk-mail .blab{color:var(--brand-d)}
 .mailbody{font-size:13.5px;line-height:1.75;color:var(--ink);white-space:pre-line;font-family:inherit}
 .mailcn{font-size:12.5px;line-height:1.7;color:var(--sub);white-space:pre-line;margin-top:10px;padding-top:10px;border-top:1px dashed #eccbb8}
+/* 待替换槽位：名字、日期、数字、金额（发送前换成自己的） */
+.slot{background:rgba(196,90,42,.13);color:var(--brand-d);font-weight:700;border-radius:4px;padding:0 2px}
 .blk-warn .en{color:#7c4a45;font-size:15px}
 .cn{font-size:12.5px;color:var(--sub);line-height:1.7;margin-top:6px}
 .blk-cn .cntext{font-size:13px;color:#5d5138;line-height:1.75}
@@ -179,26 +181,26 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
   </div>
   <div class="step"><span class="snum">2</span><div class="stext"><b>选写法</b>：最省事——点开场景卡，用「📄 完整邮件」里的复制整封，改掉名字、日期、数字，直接发。想更像自己写的——只挑 ✅ 或 ⬆️ 的单句，照下面的样子拼成一封。</div></div>
   <div class="step"><span class="snum">3</span><div class="stext"><b>补开头结尾</b>：开头、结尾都去 <button class="mchip" data-mod="A">A 开口与收尾</button> 挑（A2 开头 / A4 结尾）。</div></div>
-  <p class="sub">下面是拼好的成品——一封「催进度」邮件，可以直接复制去用。句子旁的小标签是它的出处，点一下就跳到那个场景：</p>
+  <p class="sub">下面是拼好的成品——一封「催进度」邮件，可以直接复制去用。句子旁的小标签是它的出处，点一下就跳到那个场景。邮件里<b class="slot">橙色加粗</b>的名字、日期、数字，发送前替换成你自己的信息：</p>
   <div class="sample">
-    <div class="prow"><span class="pkey fix">主题</span><div class="pbody">Subject: Following up — Friday deadline at risk</div></div>
-    <div class="prow"><span class="pkey fix">称呼</span><div class="pbody">Hi David,</div></div>
+    <div class="prow"><span class="pkey fix">主题</span><div class="pbody">Subject: Following up — <mark class="slot">Friday</mark> deadline at risk</div></div>
+    <div class="prow"><span class="pkey fix">称呼</span><div class="pbody">Hi <mark class="slot">David</mark>,</div></div>
     <div class="prow"><span class="pkey">开头</span><div class="pbody">Thanks for the update — quick note below.<a class="plink" data-go="A2">A2 开头</a></div></div>
-    <div class="prow"><span class="pkey">主体</span><div class="pbody">I haven't heard back, so I wanted to flag that we're now at risk of missing Friday's deadline.<a class="plink" data-go="B5">B5 催进度</a></div></div>
+    <div class="prow"><span class="pkey">主体</span><div class="pbody">I haven't heard back, so I wanted to flag that we're now at risk of missing <mark class="slot">Friday's</mark> deadline.<a class="plink" data-go="B5">B5 催进度</a></div></div>
     <div class="prow"><span class="pkey">结尾</span><div class="pbody">Let me know if you'd like me to take this further.<a class="plink" data-go="A4">A4 收尾</a></div></div>
-    <div class="prow"><span class="pkey fix">落款</span><div class="pbody">Best regards,<br>Rainbow</div></div>
-    <div class="mailcn">主题：跟进——周五截止日有风险
+    <div class="prow"><span class="pkey fix">落款</span><div class="pbody">Best regards,<br><mark class="slot">Rainbow</mark></div></div>
+    <div class="mailcn">主题：跟进——<mark class="slot">周五</mark>截止日有风险
 
-David 你好，
+<mark class="slot">David</mark> 你好，
 
 谢谢更新——下面简短说几句。
 
-还没收到回复，所以想提醒：我们有赶不上周五截止日期的风险了。
+还没收到回复，所以想提醒：我们有赶不上<mark class="slot">周五</mark>截止日期的风险了。
 
 如果需要我继续推进，随时告诉我。
 
 祝好
-Rainbow</div>
+<mark class="slot">Rainbow</mark></div>
     <div class="copyrow"><button class="copy" data-copy="Subject: Following up — Friday deadline at risk&#10;&#10;Hi David,&#10;&#10;Thanks for the update — quick note below.&#10;&#10;I haven't heard back, so I wanted to flag that we're now at risk of missing Friday's deadline.&#10;&#10;Let me know if you'd like me to take this further.&#10;&#10;Best regards,&#10;Rainbow">复制这封示例邮件</button></div>
   </div>
   <div class="atotal">💡 这封邮件就是从 3 个场景各抄一句拼出来的。最省事的用法：打开场景卡，点「📄 完整邮件」里的复制整封，改掉名字和数字就能发。</div>
@@ -210,7 +212,7 @@ Rainbow</div>
 <div class="empty" id="empty">没有匹配的场景，换个关键词试试</div>
 
 <footer>
-  外企邮件 & 写作库 · v1.3<br>
+  外企邮件 & 写作库 · v1.4<br>
   Rainbow聊外企 · 仅供个人学习使用 · 请勿用作商业用途
 </footer>
 
@@ -310,6 +312,18 @@ function h256(s){
 
   // ---- 渲染 ----
   function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+  // 标出待替换槽位：署名 / 称呼名字 / 日期星期时间 / 时长数量百分比 / 金额（中英同步）
+  function markSlots(t){
+    t=t.replace(/\n([A-Z][A-Za-z\.]+)\s*$/,'<mark class="slot">$1</mark>');
+    t=t.replace(/(^|\n)((?:Hi|Hello|Dear|Hey)\s+)([A-Z][A-Za-z\.]+|all|team|both)/g,'$1$2<mark class="slot">$3</mark>');
+    t=t.replace(/(^|[^&\w\-])(\d+(?:\.\d+)?\s?[-–—]?\s?(?:%|percent|minutes?|mins?|hours?|hrs?|days?|weeks?|months?|years?)\b)/gi,'$1<mark class="slot">$2</mark>');
+    t=t.replace(/(^|[^&\w])((?:Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day(?:'s)?\b|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s?\d{1,2}(?:st|nd|rd|th)?\b|\d{1,2}:\d{2}\s?(?:am|pm)?\b|\d{1,2}(?:st|nd|rd|th)\s+of\s+[A-Z][a-z]+)/g,'$1<mark class="slot">$2</mark>');
+    t=t.replace(/([$€£¥]\s?\d[\d,\.]*)/g,'<mark class="slot">$1</mark>');
+    t=t.replace(/(^|\n)([A-Z][A-Za-z\.]+)(?=\s*(?:你好|您好))/g,'$1<mark class="slot">$2</mark>');
+    t=t.replace(/(\d{1,2}月\d{1,2}[日号]|\d{1,2}[日号]|周[一二三四五六日末]|星期[一二三四五六日末])/g,'<mark class="slot">$1</mark>');
+    t=t.replace(/(\d+(?:\.\d+)?\s*(?:分钟|小时|天|周|个月|万|%|％|元)(?![日号]))/g,'<mark class="slot">$1</mark>');
+    return t.replace(/<\/mark><mark class="slot">/g,'');
+  }
   function mailBlock(code){
     var m=(window.MAILS||{})[code]; if(!m||!m.en) return "";
     return '<div class="blk blk-mail"><span class="blab">📄 完整邮件</span>'
@@ -317,8 +331,8 @@ function h256(s){
       +'<button class="pbtn" data-a="'+code+'_m" aria-label="播放整封（当前所选语速）">▶</button>'
       +'<button class="pbtn spd sel" aria-label="选择常速" aria-pressed="true">常速</button>'
       +'<button class="pbtn slow" aria-label="选择慢速" aria-pressed="false">慢速</button>'
-      +'</div><div class="ibody"><div class="mailbody">'+esc(m.en)+'</div>'
-      +(m.cn?'<div class="mailcn">'+esc(m.cn)+'</div>':'')
+      +'</div><div class="ibody"><div class="mailbody">'+markSlots(esc(m.en))+'</div>'
+      +(m.cn?'<div class="mailcn">'+markSlots(esc(m.cn))+'</div>':'')
       +'<div class="copyrow"><button class="copy" data-copy="'+esc(m.en).replace(/\n/g,"&#10;")+'">复制整封</button></div>'
       +'</div></div></div>';
   }
