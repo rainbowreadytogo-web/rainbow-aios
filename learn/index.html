@@ -120,7 +120,8 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
   <div class="jstep on" data-goto="#interview"><b>① 求职期</b>面试英语 × STAR</div>
   <div class="jstep on" data-goto="#shelf"><b>② 入职期</b>300 句 · 850 句</div>
   <div class="jstep on" data-goto="#c-manual"><b>③ 站稳期</b>生存手册</div>
-  <div class="jstep soon" data-goto="#soon"><b>④ 进阶期</b>即将上线 · 4 款筹备中</div>
+  <div class="jstep on" data-goto="#c-mail"><b>④ 进阶期</b>外企邮件 &amp; 写作库</div>
+  <div class="jstep soon" data-goto="#soon"><b>⑤ 预告</b>即将上线 · 3 款筹备中</div>
 </div>
 
 </div>
@@ -171,10 +172,18 @@ footer{padding:20px 18px 8px;font-size:11px;color:var(--muted);line-height:1.8;t
   <div class="row"><a class="btn primary" href="../manual/">查看完整版 · 6 章 55 节</a></div>
 </div>
 
-<div class="sec" id="soon">进阶期 · 即将上线<em>筹备中的四款，上线顺序按大家的需求排</em></div>
+<div class="card" id="c-mail">
+  <span class="price">¥29.9</span>
+  <span class="badge">进阶期 · 拿来就能发</span>
+  <h2>外企邮件 & 写作库</h2>
+  <p class="desc">50 个外企真实邮件场景，每个场景给三步写法指引 + 一封可直接复制的完整邮件 + 中英对照，写完就能发，不用再从零憋句子。</p>
+  <div class="meta">50 场景 · 300 条音频 · 50 篇完整邮件模板 · 一键复制 · 中英对照</div>
+  <div class="row"><a class="btn primary" href="../mail/">查看完整版 · 50 个邮件场景</a></div>
+</div>
+
+<div class="sec" id="soon">即将上线<em>筹备中的三款，上线顺序按大家的需求排</em></div>
 <div class="card">
   <div class="step"><b>客户接待</b>接待 · 拜访 · 送客全流程英语<span class="st">筹备中</span></div>
-  <div class="step"><b>邮件话术</b>50 个外企邮件场景的写法与改写<span class="st doing">内容审校中</span></div>
   <div class="step"><b>管理模型库</b>外企管理场景的表达框架与说法<span class="st">筹备中</span></div>
   <div class="step"><b>外贸英语</b>询盘 · 报价 · 谈判 · 跟单全流程<span class="st">筹备中</span></div>
   <div class="meta" style="margin-top:12px">上线顺序按大家的需求排。最想要哪一款，去小红书告诉我：rainbow_work</div>
@@ -317,7 +326,8 @@ document.querySelectorAll('.more').forEach(function(b){
     {href:'../interview/',unlock:'interview_unlocked_v1',seen:null,total:200,unit:' 句'},
     {href:'../audio300/',unlock:'r300_unlocked_v2',seen:'p300_seen',total:300,unit:' 句'},
     {href:'../audio850/',unlock:'r850_unlocked_v1',seen:'p850_seen',total:850,unit:' 句'},
-    {href:'../manual/',unlock:'manual_unlocked_v1',seen:'pmnl_seen',total:550,unit:' 句主课'}
+    {href:'../manual/',unlock:'manual_unlocked_v1',seen:'pmnl_seen',total:550,unit:' 句主课'},
+    {href:'../mail/',unlock:'mail_unlocked_v1',seen:null,total:50,unit:' 场景'}
   ];
   LIB.forEach(function(cfg){
     var link=document.querySelector('.card a.btn.primary[href="'+cfg.href+'"]');
