@@ -212,7 +212,7 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 <div class="empty" id="empty">没有匹配的场景，换个关键词试试</div>
 
 <footer>
-  外企邮件 & 写作库 · v1.4<br>
+  外企邮件 & 写作库 · v1.5<br>
   Rainbow聊外企 · 仅供个人学习使用 · 请勿用作商业用途
 </footer>
 
@@ -314,7 +314,7 @@ function h256(s){
   function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
   // 标出待替换槽位：署名 / 称呼名字 / 日期星期时间 / 时长数量百分比 / 金额（中英同步）
   function markSlots(t){
-    t=t.replace(/\n([A-Z][A-Za-z\.]+)\s*$/,'<mark class="slot">$1</mark>');
+    t=t.replace(/\n([A-Z][A-Za-z\.]+)\s*$/,'\n<mark class="slot">$1</mark>');
     t=t.replace(/(^|\n)((?:Hi|Hello|Dear|Hey)\s+)([A-Z][A-Za-z\.]+|all|team|both)/g,'$1$2<mark class="slot">$3</mark>');
     t=t.replace(/(^|[^&\w\-])(\d+(?:\.\d+)?\s?[-–—]?\s?(?:%|percent|minutes?|mins?|hours?|hrs?|days?|weeks?|months?|years?)\b)/gi,'$1<mark class="slot">$2</mark>');
     t=t.replace(/(^|[^&\w])((?:Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day(?:'s)?\b|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s?\d{1,2}(?:st|nd|rd|th)?\b|\d{1,2}:\d{2}\s?(?:am|pm)?\b|\d{1,2}(?:st|nd|rd|th)\s+of\s+[A-Z][a-z]+)/g,'$1<mark class="slot">$2</mark>');
