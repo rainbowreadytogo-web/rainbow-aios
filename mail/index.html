@@ -117,6 +117,9 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
   background:#fff;color:var(--brand);font-size:13px;line-height:30px;text-align:center;cursor:pointer;padding:0;position:relative}
 .pbtn::after{content:"";position:absolute;inset:-6px}
 .pbtn.on{background:var(--brand);color:#fff;border-color:var(--brand);font-size:17px;font-weight:700}
+/* 音频加载中（超过 0.8 秒还没出声）：柔和呼吸提示 */
+.pbtn.wait{animation:pbtnBreath 1.1s ease-in-out infinite}
+@keyframes pbtnBreath{0%,100%{opacity:1}50%{opacity:.5}}
 .pbtn.spd,.pbtn.slow{width:auto;min-width:56px;padding:0 12px;border-radius:16px;font-size:11px;font-weight:600;letter-spacing:1px}
 .pbtn.spd.sel,.pbtn.slow.sel{background:var(--brand);color:#fff;border-color:var(--brand)}
 .copy{border:1px solid var(--line);background:#fff;color:var(--brand-d);border-radius:8px;
@@ -213,7 +216,7 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 <div class="empty" id="empty">没有匹配的场景，换个关键词试试</div>
 
 <footer>
-  外企邮件 & 写作库 · v1.7<br>
+  外企邮件 & 写作库 · v1.8<br>
   Rainbow聊外企 · 仅供个人学习使用 · 请勿用作商业用途
 </footer>
 
@@ -285,17 +288,45 @@ function h256(s){
   // ---- audio ----
   var curAudio=null, curBtn=null;
   function stopAudio(){ if(curAudio){ curAudio.pause(); } if(curBtn){ curBtn.classList.remove("on"); curBtn.textContent="▶"; curBtn=null; } curAudio=null; }
+  // 加载中提示：超过 800ms 还没出声才显示，秒开时不闪烁
+  function startAudio(btn,src,tries){
+    var a=new Audio(src); curAudio=a; curBtn=btn;
+    btn.classList.add("on"); btn.textContent="■";
+    var wt=setTimeout(function(){ if(curAudio===a) btn.classList.add("wait"); },800);
+    var clean=function(){ clearTimeout(wt); try{ btn.classList.remove("wait"); }catch(e){} };
+    a.addEventListener("playing",clean);
+    a.addEventListener("ended",function(){ clean(); if(curAudio===a) stopAudio(); });
+    a.addEventListener("error",function(){
+      clean();
+      if(curAudio!==a) return;                    // 过期实例的事件忽略
+      try{ a.pause(); }catch(e){}
+      curAudio=null; curBtn=null;
+      btn.classList.remove("on"); btn.textContent="▶";
+      if(tries<1){ setTimeout(function(){ startAudio(btn,src+"?r=1",1); },300); return; }  // 自动重试一次
+      say("这条音频暂时加载不出来，请检查网络后重试");
+    });
+    a.play().catch(function(){});
+  }
   function play(btn,src){
     if(curBtn===btn && curAudio){ stopAudio(); return; }
     stopAudio();
-    curAudio=new Audio(src); curBtn=btn;
-    btn.classList.add("on"); btn.textContent="■";
-    curAudio.addEventListener("ended",stopAudio);
-    curAudio.addEventListener("error",function(){ say("音频加载失败，请检查网络"); stopAudio(); });
-    curAudio.play().catch(function(){});
+    startAudio(btn,src,0);
   }
-  // 预加载：卡片展开 / 切换语速时提前拉取音频，降低点播放后的延迟
-  function prefetch(src){ try{ var a=new Audio(); a.preload="auto"; a.src=src; a.load(); }catch(e){} }
+  // 预取：写入 HTTP 缓存（不占用媒体连接），并发上限 2——避免连开几张卡占满带宽导致后续点击没声音
+  var pQ=[], pRun=0, pDone={}, PMAX=2;
+  function prefetch(src){
+    if(pDone[src]) return; pDone[src]=1; pQ.push(src); pump();
+  }
+  function pump(){
+    if(typeof fetch!=="function") return;          // 极老浏览器不支持则跳过预取（不影响点击播放）
+    while(pRun<PMAX && pQ.length){
+      var src=pQ.shift(); pRun++;
+      fetch(src,{cache:"force-cache"})
+        .then(function(r){ return r ? r.arrayBuffer().catch(function(){}) : null; })
+        .catch(function(){})
+        .then(function(){ pRun--; pump(); });
+    }
+  }
 
   // ---- copy ----
   function doCopy(text,btn){
@@ -375,10 +406,19 @@ function h256(s){
       +'</div>';
     d.querySelector(".stop").addEventListener("click",function(){
       d.classList.toggle("open");
-      // 首次展开：预加载本卡全部音频（常速+慢速），点播放时基本无延迟
+      // 首次展开：预取本卡音频（常速+慢速）。句子是高频操作，优先排在整封邮件前面
       if(d.classList.contains("open") && !d.dataset.pre){
         d.dataset.pre="1";
-        d.querySelectorAll(".pbtn[data-a]").forEach(function(b){ prefetch("audio/"+b.dataset.a+"_n.mp3"); prefetch("audio/"+b.dataset.a+"_s.mp3"); });
+        var urls=[];
+        d.querySelectorAll(".pbtn[data-a]").forEach(function(b){
+          urls.push(["audio/"+b.dataset.a+"_n.mp3","audio/"+b.dataset.a+"_s.mp3"]);
+        });
+        var first=[], later=[];
+        urls.forEach(function(pair){
+          if(/\/_m_[ns]\.mp3$/.test(pair[0])) later.push(pair[0],pair[1]);
+          else first.push(pair[0],pair[1]);
+        });
+        first.concat(later).forEach(prefetch);
       }
     });
     d.querySelectorAll(".pbtn.spd,.pbtn.slow").forEach(function(b){
