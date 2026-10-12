@@ -4,7 +4,7 @@
 <meta charset="utf-8" data-page-node-id="E9TPSUuptzFX0VKoDvkxsZ">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" data-page-node-id="bIYqCc53puJMgBqFGkbycB">
 <meta name="robots" content="noindex,nofollow" data-page-node-id="dDbNotSfI5ukK8LobwcSWb">
-<title>外企英语全套 · 通票解锁</title>
+<title>外企英语全套 · 一码通解锁</title>
 <style>
 :root{
   --brand:#c8623d; --brand-d:#a94e2e; --brand-l:#f9e6dc;
@@ -50,15 +50,15 @@ footer{text-align:center;font-size:11px;color:var(--muted);padding:18px 16px 0}
 <div class="wrap" data-page-node-id="KYHZ39AkBjQNTctr7oJ1LA">
   <header data-page-node-id="ysKo7BTGHpuD7rIsOeJlqq">
     <h1 data-page-node-id="ak6Rrer3hHqFvnct1KgWY4">外企英语全套</h1>
-    <p data-page-node-id="fEn4a8iM0VuEZHmcpTkQtk">一次输入通票，解锁全部内容</p>
+    <p data-page-node-id="fEn4a8iM0VuEZHmcpTkQtk">一次输入一码通，解锁全部内容</p>
   </header>
 
-  <div class="sec" data-page-node-id="Y7vkBxOsd8murWi9o8YH75">通票解锁<em data-page-node-id="fthMGs1BXvrimmVPsBAjBb">一个口令，全站畅通</em></div>
+  <div class="sec" data-page-node-id="Y7vkBxOsd8murWi9o8YH75">一码通解锁<em data-page-node-id="fthMGs1BXvrimmVPsBAjBb">一个口令，全站畅通</em></div>
   <div class="card" data-page-node-id="SbrtrIPhA6UFOALJEICLxs">
-    <div class="step" id="bIntro" data-page-node-id="yg1tyG3hLvfg7Evv5MPNft"><b data-page-node-id="UbUzB9SG8MqI0zRy9Ji2UH">输入通票</b>购买全套后收到的那组口令，填在下面</div>
+    <div class="step" id="bIntro" data-page-node-id="yg1tyG3hLvfg7Evv5MPNft"><b data-page-node-id="UbUzB9SG8MqI0zRy9Ji2UH">输入一码通</b>购买全套后收到的那组口令，填在下面</div>
     <div class="step" id="bForm" data-page-node-id="EwBEO78SInz27K4svOtJGo">
       <input id="bInput" type="text" inputmode="latin" autocomplete="off" spellcheck="false"
-             placeholder="输入通票" aria-label="通票" data-page-node-id="3BSovWOpSNkoig8lB2yEXy">
+             placeholder="输入一码通" aria-label="一码通" data-page-node-id="3BSovWOpSNkoig8lB2yEXy">
       <button id="bBtn" type="button" data-page-node-id="90Clz2GXqLjHeBF2KciUgd">解锁全部</button>
     </div>
     <div class="meta" id="bErr" data-page-node-id="AFNLwDS5QztWElLeGSFUNi"></div>
@@ -73,7 +73,7 @@ footer{text-align:center;font-size:11px;color:var(--muted);padding:18px 16px 0}
   <div class="card" data-page-node-id="ilWnHmtv62n14q1fyQy8oL">
     <div class="step" data-page-node-id="aHkxY3qtHC1PWS1Aadya0i"><b data-page-node-id="6yeHuwiQFl8ExOALDG1a3s">长期有效</b>解锁记录保存在本机浏览器，之后直接打开即可</div>
     <div class="step" data-page-node-id="9KckHpooXdc3arwbvsA995"><b data-page-node-id="6ZRqJB2WqEgOiBlpfpVDG7">后续新品</b>本套包含约定时间内发布的所有新品，自动出现，无需再次付费</div>
-    <div class="step" data-page-node-id="guxyH1FPCKgEx5QEN8eT04"><b data-page-node-id="HVIfBEiLW5QCuUDnIgxHhs">换设备</b>换手机或换浏览器后，打开本页再输一次通票即可</div>
+    <div class="step" data-page-node-id="guxyH1FPCKgEx5QEN8eT04"><b data-page-node-id="HVIfBEiLW5QCuUDnIgxHhs">换设备</b>换手机或换浏览器后，打开本页再输一次一码通即可</div>
   </div>
 
   <footer data-page-node-id="Y3Ia79X6F506OUmo5KvXOy">
@@ -145,12 +145,12 @@ function h256(s){
   try{ if(localStorage.getItem(KEY)==="1") opened(); }catch(e){}
   btn.addEventListener("click",function(){
     var v=(inp.value||"").trim();
-    if(!v){ err.style.display="block"; err.textContent="请先输入通票"; return; }
+    if(!v){ err.style.display="block"; err.textContent="请先输入一码通"; return; }
     if(h256(v)===PASS_HASH){
       try{localStorage.setItem(KEY,"1");}catch(e){}
       err.style.display="none"; opened(); toast("解锁成功");
     }else{
-      err.style.display="block"; err.textContent="通票不对，请检查后重试（注意区分大小写）";
+      err.style.display="block"; err.textContent="一码通不对，请检查后重试（注意区分大小写）";
       inp.value=""; inp.focus();
     }
   });
