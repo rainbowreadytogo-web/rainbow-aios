@@ -26,9 +26,9 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
-  // 【关键】audio300/、manual/、audio850/、learn/、interview/、mail/、reception/、models/、bundle/ 子目录不拦截，永走网络，零缓存
+  // 【关键】audio300/、manual/、audio850/、learn/、interview/、mail/、reception/、models/、trade/、bundle/ 子目录不拦截，永走网络，零缓存
   // 这是售卖交付页，每次都拿最新版，避免口令不匹配等缓存异常
-  if (event.request.url.includes('/audio300/') || event.request.url.includes('/manual/') || event.request.url.includes('/audio850/') || event.request.url.includes('/learn/') || event.request.url.includes('/interview/') || event.request.url.includes('/mail/') || event.request.url.includes('/reception/') || event.request.url.includes('/models/') || event.request.url.includes('/bundle/')) {
+  if (event.request.url.includes('/audio300/') || event.request.url.includes('/manual/') || event.request.url.includes('/audio850/') || event.request.url.includes('/learn/') || event.request.url.includes('/interview/') || event.request.url.includes('/mail/') || event.request.url.includes('/reception/') || event.request.url.includes('/models/') || event.request.url.includes('/trade/') || event.request.url.includes('/bundle/')) {
     return;
   }
 
