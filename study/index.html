@@ -227,18 +227,21 @@ function bindCards(root){
   });
 }
 
-function toggle(card, base, url){
+function toggle(card, base){
   if (playingEl === card && audio && !audio.paused){
     audio.pause(); card.classList.remove('playing');
     playingEl = null; playingBase = null; return;
   }
   if (audio) { audio.pause(); }
   if (playingEl) playingEl.classList.remove('playing');
-  var src = '../' + base + '_' + RATE + '.mp3';
-  audio = new Audio(src);
-  audio.play().then(function(){
-    card.classList.add('playing'); playingEl = card; playingBase = base;
-  }).catch(function(){ card.classList.remove('playing'); });
+  // 点击即高亮，不等音频就绪；失败再撤掉
+  card.classList.add('playing');
+  playingEl = card; playingBase = base;
+  audio = new Audio('../' + base + '_' + RATE + '.mp3');
+  audio.play().catch(function(){
+    card.classList.remove('playing');
+    if (playingEl === card) { playingEl = null; playingBase = null; }
+  });
   audio.addEventListener('ended', function(){
     card.classList.remove('playing'); playingEl = null; playingBase = null;
   });
@@ -398,8 +401,7 @@ Array.prototype.forEach.call(document.querySelectorAll('.rbtn'), function(b){
       keep.classList.remove('playing');
       playingEl = null; playingBase = null;
       toggle(keep, base);
-    }
-  });
+    }  });
 });
 
 boot();
