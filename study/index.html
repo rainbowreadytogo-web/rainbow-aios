@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="学习中心">
+<meta name="theme-color" content="#fdf8f5">
+<title>学习中心 · Rainbow 职场英语学习库</title>
+<link rel="manifest" href="manifest.json">
+<style>
+:root{
+  --brand:#c8623d; --brand-d:#a94e2e; --brand-l:#f9e6dc;
+  --bg:#fdf8f5; --card:#fff; --ink:#2a2a2a; --sub:#7a5640; --muted:#9c7d6d;
+  --line:#c8aa9a; --line-l:#f0e6dc; --soft:#f5ece5;
+  --ok:#1f7a5a; --ok-bg:#e9f4ef;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding-bottom:56px}
+header{position:sticky;top:0;z-index:50;padding:14px 16px 10px;background:rgba(253,248,245,.96);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #f0e6dc;color:#3d2c23}
+header h1{margin:0 0 2px;font-size:18px;font-weight:700}
+header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
+.entry-row{margin-top:10px;text-align:right}
+.entry-row a{display:inline-flex;align-items:center;min-height:44px;padding:12px 16px;background:#f9ede2;
+  color:#a94e2e;border-radius:18px;font-size:13px;font-weight:700;text-decoration:none}
+.rate-row{margin-top:10px;display:flex;align-items:center;gap:8px}
+.rate-row .lb{font-size:12.5px;color:#9c7d6d}
+.rbtn{min-height:36px;padding:8px 15px;border:1px solid var(--line);background:var(--card);
+  border-radius:999px;font-size:13px;color:var(--sub);font-weight:600}
+.rbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.wrap{padding:14px 14px 0}
+.sec{margin:0 0 18px}
+.sec-head{display:flex;align-items:baseline;gap:8px;margin:0 4px 10px}
+.sec-head h2{margin:0;font-size:15px;font-weight:700;color:#3d2c23}
+.sec-head .hint{font-size:12px;color:var(--muted)}
+.sec-head .sp{margin-left:auto}
+.mini{min-height:44px;padding:10px 14px;border:1px solid var(--line);background:var(--card);
+  border-radius:16px;font-size:13px;color:var(--sub);font-weight:600}
+.mini:active{background:var(--soft)}
+
+.searchbar{margin:0 0 10px}
+.searchbar input{width:100%;padding:12px 14px;border:1px solid #ead9c9;border-radius:22px;
+  background:#fff;font-size:15px;outline:none}
+.searchbar input:focus{border-color:var(--brand)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px}
+.chip{flex:0 0 auto;padding:8px 14px;min-height:36px;border-radius:999px;border:1px solid var(--line);
+  background:var(--card);font-size:13px;color:var(--sub);white-space:nowrap}
+.chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+.card{margin:0 0 10px;background:var(--card);border:1px solid var(--line-l);border-radius:14px;padding:12px 14px}
+.sent{position:relative}
+.sent .en{font-size:15px;font-weight:600;line-height:1.55;color:#2a2a2a;padding-right:52px}
+.sent .cn{margin-top:4px;font-size:13.5px;color:var(--sub);line-height:1.6;padding-right:52px}
+.sent .src{margin-top:7px;font-size:11.5px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap}
+.sent .src b{font-weight:600;color:#a94e2e;background:var(--brand-l);padding:2px 7px;border-radius:8px}
+.play{position:absolute;right:0;top:0;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+  background:var(--card);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--brand-d)}
+.play:active{background:var(--soft)}
+.sent.playing{border-color:var(--brand);box-shadow:inset 3px 0 0 var(--brand)}
+
+.pcard{display:flex;gap:12px;align-items:center}
+.pcard .info{flex:1;min-width:0}
+.pcard .tt{font-size:14px;font-weight:700;color:#3d2c23}
+.pcard .mt{font-size:12px;color:var(--muted);margin-top:3px}
+.bar{margin-top:8px;height:6px;border-radius:6px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--brand);border-radius:6px}
+.pcard a.go{flex:0 0 auto;min-height:44px;padding:12px 14px;border-radius:16px;background:var(--soft);
+  color:var(--brand-d);font-size:13px;font-weight:700;text-decoration:none;display:flex;align-items:center}
+.pcard.lock{opacity:.62}
+.pcard.lock a.go{background:#f7f2ee;color:#9c7d6d}
+.tag-ok{display:inline-block;margin-left:6px;font-size:11px;color:var(--ok);background:var(--ok-bg);
+  padding:2px 7px;border-radius:8px;font-weight:600}
+.empty{padding:22px 14px;text-align:center;color:var(--muted);font-size:13px;line-height:1.8;
+  background:var(--card);border:1px dashed var(--line-l);border-radius:14px}
+.notice{margin:0 0 14px;padding:13px 15px;background:#fdf5ef;border:1px solid #f0e0d4;border-radius:14px;
+  font-size:13px;line-height:1.7;color:#7a5640}
+.notice a{color:var(--brand-d);font-weight:700}
+footer{margin:22px 16px 0;text-align:center;color:var(--muted);font-size:11.5px;line-height:1.8}
+</style>
+</head>
+<body>
+<header>
+  <h1>学习中心</h1>
+  <p>跨全部产品搜句子 · 统一看进度 · 每天推六句</p>
+  <div class="rate-row">
+    <span class="lb">语速</span>
+    <button class="rbtn on" data-r="n">常速</button>
+    <button class="rbtn" data-r="s">慢速</button>
+  </div>
+  <div class="entry-row"><a href="../learn/">学习库总入口</a></div>
+</header>
+
+<div class="wrap">
+  <div id="gate"></div>
+
+  <div class="sec" id="sec-daily">
+    <div class="sec-head">
+      <h2>今日六句</h2>
+      <span class="hint" id="daily-date"></span>
+      <span class="sp"></span>
+      <button class="mini" id="daily-again">换一组</button>
+    </div>
+    <div id="daily"></div>
+  </div>
+
+  <div class="sec" id="sec-search">
+    <div class="sec-head">
+      <h2>全局搜索</h2>
+      <span class="hint" id="search-scope"></span>
+    </div>
+    <div class="searchbar">
+      <input id="q" type="search" autocomplete="off" placeholder="搜句子或场景，如：交期、会议、道歉">
+    </div>
+    <div class="chips" id="chips"></div>
+    <div id="results"></div>
+  </div>
+
+  <div class="sec" id="sec-mine">
+    <div class="sec-head">
+      <h2>我的产品</h2>
+      <span class="hint" id="mine-sum"></span>
+    </div>
+    <div id="mine"></div>
+  </div>
+</div>
+
+<footer>学习中心 · v1.0<br>进度数据只存在你自己的浏览器里，不会上传</footer>
+
+<script>
+var MANIFEST = null;
+var LOADED = {};
+var FLAT = [];
+var CHIPS = [];
+var DAILY_ROUND = 0;
+var audio = null, playingEl = null, playingBase = null;
+var RATE = 'n';
+
+function ls(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+
+function unlockedKeys(){
+  var all = !!ls('bundle_v1');
+  var out = {};
+  if (!MANIFEST) return out;
+  MANIFEST.products.forEach(function(p){
+    out[p.key] = all || !!ls(p.unlock);
+  });
+  return out;
+}
+
+function fmt(n){ return String(n); }
+
+function loadAll(){
+  var un = unlockedKeys();
+  var jobs = [];
+  MANIFEST.products.forEach(function(p){
+    if (un[p.key]) jobs.push(
+      fetch('idx/' + p.key + '.json', {cache:'no-store'})
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          LOADED[p.key] = d.items;
+          d.items.forEach(function(it){
+            FLAT.push({ key:p.key, short:p.short, url:p.url, id:it.id,
+                        sc:it.sc, en:it.en, cn:it.cn, a:it.a });
+          });
+        })
+        .catch(function(){ LOADED[p.key] = []; })
+    );
+  });
+  return Promise.all(jobs);
+}
+
+function renderGate(){
+  var un = unlockedKeys();
+  var got = MANIFEST.products.filter(function(p){ return un[p.key]; }).length;
+  var box = document.getElementById('gate');
+  if (got === 0){
+    box.innerHTML = '<div class="notice">还没检测到已解锁的产品。请先在下面选一款，输入购买时拿到的口令，' +
+      '解锁之后回到这里，就能跨产品搜句子、看总进度了。<br>' +
+      '<a href="../learn/">去看产品清单</a></div>';
+  } else {
+    box.innerHTML = '';
+  }
+}
+
+function renderChips(un){
+  var chips = document.getElementById('chips');
+  CHIPS = [{k:'all', t:'全部'}];
+  MANIFEST.products.forEach(function(p){ if (un[p.key]) CHIPS.push({k:p.key, t:p.short}); });
+  chips.innerHTML = CHIPS.map(function(c,i){
+    return '<button class="chip' + (i===0?' on':'') + '" data-k="' + c.k + '">' + c.t + '</button>';
+  }).join('');
+  Array.prototype.forEach.call(chips.querySelectorAll('.chip'), function(b){
+    b.addEventListener('click', function(){
+      Array.prototype.forEach.call(chips.querySelectorAll('.chip'), function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      doSearch();
+    });
+  });
+}
+
+function activeChip(){
+  var on = document.querySelector('#chips .chip.on');
+  return on ? on.dataset.k : 'all';
+}
+
+function esc(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function cardHTML(o){
+  var short = o.short || '';
+  return '<div class="card sent" data-base="' + esc(o.a) + '" data-key="' + esc(o.key) + '">' +
+    '<button class="play" aria-label="播放">▶</button>' +
+    '<div class="en">' + esc(o.en) + '</div>' +
+    (o.cn ? '<div class="cn">' + esc(o.cn) + '</div>' : '') +
+    '<div class="src"><b>' + esc(short) + '</b><span>' + esc(o.sc || '') + '</span></div></div>';
+}
+
+function bindCards(root){
+  Array.prototype.forEach.call(root.querySelectorAll('.card.sent'), function(c){
+    c.querySelector('.play').addEventListener('click', function(e){
+      e.stopPropagation();
+      toggle(c, c.dataset.base);
+    });
+  });
+}
+
+function toggle(card, base, url){
+  if (playingEl === card && audio && !audio.paused){
+    audio.pause(); card.classList.remove('playing');
+    playingEl = null; playingBase = null; return;
+  }
+  if (audio) { audio.pause(); }
+  if (playingEl) playingEl.classList.remove('playing');
+  var src = '../' + base + '_' + RATE + '.mp3';
+  audio = new Audio(src);
+  audio.play().then(function(){
+    card.classList.add('playing'); playingEl = card; playingBase = base;
+  }).catch(function(){ card.classList.remove('playing'); });
+  audio.addEventListener('ended', function(){
+    card.classList.remove('playing'); playingEl = null; playingBase = null;
+  });
+}
+
+function pickDaily(round){
+  var un = unlockedKeys();
+  var groups = [];
+  MANIFEST.products.forEach(function(p){
+    if (!un[p.key]) return;
+    var arr = FLAT.filter(function(x){ return x.key === p.key; });
+    if (arr.length) groups.push(arr);
+  });
+  if (!groups.length) return [];
+  var d = new Date();
+  var seed = d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate() + round*37;
+  function rnd(){ seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; }
+  var out = [], guard = 0;
+  while (out.length < 6 && guard < 200){
+    guard++;
+    for (var i = 0; i < groups.length && out.length < 6; i++){
+      var g = groups[i];
+      out.push(g[Math.floor(rnd() * g.length)]);
+    }
+  }
+  var seen = {}, uniq = [];
+  out.forEach(function(x){ if (!seen[x.key + x.id]) { seen[x.key + x.id] = 1; uniq.push(x); } });
+  return uniq.slice(0, 6);
+}
+
+function renderDaily(){
+  var list = pickDaily(DAILY_ROUND);
+  var d = new Date();
+  document.getElementById('daily-date').textContent =
+    (d.getMonth()+1) + ' 月 ' + d.getDate() + ' 日';
+  var box = document.getElementById('daily');
+  if (!list.length){
+    box.innerHTML = '<div class="empty">解锁任意一款产品后，这里每天会给你六句。</div>';
+    return;
+  }
+  box.innerHTML = list.map(cardHTML).join('');
+  bindCards(box);
+}
+
+function doSearch(){
+  var q = (document.getElementById('q').value || '').trim().toLowerCase();
+  var k = activeChip();
+  var box = document.getElementById('results');
+  var un = unlockedKeys();
+  var scopeN = MANIFEST.products.filter(function(p){ return un[p.key]; }).length;
+  document.getElementById('search-scope').textContent =
+    scopeN ? ('可搜 ' + scopeN + ' 款产品') : '暂无可搜内容';
+  if (!FLAT.length){
+    box.innerHTML = '<div class="empty">暂无可搜索的内容。<br>解锁产品后会自动接入。</div>';
+    return;
+  }
+  if (!q){
+    box.innerHTML = '<div class="empty">输入中文或英文关键词，跨全部已解锁产品一起搜。</div>';
+    return;
+  }
+  var hit = FLAT.filter(function(x){
+    if (k !== 'all' && x.key !== k) return false;
+    return (x.en && x.en.toLowerCase().indexOf(q) > -1) ||
+           (x.cn && x.cn.indexOf(q) > -1) ||
+           (x.sc && x.sc.toLowerCase().indexOf(q) > -1);
+  });
+  if (!hit.length){
+    box.innerHTML = '<div class="empty">没有找到「' + esc(q) + '」。<br>换个说法试试，或者去掉产品筛选。</div>';
+    return;
+  }
+  var total = hit.length;
+  var show = hit.slice(0, 60);
+  box.innerHTML = '<div class="empty" style="border-style:solid;padding:9px 14px;margin-bottom:10px">' +
+    '找到 ' + total + ' 条' + (total > 60 ? '，先显示前 60 条' : '') + '</div>' +
+    show.map(cardHTML).join('');
+  bindCards(box);
+}
+
+function renderMine(){
+  var un = unlockedKeys();
+  var box = document.getElementById('mine');
+  var progress = [
+    {key:'300',    sk:'p300_seen', total:300},
+    {key:'850',    sk:'p850_seen', total:850},
+    {key:'manual', sk:'pmnl_seen', total:550}
+  ];
+  var pmap = {};
+  progress.forEach(function(p){ pmap[p.key] = p; });
+  var got = 0, html = '';
+  MANIFEST.products.forEach(function(p){
+    var ok = un[p.key];
+    if (ok) got++;
+    var pg = pmap[p.key];
+    var inner = '';
+    if (ok && pg){
+      var seen = {};
+      try { seen = JSON.parse(ls(pg.sk) || '{}'); } catch(e){ seen = {}; }
+      var n = 0;
+      for (var kk in seen) if (seen[kk]) n++;
+      if (n > pg.total) n = pg.total;
+      var pct = Math.round(n / pg.total * 100);
+      inner = '<div class="bar"><i style="width:' + pct + '%"></i></div>' +
+              '<div class="mt">已学 ' + n + ' / ' + pg.total + ' 句 · ' + pct + '%</div>';
+    } else if (ok){
+      inner = '<div class="mt">已解锁 · ' + p.count + ' 条内容</div>';
+    } else {
+      inner = '<div class="mt">' + p.count + ' 条内容 · 未解锁</div>';
+    }
+    html += '<div class="card pcard' + (ok ? '' : ' lock') + '">' +
+      '<div class="info"><div class="tt">' + esc(p.title) +
+      (ok ? '<span class="tag-ok">已解锁</span>' : '') + '</div>' +
+      '<div class="mt">' + esc(p.note) + '</div>' + inner + '</div>' +
+      '<a class="go" href="' + p.url + '">' + (ok ? '继续' : '去解锁') + '</a></div>';
+  });
+  box.innerHTML = html;
+  document.getElementById('mine-sum').textContent = got + ' / ' + MANIFEST.products.length + ' 已解锁';
+}
+
+function boot(){
+  fetch('idx/manifest.json', {cache:'no-store'})
+    .then(function(r){ return r.json(); })
+    .then(function(m){
+      MANIFEST = m;
+      renderGate();
+      renderMine();
+      document.getElementById('chips').innerHTML = '';
+      return loadAll();
+    })
+    .then(function(){
+      var un = unlockedKeys();
+      renderChips(un);
+      renderDaily();
+      renderMine();
+      doSearch();
+    })
+    .catch(function(){
+      document.getElementById('gate').innerHTML =
+        '<div class="notice">内容索引加载失败。请刷新页面重试；如果反复失败，' +
+        '把页面地址和这个问题告诉 Rainbow 即可。</div>';
+    });
+}
+
+document.getElementById('q').addEventListener('input', doSearch);
+document.getElementById('daily-again').addEventListener('click', function(){
+  DAILY_ROUND++;
+  renderDaily();
+});
+
+Array.prototype.forEach.call(document.querySelectorAll('.rbtn'), function(b){
+  b.addEventListener('click', function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.rbtn'), function(x){ x.classList.remove('on'); });
+    b.classList.add('on');
+    RATE = b.dataset.r;
+    if (playingBase && playingEl){
+      var keep = playingEl, base = playingBase;
+      if (audio) audio.pause();
+      keep.classList.remove('playing');
+      playingEl = null; playingBase = null;
+      toggle(keep, base);
+    }
+  });
+});
+
+boot();
+</script>
+</body>
+</html>

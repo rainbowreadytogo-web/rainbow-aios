@@ -1,0 +1,14 @@
+{
+  "name": "学习中心 · Rainbow 职场英语学习库",
+  "short_name": "学习中心",
+  "description": "跨全部产品搜句子、统一看进度、每天推六句",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fdf8f5",
+  "theme_color": "#c8623d",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "../audio300/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "../audio300/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
