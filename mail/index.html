@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="邮件写作库">
 <meta name="theme-color" content="#c8623d">
-<title>外企邮件 & 写作库 · Rainbow 职场英语学习库</title>
+<title>外企邮件英语 · 写作 50 场景 · Rainbow 职场英语学习库</title>
 <style>
 :root{
   --brand:#c8623d; --brand-d:#a94e2e; --brand-l:#f9e6dc;
@@ -58,7 +58,7 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .pkey.fix{color:var(--sub);background:#f0eee9}
 .sample{margin-top:4px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 12px 12px}
 .sample .prow:first-child{border-top:none}
-.pbody{flex:1;min-width:0;font-size:14px;line-height:1.7;color:var(--ink)}
+.pbody{flex:1;min-width:0;font-size:16px;line-height:1.75;color:var(--ink)}
 .pbody em{font-style:normal;font-size:11px;color:var(--muted);display:block;margin-top:2px}
 .plink{font-style:normal;font-size:10.5px;color:var(--brand-d);background:var(--brand-l);border:1px solid #eccbb8;border-radius:999px;padding:1px 8px;margin-top:3px;display:inline-block;cursor:pointer;text-decoration:none;white-space:nowrap}
 .mrow{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 6px 32px}
@@ -96,7 +96,7 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .blk-warn .blab{color:var(--warn);background:#f8ddda}
 .blk-cn{background:#f3efe6;border-left:3px solid #7a6a45}
 .blk-cn .blab{color:#6b5b38;background:#e9e1cf}
-.en{font-size:16.5px;line-height:1.75;color:var(--ink)}
+.en{font-size:16px;line-height:1.75;color:var(--ink)}
 .gloss{font-size:15px;line-height:1.7;color:var(--sub);margin-top:6px}
 .blk-mail{background:var(--brand-l);border-color:#eccbb8}
 .blk-mail .blab{color:var(--brand-d)}
@@ -104,10 +104,10 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .mailcn{font-size:12.5px;line-height:1.7;color:var(--sub);white-space:pre-line;margin-top:10px;padding-top:10px;border-top:1px dashed #eccbb8}
 /* 待替换槽位：名字、日期、数字、金额（发送前换成自己的） */
 .slot{background:rgba(196,90,42,.13);color:var(--brand-d);font-weight:700;border-radius:4px;padding:0 2px}
-.blk-warn .en{color:#7c4a45;font-size:15px}
+.blk-warn .en{color:#7c4a45;font-size:16px}
 .blk-warn .gloss{font-size:14px}
-.cn{font-size:12.5px;color:var(--sub);line-height:1.7;margin-top:6px}
-.blk-cn .cntext{font-size:13px;color:#5d5138;line-height:1.75}
+.cn{font-size:13.5px;color:var(--sub);line-height:1.75;margin-top:6px}
+.blk-cn .cntext{font-size:13.5px;color:#5d5138;line-height:1.75}
 
 /* 句操作行 */
 .item{display:flex;gap:8px;align-items:flex-start}
@@ -145,7 +145,10 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 #gerr{font-size:12px;color:#dc2626;margin-top:10px;height:16px}
 .gfoot{margin-top:18px;font-size:11px;color:#b0aea8;line-height:1.6}
 
-footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
+footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-align:center}
+
+/* ---- 搜索关键词高亮 ---- */
+mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
 <body>
@@ -154,7 +157,7 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 <div id="gate">
   <div class="gbox">
     <div class="logo">✉️</div>
-    <h1>外企邮件 & 写作库<br>50 个高频场景 · 即抄即用</h1>
+    <h1>外企邮件英语 · 写作 50 场景<br>即抄即用 · 常速慢速真人配音</h1>
     <p>本资料为付费内容，请输入购买后收到的口令解锁</p>
     <input id="gateInput" type="password" placeholder="请输入口令" autocomplete="off">
     <button id="gateBtn">解锁学习</button>
@@ -164,7 +167,7 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 </div>
 
 <header>
-  <h1>外企邮件 & 写作库</h1>
+  <h1>外企邮件英语 · 写作 50 场景</h1>
   <p>Rainbow 聊外企 · 50 个高频场景 · 每场景 📄 完整邮件 / ✅ 可直接抄 / ⬆️ 更地道 / ⚠️ 别这么写 / 💡 中文拆解 · 一键复制</p>
   <div><input class="search" id="search" placeholder="搜场景 / 句子 / 中文…"></div>
   <div class="entry-row"><a href="../learn/">学习库总入口 →</a></div>
@@ -216,8 +219,9 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 <div class="empty" id="empty">没有匹配的场景，换个关键词试试</div>
 
 <footer>
-  外企邮件 & 写作库 · v1.8<br>
-  Rainbow聊外企 · 仅供个人学习使用 · 请勿用作商业用途
+  © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
+  仅供个人学习使用·请勿用作商业用途<br>
+  <span style="color:#c8aa9a">v1.8</span>
 </footer>
 
 <div id="toast"></div>
@@ -448,7 +452,31 @@ function h256(s){
     });
     return d;
   }
-  function render(){
+  
+  /* ---- 搜索关键词高亮：命中处包 mark.qhl，重复渲染前先拆掉旧高亮 ---- */
+  function qhlApply(root,q){
+    root.querySelectorAll("mark.qhl").forEach(function(m){
+      var t=document.createTextNode(m.textContent); m.parentNode.replaceChild(t,m);
+    });
+    if(!q) return;
+    var rx=new RegExp("("+q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig");
+    var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null), nodes=[];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function(n){
+      var txt=n.nodeValue; if(!txt||!txt.trim()) return;
+      rx.lastIndex=0; if(!rx.test(txt)) return; rx.lastIndex=0;
+      var frag=document.createDocumentFragment(), last=0, m;
+      while((m=rx.exec(txt))){
+        if(m.index>last) frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+        var mk=document.createElement("mark"); mk.className="qhl"; mk.textContent=m[0];
+        frag.appendChild(mk); last=m.index+m[0].length;
+        if(m[0].length===0) rx.lastIndex++;
+      }
+      if(last<txt.length) frag.appendChild(document.createTextNode(txt.slice(last)));
+      n.parentNode.replaceChild(frag,n);
+    });
+  }
+function render(){
     list.innerHTML=""; stopAudio();
     var n=0;
     D.modules.forEach(function(m){
@@ -464,6 +492,7 @@ function h256(s){
         if(s.mod!==m.id) return;
         var c=card(s);
         if(curQ && c.dataset.key.indexOf(curQ)<0) return;
+        if(curQ) c.classList.add("open");
         body.appendChild(c); cnt++; n++;
       });
       if(curQ && !cnt) return; // 搜索时隐藏无命中的模块
@@ -477,6 +506,7 @@ function h256(s){
     });
     modhead.textContent="找到 "+n+" 个场景";
     modhead.style.display = curQ ? "block" : "none";
+    qhlApply(list, curQ);
     empty.style.display = n ? "none" : "block";
   }
   render();

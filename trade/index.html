@@ -97,7 +97,7 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .blk-warn .blab{color:var(--warn);background:#f8ddda}
 .blk-cn{background:#f3efe6;border-left:3px solid #7a6a45}
 .blk-cn .blab{color:#6b5b38;background:#e9e1cf}
-.en{font-size:16.5px;line-height:1.75;color:var(--ink)}
+.en{font-size:16px;line-height:1.75;color:var(--ink)}
 .gloss{font-size:15px;line-height:1.7;color:var(--sub);margin-top:6px}
 .blk-mail{background:var(--brand-l);border-color:#eccbb8}
 .blk-mail .blab{color:var(--brand-d)}
@@ -105,9 +105,9 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .mailcn{font-size:12.5px;line-height:1.7;color:var(--sub);white-space:pre-line;margin-top:10px;padding-top:10px;border-top:1px dashed #eccbb8}
 /* 待替换槽位：名字、日期、数字、金额（发送前换成自己的） */
 .slot{background:rgba(196,90,42,.13);color:var(--brand-d);font-weight:700;border-radius:4px;padding:0 2px}
-.blk-warn .en{color:#7c4a45;font-size:15px}
+.blk-warn .en{color:#7c4a45;font-size:16px}
 .blk-warn .gloss{font-size:14px}
-.cn{font-size:12.5px;color:var(--sub);line-height:1.7;margin-top:6px}
+.cn{font-size:13.5px;color:var(--sub);line-height:1.75;margin-top:6px}
 .blk-cn .cntext{font-size:13px;color:#5d5138;line-height:1.75}
 
 /* 句操作行 */
@@ -146,7 +146,7 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 #gerr{font-size:12px;color:#dc2626;margin-top:10px;height:16px}
 .gfoot{margin-top:18px;font-size:11px;color:#b0aea8;line-height:1.6}
 
-footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
+footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-align:center}
 
 /* 接待场景专属 */
 .gspd{display:flex;gap:8px;align-items:center;margin-top:10px}
@@ -168,6 +168,13 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 .howto .hh .chev{margin-left:auto;color:var(--brand);font-size:20px;font-weight:700;transition:transform .2s}
 .howto.closed .chev{transform:rotate(-90deg)}
 .howto.closed .hb{display:none}
+
+/* ---- 逐词高亮（KTV） ---- */
+.w{border-radius:3px;padding:0 1px;transition:background .12s linear}
+.w.hi{background:var(--brand);color:#fff}
+
+/* ---- 搜索关键词高亮 ---- */
+mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
 <body>
@@ -208,11 +215,13 @@ footer{padding:16px 18px;font-size:11px;color:var(--muted);line-height:1.7}
 <div class="empty" id="empty">没有匹配的场景，换个关键词试试</div>
 
 <footer>
-  外贸英语实战 · v1.0<br>
-  Rainbow聊外企 · 内容与音频均为本人原创 · 仅供个人学习使用
+  © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
+  仅供个人学习使用·请勿用作商业用途<br>
+  <span style="color:#c8aa9a">v1.0</span>
 </footer>
 
 <div id="toast"></div>
+<script src="words.js?v=20261017a"></script>
 <script>
 window.RCPT = {"groups": [{"id": "A", "name": "询盘与回复", "codes": ["T01", "T02", "T03", "T04", "T05", "T06"]}, {"id": "B", "name": "报价与议价", "codes": ["T07", "T08", "T09", "T10", "T11", "T12"]}, {"id": "C", "name": "样品与订单", "codes": ["T13", "T14", "T15", "T16", "T17", "T18"]}, {"id": "D", "name": "付款与物流", "codes": ["T19", "T20", "T21", "T22", "T23", "T24"]}, {"id": "E", "name": "售后与客诉", "codes": ["T25", "T26", "T27", "T28", "T29", "T30"]}], "scenes": [{"code": "T01", "title": "回复首次询盘", "sents": [{"en": "Thank you for your inquiry — I'm Rainbow, and I handle export sales here.", "cn": "感谢您的询盘——我是 Rainbow，负责这边的出口业务。"}, {"en": "We've been making this product for ten years, so I can answer most questions right away.", "cn": "这个产品我们做了十年，您的问题我基本能当场回答。"}, {"en": "Could you let me know the quantity you have in mind? That affects the price.", "cn": "方便告诉我您大概要多少数量吗？这会影响价格。"}, {"en": "I'll send you a quotation within one working day.", "cn": "我在一个工作日内给您报价。"}, {"en": "If it's urgent, my WhatsApp is at the bottom of this email.", "cn": "如果比较急，邮件末尾有我的 WhatsApp。"}, {"en": "Either way, you'll hear from me today.", "cn": "无论哪种情况，今天一定给您回复。"}], "tip": "第一封回复不要先报价。先问数量、规格、目标市场——问清了再报，价格才准，也显得专业。"}, {"code": "T02", "title": "问清需求与规格", "sents": [{"en": "Before I quote, may I confirm a few details?", "cn": "报价之前，我能确认几个细节吗？"}, {"en": "Do you have a target specification, or should we suggest one?", "cn": "您有明确的规格要求，还是由我们来推荐？"}, {"en": "Which market is this for? That changes the certification we need.", "cn": "这批货发往哪个市场？这决定了需要的认证。"}, {"en": "Is there a voltage or plug standard we should follow?", "cn": "电压或插头标准有要求吗？"}, {"en": "Do you need the logo printed, and where?", "cn": "需要印 logo 吗？印在什么位置？"}, {"en": "Once I have these, the quote takes me about two hours.", "cn": "拿到这些信息，报价我大概两小时能出来。"}], "tip": "问规格别用长串问题轰炸。一次问三到四个，并且说清「问完我多久能给结果」，客户才愿意配合。"}, {"code": "T03", "title": "发目录与图片", "sents": [{"en": "I've attached our latest catalogue, and the 2026 models are on pages 8 to 15.", "cn": "附件是我们的最新目录，2026 年的新款在第 8 到 15 页。"}, {"en": "The PDF is about twelve megabytes — let me know if it doesn't come through.", "cn": "PDF 大约十二兆，如果收不到跟我说。"}, {"en": "Here are the real photos, not the retouched ones, so you can see the finish.", "cn": "这些是实拍图，不是修过的，您能看清表面工艺。"}, {"en": "I can also send samples if you'd rather see them in person.", "cn": "如果您想看实物，我也可以寄样。"}, {"en": "Which items interest you most? I'll put together a short list.", "cn": "您最感兴趣的是哪几款？我整理个短清单给您。"}, {"en": "Everything in the catalogue can be customised, within reason.", "cn": "目录里的产品都可以做定制，只要在合理范围内。"}], "tip": "主动说「这是实拍，不是修过的」，老外买家吃这一套——坦诚本身就是信任。"}, {"code": "T04", "title": "说清起订量 MOQ", "sents": [{"en": "Our MOQ is five hundred pieces per colour.", "cn": "我们的起订量是每个颜色五百件。"}, {"en": "Below that, the unit cost goes up quite a bit.", "cn": "低于这个数，单件成本会上升不少。"}, {"en": "If you'd like to test the market first, we can do a mixed container.", "cn": "如果您想先试市场，我们可以做混装柜。"}, {"en": "That way you get three colours without hitting five hundred of each.", "cn": "这样三个颜色都能拿，不用每个都凑五百。"}, {"en": "For a first order, I can sometimes ask the factory for an exception.", "cn": "首单的话，我有时可以去跟工厂申请例外。"}, {"en": "Let me check and come back to you by tomorrow.", "cn": "我去问一下，明天回复您。"}], "tip": "拒绝别只说不行。给「混装」「首单例外」两个出路，客户会记住你是在帮他，不是在挡他。"}, {"code": "T05", "title": "客户迟迟不回", "sents": [{"en": "Just checking in on the quote I sent on the 12th.", "cn": "跟进一下我 12 号发您的报价。"}, {"en": "I don't want to chase you — I just want to make sure it arrived.", "cn": "我不是想催您，只是想确认您收到了。"}, {"en": "If the price is the issue, tell me your target and I'll see what I can do.", "cn": "如果是价格的问题，告诉我您的目标价，我看看能做什么。"}, {"en": "If the timing isn't right, I'll follow up next quarter instead.", "cn": "如果时机不对，我就下个季度再联系您。"}, {"en": "Either way is fine — I just need to know which.", "cn": "两种都可以，我只是想知道是哪一种。"}, {"en": "And if you've decided to go another way, just say so, no hard feelings.", "cn": "如果您已经决定换供应商，直说就行，我不会介意。"}], "tip": "跟进要给「退出选项」。给客户一个零压力的理由说「我不要了」，反而比硬催更容易换来真话。"}, {"code": "T06", "title": "判断询盘真假", "sents": [{"en": "Let me ask a couple of questions so I can quote properly.", "cn": "我问几个问题，好把报价做准。"}, {"en": "Are you buying for your own company, or sourcing for a client?", "cn": "是贵司自己采购，还是替客户找货源？"}, {"en": "When do you need the goods, roughly?", "cn": "大概什么时候要货？"}, {"en": "Which port works best for you?", "cn": "哪个港口对您方便？"}, {"en": "A real buyer usually answers all three without hesitating.", "cn": "真正的买家通常能不假思索回答这三个问题。"}, {"en": "If I get nothing back, I put the inquiry on hold rather than chasing it.", "cn": "如果对方一句不回，我就先把询盘放着，不再追。"}], "tip": "判断真假买家不用盘问，用业务问题自然筛选。肯回答细节的才是真买家。"}, {"code": "T07", "title": "首次报价", "sents": [{"en": "Please find our quotation attached, FOB Shenzhen, valid for thirty days.", "cn": "报价单在附件里，深圳离岸价，三十天有效。"}, {"en": "The price is based on an order of two thousand pieces.", "cn": "这个价格按两千件的订单量算。"}, {"en": "Unit price is four dollars eighty, and that includes standard packaging.", "cn": "单价是四点八美元，含标准包装。"}, {"en": "Tooling is a separate one-off cost of three hundred dollars.", "cn": "模具费另算，一次性三百美元。"}, {"en": "If you take the tooling, it's yours to keep and we won't use it for anyone else.", "cn": "模具费您付了就归您，我们不会再给别人用。"}, {"en": "Let me know if you'd like a CIF price instead, and I'll re-quote.", "cn": "如果您要的是到岸价，告诉我，我重新报。"}], "tip": "报价一定要写清「价格条款 + 有效期 + 基于什么数量」。这三项缺一项，后面必起争执。"}, {"code": "T08", "title": "报价有效期与汇率", "sents": [{"en": "I'm afraid that price has expired — it was valid for thirty days.", "cn": "恐怕那个价格已经过期了，当时是三十天有效。"}, {"en": "Since then, the exchange rate has moved about four percent.", "cn": "这段时间汇率变动了大约百分之四。"}, {"en": "Raw material costs have also gone up slightly.", "cn": "原材料成本也略微上涨。"}, {"en": "I can hold close to the old price if you confirm this week.", "cn": "如果您本周能确认，我可以按接近原价来做。"}, {"en": "Let me give you an updated number, and I'll keep it valid for another month.", "cn": "我给您一个更新的价格，有效期再给一个月。"}, {"en": "I'd rather be upfront than surprise you with a change later.", "cn": "我宁可现在说清楚，也不想后面再改价让您措手不及。"}], "tip": "涨价别只说「成本涨了」。给数字、给期限、给「本周确认还能保住」的台阶，客户更容易接受。"}, {"code": "T09", "title": "客户嫌贵", "sents": [{"en": "I understand — may I ask what price you're working with?", "cn": "我理解，方便告诉我您手上的目标价是多少吗？"}, {"en": "Without knowing that, I'd just be guessing.", "cn": "不知道的话，我只能瞎猜。"}, {"en": "There are cheaper versions on the market, and here's what's different about ours.", "cn": "市场上确实有更便宜的版本，这是我们的不同之处。"}, {"en": "Ours uses a thicker gauge, which is why the weight is higher.", "cn": "我们用的是更厚的材料规格，所以重量更重。"}, {"en": "If the budget is fixed, I can suggest a simpler model in the same range.", "cn": "如果预算是固定的，我可以推荐同系列里更简单的款。"}, {"en": "Cheaper is easy — the question is where the saving comes from.", "cn": "便宜很容易做到，问题在于省在哪儿。"}], "tip": "客户说贵，第一反应不要降价，先问目标价。降价给得越快，客户越觉得你原来报高了。"}, {"code": "T10", "title": "还价与折中", "sents": [{"en": "We're about eight percent apart — let's see if we can close that.", "cn": "我们差百分之八左右，看看能不能补上。"}, {"en": "If you can confirm today, I can take two percent off.", "cn": "如果您今天能确认，我可以让两个点。"}, {"en": "That's the best I can do without asking my manager.", "cn": "这是我不用请示上级就能给的最好条件。"}, {"en": "Let me put it to him and get back to you by five.", "cn": "我去跟上级请示，五点前回复您。"}, {"en": "If we split the difference, we're both a little uncomfortable — that's usually fair.", "cn": "如果各让一步，我们双方都有点不情愿，这通常就是合理的。"}, {"en": "I'd rather do that than lose the order over two percent.", "cn": "我宁愿这样，也不想为了两个点丢掉这个订单。"}], "tip": "「各让一步」在英语里说 split the difference，直接、体面，是外贸里最好用的折中说法。"}, {"code": "T11", "title": "量大给折扣", "sents": [{"en": "Yes, the price breaks at five thousand pieces.", "cn": "可以，五千件是一个价格档。"}, {"en": "At five thousand, I can do four dollars forty.", "cn": "五千件的话，我能做到四点四美元。"}, {"en": "At ten thousand, it drops to four twenty.", "cn": "一万件降到四点二美元。"}, {"en": "Beyond that, I'd need to check with the factory on capacity.", "cn": "再往上，我需要跟工厂确认产能。"}, {"en": "Sometimes two smaller orders cost less than one big one you can't sell through.", "cn": "有时候两笔小单，比一个大单卖不动更划算。"}, {"en": "Let me build you a small table so you can compare.", "cn": "我给您做一张小表，方便对比。"}], "tip": "给阶梯价时顺便提醒「别为折扣压太多货」。这种话会让客户觉得你替他想，信任感就上来了。"}, {"code": "T12", "title": "涨价通知", "sents": [{"en": "I'm writing to give you some notice on pricing.", "cn": "我写这封邮件是想提前告知价格的事。"}, {"en": "From next month, our prices will go up by about five percent.", "cn": "从下个月起，我们的价格上调约百分之五。"}, {"en": "The main reason is the rise in raw material costs.", "cn": "主要原因是原材料成本上涨。"}, {"en": "I wanted to tell you now so you can plan your orders.", "cn": "我想现在告诉您，方便您安排订单。"}, {"en": "Any order confirmed before the 30th stays at the current price.", "cn": "30 号前确认的订单仍按现在的价格。"}, {"en": "I know this isn't welcome news, and I'd rather say it early than late.", "cn": "我知道这不是好消息，但我宁愿早说，不愿晚说。"}], "tip": "涨价通知要给「截止日期 + 缓冲期」。给客户抢在涨价前下单的机会，抵触会小很多。"}, {"code": "T13", "title": "寄样与运费", "sents": [{"en": "Samples are free; you'd just cover the courier cost.", "cn": "样品免费，您只需承担快递费。"}, {"en": "It's about forty dollars by DHL, and it takes four or five days.", "cn": "走 DHL 大约四十美元，四五天到。"}, {"en": "If you'd rather, I can send it with your courier account instead.", "cn": "如果您愿意，也可以用您的快递账号寄。"}, {"en": "Once you place an order, we refund the sample freight.", "cn": "您下单之后，样品运费我们退还。"}, {"en": "I'll send the tracking number as soon as it ships.", "cn": "一发出我就把快递单号发给您。"}, {"en": "Two samples are usually enough — I'll put in three, just in case.", "cn": "通常两个样品够了，我放三个，以防万一。"}], "tip": "「样品免费、运费您付」要说完整，并加一句「下单后退还运费」——这是留住客户的关键一句。"}, {"code": "T14", "title": "样品确认", "sents": [{"en": "Did the sample arrive in good condition?", "cn": "样品收到时状态还好吗？"}, {"en": "Is the finish what you expected, or does it need adjusting?", "cn": "表面效果是您预期的吗，还是需要调整？"}, {"en": "If there's anything to change, tell me now — it's easy at this stage.", "cn": "有什么要改的现在说，这个阶段改很容易。"}, {"en": "We can adjust the colour, the size, or the packaging.", "cn": "颜色、尺寸、包装都可以调整。"}, {"en": "Once you approve it, we'll keep a sealed sample as the reference.", "cn": "您确认后，我们会封存一个样品作为参照。"}, {"en": "That sealed sample is what the production batch will be checked against.", "cn": "量产批次会按这个封样来比对。"}], "tip": "封样（sealed sample）这个动作一定要说。它是后面万一有质量争议时，你唯一说得清的依据。"}, {"code": "T15", "title": "下单与 PI", "sents": [{"en": "Great — I'll send you the proforma invoice today.", "cn": "好的，我今天把形式发票发给您。"}, {"en": "Please check the quantity, the price, and the delivery date on it.", "cn": "请核对上面的数量、价格和交货期。"}, {"en": "Once you sign it back, we'll start production.", "cn": "您回签之后我们就开始生产。"}, {"en": "Production only starts after we receive the deposit, not the signature.", "cn": "生产是在收到定金后启动，不是签完字就启动。"}, {"en": "If anything needs changing, tell me before you sign.", "cn": "有要改的地方，签字前告诉我。"}, {"en": "I'll also attach our bank details — please use the ones in this email only.", "cn": "我们的银行信息也附上了——请只认这封邮件里的账户。"}], "tip": "PI 上必须区分「签字」和「付定金」两个节点。不说清，客户会以为签了字你就开工了。"}, {"code": "T16", "title": "确认规格与包装", "sents": [{"en": "Let me confirm the specs one more time before we go to production.", "cn": "投产前我再确认一次规格。"}, {"en": "Standard packing is fifty pieces per carton — is that OK for you?", "cn": "标准包装是每箱五十件，您可以接受吗？"}, {"en": "Do you need barcodes or any printing on the carton?", "cn": "需要条码或者外箱印刷吗？"}, {"en": "If you have your own artwork, send it as a vector file.", "cn": "如果您有自己的设计稿，请发矢量文件。"}, {"en": "Pallets or loose loading? That affects the freight.", "cn": "打托盘还是散装？这会影响运费。"}, {"en": "I'll put all of this in writing so nobody has to remember it.", "cn": "我把这些都写下来，省得靠记忆。"}], "tip": "包装细节最容易被忽略，却最容易出错。确认完一定写成文字，口头说的不算。"}, {"code": "T17", "title": "改单与追加", "sents": [{"en": "Production started on Monday, so changes are still possible today.", "cn": "生产周一开始的，所以今天还能改。"}, {"en": "After Friday, the materials are cut and we can't change the quantity.", "cn": "周五之后材料就裁好了，数量改不了。"}, {"en": "Adding another colour now would add about ten days.", "cn": "现在再加一个颜色，大概要加十天。"}, {"en": "I'd suggest keeping this order as is and adding the colour to the next one.", "cn": "我建议这单保持原样，颜色加到下一单。"}, {"en": "If you increase the quantity, the unit price actually goes down slightly.", "cn": "如果您增加数量，单价反而会略降。"}, {"en": "Let me know by tomorrow and I'll adjust the schedule.", "cn": "明天前告诉我，我来调整排期。"}], "tip": "改单要给「截止时点」和「代价」两个数字。客户知道了代价，自己会做决定，你不用拒绝。"}, {"code": "T18", "title": "大货与产前样", "sents": [{"en": "We've made a pre-production sample — photos attached.", "cn": "我们做了产前样，照片在附件。"}, {"en": "Please approve it before we run the full batch.", "cn": "量产前请您确认。"}, {"en": "Once you say go, the batch takes about twenty-five days.", "cn": "您确认后，这批货大约需要二十五天。"}, {"en": "I'll send you photos of the production line every Friday.", "cn": "我每周五发产线照片给您。"}, {"en": "If anything looks off, tell me early — it's cheap to fix now.", "cn": "如果哪里不对，早点告诉我，现在改成本低。"}, {"en": "I'd rather over-communicate than have you wondering.", "cn": "我宁愿多说，也不想让您在那儿猜。"}], "tip": "主动承诺「每周五发产线照片」，是外贸里成本最低、信任回报最高的动作。"}, {"code": "T19", "title": "谈付款方式", "sents": [{"en": "For a first order, we work with a thirty percent deposit.", "cn": "首单我们按三成定金操作。"}, {"en": "The balance is due before shipment, against a copy of the bill of lading.", "cn": "余款见提单副本后、发货前付清。"}, {"en": "For regular customers, we can discuss open account terms.", "cn": "对于长期客户，我们可以谈赊账条件。"}, {"en": "L/C at sight is fine, but the bank charges are on your side.", "cn": "即期信用证可以，但银行费用由贵方承担。"}, {"en": "Once we've worked together a year, I'd be happy to revisit this.", "cn": "合作满一年后，我很乐意重新谈这件事。"}, {"en": "It's not about trust — it's just how we manage risk on both sides.", "cn": "这不是信不信任的问题，是我们双方管理风险的方式。"}], "tip": "拒绝赊账时别说「我们不信任你」。改成「这是双方的风险管理」，并且给出「合作满一年可再谈」的通道。"}, {"code": "T20", "title": "定金与尾款", "sents": [{"en": "The goods are ready, and we're waiting on the balance to ship.", "cn": "货已经好了，我们等尾款安排发货。"}, {"en": "Production is finished, so the storage cost is now running daily.", "cn": "生产已完成，现在每天都在产生仓储费。"}, {"en": "Once the payment clears, we can ship within two days.", "cn": "款项到账后，两天内可以发货。"}, {"en": "I'll send the packing photos so you can see everything is packed.", "cn": "我把装箱照片发您，您能看到货都已打包。"}, {"en": "If there's a delay on your side, just tell me when.", "cn": "如果贵方这边有延迟，告诉我大概时间就行。"}, {"en": "I'd rather hear bad news early than chase it for a week.", "cn": "我宁愿早点听到坏消息，也不想追着问一星期。"}], "tip": "催尾款要给出「客观后果」（仓储费在跑），而不是情绪。同时给对方一个说真话的台阶。"}, {"code": "T21", "title": "催款升级", "sents": [{"en": "I'm following up on the balance for invoice 2084, now three weeks overdue.", "cn": "跟进一下 2084 号发票的尾款，现在已经逾期三周。"}, {"en": "I've attached the invoice and the bill of lading again for reference.", "cn": "我把发票和提单再附一次，供您查阅。"}, {"en": "If there's a problem with the paperwork, tell me and I'll fix it today.", "cn": "如果单证有问题，告诉我，我今天处理。"}, {"en": "If it's a cash-flow issue, we can look at a payment plan.", "cn": "如果是资金周转的问题，我们可以商量付款计划。"}, {"en": "What I can't do is release the goods without payment.", "cn": "我做不到的是没收到款就放货。"}, {"en": "Let's sort this out this week so it doesn't affect the next order.", "cn": "我们这周把它处理掉，免得影响下一单。"}], "tip": "催款升级要分层：先假设有客观原因（单证/资金），再守住「不付款不放货」的底线。"}, {"code": "T22", "title": "交期与排产", "sents": [{"en": "From deposit to shipment, the current lead time is thirty-five days.", "cn": "从付定金到发货，目前交期是三十五天。"}, {"en": "We have two large orders ahead of yours in the queue.", "cn": "在您前面排着两个大单。"}, {"en": "If you confirm this week, I can move you ahead of one of them.", "cn": "如果您本周确认，我可以把您排到其中一个前面。"}, {"en": "Splitting the shipment is another option — half now, half in three weeks.", "cn": "分批出货也是个办法——先出一半，三周后再出一半。"}, {"en": "I'd rather give you a date I can keep than a promise I can't.", "cn": "我宁愿给一个守得住的日期，也不给做不到的承诺。"}, {"en": "Once it's booked, I'll send you a production schedule.", "cn": "排定之后，我把生产计划发给您。"}], "tip": "交期宁可报长不报短。老外买家最怕的不是晚，是被骗——承诺了没做到，比一开始就报长更伤。另外注意口径：「三十五天」是从付定金到发货的全周期，其中大货生产约二十五天，剩下是备货与订舱时间，两个数字不要混着报。"}, {"code": "T23", "title": "发货通知与提单", "sents": [{"en": "Your order shipped yesterday — the vessel details are below.", "cn": "您的订单昨天发出，船务信息如下。"}, {"en": "ETD Shenzhen was the 14th, and ETA Rotterdam is around the 8th of next month.", "cn": "深圳离港是 14 号，预计到鹿特丹是下月 8 号左右。"}, {"en": "I'll send the bill of lading as soon as the carrier releases it.", "cn": "船公司一放单我就把提单发给您。"}, {"en": "Please check the consignee details now, not after it arrives.", "cn": "请现在核对收货人信息，别等到港再核。"}, {"en": "A change at this stage costs about a hundred and fifty dollars.", "cn": "这个阶段改单大约要一百五十美元。"}, {"en": "I'll keep tracking it and update you if anything shifts.", "cn": "我会持续跟踪，有变动就告诉您。"}], "tip": "发货后第一件事是让客户核对收货人信息。错了再改，钱和时间都是你的。"}, {"code": "T24", "title": "清关与单证", "sents": [{"en": "Let me check which documents your customs is asking for.", "cn": "我看一下贵方海关要的是哪几份文件。"}, {"en": "Normally we provide the commercial invoice, packing list and bill of lading.", "cn": "通常我们提供商业发票、装箱单和提单。"}, {"en": "If you need a certificate of origin, I can apply for one today.", "cn": "如果需要原产地证，我今天可以申请。"}, {"en": "Some markets also want a test report — tell me and I'll check if we have it.", "cn": "有些市场还要检测报告，告诉我，我看看我们有没��。"}, {"en": "Send me the customs notice and I'll reply within the hour.", "cn": "把海关通知发我，我一小时内回复。"}, {"en": "We've shipped to your market many times, so this is usually solvable.", "cn": "我们发过贵方市场很多次，这类问题一般都能解决。"}], "tip": "单证问题要快。第一句就给响应时间（一小时内回复），客户的焦虑会立刻降下来。"}, {"code": "T25", "title": "到货破损", "sents": [{"en": "I'm sorry to hear that — please send me photos before you unpack everything.", "cn": "很抱歉听到这个情况，请先发照片，别急着全部拆箱。"}, {"en": "Take photos of the carton first, then the damaged items inside.", "cn": "先拍外箱，再拍里面破损的货。"}, {"en": "If the carrier damaged it, we'll claim against the insurance.", "cn": "如果是运输方造成的损坏，我们走保险理赔。"}, {"en": "Don't throw anything away yet — the claim needs evidence.", "cn": "先别扔任何东西，理赔需要证据。"}, {"en": "Let me know how many pieces are affected and I'll work out the replacement.", "cn": "告诉我受影响的数量，我来安排补货。"}, {"en": "We'll ship replacements with your next order, at no charge.", "cn": "补货随您下一单一起发，不收费。"}], "tip": "破损处理第一句是「先拍照，别拆」。证据没了，后面谁赔都说不清。"}, {"code": "T26", "title": "数量短少", "sents": [{"en": "Let me check the packing list against what you received.", "cn": "我拿装箱单跟您收到的货核对一下。"}, {"en": "Our records show forty cartons were loaded — how many did you count?", "cn": "我们记录装了四十箱，您数到的是多少？"}, {"en": "Sometimes a carton is left on the pallet at the warehouse.", "cn": "有时候会有一箱留在仓库的托盘上。"}, {"en": "Please check with your receiving team before we conclude anything.", "cn": "请先跟收货那边确认一下，我们再下结论。"}, {"en": "If it really is short, we'll ship the missing cartons immediately.", "cn": "如果确实少了，我们立刻把缺的箱子发出来。"}, {"en": "Either way you'll get the full quantity — I just want to find out where it is.", "cn": "无论哪种情况您都会收到足数，我只是想弄清楚货在哪儿。"}], "tip": "数量异议先查、别先赔。语气要稳：「您一定会收到足数」，先给安全感，再查原因。"}, {"code": "T27", "title": "质量异议", "sents": [{"en": "That's serious — let me look into it today.", "cn": "这很严重，我今天就去查。"}, {"en": "Can you tell me how many pieces are affected, and send photos?", "cn": "能告诉我受影响的数量，并发照片吗？"}, {"en": "I'll compare them with the sealed sample we kept.", "cn": "我拿我们封存的样品比对一下。"}, {"en": "If it's our fault, we'll say so and fix it.", "cn": "如果是我们的问题，我们认，并且处理。"}, {"en": "If it's within tolerance, I'll explain the standard to you clearly.", "cn": "如果在公差范围内，我把标准跟您讲清楚。"}, {"en": "Either way, I'll come back to you with a written answer by Friday.", "cn": "无论哪种情况，我周五前给您一份书面答复。"}], "tip": "质量投诉最忌讳立刻辩解。先认下这件事的严重性，承诺书面答复的时间点，这一步就赢了一半。"}, {"code": "T28", "title": "退货与换货", "sents": [{"en": "A full return is possible, but let's look at the cost first.", "cn": "整批退货可以，但我们先看成本。"}, {"en": "Shipping it back would cost more than the goods themselves.", "cn": "运回来的运费比货值还高。"}, {"en": "A better option is a partial credit and you keep the goods.", "cn": "更好的办法是部分退款，货您留着。"}, {"en": "Or we replace the defective pieces only, not the whole shipment.", "cn": "或者我们只补有问题的那部分，不是整批。"}, {"en": "If you can use the rest, I'll credit you for the affected units.", "cn": "如果其余还能用，我按受影响的数量给您折让。"}, {"en": "Tell me which option works, and I'll put it in writing.", "cn": "告诉我哪个方案可行，我写成书面确认。"}], "tip": "退货要算账。把「运费比货值高」摆出来，客户自己会选折让，你不用拒绝他。"}, {"code": "T29", "title": "客户要赔偿", "sents": [{"en": "I understand this has cost you, and I'm sorry for the delay.", "cn": "我理解这给您造成了损失，也很抱歉延误。"}, {"en": "The delay was caused by the material supplier, not by negligence on our side.", "cn": "延误是材料供应商造成的，不是我们这边疏忽。"}, {"en": "We're not in a position to cover your downstream losses.", "cn": "我们无法承担贵方下游的损失。"}, {"en": "What I can offer is a discount on this order and priority on the next one.", "cn": "我能给的是这单的折扣和下一单的优先排产。"}, {"en": "That's about two thousand dollars in value, and I can confirm it now.", "cn": "大约相当于两千美元，我现在就能确认。"}, {"en": "I'd rather settle it this way than argue about liability for months.", "cn": "我宁愿这样解决，也不想为责任争几个月。"}], "tip": "拒赔要给替代方案并当场报出金额。空说「我们很抱歉」只会让对方更火。"}, {"code": "T30", "title": "维护关系与返单", "sents": [{"en": "Thank you for being straight with me throughout this.", "cn": "谢谢您整个过程都跟我直说。"}, {"en": "Problems are unavoidable; how we handle them is what matters.", "cn": "问题免不了，重要的是我们怎么处理。"}, {"en": "I've put a note on your file so the next order gets extra checks.", "cn": "我在您的档案里备注了，下一单会加严检验。"}, {"en": "When you're ready to reorder, the price stays as agreed.", "cn": "您准备返单时，价格仍按约定的来。"}, {"en": "And I'll send you our new models first, before we publish them.", "cn": "我们出新款会先发您，公开之前就给您看。"}, {"en": "Let's make the next one the easy one.", "cn": "让下一单成为顺顺当当的一单。"}], "tip": "处理完投诉才是关系的开始。加严检验、优先看新款，这两个承诺比道歉有用得多。"}]};
 const ACCESS_HASH = "247fe002a63c3d9d60b1193226f7571980207d07e6ef6325b3cf8fce2b30cfda";
@@ -285,7 +294,47 @@ function h256(s){
 
   // ---- 音频 ----
   var curAudio=null, curBtn=null;
-  function stopAudio(){ if(curAudio){ try{curAudio.pause();}catch(e){} } if(curBtn){ curBtn.classList.remove("on"); curBtn.classList.remove("wait"); curBtn.textContent="▶"; curBtn=null; } curAudio=null; }
+  
+  /* ---- 逐词高亮（KTV）：播放时读到哪个词，哪个词就亮 ---- */
+  var ktvRAF=0, ktvHost=null;
+  function ktvStop(){ if(ktvRAF){ cancelAnimationFrame(ktvRAF); ktvRAF=0; } if(ktvHost){ ktvHost._hi=-1;
+    var sp=ktvHost.querySelectorAll(".w"); for(var i=0;i<sp.length;i++) sp[i].classList.remove("hi"); ktvHost=null; } }
+  function ktvClear(host){ if(!host) return; var sp=host.querySelectorAll(".w"); for(var i=0;i<sp.length;i++) sp[i].classList.remove("hi"); host._hi=-1; }
+  function ktvStart(a,btn){
+    var it=(btn&&btn.closest)?btn.closest(".item"):null;
+    var host=it?it.querySelector(".en"):null;
+    if(!host||!host.querySelector(".w")) return;
+    ktvStop(); ktvHost=host; host._hi=-1;
+    var tick=function(){
+      if(curAudio!==a){ ktvStop(); return; }
+      var sp=host.querySelectorAll(".w"), t=a.currentTime*1000, found=-1;
+      var k1=(typeof spd!=="undefined"&&spd==="s")?"ss":"ns", k2=(k1==="ss")?"sd":"nd";
+      for(var i=0;i<sp.length;i++){
+        var s=parseFloat(sp[i].dataset[k1]||"0"), d=parseFloat(sp[i].dataset[k2]||"0");
+        if(t>=s-40 && t<=s+d+90){ found=i; break; }
+      }
+      if(found!==host._hi){
+        for(var j=0;j<sp.length;j++) sp[j].classList.remove("hi");
+        if(found>=0) sp[found].classList.add("hi");
+        host._hi=found;
+      }
+      if(!a.paused && !a.ended) ktvRAF=requestAnimationFrame(tick); else { ktvRAF=0; ktvClear(host); }
+    };
+    ktvRAF=requestAnimationFrame(tick);
+  }
+  function enKTV(code,i,en){
+    var W=window.KTV||{}, e=W[code+"_"+i];
+    if(!e||!e.n||!e.n.length) return markSlots(esc(en));
+    var ws=e.n, ss=e.s||[], out="";
+    for(var k=0;k<ws.length;k++){
+      var a=ws[k], b=ss[k]||{s:a.s,d:a.d};
+      out+='<span class="w" data-ns="'+a.s+'" data-nd="'+a.d+'" data-ss="'+b.s+'" data-sd="'+b.d+'">'
+        +markSlots(esc(a.w))+'</span>';
+      if(k<ws.length-1) out+=" ";
+    }
+    return out;
+  }
+function stopAudio(){ ktvStop(); if(curAudio){ try{curAudio.pause();}catch(e){} } if(curBtn){ curBtn.classList.remove("on"); curBtn.classList.remove("wait"); curBtn.textContent="▶"; curBtn=null; } curAudio=null; }
   function startAudio(btn,src,tries,cb){
     var a=new Audio(src); curAudio=a; curBtn=btn; window.__audio=a;
     btn.classList.add("on"); btn.textContent="■";
@@ -303,7 +352,7 @@ function h256(s){
       say("这条音频暂时加载不出来，请检查网络后重试");
       if(cb) cb(true);
     });
-    a.play().catch(function(){});
+    a.play().catch(function(){}); ktvStart(a,btn);
   }
   function play(btn,src,cb){
     if(curBtn===btn && curAudio){ stopAudio(); return; }
@@ -329,7 +378,7 @@ function h256(s){
     var s=sc.sents[i-1];
     var h='<div class="srow"><div class="item"><span class="snum2">'+(i)+'</span>'
       +'<div class="abtns"><button class="pbtn" data-p="'+sc.code+"_"+i+'" aria-label="播放第 '+i+' 句">▶</button></div>'
-      +'<div class="ibody"><div class="en">'+markSlots(esc(s.en))+'</div>'
+      +'<div class="ibody"><div class="en">'+enKTV(sc.code,i,s.en)+'</div>'
       +(s.cn?'<div class="cn">'+markSlots(esc(s.cn))+'</div>':'')
       +'</div></div></div>';
     return h;
@@ -427,8 +476,33 @@ function h256(s){
       hit+=gh;
     });
     empty.style.display=(q&&hit===0)?"block":"none";
+    qhlApply(list,q);
   });
 
+
+  /* ---- 搜索关键词高亮：命中处包 mark.qhl，重复渲染前先拆掉旧高亮 ---- */
+  function qhlApply(root,q){
+    root.querySelectorAll("mark.qhl").forEach(function(m){
+      var t=document.createTextNode(m.textContent); m.parentNode.replaceChild(t,m);
+    });
+    if(!q) return;
+    var rx=new RegExp("("+q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig");
+    var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null), nodes=[];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function(n){
+      var txt=n.nodeValue; if(!txt||!txt.trim()) return;
+      rx.lastIndex=0; if(!rx.test(txt)) return; rx.lastIndex=0;
+      var frag=document.createDocumentFragment(), last=0, m;
+      while((m=rx.exec(txt))){
+        if(m.index>last) frag.appendChild(document.createTextNode(txt.slice(last,m.index)));
+        var mk=document.createElement("mark"); mk.className="qhl"; mk.textContent=m[0];
+        frag.appendChild(mk); last=m.index+m[0].length;
+        if(m[0].length===0) rx.lastIndex++;
+      }
+      if(last<txt.length) frag.appendChild(document.createTextNode(txt.slice(last)));
+      n.parentNode.replaceChild(frag,n);
+    });
+  }
   // ---- 使用说明折叠 ----
   var ht=document.getElementById("howto");
   document.getElementById("howtoH").addEventListener("click",function(){ ht.classList.toggle("closed"); });
