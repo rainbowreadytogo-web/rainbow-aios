@@ -104,6 +104,19 @@
   /* v1.9b 热区修正 */
   .learn-entry-btn{position:relative;z-index:2}
   .mini-btn{width:34px;height:34px}
+/* unified play icon */
+.pbtn,.play-btn{font-size:0;display:flex;align-items:center;justify-content:center;line-height:1}
+.pbtn::before,.play-btn::before{content:"";display:block;width:0;height:0;border-left:15px solid currentColor;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.pbtn.on,.play-btn.playing{font-size:0;color:#fff}
+.pbtn.on::before,.play-btn.playing::before{content:"";display:block;width:16px;height:16px;background:currentColor;border:none;border-radius:2.5px;margin:0}
+/* unified play icon */
+.mini-btn{font-size:0}
+.mini-btn::before{content:"";display:block;width:0;height:0;border-left:9px solid currentColor;border-top:5.5px solid transparent;border-bottom:5.5px solid transparent;margin-left:2px}
+.mini-btn.playing::before{content:"";display:block;width:10px;height:10px;background:currentColor;border:none;border-radius:1.5px;margin:0}
+/* 连播胶囊图标 */
+.play-all{display:inline-flex;align-items:center;gap:5px}
+.play-all::before{content:"";display:inline-block;width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.play-all.playing::before{width:9px;height:9px;border:none;background:currentColor;border-radius:2px}
 </style>
 </head>
 <body>
@@ -312,7 +325,7 @@ function renderCh(i) {
           <div class="part-head" onclick="togglePart(this)">
             <span class="part-tag">${i + 1}-${pi + 1}</span>
             <span class="part-title">${escapeHtml(pt.t)}</span>
-            <button class="play-all" onclick="event.stopPropagation();playAll(${i},${pi})">▶ 连播本节</button>
+            <button class="play-all" onclick="event.stopPropagation();playAll(${i},${pi})">连播本节</button>
             <span class="arrow">›</span>
           </div>
           <div class="card-list">${cards}</div>
@@ -327,7 +340,7 @@ function renderCh(i) {
           <div class="part-head" onclick="togglePart(this)">
             <span class="part-tag">B${pi + 1}</span>
             <span class="part-title">${escapeHtml(pt.t)}</span>
-            <button class="play-all" onclick="event.stopPropagation();playAll(${i},${pi})">▶ 连播例句</button>
+            <button class="play-all" onclick="event.stopPropagation();playAll(${i},${pi})">连播例句</button>
             <span class="arrow">›</span>
           </div>
           <div class="card-list">${cards}</div>
@@ -422,7 +435,7 @@ function stopCurrent() {
 
 function playAudio(card, btn, file, slow) {
   stopCurrent();
-  if (playAllMode) { stopPlayAll(); return; }
+  if (playAllMode) { stopPlayAll(); }
   const a = new Audio(file);
   a.playbackRate = slow ? 0.7 : 1.0;
   a.play().catch(e => console.warn('播放失败', e));
@@ -461,7 +474,8 @@ function playAll(ci, pi) {
   partEl.querySelectorAll('.primary').forEach(b => playAllQueue.push(b));
   const btn = partEl.querySelector('.play-all');
   btn.classList.add('playing');
-  btn.textContent = '■ 停止';
+  if (!btn.dataset.lbl) btn.dataset.lbl = btn.textContent;
+  btn.textContent = '停止连播';
   playQueue();
 }
 /* 连播本节：边播边预载下一句并复用，单句失败自动跳过 */
@@ -509,7 +523,7 @@ function stopPlayAll() {
   playAllMode = false;
   playAllQueue = [];
   if (currentAudio) { currentAudio.pause(); currentAudio = null; }
-  document.querySelectorAll('.play-all.playing').forEach(b => { b.classList.remove('playing'); b.textContent = '▶ 连播本节'; });
+  document.querySelectorAll('.play-all.playing').forEach(b => { b.classList.remove('playing'); b.textContent = b.dataset.lbl || '连播本节'; });
   if (currentCard) currentCard.classList.remove('playing');
   if (currentBtn) currentBtn.classList.remove('playing');
 }
@@ -598,11 +612,11 @@ function escapeAttr(s) { return escapeHtml(s); }
   function pad3(n){return String(n).padStart(3,'0')}
   var ups=[], totText=null;
   function fmt(n){return '已听 '+n+' / '+CFG.total+' 句 · '+Math.round(100*n/CFG.total)+'%';}
-  /* v1.5：标题旁总进度移除（在学习库首页产品卡体现），「学习库总入口 →」移至最右、放大加粗 */
+  /* v1.5：标题旁总进度移除（在学习库首页产品卡体现），「学习库总入口 ›」移至最右、放大加粗 */
   document.querySelectorAll('#app h1').forEach(function(h){
     var box=h.closest('.topbar')||h.parentNode;
     if(box.querySelector('.learn-entry-btn'))return;
-    var a=document.createElement('a');a.href='../learn/';a.textContent='学习库总入口 →';
+    var a=document.createElement('a');a.href='../learn/';a.textContent='学习库总入口 ›';
     a.className='learn-entry-btn';
     var row=document.createElement('div');
     row.className='entry-row';

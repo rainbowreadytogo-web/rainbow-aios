@@ -132,6 +132,11 @@ header .htext{flex:1;min-width:0}
   font-size:13px;padding:10px 16px;border-radius:10px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:99}
 #toast.show{opacity:.95}
 footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;text-align:center}
+/* unified play icon */
+.pbtn,.play-btn{font-size:0;display:flex;align-items:center;justify-content:center;line-height:1}
+.pbtn::before,.play-btn::before{content:"";display:block;width:0;height:0;border-left:15px solid currentColor;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.pbtn.on,.play-btn.playing{font-size:0;color:#fff}
+.pbtn.on::before,.play-btn.playing::before{content:"";display:block;width:15px;height:15px;background:currentColor;border:none;border-radius:2.5px;margin:0}
 </style>
 </head>
 <body>

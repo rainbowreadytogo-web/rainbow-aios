@@ -78,6 +78,10 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
   font-size:13px;line-height:1.7;color:#7a5640}
 .notice a{color:var(--brand-d);font-weight:700}
 footer{margin:22px 16px 0;color:var(--muted);font-size:12px;line-height:1.8;text-align:center}
+/* unified play icon */
+.play{font-size:0}
+.play::before{content:"";display:block;width:0;height:0;border-left:15px solid currentColor;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.sent.playing .play::before{content:"";display:block;width:15px;height:15px;background:currentColor;border:none;border-radius:2.5px;margin:0}
 </style>
 </head>
 <body>

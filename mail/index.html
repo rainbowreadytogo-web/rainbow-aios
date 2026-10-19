@@ -49,7 +49,7 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .aghead{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding:2px 0;min-height:44px}
 .aghead h2{margin:0;font-size:16px;color:var(--brand);font-weight:600}
 .aghead .aghint{font-size:11.5px;color:var(--muted);font-weight:400}
-.aghead .agchev{margin-left:auto;color:var(--brand);font-size:16px;font-weight:700;transition:transform .2s}
+.aghead .agchev{margin-left:auto;color:var(--brand);font-size:20px;font-weight:700;transition:transform .2s}
 .assemble.closed .agchev{transform:rotate(-90deg)}
 .assemble.closed .agbody{display:none}
 .assemble .sub{font-size:12px;color:var(--muted);margin:0 0 10px;line-height:1.6}
@@ -80,6 +80,13 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
   background:var(--soft);border-radius:10px;padding:11px 12px;min-height:48px}
 .scode{flex:0 0 auto;font-size:11px;color:var(--brand-d);background:var(--brand-l);border-radius:6px;padding:3px 8px;font-weight:700;white-space:nowrap}
 .stitle{flex:1;min-width:0;font-size:15px;font-weight:600;color:var(--ink);line-height:1.4}
+.gbtn{border:1px solid var(--line);background:#fff;color:var(--brand-d);border-radius:999px;padding:0 14px;height:32px;font-size:12.5px;font-weight:600;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center}
+.gbtn.sel{background:var(--brand);color:#fff;border-color:var(--brand)}
+.sceneplay{margin:8px 0 2px;display:flex;gap:8px}
+.gbtn[data-all]{display:inline-flex;align-items:center;gap:5px}
+.gbtn[data-all]::before{content:"";display:inline-block;width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.gbtn[data-all].sel::before{width:9px;height:9px;border:none;background:currentColor;border-radius:2px}
 .stag{flex:0 0 auto;font-size:11px;color:var(--sub);border:1px solid var(--line);border-radius:6px;padding:2px 7px;white-space:nowrap;background:#fff}
 .chev{flex:0 0 auto;color:var(--brand);font-size:20px;font-weight:700;line-height:1;transition:transform .2s}
 .scard.open .chev{transform:rotate(90deg)}
@@ -116,6 +123,10 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .pbtn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
   background:#fff;color:var(--brand);font-size:13px;line-height:30px;text-align:center;cursor:pointer;padding:0;position:relative}
 .pbtn::after{content:"";position:absolute;inset:-6px}
+.pbtn:not(.spd):not(.slow){display:inline-flex;align-items:center;justify-content:center;line-height:1;font-size:0}
+.pbtn:not(.spd):not(.slow)::before{content:"";display:block;width:0;height:0;border-left:11px solid currentColor;border-top:6.5px solid transparent;border-bottom:6.5px solid transparent;margin-left:3px}
+.pbtn.on:not(.spd):not(.slow){font-size:0}
+.pbtn.on:not(.spd):not(.slow)::before{content:"";display:block;width:11px;height:11px;background:currentColor;border:none;border-radius:2px;margin:0}
 .pbtn.on{background:var(--brand);color:#fff;border-color:var(--brand);font-size:17px;font-weight:700}
 /* 音频加载中（超过 0.8 秒还没出声）：柔和呼吸提示 */
 .pbtn.wait{animation:pbtnBreath 1.1s ease-in-out infinite}
@@ -159,7 +170,7 @@ mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
     <div class="logo">✉️</div>
     <h1>外企邮件英语 · 写作 50 场景<br>即抄即用 · 常速慢速真人配音</h1>
     <p>本资料为付费内容，请输入购买后收到的口令解锁</p>
-    <input id="gateInput" type="password" placeholder="请输入口令" autocomplete="off">
+    <input id="gateInput" type="password" placeholder="请输入口令" autocomplete="new-password">
     <button id="gateBtn">解锁学习</button>
     <div id="gerr"></div>
     <div class="gfoot">Rainbow聊外企 · 仅供购买者本人使用<br>口令问题请联系卖家</div>
@@ -169,8 +180,8 @@ mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
 <header>
   <h1>外企邮件英语 · 写作 50 场景</h1>
   <p>Rainbow 聊外企 · 50 个高频场景 · 每场景 📄 完整邮件 / ✅ 可直接抄 / ⬆️ 更地道 / ⚠️ 别这么写 / 💡 中文拆解 · 一键复制</p>
-  <div><input class="search" id="search" placeholder="搜场景 / 句子 / 中文…"></div>
-  <div class="entry-row"><a href="../learn/">学习库总入口 →</a></div>
+  <div><input class="search" id="search" placeholder="搜索场景或句子，如：跟进、道歉、拒绝"></div>
+  <div class="entry-row"><a href="../learn/">学习库总入口 ›</a></div>
 </header>
 
 <!-- 拼装示例（可折叠，默认收起） -->
@@ -294,28 +305,55 @@ function h256(s){
   var curAudio=null, curBtn=null;
   function stopAudio(){ if(curAudio){ curAudio.pause(); } if(curBtn){ curBtn.classList.remove("on"); curBtn.textContent="▶"; curBtn=null; } curAudio=null; }
   // 加载中提示：超过 800ms 还没出声才显示，秒开时不闪烁
-  function startAudio(btn,src,tries){
+  function startAudio(btn,src,tries,cb){
     var a=new Audio(src); curAudio=a; curBtn=btn;
     btn.classList.add("on"); btn.textContent="■";
     var wt=setTimeout(function(){ if(curAudio===a) btn.classList.add("wait"); },800);
     var clean=function(){ clearTimeout(wt); try{ btn.classList.remove("wait"); }catch(e){} };
     a.addEventListener("playing",clean);
-    a.addEventListener("ended",function(){ clean(); if(curAudio===a) stopAudio(); });
+    a.addEventListener("ended",function(){ clean(); if(curAudio===a){ stopAudio(); if(cb) cb(); } });
     a.addEventListener("error",function(){
       clean();
       if(curAudio!==a) return;                    // 过期实例的事件忽略
       try{ a.pause(); }catch(e){}
       curAudio=null; curBtn=null;
       btn.classList.remove("on"); btn.textContent="▶";
-      if(tries<1){ setTimeout(function(){ startAudio(btn,src+"?r=1",1); },300); return; }  // 自动重试一次
+      if(tries<1){ setTimeout(function(){ startAudio(btn,src+"?r=1",1,cb); },300); return; }  // 自动重试一次
       say("这条音频暂时加载不出来，请检查网络后重试");
+      if(cb) cb(true);
     });
     a.play().catch(function(){});
   }
-  function play(btn,src){
+  function play(btn,src,cb){
     if(curBtn===btn && curAudio){ stopAudio(); return; }
+    if(seqCode) endSeq();
     stopAudio();
-    startAudio(btn,src,0);
+    startAudio(btn,src,0,cb);
+  }
+  var seqBtn=null, seqIdx=0, seqCode=null;
+  var ALLLBL="连播本场景";
+  function endSeq(){ seqCode=null; if(seqBtn){ seqBtn.textContent=ALLLBL; seqBtn.classList.remove("sel"); } }
+  function playSeq(code,btn){
+    if(seqCode===code){ seqCode=null; stopAudio(); endSeq(); return; }
+    stopAudio(); endSeq();
+    seqCode=code; seqBtn=btn; seqIdx=0;
+    btn.textContent="停止连播"; btn.classList.add("sel");
+    var parts=["m","a","b"];
+    var step=function(err){
+      if(seqCode!==code) return;
+      if(err){ seqCode=null; btn.textContent=ALLLBL; btn.classList.remove("sel"); return; }
+      if(seqIdx>=parts.length){
+        seqCode=null; btn.textContent=ALLLBL; btn.classList.remove("sel");
+        stopAudio(); return;
+      }
+      var part=parts[seqIdx++];
+      var b=document.querySelector('[data-a="'+code+"_"+part+'"]');
+      if(!b){ step(); return; }
+      var slow=b.parentNode.querySelector(".pbtn.slow");
+      var sp=(slow && slow.classList.contains("sel"))?"_s":"_n";
+      startAudio(b,"audio/"+code+"_"+part+sp+".mp3",0,step);
+    };
+    step();
   }
   // 预取：写入 HTTP 缓存（不占用媒体连接），并发上限 2——避免连开几张卡占满带宽导致后续点击没声音
   var pQ=[], pRun=0, pDone={}, PMAX=2;
@@ -403,6 +441,7 @@ function h256(s){
     d.innerHTML='<div class="stop"><span class="scode">'+s.code+'</span><span class="stitle">'+esc(s.title)
       +'</span><span class="stag">'+TAGN[s.tag]+'</span><span class="chev">›</span></div>'
       +'<div class="sbody">'
+      +'<div class="sceneplay"><button class="gbtn" data-all="'+s.code+'">连播本场景</button></div>'
       +mailBlock(s.code)
       +itemBlock("blk-ok","✅ 可直接抄",s.ok,"",s.code,"a")
       +itemBlock("blk-up","⬆️ 更地道",s.up,"",s.code,"b")
@@ -445,6 +484,12 @@ function h256(s){
         var slow=b.parentNode.querySelector(".pbtn.slow");
         var sp=(slow && slow.classList.contains("sel"))?"_s":"_n";
         play(b,"audio/"+b.dataset.a+sp+".mp3");
+      });
+    });
+    d.querySelectorAll(".gbtn[data-all]").forEach(function(ab){
+      ab.addEventListener("click",function(e){
+        e.stopPropagation();
+        playSeq(ab.getAttribute("data-all"),ab);
       });
     });
     d.querySelectorAll(".copy").forEach(function(b){

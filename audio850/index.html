@@ -94,6 +94,15 @@
   /* v1.9b 热区修正 */
   .learn-entry-btn{position:relative;z-index:2}
   .mini-btn{width:34px;height:34px}
+/* unified play icon */
+.pbtn,.play-btn{font-size:0;display:flex;align-items:center;justify-content:center;line-height:1}
+.pbtn::before,.play-btn::before{content:"";display:block;width:0;height:0;border-left:15px solid currentColor;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.pbtn.on,.play-btn.playing{font-size:0;color:#fff}
+.pbtn.on::before,.play-btn.playing::before{content:"";display:block;width:16px;height:16px;background:currentColor;border:none;border-radius:2.5px;margin:0}
+/* 连播胶囊图标 */
+.play-all{display:inline-flex;align-items:center;gap:5px}
+.play-all::before{content:"";display:inline-block;width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.play-all.playing::before{width:9px;height:9px;border:none;background:currentColor;border-radius:2px}
 </style>
 </head>
 <body>
@@ -127,7 +136,7 @@
     <summary>使用帮助（首次使用请点开）</summary>
     <ul>
       <li><b>双速切换</b>:顶部「常速/慢速」,跟读练习用慢速(降30%,听清每个词)</li>
-      <li><b>连播本课</b>:每课右上角「连播」,通勤当听力自动放</li>
+      <li><b>连播本章</b>:每课右上角「连播」,通勤当听力自动放</li>
       <li><b>搜索</b>:顶部搜索框,中英文都能搜</li>
       <li><b>收藏方法</b>:链接收藏到浏览器书签,或微信里「浮窗」保存,随时点开学</li>
       <li><b>学习节奏</b>:每天 1-2 章节(约 20-40 句),通勤听常速练耳→跟读用慢速,43 章节≈1-2 个月</li>
@@ -297,7 +306,7 @@ function renderChapter(ci) {
   let html = `
     <div class="day" data-ch="${ci}">
       <div class="day-head">
-        <button class="play-all" onclick="playAll(${ci})">▶ 连播本章</button>
+        <button class="play-all" onclick="playAll(${ci})">连播本章</button>
       </div>
       <div class="card-list" data-cards>${items.map((s, ii) => cardHTML(ci, ii, s)).join('')}</div>
     </div>
@@ -373,7 +382,7 @@ function playOne(btn) {
     if (currentCard) currentCard.classList.remove('playing');
     if (currentBtn) currentBtn.classList.remove('playing');
   }
-  if (playAllMode) { stopPlayAll(); return; }
+  if (playAllMode) { stopPlayAll(); }
   const card = btn.closest('.card');
   currentCard = card;
   currentBtn = btn;
@@ -393,7 +402,7 @@ function playOne(btn) {
 
 let currentBtn = null;
 
-/* ============== 连播本课 ============== */
+/* ============== 连播本章 ============== */
 function playAll(ci) {
   if (playAllMode) { stopPlayAll(); return; }
   playAllMode = true;
@@ -402,7 +411,7 @@ function playAll(ci) {
   dayEl.querySelectorAll('.card').forEach(c => playAllQueue.push(c));
   const btn = dayEl.querySelector('.play-all');
   btn.classList.add('playing');
-  btn.textContent = '■ 停止';
+  btn.textContent = '停止连播';
   playQueue();
 }
 /* 连播：边播边预载下一句并复用，单句失败自动跳过，避免连播链卡死/卡顿 */
@@ -450,7 +459,7 @@ function stopPlayAll() {
   playAllMode = false;
   playAllQueue = [];
   if (currentAudio) { currentAudio.pause(); currentAudio = null; }
-  document.querySelectorAll('.play-all.playing').forEach(b => { b.classList.remove('playing'); b.textContent = '▶ 连播本章'; });
+  document.querySelectorAll('.play-all.playing').forEach(b => { b.classList.remove('playing'); b.textContent = '连播本章'; });
   if (currentCard) currentCard.classList.remove('playing');
   if (currentBtn) currentBtn.classList.remove('playing');
 }
@@ -515,11 +524,11 @@ function escapeAttr(s){return escapeHtml(s);}
   function pad3(n){return String(n).padStart(3,'0')}
   var ups=[], totText=null;
   function fmt(n){return '已听 '+n+' / '+CFG.total+' 句 · '+Math.round(100*n/CFG.total)+'%';}
-  /* v1.5：标题旁总进度移除（在学习库首页产品卡体现），「学习库总入口 →」移至最右、放大加粗 */
+  /* v1.5：标题旁总进度移除（在学习库首页产品卡体现），「学习库总入口 ›」移至最右、放大加粗 */
   document.querySelectorAll('#app h1').forEach(function(h){
     var box=h.closest('.topbar')||h.parentNode;
     if(box.querySelector('.learn-entry-btn'))return;
-    var a=document.createElement('a');a.href='../learn/';a.textContent='学习库总入口 →';
+    var a=document.createElement('a');a.href='../learn/';a.textContent='学习库总入口 ›';
     a.className='learn-entry-btn';
     var row=document.createElement('div');
     row.className='entry-row';

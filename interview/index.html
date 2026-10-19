@@ -172,7 +172,7 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
   <p data-page-node-id="eapZbgR3GNNcKmjoCGFOUX">Rainbow 聊外企 · 40 道外企高频题 · 每题按 STAR 拆成 5 句 · 播放时逐词高亮</p>
 
   <div class="entry-row" style="margin-top:12px;text-align:right">
-    <a href="../learn/" style="display:inline-flex;align-items:center;min-height:44px;padding:12px 16px;background:#f9ede2;color:#a94e2e;border-radius:18px;font-size:13px;font-weight:700;text-decoration:none">学习库总入口 →</a>
+    <a href="../learn/" style="display:inline-flex;align-items:center;min-height:44px;padding:12px 16px;background:#f9ede2;color:#a94e2e;border-radius:18px;font-size:13px;font-weight:700;text-decoration:none">学习库总入口 ›</a>
   </div>
 </header>
 
@@ -244,9 +244,10 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 
 <p class="hint" id="hint" data-page-node-id="E2Q17zZhi6v1b4AIAsgI9P">点句子左边的 ▶ 单独播放，或点「连播本题」从头跟读；播放时说到哪个词，哪个词会高亮。</p>
 
-<div style="margin:12px 14px 0"><input class="search" id="search" placeholder="搜句子 / 中文…" style="margin-top:0"></div>
+<div style="margin:12px 14px 0"><input class="search" id="search" placeholder="搜索题目或句子，如：离职、冲突、业绩" style="margin-top:0"></div>
 
 <div class="filtrow" id="filt"></div>
+<div class="gnotice" id="gnotice">题目按 <b>6 个大类</b> 分组，点组名展开或收起；卡片上的标签是<b>这道题的考点</b>，一个大类里包含多个考点。</div>
 <div id="list" data-page-node-id="qEE71K7eAWD3bQUnPxXlld"></div>
 <div id="nores" style="display:none;margin:20px 18px;text-align:center;color:#9c7d6d;font-size:13px">没找到相关内容，换个词试试</div>
 
@@ -277,6 +278,55 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 <script src="data.js"></script>
 <script>
 var QS = (window.INTERVIEW && window.INTERVIEW.questions) || [];
+var GROUPS=[
+  {t:'开场与动机',ids:[1,2,21,35,17,16]},
+  {t:'优势与自证',ids:[3,4,23,24,36]},
+  {t:'协作与影响',ids:[5,8,9,12,20,29,30,31,32,37,39,15]},
+  {t:'压力与应变',ids:[6,7,11,25,28,13,26,27,14,38]},
+  {t:'领导与带人',ids:[10,33,34]},
+  {t:'薪资与收尾',ids:[22,18,19,40]}
+];
+var openG={}; /* 分组折叠状态：默认展开第一组 */
+function toggleG(gi){
+  var g=document.getElementById('ig'+gi); if(!g) return;
+  g.classList.toggle('open');
+  openG[gi]=g.classList.contains('open');
+}
+function openGroup(gi){
+  var g=document.getElementById('ig'+gi);
+  if(g && !g.classList.contains('open')){ g.classList.add('open'); openG[gi]=true; }
+}
+function autoOpenGroups(){
+  if(typeof GROUPS==='undefined') return;
+  GROUPS.forEach(function(gp,gi){
+    var g=document.getElementById('ig'+gi); if(!g) return;
+    var vis=gp.ids.some(function(id){
+      var c=document.getElementById('q'+id); return c && c.style.display!=='none';
+    });
+    if(vis && !g.classList.contains('open')){ g.classList.add('open'); }
+  });
+}
+function restoreGroups(){
+  if(typeof GROUPS==='undefined') return;
+  GROUPS.forEach(function(gp,gi){
+    var g=document.getElementById('ig'+gi); if(!g) return;
+    var want=(openG[gi]===undefined)?(gi===0):openG[gi];
+    g.classList.toggle('open', !!want);
+    openG[gi]=!!want;
+  });
+}
+function groupsVisible(){
+  var any=false;
+  GROUPS.forEach(function(gp,gi){
+    var g=document.getElementById('ig'+gi); if(!g) return;
+    var vis=gp.ids.some(function(id){
+      var c=document.getElementById('q'+id); return c && c.style.display!=='none';
+    });
+    g.style.display=vis?'':'none';
+    if(vis) any=true;
+  });
+  return any;
+}
 var BOARDS_REMOVED=0; /* 品类预告 chips 已移至学习库 learn/ */
 var mode='ktv', speed='n';
 var openQ={}; /* 折叠状态：默认收起，mode/speed 切换重渲染时保留 */
@@ -345,12 +395,27 @@ function blanksOf(words){
 
 function render(){
   var list=document.getElementById('list'); list.innerHTML='';
-  QS.forEach(function(q){
+  var qno=0; /* 显示编号按分组顺序重排（内部 id/音频文件不变） */
+  GROUPS.forEach(function(gp,gi){
+    var grp=document.createElement('div'); grp.className='igroup'; grp.id='ig'+gi;
+    var h=document.createElement('div'); h.className='ighead';
+    var t=document.createElement('span'); t.className='igt'; t.textContent=(gi+1)+'. '+gp.t;
+    var n=document.createElement('span'); n.className='ign'; n.textContent=gp.ids.length+' 题';
+    var cv=document.createElement('span'); cv.className='igchev'; cv.textContent='\u203A';
+    h.appendChild(t); h.appendChild(n); h.appendChild(cv);
+    h.onclick=function(){ toggleG(gi); };
+    var gb=document.createElement('div'); gb.className='igbody';
+    grp.appendChild(h); grp.appendChild(gb);
+    if(openG[gi]===undefined ? gi===0 : openG[gi]) grp.classList.add('open');
+    list.appendChild(grp);
+    var _list=gb;
+    gp.ids.forEach(function(qid){
+    var q=QS.filter(function(x){return x.id===qid;})[0]; if(!q) return;
     var card=document.createElement('div'); card.className='qcard'; card.id='q'+q.id;
     var qtop=document.createElement('div'); qtop.className='qtop';
     var qmain=document.createElement('div'); qmain.className='qmain';
     var head=document.createElement('div'); head.className='qhead';
-    var no=document.createElement('span'); no.className='no'; no.textContent='Q'+q.id;
+    var no=document.createElement('span'); no.className='no'; qno++; no.textContent='Q'+qno;
     var cat=document.createElement('span'); cat.className='cat'; cat.textContent=q.cat;
     head.appendChild(no); head.appendChild(cat);
     var qen=document.createElement('div'); qen.className='qen'; qen.textContent=q.q_en;
@@ -414,8 +479,10 @@ function render(){
     };
     if(mode==='ktv') b2.style.display='none';
     row.appendChild(b1); row.appendChild(b2); qbody.appendChild(row);
-    list.appendChild(card);
+    _list.appendChild(card);
+    });
   });
+  if(typeof groupsVisible==='function') groupsVisible();
 }
 
 /* ---------- 播放 ---------- */
@@ -463,6 +530,11 @@ function stopAll(){
   playing=false; curQ=null; queue=[];
 }
 function toggleMain(i){
+  if(playing){ /* 连播进行中点单句：结束连播并单独播放该句 */
+    stopAll();
+    playOne(i);
+    return;
+  }
   if(audio && audio.dataset.id==String(i) && !audio.paused && !audio.ended){
     audio.pause();
     var el=document.getElementById('it'+i);
@@ -481,9 +553,7 @@ function toggleMain(i){
   playOne(i);
 }
 function playOne(i){
-  queue=[]; playing=false;
-  if(audio){ try{audio.pause();}catch(e){} audio=null; }
-  clearHi();
+  stopAll(); /* 复位连播状态与按钮（audio/queue/playing/连播钮文字） */
   var a=new Audio(src(i,speed));
   a.preload='auto';
   a.playbackRate=rate(speed); a.dataset.id=i; audio=a;
@@ -634,8 +704,10 @@ render();
       var card=document.getElementById('q'+q.id); if(!card) return;
       card.style.display=(filt==='all'||M[q.id]===filt)?'':'none';
     });
+    if(filt==='all'){ if(typeof restoreGroups==='function') restoreGroups(); }
+    else { if(typeof autoOpenGroups==='function') autoOpenGroups(); }
     var none=document.getElementById('nores');
-    var any=QS.some(function(q){ return filt==='all'||M[q.id]===filt; });
+    var any=(typeof groupsVisible==='function')?groupsVisible():QS.some(function(q){ return filt==='all'||M[q.id]===filt; });
     if(none) none.style.display=any?'none':'block';
   }
 
@@ -729,7 +801,7 @@ render();
     }else{
       h+='<div class="trev">';
       h+='<div class="lab" style="display:inline-block">参考答案 · STAR 拆句</div>';
-      h+='<div class="trow"><button class="tbtn" id="tchain">▶ 连读答案</button></div>';
+      h+='<div class="trow"><button class="tbtn" id="tchain">▶ 连播答案</button></div>';
       q.items.forEach(function(it){
         h+='<div class="tsent" id="tw'+it.idx+'">'
           +'<div class="pbtn" data-pl="'+it.idx+'">▶</div>'
@@ -921,12 +993,12 @@ render();
     if(!a.paused && !a.ended) requestAnimationFrame(function(){ tTick(a,host); });
   }
 
-  /* 连读：五句 STAR 自动连播 */
+  /* 连播：五句 STAR 自动连播 */
   var tq=[];
   function setChainBtn(on){
     var b=document.getElementById('tchain'); if(!b) return;
-    if(on){ b.classList.add('on'); b.textContent='停止连读'; }
-    else{ b.classList.remove('on'); b.textContent='▶ 连读答案'; }
+    if(on){ b.classList.add('on'); b.textContent='停止连播'; }
+    else{ b.classList.remove('on'); b.textContent='▶ 连播答案'; }
   }
   function chainNext(){
     if(!tq.length){ setChainBtn(false); return; }
@@ -994,6 +1066,24 @@ render();
 .help li::before{content:"·";position:absolute;left:4px;color:#c8623d;font-weight:700}
 .help b{color:#c8623d}
 .help .warn{margin-top:8px;padding-top:8px;border-top:1px dashed #ead9c9;color:#9c7d6d;font-size:12px}
+/* unified play icon */
+.pbtn,.qplay{font-size:0;display:flex;align-items:center;justify-content:center;line-height:1}
+.pbtn::before,.qplay::before{content:"";display:block;width:0;height:0;border-left:11px solid currentColor;border-top:6.5px solid transparent;border-bottom:6.5px solid transparent;margin-left:3px}
+.pbtn.on,.qplay.on{font-size:0}
+.pbtn.on::before,.qplay.on::before{content:"";display:block;width:11px;height:11px;background:currentColor;border:none;border-radius:2px;margin:0}
+/* 六大类分组 */
+.igroup{margin:0 14px 12px;background:var(--card);border:1px solid var(--line-l);border-radius:14px;overflow:hidden}
+.ighead{display:flex;align-items:center;gap:8px;padding:12px 14px;cursor:pointer;user-select:none;min-height:48px}
+.ighead:active{background:var(--soft)}
+.igt{font-size:14.5px;font-weight:700;color:var(--ink)}
+.ign{font-size:11.5px;color:var(--muted);margin-left:auto;flex:0 0 auto}
+.igchev{color:var(--brand);font-size:20px;font-weight:700;line-height:1;transition:transform .2s}
+.igroup.open .igchev{transform:rotate(90deg)}
+.igbody{display:none;padding:4px 10px 10px}
+.igroup.open .igbody{display:block}
+.igroup .qcard{margin:0 0 10px;border:none;background:var(--soft)}
+.gnotice{margin:0 18px 8px;font-size:11.5px;color:var(--muted);line-height:1.7}
+.gnotice b{color:var(--sub)}
 </style>
 
 <div id="gate">
@@ -1001,7 +1091,7 @@ render();
     <div class="logo">🎧</div>
     <h1>面试英语 × STAR<br>40 道高频题 · 逐词高亮</h1>
     <p>本资料为付费内容，请输入购买后收到的口令解锁</p>
-    <input id="gateInput" type="password" placeholder="请输入口令" autocomplete="off">
+    <input id="gateInput" type="password" placeholder="请输入口令" autocomplete="new-password">
     <button id="gateBtn">解锁学习</button>
     <div id="gerr"></div>
     <div class="gfoot">Rainbow聊外企 · 仅供购买者本人使用<br>口令问题请联系卖家</div>
@@ -1099,8 +1189,15 @@ function h256(s){
       if(!card) return;
       var hit=hay.indexOf(v)>=0;
       card.style.display=hit?'':'none';
-      if(hit){ any=true; if(!openQ[q.id]) toggleQ(q.id); }
+      if(hit){
+        any=true; if(!openQ[q.id]) toggleQ(q.id);
+        if(typeof groupsVisible==='function'){ /* 先显隐再展开命中组 */ }
+        var gi=-1;
+        if(typeof GROUPS!=='undefined') GROUPS.forEach(function(g,k){ if(g.ids.indexOf(q.id)>=0) gi=k; });
+        if(gi>=0 && typeof openGroup==='function') openGroup(gi);
+      }
     });
+    if(typeof groupsVisible==='function') groupsVisible();
     if(nores) nores.style.display=any?'none':'block';
   });
 })();
