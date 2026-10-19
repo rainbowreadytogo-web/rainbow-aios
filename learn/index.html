@@ -290,7 +290,7 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   Rainbow 聊外企 · 职场英语学习库<br>
   内容与音频均为本人原创 · 小红书号
   <span id="xhsid" class="xhscopy" data-copy="rainbow_work" role="button" tabindex="0">rainbow_work</span>
-  <span style="opacity:.6"> · v1.15</span>
+  <span style="opacity:.6"> · v1.16</span>
 </footer>
 
 <script>
@@ -407,26 +407,37 @@ document.querySelectorAll('.more').forEach(function(b){
   };
 });
 /* ---------- 已购识别（读各产品本地的解锁与进度记录，仅本机生效） ---------- */
+var refreshOwned;
 (function(){
   /* v1.10：按卡片内链接定位（此前按位置对号，插入面试卡后整体错位导致手册卡永远显示未购） */
+  /* v1.16：补齐接待/管理模型/外贸三款（此前漏登记，解锁后总入口仍显示未购）；inBundle=一码通覆盖该品（300 句已并入一码通范围，audio300 页认 bundle_v1） */
   var LIB=[
-    {href:'../interview/',unlock:'interview_unlocked_v1',seen:null,total:200,unit:' 句'},
-    {href:'../audio300/',unlock:'r300_unlocked_v2',seen:'p300_seen',total:300,unit:' 句'},
-    {href:'../audio850/',unlock:'r850_unlocked_v1',seen:'p850_seen',total:850,unit:' 句'},
-    {href:'../manual/',unlock:'manual_unlocked_v1',seen:'pmnl_seen',total:550,unit:' 句主课'},
-    {href:'../mail/',unlock:'mail_unlocked_v1',seen:null,total:50,unit:' 场景'}
+    {href:'../interview/',unlock:'interview_unlocked_v1',seen:null,total:200,unit:' 句',inBundle:true},
+    {href:'../audio300/',unlock:'r300_unlocked_v2',seen:'p300_seen',total:300,unit:' 句',inBundle:true},
+    {href:'../audio850/',unlock:'r850_unlocked_v1',seen:'p850_seen',total:850,unit:' 句',inBundle:true},
+    {href:'../manual/',unlock:'manual_unlocked_v1',seen:'pmnl_seen',total:550,unit:' 句主课',inBundle:true},
+    {href:'../mail/',unlock:'mail_unlocked_v1',seen:null,total:50,unit:' 场景',inBundle:true},
+    {href:'../reception/',unlock:'reception_unlocked_v1',seen:null,total:180,unit:' 句',inBundle:true},
+    {href:'../models/',unlock:'models_unlocked_v1',seen:null,total:180,unit:' 句',inBundle:true},
+    {href:'../trade/',unlock:'trade_unlocked_v1',seen:null,total:180,unit:' 句',inBundle:true}
   ];
+  refreshOwned=function(){
   LIB.forEach(function(cfg){
     var link=document.querySelector('.card a.btn.primary[href="'+cfg.href+'"]');
     if(!link) return;
     var card=link.closest('.card'); if(!card) return;
-    var owned=false; try{owned=localStorage.getItem(cfg.unlock)==='1';}catch(e){}
-    if(cfg.seen){
+    var owned=false;
+    try{
+      owned=localStorage.getItem(cfg.unlock)==='1'||
+            (cfg.inBundle&&localStorage.getItem('bundle_v1')==='1');
+    }catch(e){}
+    if(cfg.seen&&!card.dataset.seenDone){
       var n=0; try{n=Object.keys(JSON.parse(localStorage.getItem(cfg.seen)||'{}')).length;}catch(e){}
       if(n>0){
         var meta=card.querySelector('.meta');
         if(meta) meta.textContent+=' · 已听 '+n+'/'+cfg.total+cfg.unit;
       }
+      card.dataset.seenDone='1';
     }
     if(owned){
       /* v1.4：已解锁隐藏试听区，突出进入完整版 */
@@ -441,6 +452,8 @@ document.querySelectorAll('.more').forEach(function(b){
         btn.style.background='#fff';btn.style.borderColor='#3B6D11';btn.style.color='#3B6D11';}
     }
   });
+  };
+  refreshOwned();
 })();
 
 /* ---------- v1.7：旅程卡锚点跳转（键盘可达） ---------- */
@@ -523,27 +536,21 @@ function h256(s){
       inp=document.getElementById("bInput"),btn=document.getElementById("bBtn"),
       err=document.getElementById("bErr"),links=document.getElementById("bLinks");
   if(!btn) return;
-  var ITEMS=[
-    {t:"外企职场口语 850 句",u:"../audio850/"},
-    {t:"外企生存手册",u:"../manual/"},
-    {t:"面试英语",u:"../interview/"},
-    {t:"外企邮件写作库",u:"../mail/"},
-    {t:"外企客户接待英语",u:"../reception/"},
-    {t:"管理模型篇",u:"../models/"},
-    {t:"外贸英语实战",u:"../trade/"}
-  ];
-  function opened(){
+  /* v1.16：解锁后不再重复列产品清单（上方卡片即入口），卡片状态即时刷新变绿 */
+  function opened(fresh){
     form.style.display="none";
-    intro.innerHTML="<b>已解锁全部内容</b>下面是全部产品的直达入口，后续新品会自动出现在这里";
-    links.style.display="block";
-    links.innerHTML=ITEMS.map(function(i){
-      return '<a class="step" style="text-decoration:none;color:var(--ink);min-height:44px;align-items:center" href="'+i.u+'"><b>'+i.t+'</b><span style="margin-left:auto;color:var(--brand-a11y);font-size:13px">进入</span></a>';
-    }).join("");
+    links.style.display="none";
+    intro.innerHTML="<b>已解锁全部内容</b>上方 8 款单品卡已全部变为「已解锁」，点对应卡片的绿色按钮即可进入完整版；后续新品自动加入，无需再输口令";
+    if(fresh){
+      if(typeof refreshOwned==="function") refreshOwned();
+      toast("一码通已解锁，上方全部单品可直接进入");
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
   }
-  try{ if(localStorage.getItem(KEY)==="1") opened(); }catch(e){}
+  try{ if(localStorage.getItem(KEY)==="1") opened(false); }catch(e){}
   btn.addEventListener("click",function(){
     var v=(inp.value||"").trim();
-    if(h256(v)===PASS_HASH){ try{localStorage.setItem(KEY,"1");}catch(e){} opened(); }
+    if(h256(v)===PASS_HASH){ try{localStorage.setItem(KEY,"1");}catch(e){} opened(true); }
     else{ err.style.display="block"; err.textContent="一码通不对，请检查后重试（注意区分大小写）"; inp.value=""; inp.focus(); }
   });
   inp.addEventListener("keydown",function(e){ if(e.key==="Enter") btn.click(); });
