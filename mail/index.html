@@ -50,7 +50,7 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .aghead h2{margin:0;font-size:16px;color:var(--brand);font-weight:600}
 .aghead .aghint{font-size:11.5px;color:var(--muted);font-weight:400}
 .aghead .agchev{margin-left:auto;color:var(--brand);font-size:20px;font-weight:700;transition:transform .2s}
-.assemble.closed .agchev{transform:rotate(-90deg)}
+.assemble:not(.closed) .agchev{transform:rotate(90deg)}
 .assemble.closed .agbody{display:none}
 .assemble .sub{font-size:12px;color:var(--muted);margin:0 0 10px;line-height:1.6}
 .prow{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px dashed var(--line-l)}
@@ -186,7 +186,7 @@ mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
 
 <!-- 拼装示例（可折叠，默认收起） -->
 <div class="assemble closed">
-  <div class="aghead" id="aghead"><h2>三步写出一封完整的邮件</h2><span class="aghint">使用指引</span><span class="agchev">▾</span></div>
+  <div class="aghead" id="aghead"><h2>三步写出一封完整的邮件</h2><span class="aghint">使用指引</span><span class="agchev">›</span></div>
   <div class="agbody">
   <div class="step"><span class="snum">1</span><div class="stext"><b>找场景</b>：点下面的分类，或在顶部搜索（如「催进度」「道歉」「约会议」），打开你要的场景卡。</div></div>
   <div class="mrow">
@@ -232,7 +232,7 @@ mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
 <footer>
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v1.8</span>
+  <span style="color:#c8aa9a">v1.9</span>
 </footer>
 
 <div id="toast"></div>

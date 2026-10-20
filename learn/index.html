@@ -206,7 +206,7 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <p class="desc">40 道外企高频面试题，每题按 STAR 拆成 5 句成品答案，常速+慢速双音频，播放时逐词同步高亮。跳槽、外企面试前用它过一遍。</p>
   <div class="meta">40 题 · 200 句 · 480 条音频 · 四步训练闭环（听题→开口→对照→标记）· 连读跟读 · 逐词高亮 · 试听：第 1 题「请介绍一下你自己」全部 5 句</div>
   <div id="boxD"></div>
-  <button class="more" data-box="D" data-open="0">展开全部 5 句试听 ▾</button>
+  <button class="more" data-box="D" data-open="0">展开全部 5 句试听 ›</button>
   <div class="row"><a class="btn primary" href="../interview/">查看完整版 · 40 题完整面试库</a></div>
 </div>
 
@@ -218,7 +218,7 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <p class="desc">30 天 · 每天 10 句最常用的职场口语，场景从早晨打招呼到跨部门沟通，常速+慢速双音频。</p>
   <div class="meta">300 句 · 600 条音频 · 30 天打卡节奏 · 试听：Day 1 全部 10 句</div>
   <div id="boxA"></div>
-  <button class="more" data-box="A" data-open="0">展开全部 10 句试听 ▾</button>
+  <button class="more" data-box="A" data-open="0">展开全部 10 句试听 ›</button>
   <div class="row"><a class="btn primary" href="../audio300/">查看完整版 · 共 300 句</a></div>
 </div>
 
@@ -229,7 +229,7 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <p class="desc">43 个章节覆盖职场全场景：会议、邮件、汇报、闲聊……把「会考试」变成「能交流」。</p>
   <div class="meta">850 句 · 1700 条音频 · 43 章节 · 试听：第 1 章「听懂与澄清」前 10 句</div>
   <div id="boxB"></div>
-  <button class="more" data-box="B" data-open="0">展开全部 10 句试听 ▾</button>
+  <button class="more" data-box="B" data-open="0">展开全部 10 句试听 ›</button>
   <div class="row"><a class="btn primary" href="../audio850/">查看完整版 · 共 850 句</a></div>
 </div>
 
@@ -240,7 +240,7 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <p class="desc">6 章 55 节 550 句 + 100 高频短语动词，每句带场景讲解和 Why，外企翻译视角写成，适合想在外企长期站稳的你。</p>
   <div class="meta">550 句主课 · 100 短语动词 · 2500 条音频 · 6 章 55 节 · 试听：第 1 节「初次见面」前 10 句</div>
   <div id="boxC"></div>
-  <button class="more" data-box="C" data-open="0">展开全部 10 句试听 ▾</button>
+  <button class="more" data-box="C" data-open="0">展开全部 10 句试听 ›</button>
   <div class="row"><a class="btn primary" href="../manual/">查看完整版 · 6 章 55 节</a></div>
 </div>
 
@@ -288,7 +288,7 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   Rainbow 聊外企 · 职场英语学习库<br>
   内容与音频均为本人原创 · 小红书号
   <span id="xhsid" class="xhscopy" data-copy="rainbow_work" role="button" tabindex="0">rainbow_work</span>
-  <span style="opacity:.6"> · v1.18</span>
+  <span style="opacity:.6"> · v1.19</span>
 </footer>
 
 <script>
@@ -401,7 +401,7 @@ document.querySelectorAll('.more').forEach(function(b){
     var open=b.dataset.open==='1';
     box.querySelectorAll('.extra').forEach(function(r){ r.style.display=open?'none':'flex'; });
     b.dataset.open=open?'0':'1';
-    b.textContent=open?('展开全部 '+SAMPLES[b.dataset.box].items.length+' 句试听 ▾'):'收起试听 ▴';
+    b.textContent=open?('展开全部 '+SAMPLES[b.dataset.box].items.length+' 句试听 ›'):'收起试听 ⌄';
   };
 });
 /* ---------- 已购识别（读各产品本地的解锁与进度记录，仅本机生效） ---------- */
