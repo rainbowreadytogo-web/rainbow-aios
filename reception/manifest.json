@@ -1,0 +1,22 @@
+{
+  "name": "外企接待英语",
+  "short_name": "客户接待英语",
+  "description": "30 个客户接待场景 / 180 句，接机、宴请、参观、送机全覆盖",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fdf8f5",
+  "theme_color": "#c8623d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

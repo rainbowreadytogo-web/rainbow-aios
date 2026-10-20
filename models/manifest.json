@@ -1,0 +1,22 @@
+{
+  "name": "外企管理英语 · 管理模型篇",
+  "short_name": "管理模型库",
+  "description": "20 个经典管理模型 / 4 大模块，模板 + 示范 + 常见误区",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fdf8f5",
+  "theme_color": "#c8623d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

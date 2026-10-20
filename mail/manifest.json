@@ -1,0 +1,22 @@
+{
+  "name": "外企邮件英语 · 写作 50 场景",
+  "short_name": "邮件写作库",
+  "description": "50 个外企邮件场景，三步写法指引 + 完整邮件模板，中英对照",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fdf8f5",
+  "theme_color": "#c8623d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "外企面试英语 · STAR 40 题",
+  "short_name": "面试英语",
+  "description": "40 道高频面试题，STAR 结构参考回答，常速+慢速音频",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fdf8f5",
+  "theme_color": "#c8623d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

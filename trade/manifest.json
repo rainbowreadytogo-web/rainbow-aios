@@ -1,0 +1,22 @@
+{
+  "name": "外贸英语实战",
+  "short_name": "外贸英语",
+  "description": "30 个外贸实战场景 / 180 句，询盘、报价、谈判、出货全流程",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fdf8f5",
+  "theme_color": "#c8623d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
