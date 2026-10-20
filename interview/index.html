@@ -235,6 +235,17 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
   <button class="gtoggle" id="gtoggle" data-page-node-id="mwdSS7quP7K3vES5Qllzst">展开 STAR 讲解</button>
 </div>
 
+<details class="howtoBox" id="howto">
+  <summary>怎么用这套题 · 首次使用点开</summary>
+  <div style="margin-top:10px">
+    <p class="ssub" style="margin:0 0 8px">不要急着背答案。这套题的用法是先练嘴，再对照。</p>
+    <div class="step"><span class="snum">1</span><div class="stext"><b>听题</b>：点每题上的「听题训练」，先听题目音频。没听清就再放一遍，英文原文点一下才显示——这一关考的是耳朵。</div></div>
+    <div class="step"><span class="snum">2</span><div class="stext"><b>开口说</b>：按下计时，自己先说一遍完整答案，别看文字。卡住的地方记下来。</div></div>
+    <div class="step"><span class="snum">3</span><div class="stext"><b>对照并标记</b>：看完参考答案后给这题打个状态。标成「待复习」的会进复习本，下次专门练它。</div></div>
+  </div>
+</details>
+
+
 <div class="bar" data-page-node-id="XHpKSdGxeJq9JOvSlHpbus">
   <div class="seg" id="mode" data-page-node-id="zvPed7szJjqGS7eGYHXGMW">
     <button data-m="ktv" class="on" data-page-node-id="elf0PFAoeoO36GM3KrzdPV">逐词高亮</button>
@@ -257,26 +268,10 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 
 <div id="toast" data-page-node-id="yHe9ygkUOlQkI3zqCrzpL1"></div>
 
-<details class="howtoBox" id="howto">
-  <summary>怎么用这套题 · 首次使用点开</summary>
-  <div style="margin-top:10px">
-    <p class="ssub" style="margin:0 0 8px">不要急着背答案。这套题的用法是先练嘴，再对照。</p>
-    <div class="step"><span class="snum">1</span><div class="stext"><b>听题</b>：点上面的「听题训练」，先听题目音频。没听清就再放一遍，英文原文点一下才显示——这一关考的是耳朵。</div></div>
-    <div class="step"><span class="snum">2</span><div class="stext"><b>开口说</b>：按下计时，自己先说一遍完整答案，别看文字。卡住的地方记下来。</div></div>
-    <div class="step"><span class="snum">3</span><div class="stext"><b>对照并标记</b>：看完参考答案后给这题打个状态。标成「待复习」的会进复习本，下次专门练它。</div></div>
-    <button class="gtoggle" id="hsToggle">把学习库添加到手机主屏</button>
-    <div id="hsBody" style="display:none;margin-top:10px;font-size:12.5px;color:var(--sub);line-height:1.8">
-      <b>iPhone</b>：用 Safari 打开本页，点底部「分享」按钮，选择「添加到主屏幕」。<br>
-      <b>安卓</b>：用浏览器打开本页，点右上角菜单，选择「添加到主屏幕」。<br>
-      添加后像 App 一样一点就开，你的标记和进度都存在本机，不会被清掉。
-    </div>
-  </div>
-</details>
-
 <footer data-page-node-id="bhk3GTpMfIVHysyTVo1piN">
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br data-page-node-id="IeHp3SV2RAwptCwJ31PPol">
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v2.0</span>
+  <span style="color:#c8aa9a">v2.1</span>
 </footer>
 
 <script src="data.js"></script>
@@ -1034,12 +1029,6 @@ render();
     else startTrain(m, false);
   });
   document.getElementById('tclose').onclick=function(){ close(); };
-  var ht=document.getElementById('hsToggle'), hb=document.getElementById('hsBody');
-  if(ht) ht.onclick=function(){
-    var hidden=hb.style.display==='none';
-    hb.style.display=hidden?'':'none';
-    ht.textContent=hidden?'收起主屏说明':'把学习库添加到手机主屏';
-  };
 
   var origRender=window.render;
   window.render=function(){ origRender.apply(null,arguments); decorate(); buildFilt(); applyFilter(); };
@@ -1164,7 +1153,7 @@ function h256(s){
     "<li><b>双速</b>:题目列表上方「常速/慢速」,先用慢速听清结构,再用常速完整练一遍</li>"+
     "<li><b>连播</b>:每页右上角「▶ 连播」,通勤路上当听力素材自动播放</li>"+
     "<li><b>搜索</b>:题目列表上方的搜索框,题目、句子、中文都能搜</li>"+
-    "<li><b>收藏方法</b>:链接收藏到浏览器书签,或微信里「浮窗」保存,随时点开学</li>"+
+    "<li><b>加到手机主屏</b>:回学习库总入口（本页右上角「学习库总入口 ›」）,按那边的说明添加到主屏,之后像 App 一样一点就开;也可以把链接收藏到浏览器书签,或微信里「浮窗」保存</li>"+
     "<li><b>学习节奏</b>:每天练 2-3 题,慢速听清结构→常速完整回答,40 题≈2-3 周</li>"+
     "<li>使用遇到问题: 联系卖家 Rainbow</li>"+
     "</ul>"+

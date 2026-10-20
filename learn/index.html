@@ -129,6 +129,12 @@ header .htext{flex:1;min-width:0}
 .step b{flex:0 0 auto;color:var(--brand-d);font-size:13px}
 .step .st{flex:0 0 auto;margin-left:auto;font-size:11px;color:var(--muted)}
 .step .st.doing{color:var(--brand-d)}
+/* 加到手机主屏折叠块：与全库统一——折叠 ›、展开 ⌄ */
+.hsbox summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+font-size:13px;font-weight:700;color:var(--ink);min-height:44px}
+.hsbox summary::-webkit-details-marker{display:none}
+.hschev{display:inline-block;font-size:16px;color:var(--muted);transition:transform .15s}
+.hsbox[open] .hschev{transform:rotate(90deg)}
 
 #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:#2a2a2a;color:#fff;
   font-size:13px;padding:10px 16px;border-radius:10px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:99}
@@ -198,6 +204,16 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <div class="meta" id="bErr" style="margin-top:10px;color:#b23c3c;display:none"></div>
   <div id="bLinks" style="display:none;margin-top:12px"></div>
   <div class="meta" style="margin-top:10px">口令长期有效 · 内容持续可听 · 已购用户不受任何影响<br>已购小贴士：同一浏览器自动识别解锁记录，无需重输口令；换设备或换浏览器首次打开需输一次口令，之后永久有效</div>
+</div>
+
+<div class="card" id="homescreen">
+  <span class="badge">加到手机主屏 · 像 App 一样点开</span>
+  <details class="hsbox">
+    <summary><span>怎么用？点开看步骤</span><span class="hschev">›</span></summary>
+    <div class="step"><b>① iPhone</b>用 Safari 打开本页，点底部「分享」，选「添加到主屏幕」</div>
+    <div class="step"><b>② 安卓</b>用 Chrome 打开本页，点右上角菜单，选「安装应用」或「添加到主屏幕」</div>
+    <div class="meta" style="margin-top:10px">添加后主屏会出现「Rainbow 学习库」图标，点开直接进本页；以后买的新品都会出现在这里，不用再装第二个图标。<br>解锁口令和学习进度都存在本机，不会被清掉。</div>
+  </details>
 </div>
 
 <div class="sec" id="shelf">已上线课程 · 每款都能先听再买<em>点 ▶ 直接听，无需解锁</em></div>
@@ -290,7 +306,7 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   Rainbow 聊外企 · 职场英语学习库<br>
   内容与音频均为本人原创 · 小红书号
   <span id="xhsid" class="xhscopy" data-copy="rainbow_work" role="button" tabindex="0">rainbow_work</span>
-  <span style="opacity:.6"> · v1.22</span>
+  <span style="opacity:.6"> · v1.23</span>
 </footer>
 
 <script>
