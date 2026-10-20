@@ -1,5 +1,5 @@
 {
- "version": "v1.0",
+ "version": "v1.1",
  "product": "audio850",
  "title": "职场全英交流 无非这850句",
  "subtitle": "43 个真实场景 · 通勤磨耳朵大全",
@@ -298,16 +298,16 @@
   {
    "no": 5,
    "idx": 5,
-   "en": "I’m with you",
+   "en": "I'm with you",
    "cn": "我明白你的意思 / 我同意你/我支持你。",
-   "body": "I’m with you.  我明白你的意思 / 我同意你/我支持你。"
+   "body": "I'm with you.  我明白你的意思 / 我同意你/我支持你。"
   },
   {
    "no": 6,
    "idx": 6,
-   "en": "I’m following you",
+   "en": "I'm following you",
    "cn": "我听懂了 / 我跟得上。",
-   "body": "I’m following you.  我听懂了 / 我跟得上。"
+   "body": "I'm following you.  我听懂了 / 我跟得上。"
   },
   {
    "no": 7,
@@ -340,9 +340,9 @@
   {
    "no": 11,
    "idx": 11,
-   "en": "So, what you’re saying is",
+   "en": "So, what you're saying is",
    "cn": "所以你的意思是……",
-   "body": "So, what you’re saying is ...  所以你的意思是……"
+   "body": "So, what you're saying is ...  所以你的意思是……"
   },
   {
    "no": 12,
@@ -375,9 +375,9 @@
   {
    "no": 16,
    "idx": 16,
-   "en": "Sorry, I didn’t quite catch that",
+   "en": "Sorry, I didn't quite catch that",
    "cn": "抱歉，我刚才没完全听清。",
-   "body": "Sorry, I didn’t quite catch that.  抱歉，我刚才没完全听清。"
+   "body": "Sorry, I didn't quite catch that.  抱歉，我刚才没完全听清。"
   },
   {
    "no": 17,
@@ -438,9 +438,9 @@
   {
    "no": 25,
    "idx": 25,
-   "en": "I’d like to point out that",
+   "en": "I'd like to point out that",
    "cn": "我想指出的是……",
-   "body": "I’d like to point out that ...  我想指出的是……"
+   "body": "I'd like to point out that ...  我想指出的是……"
   },
   {
    "no": 26,
@@ -473,9 +473,9 @@
   {
    "no": 30,
    "idx": 30,
-   "en": "I’d recommend that we",
+   "en": "I'd recommend that we",
    "cn": "我建议我们……",
-   "body": "I’d recommend that we ...  我建议我们……"
+   "body": "I'd recommend that we ...  我建议我们……"
   },
   {
    "no": 31,
@@ -487,9 +487,9 @@
   {
    "no": 32,
    "idx": 32,
-   "en": "I’m wondering if we could",
+   "en": "I'm wondering if we could",
    "cn": "我在想我们是否可以……",
-   "body": "I’m wondering if we could ...  我在想我们是否可以……"
+   "body": "I'm wondering if we could ...  我在想我们是否可以……"
   },
   {
    "no": 33,
@@ -501,9 +501,9 @@
   {
    "no": 34,
    "idx": 34,
-   "en": "I’d like to add that",
+   "en": "I'd like to add that",
    "cn": "我想补充一点……",
-   "body": "I’d like to add that ...  我想补充一点……"
+   "body": "I'd like to add that ...  我想补充一点……"
   },
   {
    "no": 35,
@@ -522,9 +522,9 @@
   {
    "no": 37,
    "idx": 37,
-   "en": "I’d like to bring up",
+   "en": "I'd like to bring up",
    "cn": "我想提一下……",
-   "body": "I’d like to bring up ...  我想提一下……"
+   "body": "I'd like to bring up ...  我想提一下……"
   },
   {
    "no": 38,
@@ -564,23 +564,23 @@
   {
    "no": 43,
    "idx": 43,
-   "en": "I couldn’t agree more",
+   "en": "I couldn't agree more",
    "cn": "我非常同意。",
-   "body": "I couldn’t agree more.  我非常同意。"
+   "body": "I couldn't agree more.  我非常同意。"
   },
   {
    "no": 44,
    "idx": 44,
-   "en": "That’s a good point",
+   "en": "That's a good point",
    "cn": "说得有道理。",
-   "body": "That’s a good point.  说得有道理。"
+   "body": "That's a good point.  说得有道理。"
   },
   {
    "no": 45,
    "idx": 45,
-   "en": "You’ve got a point",
+   "en": "You've got a point",
    "cn": "你说得有道理。",
-   "body": "You’ve got a point.  你说得有道理。"
+   "body": "You've got a point.  你说得有道理。"
   },
   {
    "no": 46,
@@ -592,30 +592,30 @@
   {
    "no": 47,
    "idx": 47,
-   "en": "We’re on the same page",
+   "en": "We're on the same page",
    "cn": "我们想法一致。",
-   "body": "We’re on the same page.  我们想法一致。"
+   "body": "We're on the same page.  我们想法一致。"
   },
   {
    "no": 48,
    "idx": 48,
-   "en": "I’m on board with that",
+   "en": "I'm on board with that",
    "cn": "我赞同这个想法。",
-   "body": "I’m on board with that.  我赞同这个想法。"
+   "body": "I'm on board with that.  我赞同这个想法。"
   },
   {
    "no": 49,
    "idx": 49,
-   "en": "I think you’re right",
+   "en": "I think you're right",
    "cn": "我觉得你说得对。",
-   "body": "I think you’re right.  我觉得你说得对。"
+   "body": "I think you're right.  我觉得你说得对。"
   },
   {
    "no": 50,
    "idx": 50,
-   "en": "You’re absolutely right",
+   "en": "You're absolutely right",
    "cn": "你说得完全正确。",
-   "body": "You’re absolutely right.  你说得完全正确。"
+   "body": "You're absolutely right.  你说得完全正确。"
   },
   {
    "no": 51,
@@ -627,9 +627,9 @@
   {
    "no": 52,
    "idx": 52,
-   "en": "I’m not sure I agree",
+   "en": "I'm not sure I agree",
    "cn": "我不太同意。",
-   "body": "I’m not sure I agree.  我不太同意。"
+   "body": "I'm not sure I agree.  我不太同意。"
   },
   {
    "no": 53,
@@ -648,9 +648,9 @@
   {
    "no": 55,
    "idx": 55,
-   "en": "I’m afraid I have to disagree",
+   "en": "I'm afraid I have to disagree",
    "cn": "恐怕我不能同意。",
-   "body": "I’m afraid I have to disagree.  恐怕我不能同意。"
+   "body": "I'm afraid I have to disagree.  恐怕我不能同意。"
   },
   {
    "no": 56,
@@ -662,9 +662,9 @@
   {
    "no": 57,
    "idx": 57,
-   "en": "I’m not convinced",
+   "en": "I'm not convinced",
    "cn": "我还不完全信服。",
-   "body": "I’m not convinced.  我还不完全信服。"
+   "body": "I'm not convinced.  我还不完全信服。"
   },
   {
    "no": 58,
@@ -697,30 +697,30 @@
   {
    "no": 62,
    "idx": 62,
-   "en": "Let’s get started",
+   "en": "Let's get started",
    "cn": "我们开始吧。",
-   "body": "Let’s get started.  我们开始吧。"
+   "body": "Let's get started.  我们开始吧。"
   },
   {
    "no": 63,
    "idx": 63,
-   "en": "Let’s move on to the next item",
+   "en": "Let's move on to the next item",
    "cn": "我们进入下一项吧。",
-   "body": "Let’s move on to the next item.  我们进入下一项吧。"
+   "body": "Let's move on to the next item.  我们进入下一项吧。"
   },
   {
    "no": 64,
    "idx": 64,
-   "en": "Let’s move on",
+   "en": "Let's move on",
    "cn": "我们继续下一个话题吧。",
-   "body": "Let’s move on.  我们继续下一个话题吧。"
+   "body": "Let's move on.  我们继续下一个话题吧。"
   },
   {
    "no": 65,
    "idx": 65,
-   "en": "Let’s circle back to that later",
+   "en": "Let's circle back to that later",
    "cn": "我们稍后再回到这个问题。",
-   "body": "Let’s circle back to that later.  我们稍后再回到这个问题。"
+   "body": "Let's circle back to that later.  我们稍后再回到这个问题。"
   },
   {
    "no": 66,
@@ -732,23 +732,23 @@
   {
    "no": 67,
    "idx": 67,
-   "en": "Let’s stay on topic",
+   "en": "Let's stay on topic",
    "cn": "我们先围绕当前主题讨论。",
-   "body": "Let’s stay on topic.  我们先围绕当前主题讨论。"
+   "body": "Let's stay on topic.  我们先围绕当前主题讨论。"
   },
   {
    "no": 68,
    "idx": 68,
-   "en": "Let’s keep this brief",
+   "en": "Let's keep this brief",
    "cn": "我们尽量简短一点。",
-   "body": "Let’s keep this brief.  我们尽量简短一点。"
+   "body": "Let's keep this brief.  我们尽量简短一点。"
   },
   {
    "no": 69,
    "idx": 69,
-   "en": "Let’s hear from everyone",
+   "en": "Let's hear from everyone",
    "cn": "我们听听大家的意见。",
-   "body": "Let’s hear from everyone.  我们听听大家的意见。"
+   "body": "Let's hear from everyone.  我们听听大家的意见。"
   },
   {
    "no": 70,
@@ -774,9 +774,9 @@
   {
    "no": 73,
    "idx": 73,
-   "en": "Let’s make a decision",
+   "en": "Let's make a decision",
    "cn": "我们来做个决定吧。",
-   "body": "Let’s make a decision.  我们来做个决定吧。"
+   "body": "Let's make a decision.  我们来做个决定吧。"
   },
   {
    "no": 74,
@@ -788,51 +788,51 @@
   {
    "no": 75,
    "idx": 75,
-   "en": "Let’s make sure we’re aligned",
+   "en": "Let's make sure we're aligned",
    "cn": "我们确认一下大家理解一致。",
-   "body": "Let’s make sure we’re aligned.  我们确认一下大家理解一致。"
+   "body": "Let's make sure we're aligned.  我们确认一下大家理解一致。"
   },
   {
    "no": 76,
    "idx": 76,
-   "en": "Let’s clarify the next steps",
+   "en": "Let's clarify the next steps",
    "cn": "我们明确一下下一步。",
-   "body": "Let’s clarify the next steps.  我们明确一下下一步。"
+   "body": "Let's clarify the next steps.  我们明确一下下一步。"
   },
   {
    "no": 77,
    "idx": 77,
-   "en": "Who’s taking the lead on this?",
+   "en": "Who's taking the lead on this?",
    "cn": "这件事由谁牵头？",
-   "body": "Who’s taking the lead on this?  这件事由谁牵头？"
+   "body": "Who's taking the lead on this?  这件事由谁牵头？"
   },
   {
    "no": 78,
    "idx": 78,
-   "en": "Who’s responsible for this?",
+   "en": "Who's responsible for this?",
    "cn": "这件事由谁负责？",
-   "body": "Who’s responsible for this?  这件事由谁负责？"
+   "body": "Who's responsible for this?  这件事由谁负责？"
   },
   {
    "no": 79,
    "idx": 79,
-   "en": "Let’s set a deadline",
+   "en": "Let's set a deadline",
    "cn": "我们定个截止时间吧。",
-   "body": "Let’s set a deadline.  我们定个截止时间吧。"
+   "body": "Let's set a deadline.  我们定个截止时间吧。"
   },
   {
    "no": 80,
    "idx": 80,
-   "en": "Let’s wrap up",
+   "en": "Let's wrap up",
    "cn": "我们总结收尾吧。",
-   "body": "Let’s wrap up.  我们总结收尾吧。"
+   "body": "Let's wrap up.  我们总结收尾吧。"
   },
   {
    "no": 81,
    "idx": 81,
-   "en": "Here’s a quick update",
+   "en": "Here's a quick update",
    "cn": "简单同步一下进展。",
-   "body": "Here’s a quick update.  简单同步一下进展。"
+   "body": "Here's a quick update.  简单同步一下进展。"
   },
   {
    "no": 82,
@@ -844,51 +844,51 @@
   {
    "no": 83,
    "idx": 83,
-   "en": "Here’s where we are",
+   "en": "Here's where we are",
    "cn": "目前进展是这样的。",
-   "body": "Here’s where we are.  目前进展是这样的。"
+   "body": "Here's where we are.  目前进展是这样的。"
   },
   {
    "no": 84,
    "idx": 84,
-   "en": "We’re on track",
+   "en": "We're on track",
    "cn": "我们正在按计划推进。",
-   "body": "We’re on track.  我们正在按计划推进。"
+   "body": "We're on track.  我们正在按计划推进。"
   },
   {
    "no": 85,
    "idx": 85,
-   "en": "We’re on schedule",
+   "en": "We're on schedule",
    "cn": "我们目前进度符合计划。",
-   "body": "We’re on schedule.  我们目前进度符合计划。"
+   "body": "We're on schedule.  我们目前进度符合计划。"
   },
   {
    "no": 86,
    "idx": 86,
-   "en": "We’re ahead of schedule",
+   "en": "We're ahead of schedule",
    "cn": "我们的进度比计划提前。",
-   "body": "We’re ahead of schedule.  我们的进度比计划提前。"
+   "body": "We're ahead of schedule.  我们的进度比计划提前。"
   },
   {
    "no": 87,
    "idx": 87,
-   "en": "We’re slightly behind schedule",
+   "en": "We're slightly behind schedule",
    "cn": "我们的进度稍微有些落后。",
-   "body": "We’re slightly behind schedule.  我们的进度稍微有些落后。"
+   "body": "We're slightly behind schedule.  我们的进度稍微有些落后。"
   },
   {
    "no": 88,
    "idx": 88,
-   "en": "We’ve made good progress",
+   "en": "We've made good progress",
    "cn": "我们已经取得了不错的进展。",
-   "body": "We’ve made good progress.  我们已经取得了不错的进展。"
+   "body": "We've made good progress.  我们已经取得了不错的进展。"
   },
   {
    "no": 89,
    "idx": 89,
-   "en": "We’re making steady progress",
+   "en": "We're making steady progress",
    "cn": "我们正在稳步推进。",
-   "body": "We’re making steady progress.  我们正在稳步推进。"
+   "body": "We're making steady progress.  我们正在稳步推进。"
   },
   {
    "no": 90,
@@ -900,16 +900,16 @@
   {
    "no": 91,
    "idx": 91,
-   "en": "We’ve completed the first phase",
+   "en": "We've completed the first phase",
    "cn": "我们已经完成第一阶段。",
-   "body": "We’ve completed the first phase.  我们已经完成第一阶段。"
+   "body": "We've completed the first phase.  我们已经完成第一阶段。"
   },
   {
    "no": 92,
    "idx": 92,
-   "en": "We’re currently working on",
+   "en": "We're currently working on",
    "cn": "我们目前正在处理……",
-   "body": "We’re currently working on ...  我们目前正在处理……"
+   "body": "We're currently working on ...  我们目前正在处理……"
   },
   {
    "no": 93,
@@ -921,51 +921,51 @@
   {
    "no": 94,
    "idx": 94,
-   "en": "We’re waiting for feedback",
+   "en": "We're waiting for feedback",
    "cn": "我们正在等待反馈。",
-   "body": "We’re waiting for feedback.  我们正在等待反馈。"
+   "body": "We're waiting for feedback.  我们正在等待反馈。"
   },
   {
    "no": 95,
    "idx": 95,
-   "en": "We’re waiting for approval",
+   "en": "We're waiting for approval",
    "cn": "我们正在等待批准。",
-   "body": "We’re waiting for approval.  我们正在等待批准。"
+   "body": "We're waiting for approval.  我们正在等待批准。"
   },
   {
    "no": 96,
    "idx": 96,
-   "en": "We’ve run into an issue",
+   "en": "We've run into an issue",
    "cn": "我们遇到了一个问题。",
-   "body": "We’ve run into an issue.  我们遇到了一个问题。"
+   "body": "We've run into an issue.  我们遇到了一个问题。"
   },
   {
    "no": 97,
    "idx": 97,
-   "en": "There’s been a slight delay",
+   "en": "There's been a slight delay",
    "cn": "出现了一点延误。",
-   "body": "There’s been a slight delay.  出现了一点延误。"
+   "body": "There's been a slight delay.  出现了一点延误。"
   },
   {
    "no": 98,
    "idx": 98,
-   "en": "We’re working to resolve it",
+   "en": "We're working to resolve it",
    "cn": "我们正在解决这个问题。",
-   "body": "We’re working to resolve it.  我们正在解决这个问题。"
+   "body": "We're working to resolve it.  我们正在解决这个问题。"
   },
   {
    "no": 99,
    "idx": 99,
-   "en": "I’ll keep you posted",
+   "en": "I'll keep you posted",
    "cn": "我会及时同步最新进展。",
-   "body": "I’ll keep you posted.  我会及时同步最新进展。"
+   "body": "I'll keep you posted.  我会及时同步最新进展。"
   },
   {
    "no": 100,
    "idx": 100,
-   "en": "I’ll follow up once I have an update",
+   "en": "I'll follow up once I have an update",
    "cn": "有新进展后我会跟进。",
-   "body": "I’ll follow up once I have an update.  有新进展后我会跟进。"
+   "body": "I'll follow up once I have an update.  有新进展后我会跟进。"
   },
   {
    "no": 101,
@@ -1005,9 +1005,9 @@
   {
    "no": 106,
    "idx": 106,
-   "en": "I’ll keep you updated",
+   "en": "I'll keep you updated",
    "cn": "我会及时同步进展。",
-   "body": "I’ll keep you updated.  我会及时同步进展。"
+   "body": "I'll keep you updated.  我会及时同步进展。"
   },
   {
    "no": 107,
@@ -1040,9 +1040,9 @@
   {
    "no": 111,
    "idx": 111,
-   "en": "I’ve attached the file for your reference",
+   "en": "I've attached the file for your reference",
    "cn": "我已附上文件供你参考。",
-   "body": "I’ve attached the file for your reference.  我已附上文件供你参考。"
+   "body": "I've attached the file for your reference.  我已附上文件供你参考。"
   },
   {
    "no": 112,
@@ -1082,23 +1082,23 @@
   {
    "no": 117,
    "idx": 117,
-   "en": "I’ll get back to you shortly",
+   "en": "I'll get back to you shortly",
    "cn": "我稍后回复你。",
-   "body": "I’ll get back to you shortly.  我稍后回复你。"
+   "body": "I'll get back to you shortly.  我稍后回复你。"
   },
   {
    "no": 118,
    "idx": 118,
-   "en": "I’ll get back to you by tomorrow",
+   "en": "I'll get back to you by tomorrow",
    "cn": "我会在明天之前回复你。",
-   "body": "I’ll get back to you by tomorrow.  我会在明天之前回复你。"
+   "body": "I'll get back to you by tomorrow.  我会在明天之前回复你。"
   },
   {
    "no": 119,
    "idx": 119,
-   "en": "I’ll check and get back to you",
+   "en": "I'll check and get back to you",
    "cn": "我确认后回复你。",
-   "body": "I’ll check and get back to you.  我确认后回复你。"
+   "body": "I'll check and get back to you.  我确认后回复你。"
   },
   {
    "no": 120,
@@ -1124,16 +1124,16 @@
   {
    "no": 123,
    "idx": 123,
-   "en": "The purpose of today’s meeting is to",
+   "en": "The purpose of today's meeting is to",
    "cn": "今天会议的目的是……",
-   "body": "The purpose of today’s meeting is to ...  今天会议的目的是……"
+   "body": "The purpose of today's meeting is to ...  今天会议的目的是……"
   },
   {
    "no": 124,
    "idx": 124,
-   "en": "Today, we’ll be discussing",
+   "en": "Today, we'll be discussing",
    "cn": "今天我们将讨论……",
-   "body": "Today, we’ll be discussing ...  今天我们将讨论……"
+   "body": "Today, we'll be discussing ...  今天我们将讨论……"
   },
   {
    "no": 125,
@@ -1145,9 +1145,9 @@
   {
    "no": 126,
    "idx": 126,
-   "en": "Let’s go through the agenda",
+   "en": "Let's go through the agenda",
    "cn": "我们过一下议程。",
-   "body": "Let’s go through the agenda.  我们过一下议程。"
+   "body": "Let's go through the agenda.  我们过一下议程。"
   },
   {
    "no": 127,
@@ -1159,9 +1159,9 @@
   {
    "no": 128,
    "idx": 128,
-   "en": "Let’s start with",
+   "en": "Let's start with",
    "cn": "我们先从……开始。",
-   "body": "Let’s start with ...  我们先从……开始。"
+   "body": "Let's start with ...  我们先从……开始。"
   },
   {
    "no": 129,
@@ -1187,16 +1187,16 @@
   {
    "no": 132,
    "idx": 132,
-   "en": "Let’s try to keep this to 30 minutes",
+   "en": "Let's try to keep this to 30 minutes",
    "cn": "我们尽量把会议控制在30分钟内。",
-   "body": "Let’s try to keep this to 30 minutes.  我们尽量把会议控制在30分钟内。"
+   "body": "Let's try to keep this to 30 minutes.  我们尽量把会议控制在30分钟内。"
   },
   {
    "no": 133,
    "idx": 133,
-   "en": "We’ll leave some time for questions at the end",
+   "en": "We'll leave some time for questions at the end",
    "cn": "最后我们会留一些时间提问。",
-   "body": "We’ll leave some time for questions at the end.  最后我们会留一些时间提问。"
+   "body": "We'll leave some time for questions at the end.  最后我们会留一些时间提问。"
   },
   {
    "no": 134,
@@ -1222,16 +1222,16 @@
   {
    "no": 137,
    "idx": 137,
-   "en": "Let’s move on to the first item",
+   "en": "Let's move on to the first item",
    "cn": "我们进入第一项议题。",
-   "body": "Let’s move on to the first item.  我们进入第一项议题。"
+   "body": "Let's move on to the first item.  我们进入第一项议题。"
   },
   {
    "no": 138,
    "idx": 138,
-   "en": "I’ll quickly walk you through the agenda",
+   "en": "I'll quickly walk you through the agenda",
    "cn": "我快速带大家过一下议程。",
-   "body": "I’ll quickly walk you through the agenda.  我快速带大家过一下议程。"
+   "body": "I'll quickly walk you through the agenda.  我快速带大家过一下议程。"
   },
   {
    "no": 139,
@@ -1243,9 +1243,9 @@
   {
    "no": 140,
    "idx": 140,
-   "en": "Let’s make sure we cover everything",
+   "en": "Let's make sure we cover everything",
    "cn": "我们确保所有事项都讨论到。",
-   "body": "Let’s make sure we cover everything.  我们确保所有事项都讨论到。"
+   "body": "Let's make sure we cover everything.  我们确保所有事项都讨论到。"
   },
   {
    "no": 141,
@@ -1257,9 +1257,9 @@
   {
    "no": 142,
    "idx": 142,
-   "en": "I’d like to add something",
+   "en": "I'd like to add something",
    "cn": "我想补充一点。",
-   "body": "I’d like to add something.  我想补充一点。"
+   "body": "I'd like to add something.  我想补充一点。"
   },
   {
    "no": 143,
@@ -1292,9 +1292,9 @@
   {
    "no": 147,
    "idx": 147,
-   "en": "That’s a really useful point",
+   "en": "That's a really useful point",
    "cn": "这个观点很有价值。",
-   "body": "That’s a really useful point.  这个观点很有价值。"
+   "body": "That's a really useful point.  这个观点很有价值。"
   },
   {
    "no": 148,
@@ -1306,9 +1306,9 @@
   {
    "no": 149,
    "idx": 149,
-   "en": "I’d like to comment on that",
+   "en": "I'd like to comment on that",
    "cn": "我想对此发表一下看法。",
-   "body": "I’d like to comment on that.  我想对此发表一下看法。"
+   "body": "I'd like to comment on that.  我想对此发表一下看法。"
   },
   {
    "no": 150,
@@ -1376,9 +1376,9 @@
   {
    "no": 159,
    "idx": 159,
-   "en": "I’ll come back to that in a moment",
+   "en": "I'll come back to that in a moment",
    "cn": "我稍后会回到这个问题。",
-   "body": "I’ll come back to that in a moment.  我稍后会回到这个问题。"
+   "body": "I'll come back to that in a moment.  我稍后会回到这个问题。"
   },
   {
    "no": 160,
@@ -1432,16 +1432,16 @@
   {
    "no": 167,
    "idx": 167,
-   "en": "Let me make sure I’ve got this right",
+   "en": "Let me make sure I've got this right",
    "cn": "我确认一下自己是否理解正确。",
-   "body": "Let me make sure I’ve got this right.  我确认一下自己是否理解正确。"
+   "body": "Let me make sure I've got this right.  我确认一下自己是否理解正确。"
   },
   {
    "no": 168,
    "idx": 168,
-   "en": "Let me check that I’m following",
+   "en": "Let me check that I'm following",
    "cn": "我确认一下自己有没有理解到位。",
-   "body": "Let me check that I’m following.  我确认一下自己有没有理解到位。"
+   "body": "Let me check that I'm following.  我确认一下自己有没有理解到位。"
   },
   {
    "no": 169,
@@ -1453,37 +1453,37 @@
   {
    "no": 170,
    "idx": 170,
-   "en": "What’s the reason behind that?",
+   "en": "What's the reason behind that?",
    "cn": "这背后的原因是什么？",
-   "body": "What’s the reason behind that?  这背后的原因是什么？"
+   "body": "What's the reason behind that?  这背后的原因是什么？"
   },
   {
    "no": 171,
    "idx": 171,
-   "en": "What’s the main issue here?",
+   "en": "What's the main issue here?",
    "cn": "这里的主要问题是什么？",
-   "body": "What’s the main issue here?  这里的主要问题是什么？"
+   "body": "What's the main issue here?  这里的主要问题是什么？"
   },
   {
    "no": 172,
    "idx": 172,
-   "en": "What’s causing the delay?",
+   "en": "What's causing the delay?",
    "cn": "是什么导致了延期？",
-   "body": "What’s causing the delay?  是什么导致了延期？"
+   "body": "What's causing the delay?  是什么导致了延期？"
   },
   {
    "no": 173,
    "idx": 173,
-   "en": "What’s the impact on the timeline?",
+   "en": "What's the impact on the timeline?",
    "cn": "这对时间计划有什么影响？",
-   "body": "What’s the impact on the timeline?  这对时间计划有什么影响？"
+   "body": "What's the impact on the timeline?  这对时间计划有什么影响？"
   },
   {
    "no": 174,
    "idx": 174,
-   "en": "What’s the priority here?",
+   "en": "What's the priority here?",
    "cn": "这里的优先事项是什么？",
-   "body": "What’s the priority here?  这里的优先事项是什么？"
+   "body": "What's the priority here?  这里的优先事项是什么？"
   },
   {
    "no": 175,
@@ -1495,9 +1495,9 @@
   {
    "no": 176,
    "idx": 176,
-   "en": "Who’s the owner on this?",
+   "en": "Who's the owner on this?",
    "cn": "这件事由谁负责？",
-   "body": "Who’s the owner on this?  这件事由谁负责？"
+   "body": "Who's the owner on this?  这件事由谁负责？"
   },
   {
    "no": 177,
@@ -1551,9 +1551,9 @@
   {
    "no": 184,
    "idx": 184,
-   "en": "So, we’ve agreed that",
+   "en": "So, we've agreed that",
    "cn": "所以我们已经达成一致……",
-   "body": "So, we’ve agreed that ...  所以我们已经达成一致……"
+   "body": "So, we've agreed that ...  所以我们已经达成一致……"
   },
   {
    "no": 185,
@@ -1572,9 +1572,9 @@
   {
    "no": 187,
    "idx": 187,
-   "en": "Let’s confirm the next steps",
+   "en": "Let's confirm the next steps",
    "cn": "我们确认一下下一步。",
-   "body": "Let’s confirm the next steps.  我们确认一下下一步。"
+   "body": "Let's confirm the next steps.  我们确认一下下一步。"
   },
   {
    "no": 188,
@@ -1586,9 +1586,9 @@
   {
    "no": 189,
    "idx": 189,
-   "en": "Here’s what we’ll do next",
+   "en": "Here's what we'll do next",
    "cn": "接下来我们会这样做。",
-   "body": "Here’s what we’ll do next.  接下来我们会这样做。"
+   "body": "Here's what we'll do next.  接下来我们会这样做。"
   },
   {
    "no": 190,
@@ -1600,16 +1600,16 @@
   {
    "no": 191,
    "idx": 191,
-   "en": "Who’s owning this action item?",
+   "en": "Who's owning this action item?",
    "cn": "这个行动项由谁负责？",
-   "body": "Who’s owning this action item?  这个行动项由谁负责？"
+   "body": "Who's owning this action item?  这个行动项由谁负责？"
   },
   {
    "no": 192,
    "idx": 192,
-   "en": "Who’ll be driving this forward?",
+   "en": "Who'll be driving this forward?",
    "cn": "这件事接下来由谁牵头推进？",
-   "body": "Who’ll be driving this forward?  这件事接下来由谁牵头推进？"
+   "body": "Who'll be driving this forward?  这件事接下来由谁牵头推进？"
   },
   {
    "no": 193,
@@ -1628,23 +1628,23 @@
   {
    "no": 195,
    "idx": 195,
-   "en": "I’ll follow up after the meeting",
+   "en": "I'll follow up after the meeting",
    "cn": "会后我会跟进。",
-   "body": "I’ll follow up after the meeting.  会后我会跟进。"
+   "body": "I'll follow up after the meeting.  会后我会跟进。"
   },
   {
    "no": 196,
    "idx": 196,
-   "en": "I’ll send out the meeting notes",
+   "en": "I'll send out the meeting notes",
    "cn": "我会发出会议纪要。",
-   "body": "I’ll send out the meeting notes.  我会发出会议纪要。"
+   "body": "I'll send out the meeting notes.  我会发出会议纪要。"
   },
   {
    "no": 197,
    "idx": 197,
-   "en": "I’ll keep everyone updated",
+   "en": "I'll keep everyone updated",
    "cn": "我会及时同步最新进展。",
-   "body": "I’ll keep everyone updated.  我会及时同步最新进展。"
+   "body": "I'll keep everyone updated.  我会及时同步最新进展。"
   },
   {
    "no": 198,
@@ -1691,23 +1691,23 @@
   {
    "no": 204,
    "idx": 204,
-   "en": "I’d like you to take ownership of this",
+   "en": "I'd like you to take ownership of this",
    "cn": "我希望这件事由你负责到底。",
-   "body": "I’d like you to take ownership of this.  我希望这件事由你负责到底。"
+   "body": "I'd like you to take ownership of this.  我希望这件事由你负责到底。"
   },
   {
    "no": 205,
    "idx": 205,
-   "en": "I’ll take care of it",
+   "en": "I'll take care of it",
    "cn": "我来处理。",
-   "body": "I’ll take care of it.  我来处理。"
+   "body": "I'll take care of it.  我来处理。"
   },
   {
    "no": 206,
    "idx": 206,
-   "en": "I’ll take the lead on this",
+   "en": "I'll take the lead on this",
    "cn": "这件事我来牵头。",
-   "body": "I’ll take the lead on this.  这件事我来牵头。"
+   "body": "I'll take the lead on this.  这件事我来牵头。"
   },
   {
    "no": 207,
@@ -1719,30 +1719,30 @@
   {
    "no": 208,
    "idx": 208,
-   "en": "I’ll own this",
+   "en": "I'll own this",
    "cn": "这件事我来负责。",
-   "body": "I’ll own this.  这件事我来负责。"
+   "body": "I'll own this.  这件事我来负责。"
   },
   {
    "no": 209,
    "idx": 209,
-   "en": "Let’s split up the work",
+   "en": "Let's split up the work",
    "cn": "我们把工作分一下。",
-   "body": "Let’s split up the work.  我们把工作分一下。"
+   "body": "Let's split up the work.  我们把工作分一下。"
   },
   {
    "no": 210,
    "idx": 210,
-   "en": "Let’s divide this into a few tasks",
+   "en": "Let's divide this into a few tasks",
    "cn": "我们把这件事拆成几个任务。",
-   "body": "Let’s divide this into a few tasks.  我们把这件事拆成几个任务。"
+   "body": "Let's divide this into a few tasks.  我们把这件事拆成几个任务。"
   },
   {
    "no": 211,
    "idx": 211,
-   "en": "I’ll handle the first part",
+   "en": "I'll handle the first part",
    "cn": "第一部分我来负责。",
-   "body": "I’ll handle the first part.  第一部分我来负责。"
+   "body": "I'll handle the first part.  第一部分我来负责。"
   },
   {
    "no": 212,
@@ -1754,9 +1754,9 @@
   {
    "no": 213,
    "idx": 213,
-   "en": "Who’s the point person for this?",
+   "en": "Who's the point person for this?",
    "cn": "这件事的主要负责人是谁？",
-   "body": "Who’s the point person for this?  这件事的主要负责人是谁？"
+   "body": "Who's the point person for this?  这件事的主要负责人是谁？"
   },
   {
    "no": 214,
@@ -1782,44 +1782,44 @@
   {
    "no": 217,
    "idx": 217,
-   "en": "Let’s clarify who’s doing what",
+   "en": "Let's clarify who's doing what",
    "cn": "我们明确一下各自的分工。",
-   "body": "Let’s clarify who’s doing what.  我们明确一下各自的分工。"
+   "body": "Let's clarify who's doing what.  我们明确一下各自的分工。"
   },
   {
    "no": 218,
    "idx": 218,
-   "en": "Let’s make sure the responsibilities are clear",
+   "en": "Let's make sure the responsibilities are clear",
    "cn": "我们确保职责分工明确。",
-   "body": "Let’s make sure the responsibilities are clear.  我们确保职责分工明确。"
+   "body": "Let's make sure the responsibilities are clear.  我们确保职责分工明确。"
   },
   {
    "no": 219,
    "idx": 219,
-   "en": "I’ll coordinate with the team",
+   "en": "I'll coordinate with the team",
    "cn": "我会和团队协调。",
-   "body": "I’ll coordinate with the team.  我会和团队协调。"
+   "body": "I'll coordinate with the team.  我会和团队协调。"
   },
   {
    "no": 220,
    "idx": 220,
-   "en": "I’ll make sure this gets done",
+   "en": "I'll make sure this gets done",
    "cn": "我会确保这件事完成。",
-   "body": "I’ll make sure this gets done.  我会确保这件事完成。"
+   "body": "I'll make sure this gets done.  我会确保这件事完成。"
   },
   {
    "no": 221,
    "idx": 221,
-   "en": "What’s the target completion date?",
+   "en": "What's the target completion date?",
    "cn": "我们的目标完成日期是什么时候？",
-   "body": "What’s the target completion date?  我们的目标完成日期是什么时候？"
+   "body": "What's the target completion date?  我们的目标完成日期是什么时候？"
   },
   {
    "no": 222,
    "idx": 222,
-   "en": "What’s the deadline for this?",
+   "en": "What's the deadline for this?",
    "cn": "这件事的截止时间是什么时候？",
-   "body": "What’s the deadline for this?  这件事的截止时间是什么时候？"
+   "body": "What's the deadline for this?  这件事的截止时间是什么时候？"
   },
   {
    "no": 223,
@@ -1873,16 +1873,16 @@
   {
    "no": 230,
    "idx": 230,
-   "en": "That’s going to be tight",
+   "en": "That's going to be tight",
    "cn": "这个时间会比较紧。",
-   "body": "That’s going to be tight.  这个时间会比较紧。"
+   "body": "That's going to be tight.  这个时间会比较紧。"
   },
   {
    "no": 231,
    "idx": 231,
-   "en": "I’ll need a little more time",
+   "en": "I'll need a little more time",
    "cn": "我还需要一点时间。",
-   "body": "I’ll need a little more time.  我还需要一点时间。"
+   "body": "I'll need a little more time.  我还需要一点时间。"
   },
   {
    "no": 232,
@@ -1922,23 +1922,23 @@
   {
    "no": 237,
    "idx": 237,
-   "en": "I’ll send it over first thing tomorrow",
+   "en": "I'll send it over first thing tomorrow",
    "cn": "我明天一早发给你。",
-   "body": "I’ll send it over first thing tomorrow.  我明天一早发给你。"
+   "body": "I'll send it over first thing tomorrow.  我明天一早发给你。"
   },
   {
    "no": 238,
    "idx": 238,
-   "en": "Let’s aim for Friday",
+   "en": "Let's aim for Friday",
    "cn": "我们争取周五完成。",
-   "body": "Let’s aim for Friday.  我们争取周五完成。"
+   "body": "Let's aim for Friday.  我们争取周五完成。"
   },
   {
    "no": 239,
    "idx": 239,
-   "en": "Let’s leave some buffer time",
+   "en": "Let's leave some buffer time",
    "cn": "我们预留一些缓冲时间。",
-   "body": "Let’s leave some buffer time.  我们预留一些缓冲时间。"
+   "body": "Let's leave some buffer time.  我们预留一些缓冲时间。"
   },
   {
    "no": 240,
@@ -1957,9 +1957,9 @@
   {
    "no": 242,
    "idx": 242,
-   "en": "How’s it going with this?",
+   "en": "How's it going with this?",
    "cn": "这件事进展怎么样？",
-   "body": "How’s it going with this?  这件事进展怎么样？"
+   "body": "How's it going with this?  这件事进展怎么样？"
   },
   {
    "no": 243,
@@ -2027,9 +2027,9 @@
   {
    "no": 252,
    "idx": 252,
-   "en": "When do you think you’ll have this ready?",
+   "en": "When do you think you'll have this ready?",
    "cn": "你预计什么时候能准备好？",
-   "body": "When do you think you’ll have this ready?  你预计什么时候能准备好？"
+   "body": "When do you think you'll have this ready?  你预计什么时候能准备好？"
   },
   {
    "no": 253,
@@ -2069,9 +2069,9 @@
   {
    "no": 258,
    "idx": 258,
-   "en": "Could you send it over when it’s ready?",
+   "en": "Could you send it over when it's ready?",
    "cn": "准备好后可以发给我吗？",
-   "body": "Could you send it over when it’s ready?  准备好后可以发给我吗？"
+   "body": "Could you send it over when it's ready?  准备好后可以发给我吗？"
   },
   {
    "no": 259,
@@ -2083,16 +2083,16 @@
   {
    "no": 260,
    "idx": 260,
-   "en": "Let’s touch base again tomorrow",
+   "en": "Let's touch base again tomorrow",
    "cn": "我们明天再同步一下。",
-   "body": "Let’s touch base again tomorrow.  我们明天再同步一下。"
+   "body": "Let's touch base again tomorrow.  我们明天再同步一下。"
   },
   {
    "no": 261,
    "idx": 261,
-   "en": "What’s the top priority right now?",
+   "en": "What's the top priority right now?",
    "cn": "目前最优先的事情是什么？",
-   "body": "What’s the top priority right now?  目前最优先的事情是什么？"
+   "body": "What's the top priority right now?  目前最优先的事情是什么？"
   },
   {
    "no": 262,
@@ -2111,9 +2111,9 @@
   {
    "no": 264,
    "idx": 264,
-   "en": "Let’s focus on this first",
+   "en": "Let's focus on this first",
    "cn": "我们先集中处理这件事。",
-   "body": "Let’s focus on this first.  我们先集中处理这件事。"
+   "body": "Let's focus on this first.  我们先集中处理这件事。"
   },
   {
    "no": 265,
@@ -2125,9 +2125,9 @@
   {
    "no": 266,
    "idx": 266,
-   "en": "Let’s prioritize the most urgent items",
+   "en": "Let's prioritize the most urgent items",
    "cn": "我们先处理最紧急的事项。",
-   "body": "Let’s prioritize the most urgent items.  我们先处理最紧急的事项。"
+   "body": "Let's prioritize the most urgent items.  我们先处理最紧急的事项。"
   },
   {
    "no": 267,
@@ -2139,23 +2139,23 @@
   {
    "no": 268,
    "idx": 268,
-   "en": "This isn’t urgent",
+   "en": "This isn't urgent",
    "cn": "这件事不紧急。",
-   "body": "This isn’t urgent.  这件事不紧急。"
+   "body": "This isn't urgent.  这件事不紧急。"
   },
   {
    "no": 269,
    "idx": 269,
-   "en": "Let’s put this on hold for now",
+   "en": "Let's put this on hold for now",
    "cn": "我们暂时先搁置这件事。",
-   "body": "Let’s put this on hold for now.  我们暂时先搁置这件事。"
+   "body": "Let's put this on hold for now.  我们暂时先搁置这件事。"
   },
   {
    "no": 270,
    "idx": 270,
-   "en": "Let’s park this for now",
+   "en": "Let's park this for now",
    "cn": "这个我们暂时先放一放。",
-   "body": "Let’s park this for now.  这个我们暂时先放一放。"
+   "body": "Let's park this for now.  这个我们暂时先放一放。"
   },
   {
    "no": 271,
@@ -2202,9 +2202,9 @@
   {
    "no": 277,
    "idx": 277,
-   "en": "Let’s focus our resources on this",
+   "en": "Let's focus our resources on this",
    "cn": "我们把资源优先集中在这件事上。",
-   "body": "Let’s focus our resources on this.  我们把资源优先集中在这件事上。"
+   "body": "Let's focus our resources on this.  我们把资源优先集中在这件事上。"
   },
   {
    "no": 278,
@@ -2216,30 +2216,30 @@
   {
    "no": 279,
    "idx": 279,
-   "en": "Let’s revisit the priorities",
+   "en": "Let's revisit the priorities",
    "cn": "我们重新看一下优先级。",
-   "body": "Let’s revisit the priorities.  我们重新看一下优先级。"
+   "body": "Let's revisit the priorities.  我们重新看一下优先级。"
   },
   {
    "no": 280,
    "idx": 280,
-   "en": "Let’s align on what matters most",
+   "en": "Let's align on what matters most",
    "cn": "我们统一一下当前最重要的事情。",
-   "body": "Let’s align on what matters most.  我们统一一下当前最重要的事情。"
+   "body": "Let's align on what matters most.  我们统一一下当前最重要的事情。"
   },
   {
    "no": 281,
    "idx": 281,
-   "en": "We’re running a little behind",
+   "en": "We're running a little behind",
    "cn": "我们的进度稍微有些落后。",
-   "body": "We’re running a little behind.  我们的进度稍微有些落后。"
+   "body": "We're running a little behind.  我们的进度稍微有些落后。"
   },
   {
    "no": 282,
    "idx": 282,
-   "en": "We’re not going to make the original deadline",
+   "en": "We're not going to make the original deadline",
    "cn": "我们无法按原定截止时间完成。",
-   "body": "We’re not going to make the original deadline.  我们无法按原定截止时间完成。"
+   "body": "We're not going to make the original deadline.  我们无法按原定截止时间完成。"
   },
   {
    "no": 283,
@@ -2251,16 +2251,16 @@
   {
    "no": 284,
    "idx": 284,
-   "en": "There’s been an unexpected delay",
+   "en": "There's been an unexpected delay",
    "cn": "出现了意料之外的延误。",
-   "body": "There’s been an unexpected delay.  出现了意料之外的延误。"
+   "body": "There's been an unexpected delay.  出现了意料之外的延误。"
   },
   {
    "no": 285,
    "idx": 285,
-   "en": "We’ve hit a delay on our side",
+   "en": "We've hit a delay on our side",
    "cn": "我们这边出现了延期。",
-   "body": "We’ve hit a delay on our side.  我们这边出现了延期。"
+   "body": "We've hit a delay on our side.  我们这边出现了延期。"
   },
   {
    "no": 286,
@@ -2272,9 +2272,9 @@
   {
    "no": 287,
    "idx": 287,
-   "en": "We’ve had to adjust the timeline",
+   "en": "We've had to adjust the timeline",
    "cn": "我们不得不调整时间计划。",
-   "body": "We’ve had to adjust the timeline.  我们不得不调整时间计划。"
+   "body": "We've had to adjust the timeline.  我们不得不调整时间计划。"
   },
   {
    "no": 288,
@@ -2321,9 +2321,9 @@
   {
    "no": 294,
    "idx": 294,
-   "en": "We’re aiming to have this done by Friday",
+   "en": "We're aiming to have this done by Friday",
    "cn": "我们争取在周五前完成。",
-   "body": "We’re aiming to have this done by Friday.  我们争取在周五前完成。"
+   "body": "We're aiming to have this done by Friday.  我们争取在周五前完成。"
   },
   {
    "no": 295,
@@ -2335,30 +2335,30 @@
   {
    "no": 296,
    "idx": 296,
-   "en": "We’re doing our best to catch up",
+   "en": "We're doing our best to catch up",
    "cn": "我们正在尽力赶上进度。",
-   "body": "We’re doing our best to catch up.  我们正在尽力赶上进度。"
+   "body": "We're doing our best to catch up.  我们正在尽力赶上进度。"
   },
   {
    "no": 297,
    "idx": 297,
-   "en": "We’re working to minimize the delay",
+   "en": "We're working to minimize the delay",
    "cn": "我们正在尽量缩短延期时间。",
-   "body": "We’re working to minimize the delay.  我们正在尽量缩短延期时间。"
+   "body": "We're working to minimize the delay.  我们正在尽量缩短延期时间。"
   },
   {
    "no": 298,
    "idx": 298,
-   "en": "I’ll let you know if anything changes",
+   "en": "I'll let you know if anything changes",
    "cn": "如果有任何变化，我会告诉你。",
-   "body": "I’ll let you know if anything changes.  如果有任何变化，我会告诉你。"
+   "body": "I'll let you know if anything changes.  如果有任何变化，我会告诉你。"
   },
   {
    "no": 299,
    "idx": 299,
-   "en": "I’ll keep you updated on the revised timeline",
+   "en": "I'll keep you updated on the revised timeline",
    "cn": "我会及时同步调整后的时间计划。",
-   "body": "I’ll keep you updated on the revised timeline.  我会及时同步调整后的时间计划。"
+   "body": "I'll keep you updated on the revised timeline.  我会及时同步调整后的时间计划。"
   },
   {
    "no": 300,
@@ -2370,30 +2370,30 @@
   {
    "no": 301,
    "idx": 301,
-   "en": "We’ve run into a problem",
+   "en": "We've run into a problem",
    "cn": "我们遇到了一个问题。",
-   "body": "We’ve run into a problem.  我们遇到了一个问题。"
+   "body": "We've run into a problem.  我们遇到了一个问题。"
   },
   {
    "no": 302,
    "idx": 302,
-   "en": "We’re having trouble moving this forward",
+   "en": "We're having trouble moving this forward",
    "cn": "这件事目前推进起来有些困难。",
-   "body": "We’re having trouble moving this forward.  这件事目前推进起来有些困难。"
+   "body": "We're having trouble moving this forward.  这件事目前推进起来有些困难。"
   },
   {
    "no": 303,
    "idx": 303,
-   "en": "We’ve hit a snag",
+   "en": "We've hit a snag",
    "cn": "我们遇到了一点小问题。",
-   "body": "We’ve hit a snag.  我们遇到了一点小问题。"
+   "body": "We've hit a snag.  我们遇到了一点小问题。"
   },
   {
    "no": 304,
    "idx": 304,
-   "en": "We’re blocked on this",
+   "en": "We're blocked on this",
    "cn": "这件事目前卡住了。",
-   "body": "We’re blocked on this.  这件事目前卡住了。"
+   "body": "We're blocked on this.  这件事目前卡住了。"
   },
   {
    "no": 305,
@@ -2412,16 +2412,16 @@
   {
    "no": 307,
    "idx": 307,
-   "en": "We need to figure out what’s causing this",
+   "en": "We need to figure out what's causing this",
    "cn": "我们需要找出问题的原因。",
-   "body": "We need to figure out what’s causing this.  我们需要找出问题的原因。"
+   "body": "We need to figure out what's causing this.  我们需要找出问题的原因。"
   },
   {
    "no": 308,
    "idx": 308,
-   "en": "Let’s get to the root of the problem",
+   "en": "Let's get to the root of the problem",
    "cn": "我们找一下问题的根源。",
-   "body": "Let’s get to the root of the problem.  我们找一下问题的根源。"
+   "body": "Let's get to the root of the problem.  我们找一下问题的根源。"
   },
   {
    "no": 309,
@@ -2433,9 +2433,9 @@
   {
    "no": 310,
    "idx": 310,
-   "en": "What’s blocking us right now?",
+   "en": "What's blocking us right now?",
    "cn": "目前是什么卡住了我们？",
-   "body": "What’s blocking us right now?  目前是什么卡住了我们？"
+   "body": "What's blocking us right now?  目前是什么卡住了我们？"
   },
   {
    "no": 311,
@@ -2447,37 +2447,37 @@
   {
    "no": 312,
    "idx": 312,
-   "en": "Let’s see if there’s another way around this",
+   "en": "Let's see if there's another way around this",
    "cn": "我们看看有没有其他解决办法。",
-   "body": "Let’s see if there’s another way around this.  我们看看有没有其他解决办法。"
+   "body": "Let's see if there's another way around this.  我们看看有没有其他解决办法。"
   },
   {
    "no": 313,
    "idx": 313,
-   "en": "We’re looking into it",
+   "en": "We're looking into it",
    "cn": "我们正在调查这个问题。",
-   "body": "We’re looking into it.  我们正在调查这个问题。"
+   "body": "We're looking into it.  我们正在调查这个问题。"
   },
   {
    "no": 314,
    "idx": 314,
-   "en": "We’re working on a fix",
+   "en": "We're working on a fix",
    "cn": "我们正在想办法解决。",
-   "body": "We’re working on a fix.  我们正在想办法解决。"
+   "body": "We're working on a fix.  我们正在想办法解决。"
   },
   {
    "no": 315,
    "idx": 315,
-   "en": "We’ve identified the issue",
+   "en": "We've identified the issue",
    "cn": "我们已经定位到问题了。",
-   "body": "We’ve identified the issue.  我们已经定位到问题了。"
+   "body": "We've identified the issue.  我们已经定位到问题了。"
   },
   {
    "no": 316,
    "idx": 316,
-   "en": "We’ve found the root cause",
+   "en": "We've found the root cause",
    "cn": "我们已经找到了根本原因。",
-   "body": "We’ve found the root cause.  我们已经找到了根本原因。"
+   "body": "We've found the root cause.  我们已经找到了根本原因。"
   },
   {
    "no": 317,
@@ -2496,9 +2496,9 @@
   {
    "no": 319,
    "idx": 319,
-   "en": "Let’s make sure this doesn’t happen again",
+   "en": "Let's make sure this doesn't happen again",
    "cn": "我们要确保这个问题不再发生。",
-   "body": "Let’s make sure this doesn’t happen again.  我们要确保这个问题不再发生。"
+   "body": "Let's make sure this doesn't happen again.  我们要确保这个问题不再发生。"
   },
   {
    "no": 320,
@@ -2510,9 +2510,9 @@
   {
    "no": 321,
    "idx": 321,
-   "en": "There’s a risk that we may miss the deadline",
+   "en": "There's a risk that we may miss the deadline",
    "cn": "我们有无法按期完成的风险。",
-   "body": "There’s a risk that we may miss the deadline.  我们有无法按期完成的风险。"
+   "body": "There's a risk that we may miss the deadline.  我们有无法按期完成的风险。"
   },
   {
    "no": 322,
@@ -2594,9 +2594,9 @@
   {
    "no": 333,
    "idx": 333,
-   "en": "What’s the worst-case scenario?",
+   "en": "What's the worst-case scenario?",
    "cn": "最坏的情况是什么？",
-   "body": "What’s the worst-case scenario?  最坏的情况是什么？"
+   "body": "What's the worst-case scenario?  最坏的情况是什么？"
   },
   {
    "no": 334,
@@ -2615,9 +2615,9 @@
   {
    "no": 336,
    "idx": 336,
-   "en": "Let’s have a contingency plan in place",
+   "en": "Let's have a contingency plan in place",
    "cn": "我们准备一个应急方案。",
-   "body": "Let’s have a contingency plan in place.  我们准备一个应急方案。"
+   "body": "Let's have a contingency plan in place.  我们准备一个应急方案。"
   },
   {
    "no": 337,
@@ -2629,9 +2629,9 @@
   {
    "no": 338,
    "idx": 338,
-   "en": "We’re taking steps to mitigate the risk",
+   "en": "We're taking steps to mitigate the risk",
    "cn": "我们正在采取措施降低风险。",
-   "body": "We’re taking steps to mitigate the risk.  我们正在采取措施降低风险。"
+   "body": "We're taking steps to mitigate the risk.  我们正在采取措施降低风险。"
   },
   {
    "no": 339,
@@ -2643,23 +2643,23 @@
   {
    "no": 340,
    "idx": 340,
-   "en": "We’ll continue to monitor the situation",
+   "en": "We'll continue to monitor the situation",
    "cn": "我们会继续关注情况。",
-   "body": "We’ll continue to monitor the situation.  我们会继续关注情况。"
+   "body": "We'll continue to monitor the situation.  我们会继续关注情况。"
   },
   {
    "no": 341,
    "idx": 341,
-   "en": "We’ll need to work closely with their team",
+   "en": "We'll need to work closely with their team",
    "cn": "我们需要和他们团队密切合作。",
-   "body": "We’ll need to work closely with their team.  我们需要和他们团队密切合作。"
+   "body": "We'll need to work closely with their team.  我们需要和他们团队密切合作。"
   },
   {
    "no": 342,
    "idx": 342,
-   "en": "Let’s get the right people involved",
+   "en": "Let's get the right people involved",
    "cn": "我们把相关人员都拉进来。",
-   "body": "Let’s get the right people involved.  我们把相关人员都拉进来。"
+   "body": "Let's get the right people involved.  我们把相关人员都拉进来。"
   },
   {
    "no": 343,
@@ -2678,16 +2678,16 @@
   {
    "no": 345,
    "idx": 345,
-   "en": "I’ll bring the relevant teams together",
+   "en": "I'll bring the relevant teams together",
    "cn": "我会把相关团队协调到一起。",
-   "body": "I’ll bring the relevant teams together.  我会把相关团队协调到一起。"
+   "body": "I'll bring the relevant teams together.  我会把相关团队协调到一起。"
   },
   {
    "no": 346,
    "idx": 346,
-   "en": "Let’s align with the sales team first",
+   "en": "Let's align with the sales team first",
    "cn": "我们先和销售团队对齐一下。",
-   "body": "Let’s align with the sales team first.  我们先和销售团队对齐一下。"
+   "body": "Let's align with the sales team first.  我们先和销售团队对齐一下。"
   },
   {
    "no": 347,
@@ -2699,9 +2699,9 @@
   {
    "no": 348,
    "idx": 348,
-   "en": "Let’s check with HR before we proceed",
+   "en": "Let's check with HR before we proceed",
    "cn": "继续之前我们先和HR确认一下。",
-   "body": "Let’s check with HR before we proceed.  继续之前我们先和HR确认一下。"
+   "body": "Let's check with HR before we proceed.  继续之前我们先和HR确认一下。"
   },
   {
    "no": 349,
@@ -2713,16 +2713,16 @@
   {
    "no": 350,
    "idx": 350,
-   "en": "I’ll reach out to them directly",
+   "en": "I'll reach out to them directly",
    "cn": "我会直接联系他们。",
-   "body": "I’ll reach out to them directly.  我会直接联系他们。"
+   "body": "I'll reach out to them directly.  我会直接联系他们。"
   },
   {
    "no": 351,
    "idx": 351,
-   "en": "I’ll connect you with the right person",
+   "en": "I'll connect you with the right person",
    "cn": "我会帮你对接合适的人。",
-   "body": "I’ll connect you with the right person.  我会帮你对接合适的人。"
+   "body": "I'll connect you with the right person.  我会帮你对接合适的人。"
   },
   {
    "no": 352,
@@ -2734,9 +2734,9 @@
   {
    "no": 353,
    "idx": 353,
-   "en": "Let’s make sure everyone is aligned",
+   "en": "Let's make sure everyone is aligned",
    "cn": "我们确保所有相关人员都理解一致。",
-   "body": "Let’s make sure everyone is aligned.  我们确保所有相关人员都理解一致。"
+   "body": "Let's make sure everyone is aligned.  我们确保所有相关人员都理解一致。"
   },
   {
    "no": 354,
@@ -2755,9 +2755,9 @@
   {
    "no": 356,
    "idx": 356,
-   "en": "Let’s clarify the handoff",
+   "en": "Let's clarify the handoff",
    "cn": "我们明确一下工作交接。",
-   "body": "Let’s clarify the handoff.  我们明确一下工作交接。"
+   "body": "Let's clarify the handoff.  我们明确一下工作交接。"
   },
   {
    "no": 357,
@@ -2769,23 +2769,23 @@
   {
    "no": 358,
    "idx": 358,
-   "en": "Let’s agree on how we’ll work together",
+   "en": "Let's agree on how we'll work together",
    "cn": "我们明确一下接下来如何协作。",
-   "body": "Let’s agree on how we’ll work together.  我们明确一下接下来如何协作。"
+   "body": "Let's agree on how we'll work together.  我们明确一下接下来如何协作。"
   },
   {
    "no": 359,
    "idx": 359,
-   "en": "I’ll coordinate this across teams",
+   "en": "I'll coordinate this across teams",
    "cn": "我会负责跨团队协调这件事。",
-   "body": "I’ll coordinate this across teams.  我会负责跨团队协调这件事。"
+   "body": "I'll coordinate this across teams.  我会负责跨团队协调这件事。"
   },
   {
    "no": 360,
    "idx": 360,
-   "en": "Let’s keep each other in the loop",
+   "en": "Let's keep each other in the loop",
    "cn": "我们彼此及时同步进展。",
-   "body": "Let’s keep each other in the loop.  我们彼此及时同步进展。"
+   "body": "Let's keep each other in the loop.  我们彼此及时同步进展。"
   },
   {
    "no": 361,
@@ -2811,9 +2811,9 @@
   {
    "no": 364,
    "idx": 364,
-   "en": "I’d appreciate your help with this",
+   "en": "I'd appreciate your help with this",
    "cn": "如果你能帮忙，我会很感谢。",
-   "body": "I’d appreciate your help with this.  如果你能帮忙，我会很感谢。"
+   "body": "I'd appreciate your help with this.  如果你能帮忙，我会很感谢。"
   },
   {
    "no": 365,
@@ -2888,9 +2888,9 @@
   {
    "no": 375,
    "idx": 375,
-   "en": "I’d value your perspective on this",
+   "en": "I'd value your perspective on this",
    "cn": "我很想听听你对这件事的看法。",
-   "body": "I’d value your perspective on this.  我很想听听你对这件事的看法。"
+   "body": "I'd value your perspective on this.  我很想听听你对这件事的看法。"
   },
   {
    "no": 376,
@@ -2923,9 +2923,9 @@
   {
    "no": 380,
    "idx": 380,
-   "en": "I’d really appreciate your support",
+   "en": "I'd really appreciate your support",
    "cn": "非常感谢你的支持。",
-   "body": "I’d really appreciate your support.  非常感谢你的支持。"
+   "body": "I'd really appreciate your support.  非常感谢你的支持。"
   },
   {
    "no": 381,
@@ -2958,9 +2958,9 @@
   {
    "no": 385,
    "idx": 385,
-   "en": "I’d be happy to help",
+   "en": "I'd be happy to help",
    "cn": "我很乐意帮忙。",
-   "body": "I’d be happy to help.  我很乐意帮忙。"
+   "body": "I'd be happy to help.  我很乐意帮忙。"
   },
   {
    "no": 386,
@@ -3000,9 +3000,9 @@
   {
    "no": 391,
    "idx": 391,
-   "en": "I’ve got this",
+   "en": "I've got this",
    "cn": "这个我来处理。",
-   "body": "I’ve got this.  这个我来处理。"
+   "body": "I've got this.  这个我来处理。"
   },
   {
    "no": 392,
@@ -3028,9 +3028,9 @@
   {
    "no": 395,
    "idx": 395,
-   "en": "I’ll see what I can do",
+   "en": "I'll see what I can do",
    "cn": "我看看能做些什么。",
-   "body": "I’ll see what I can do.  我看看能做些什么。"
+   "body": "I'll see what I can do.  我看看能做些什么。"
   },
   {
    "no": 396,
@@ -3042,16 +3042,16 @@
   {
    "no": 397,
    "idx": 397,
-   "en": "I’ll check with the team",
+   "en": "I'll check with the team",
    "cn": "我去和团队确认一下。",
-   "body": "I’ll check with the team.  我去和团队确认一下。"
+   "body": "I'll check with the team.  我去和团队确认一下。"
   },
   {
    "no": 398,
    "idx": 398,
-   "en": "I’ll see if I can find someone to help",
+   "en": "I'll see if I can find someone to help",
    "cn": "我看看能不能找人帮忙。",
-   "body": "I’ll see if I can find someone to help.  我看看能不能找人帮忙。"
+   "body": "I'll see if I can find someone to help.  我看看能不能找人帮忙。"
   },
   {
    "no": 399,
@@ -3063,9 +3063,9 @@
   {
    "no": 400,
    "idx": 400,
-   "en": "Don’t hesitate to reach out",
+   "en": "Don't hesitate to reach out",
    "cn": "有需要随时联系我。",
-   "body": "Don’t hesitate to reach out.  有需要随时联系我。"
+   "body": "Don't hesitate to reach out.  有需要随时联系我。"
   },
   {
    "no": 401,
@@ -3084,9 +3084,9 @@
   {
    "no": 403,
    "idx": 403,
-   "en": "Here’s the latest update",
+   "en": "Here's the latest update",
    "cn": "这是最新进展。",
-   "body": "Here’s the latest update.  这是最新进展。"
+   "body": "Here's the latest update.  这是最新进展。"
   },
   {
    "no": 404,
@@ -3098,16 +3098,16 @@
   {
    "no": 405,
    "idx": 405,
-   "en": "There’s been a change of plan",
+   "en": "There's been a change of plan",
    "cn": "计划有变化。",
-   "body": "There’s been a change of plan.  计划有变化。"
+   "body": "There's been a change of plan.  计划有变化。"
   },
   {
    "no": 406,
    "idx": 406,
-   "en": "There’s been a slight change",
+   "en": "There's been a slight change",
    "cn": "情况有一点变化。",
-   "body": "There’s been a slight change.  情况有一点变化。"
+   "body": "There's been a slight change.  情况有一点变化。"
   },
   {
    "no": 407,
@@ -3119,9 +3119,9 @@
   {
    "no": 408,
    "idx": 408,
-   "en": "Just so you’re aware,",
+   "en": "Just so you're aware,",
    "cn": "跟你同步一下……",
-   "body": "Just so you’re aware, ...  跟你同步一下……"
+   "body": "Just so you're aware, ...  跟你同步一下……"
   },
   {
    "no": 409,
@@ -3147,30 +3147,30 @@
   {
    "no": 412,
    "idx": 412,
-   "en": "I’ll share more details once I have them",
+   "en": "I'll share more details once I have them",
    "cn": "有更多信息后我会同步。",
-   "body": "I’ll share more details once I have them.  有更多信息后我会同步。"
+   "body": "I'll share more details once I have them.  有更多信息后我会同步。"
   },
   {
    "no": 413,
    "idx": 413,
-   "en": "I’ll let you know as soon as I hear back",
+   "en": "I'll let you know as soon as I hear back",
    "cn": "一有回复我就告诉你。",
-   "body": "I’ll let you know as soon as I hear back.  一有回复我就告诉你。"
+   "body": "I'll let you know as soon as I hear back.  一有回复我就告诉你。"
   },
   {
    "no": 414,
    "idx": 414,
-   "en": "I’ll update you once we know more",
+   "en": "I'll update you once we know more",
    "cn": "有更多信息后我会更新你。",
-   "body": "I’ll update you once we know more.  有更多信息后我会更新你。"
+   "body": "I'll update you once we know more.  有更多信息后我会更新你。"
   },
   {
    "no": 415,
    "idx": 415,
-   "en": "I’ll share the latest with the team",
+   "en": "I'll share the latest with the team",
    "cn": "我会把最新情况同步给团队。",
-   "body": "I’ll share the latest with the team.  我会把最新情况同步给团队。"
+   "body": "I'll share the latest with the team.  我会把最新情况同步给团队。"
   },
   {
    "no": 416,
@@ -3189,30 +3189,30 @@
   {
    "no": 418,
    "idx": 418,
-   "en": "Let’s make sure everyone has the same information",
+   "en": "Let's make sure everyone has the same information",
    "cn": "我们确保大家掌握的信息一致。",
-   "body": "Let’s make sure everyone has the same information.  我们确保大家掌握的信息一致。"
+   "body": "Let's make sure everyone has the same information.  我们确保大家掌握的信息一致。"
   },
   {
    "no": 419,
    "idx": 419,
-   "en": "I’ll make sure everyone is kept informed",
+   "en": "I'll make sure everyone is kept informed",
    "cn": "我会确保相关人员及时了解情况。",
-   "body": "I’ll make sure everyone is kept informed.  我会确保相关人员及时了解情况。"
+   "body": "I'll make sure everyone is kept informed.  我会确保相关人员及时了解情况。"
   },
   {
    "no": 420,
    "idx": 420,
-   "en": "I’ll keep you in the loop as things develop",
+   "en": "I'll keep you in the loop as things develop",
    "cn": "后续有进展我会持续同步。",
-   "body": "I’ll keep you in the loop as things develop.  后续有进展我会持续同步。"
+   "body": "I'll keep you in the loop as things develop.  后续有进展我会持续同步。"
   },
   {
    "no": 421,
    "idx": 421,
-   "en": "I’ve attached the latest version",
+   "en": "I've attached the latest version",
    "cn": "我附上了最新版本。",
-   "body": "I’ve attached the latest version.  我附上了最新版本。"
+   "body": "I've attached the latest version.  我附上了最新版本。"
   },
   {
    "no": 422,
@@ -3224,9 +3224,9 @@
   {
    "no": 423,
    "idx": 423,
-   "en": "I’m sending over the latest version",
+   "en": "I'm sending over the latest version",
    "cn": "我把最新版本发给你。",
-   "body": "I’m sending over the latest version.  我把最新版本发给你。"
+   "body": "I'm sending over the latest version.  我把最新版本发给你。"
   },
   {
    "no": 424,
@@ -3252,16 +3252,16 @@
   {
    "no": 427,
    "idx": 427,
-   "en": "I don’t think the attachment came through",
+   "en": "I don't think the attachment came through",
    "cn": "我好像没有收到附件。",
-   "body": "I don’t think the attachment came through.  我好像没有收到附件。"
+   "body": "I don't think the attachment came through.  我好像没有收到附件。"
   },
   {
    "no": 428,
    "idx": 428,
-   "en": "I’ve shared the document with you",
+   "en": "I've shared the document with you",
    "cn": "我已经把文档共享给你了。",
-   "body": "I’ve shared the document with you.  我已经把文档共享给你了。"
+   "body": "I've shared the document with you.  我已经把文档共享给你了。"
   },
   {
    "no": 429,
@@ -3273,9 +3273,9 @@
   {
    "no": 430,
    "idx": 430,
-   "en": "Let me know if you can’t access it",
+   "en": "Let me know if you can't access it",
    "cn": "如果无法访问，请告诉我。",
-   "body": "Let me know if you can’t access it.  如果无法访问，请告诉我。"
+   "body": "Let me know if you can't access it.  如果无法访问，请告诉我。"
   },
   {
    "no": 431,
@@ -3287,16 +3287,16 @@
   {
    "no": 432,
    "idx": 432,
-   "en": "I’ve updated the document",
+   "en": "I've updated the document",
    "cn": "我已经更新了文档。",
-   "body": "I’ve updated the document.  我已经更新了文档。"
+   "body": "I've updated the document.  我已经更新了文档。"
   },
   {
    "no": 433,
    "idx": 433,
-   "en": "I’ve made a few changes",
+   "en": "I've made a few changes",
    "cn": "我做了几处修改。",
-   "body": "I’ve made a few changes.  我做了几处修改。"
+   "body": "I've made a few changes.  我做了几处修改。"
   },
   {
    "no": 434,
@@ -3308,9 +3308,9 @@
   {
    "no": 435,
    "idx": 435,
-   "en": "I’ve added my comments",
+   "en": "I've added my comments",
    "cn": "我已经添加了我的意见。",
-   "body": "I’ve added my comments.  我已经添加了我的意见。"
+   "body": "I've added my comments.  我已经添加了我的意见。"
   },
   {
    "no": 436,
@@ -3392,30 +3392,30 @@
   {
    "no": 447,
    "idx": 447,
-   "en": "I’ve suggested a few changes",
+   "en": "I've suggested a few changes",
    "cn": "我提了几处修改建议。",
-   "body": "I’ve suggested a few changes.  我提了几处修改建议。"
+   "body": "I've suggested a few changes.  我提了几处修改建议。"
   },
   {
    "no": 448,
    "idx": 448,
-   "en": "I’ve made some minor edits",
+   "en": "I've made some minor edits",
    "cn": "我做了一些小修改。",
-   "body": "I’ve made some minor edits.  我做了一些小修改。"
+   "body": "I've made some minor edits.  我做了一些小修改。"
   },
   {
    "no": 449,
    "idx": 449,
-   "en": "I’ve incorporated your feedback",
+   "en": "I've incorporated your feedback",
    "cn": "我已经根据你的反馈进行了修改。",
-   "body": "I’ve incorporated your feedback.  我已经根据你的反馈进行了修改。"
+   "body": "I've incorporated your feedback.  我已经根据你的反馈进行了修改。"
   },
   {
    "no": 450,
    "idx": 450,
-   "en": "I’ve addressed your comments",
+   "en": "I've addressed your comments",
    "cn": "我已经处理了你的意见。",
-   "body": "I’ve addressed your comments.  我已经处理了你的意见。"
+   "body": "I've addressed your comments.  我已经处理了你的意见。"
   },
   {
    "no": 451,
@@ -3462,16 +3462,16 @@
   {
    "no": 457,
    "idx": 457,
-   "en": "I’m good with this version",
+   "en": "I'm good with this version",
    "cn": "这个版本我没问题。",
-   "body": "I’m good with this version.  这个版本我没问题。"
+   "body": "I'm good with this version.  这个版本我没问题。"
   },
   {
    "no": 458,
    "idx": 458,
-   "en": "I’m happy with the changes",
+   "en": "I'm happy with the changes",
    "cn": "这些修改我觉得可以。",
-   "body": "I’m happy with the changes.  这些修改我觉得可以。"
+   "body": "I'm happy with the changes.  这些修改我觉得可以。"
   },
   {
    "no": 459,
@@ -3483,9 +3483,9 @@
   {
    "no": 460,
    "idx": 460,
-   "en": "We’re good to go",
+   "en": "We're good to go",
    "cn": "可以继续推进了。",
-   "body": "We’re good to go.  可以继续推进了。"
+   "body": "We're good to go.  可以继续推进了。"
   },
   {
    "no": 461,
@@ -3504,9 +3504,9 @@
   {
    "no": 463,
    "idx": 463,
-   "en": "Here’s where things stand right now",
+   "en": "Here's where things stand right now",
    "cn": "目前情况是这样的。",
-   "body": "Here’s where things stand right now.  目前情况是这样的。"
+   "body": "Here's where things stand right now.  目前情况是这样的。"
   },
   {
    "no": 464,
@@ -3518,23 +3518,23 @@
   {
    "no": 465,
    "idx": 465,
-   "en": "We’re making good progress",
+   "en": "We're making good progress",
    "cn": "我们目前进展不错。",
-   "body": "We’re making good progress.  我们目前进展不错。"
+   "body": "We're making good progress.  我们目前进展不错。"
   },
   {
    "no": 466,
    "idx": 466,
-   "en": "We’re still on track to deliver on time",
+   "en": "We're still on track to deliver on time",
    "cn": "我们仍然可以按时交付。",
-   "body": "We’re still on track to deliver on time.  我们仍然可以按时交付。"
+   "body": "We're still on track to deliver on time.  我们仍然可以按时交付。"
   },
   {
    "no": 467,
    "idx": 467,
-   "en": "There are two things I’d like to highlight",
+   "en": "There are two things I'd like to highlight",
    "cn": "有两点我想重点汇报一下。",
-   "body": "There are two things I’d like to highlight.  有两点我想重点汇报一下。"
+   "body": "There are two things I'd like to highlight.  有两点我想重点汇报一下。"
   },
   {
    "no": 468,
@@ -3546,30 +3546,30 @@
   {
    "no": 469,
    "idx": 469,
-   "en": "The biggest challenge we’re facing is",
+   "en": "The biggest challenge we're facing is",
    "cn": "我们目前面临的最大挑战是……",
-   "body": "The biggest challenge we’re facing is ...  我们目前面临的最大挑战是……"
+   "body": "The biggest challenge we're facing is ...  我们目前面临的最大挑战是……"
   },
   {
    "no": 470,
    "idx": 470,
-   "en": "We’ve identified a potential risk",
+   "en": "We've identified a potential risk",
    "cn": "我们发现了一个潜在风险。",
-   "body": "We’ve identified a potential risk.  我们发现了一个潜在风险。"
+   "body": "We've identified a potential risk.  我们发现了一个潜在风险。"
   },
   {
    "no": 471,
    "idx": 471,
-   "en": "We’re already working on a solution",
+   "en": "We're already working on a solution",
    "cn": "我们已经在着手解决。",
-   "body": "We’re already working on a solution.  我们已经在着手解决。"
+   "body": "We're already working on a solution.  我们已经在着手解决。"
   },
   {
    "no": 472,
    "idx": 472,
-   "en": "Here’s how we’re planning to address it",
+   "en": "Here's how we're planning to address it",
    "cn": "我们计划这样处理这个问题。",
-   "body": "Here’s how we’re planning to address it.  我们计划这样处理这个问题。"
+   "body": "Here's how we're planning to address it.  我们计划这样处理这个问题。"
   },
   {
    "no": 473,
@@ -3588,58 +3588,58 @@
   {
    "no": 475,
    "idx": 475,
-   "en": "I’d like to get your input on this",
+   "en": "I'd like to get your input on this",
    "cn": "我想听听你的意见。",
-   "body": "I’d like to get your input on this.  我想听听你的意见。"
+   "body": "I'd like to get your input on this.  我想听听你的意见。"
   },
   {
    "no": 476,
    "idx": 476,
-   "en": "I’d appreciate your guidance on this",
+   "en": "I'd appreciate your guidance on this",
    "cn": "这件事希望能得到你的指导。",
-   "body": "I’d appreciate your guidance on this.  这件事希望能得到你的指导。"
+   "body": "I'd appreciate your guidance on this.  这件事希望能得到你的指导。"
   },
   {
    "no": 477,
    "idx": 477,
-   "en": "There’s one thing I need your help with",
+   "en": "There's one thing I need your help with",
    "cn": "有一件事我需要你的支持。",
-   "body": "There’s one thing I need your help with.  有一件事我需要你的支持。"
+   "body": "There's one thing I need your help with.  有一件事我需要你的支持。"
   },
   {
    "no": 478,
    "idx": 478,
-   "en": "I’ll take care of the follow-up",
+   "en": "I'll take care of the follow-up",
    "cn": "后续我会负责跟进。",
-   "body": "I’ll take care of the follow-up.  后续我会负责跟进。"
+   "body": "I'll take care of the follow-up.  后续我会负责跟进。"
   },
   {
    "no": 479,
    "idx": 479,
-   "en": "I’ll make sure this stays on track",
+   "en": "I'll make sure this stays on track",
    "cn": "我会确保这件事继续按计划推进。",
-   "body": "I’ll make sure this stays on track.  我会确保这件事继续按计划推进。"
+   "body": "I'll make sure this stays on track.  我会确保这件事继续按计划推进。"
   },
   {
    "no": 480,
    "idx": 480,
-   "en": "I’ll keep you updated on any major changes",
+   "en": "I'll keep you updated on any major changes",
    "cn": "如果有重大变化，我会及时汇报。",
-   "body": "I’ll keep you updated on any major changes.  如果有重大变化，我会及时汇报。"
+   "body": "I'll keep you updated on any major changes.  如果有重大变化，我会及时汇报。"
   },
   {
    "no": 481,
    "idx": 481,
-   "en": "I’d like to get your thoughts on this",
+   "en": "I'd like to get your thoughts on this",
    "cn": "我想听听你对此的看法。",
-   "body": "I’d like to get your thoughts on this.  我想听听你对此的看法。"
+   "body": "I'd like to get your thoughts on this.  我想听听你对此的看法。"
   },
   {
    "no": 482,
    "idx": 482,
-   "en": "What’s your take on this?",
+   "en": "What's your take on this?",
    "cn": "你怎么看这件事？",
-   "body": "What’s your take on this?  你怎么看这件事？"
+   "body": "What's your take on this?  你怎么看这件事？"
   },
   {
    "no": 483,
@@ -3700,9 +3700,9 @@
   {
    "no": 491,
    "idx": 491,
-   "en": "I’d like to get your approval before we proceed",
+   "en": "I'd like to get your approval before we proceed",
    "cn": "继续之前，我想先得到你的批准。",
-   "body": "I’d like to get your approval before we proceed.  继续之前，我想先得到你的批准。"
+   "body": "I'd like to get your approval before we proceed.  继续之前，我想先得到你的批准。"
   },
   {
    "no": 492,
@@ -3735,9 +3735,9 @@
   {
    "no": 496,
    "idx": 496,
-   "en": "I’d recommend going with option A",
+   "en": "I'd recommend going with option A",
    "cn": "我建议选择方案A。",
-   "body": "I’d recommend going with option A.  我建议选择方案A。"
+   "body": "I'd recommend going with option A.  我建议选择方案A。"
   },
   {
    "no": 497,
@@ -3756,16 +3756,16 @@
   {
    "no": 499,
    "idx": 499,
-   "en": "If you’re okay with it, I’ll move forward",
+   "en": "If you're okay with it, I'll move forward",
    "cn": "如果你没问题，我就继续推进。",
-   "body": "If you’re okay with it, I’ll move forward.  如果你没问题，我就继续推进。"
+   "body": "If you're okay with it, I'll move forward.  如果你没问题，我就继续推进。"
   },
   {
    "no": 500,
    "idx": 500,
-   "en": "Once I have your approval, I’ll get started",
+   "en": "Once I have your approval, I'll get started",
    "cn": "得到你的批准后，我就开始推进。",
-   "body": "Once I have your approval, I’ll get started.  得到你的批准后，我就开始推进。"
+   "body": "Once I have your approval, I'll get started.  得到你的批准后，我就开始推进。"
   },
   {
    "no": 501,
@@ -3777,9 +3777,9 @@
   {
    "no": 502,
    "idx": 502,
-   "en": "Here’s what I propose",
+   "en": "Here's what I propose",
    "cn": "我的建议方案是这样的。",
-   "body": "Here’s what I propose.  我的建议方案是这样的。"
+   "body": "Here's what I propose.  我的建议方案是这样的。"
   },
   {
    "no": 503,
@@ -3812,9 +3812,9 @@
   {
    "no": 507,
    "idx": 507,
-   "en": "Why don’t we start with ...?",
+   "en": "Why don't we start with ...?",
    "cn": "我们为什么不先从……开始？",
-   "body": "Why don’t we start with ...?  我们为什么不先从……开始？"
+   "body": "Why don't we start with ...?  我们为什么不先从……开始？"
   },
   {
    "no": 508,
@@ -3868,16 +3868,16 @@
   {
    "no": 515,
    "idx": 515,
-   "en": "Let’s weigh the pros and cons",
+   "en": "Let's weigh the pros and cons",
    "cn": "我们权衡一下利弊。",
-   "body": "Let’s weigh the pros and cons.  我们权衡一下利弊。"
+   "body": "Let's weigh the pros and cons.  我们权衡一下利弊。"
   },
   {
    "no": 516,
    "idx": 516,
-   "en": "Let’s compare the two options",
+   "en": "Let's compare the two options",
    "cn": "我们比较一下这两个方案。",
-   "body": "Let’s compare the two options.  我们比较一下这两个方案。"
+   "body": "Let's compare the two options.  我们比较一下这两个方案。"
   },
   {
    "no": 517,
@@ -3910,9 +3910,9 @@
   {
    "no": 521,
    "idx": 521,
-   "en": "We’ll need additional resources for this",
+   "en": "We'll need additional resources for this",
    "cn": "这件事我们需要额外的资源。",
-   "body": "We’ll need additional resources for this.  这件事我们需要额外的资源。"
+   "body": "We'll need additional resources for this.  这件事我们需要额外的资源。"
   },
   {
    "no": 522,
@@ -3931,9 +3931,9 @@
   {
    "no": 524,
    "idx": 524,
-   "en": "We’re a little short-staffed at the moment",
+   "en": "We're a little short-staffed at the moment",
    "cn": "我们目前人手有点不足。",
-   "body": "We’re a little short-staffed at the moment.  我们目前人手有点不足。"
+   "body": "We're a little short-staffed at the moment.  我们目前人手有点不足。"
   },
   {
    "no": 525,
@@ -3945,23 +3945,23 @@
   {
    "no": 526,
    "idx": 526,
-   "en": "We don’t have enough bandwidth to take this on right now",
+   "en": "We don't have enough bandwidth to take this on right now",
    "cn": "我们目前没有足够精力接下这项工作。",
-   "body": "We don’t have enough bandwidth to take this on right now.  我们目前没有足够精力接下这项工作。"
+   "body": "We don't have enough bandwidth to take this on right now.  我们目前没有足够精力接下这项工作。"
   },
   {
    "no": 527,
    "idx": 527,
-   "en": "We’ll need more time if the scope stays the same",
+   "en": "We'll need more time if the scope stays the same",
    "cn": "如果范围不变，我们需要更多时间。",
-   "body": "We’ll need more time if the scope stays the same.  如果范围不变，我们需要更多时间。"
+   "body": "We'll need more time if the scope stays the same.  如果范围不变，我们需要更多时间。"
   },
   {
    "no": 528,
    "idx": 528,
-   "en": "We’ll need additional budget to make this work",
+   "en": "We'll need additional budget to make this work",
    "cn": "要实现这个方案，我们需要额外预算。",
-   "body": "We’ll need additional budget to make this work.  要实现这个方案，我们需要额外预算。"
+   "body": "We'll need additional budget to make this work.  要实现这个方案，我们需要额外预算。"
   },
   {
    "no": 529,
@@ -4029,23 +4029,23 @@
   {
    "no": 538,
    "idx": 538,
-   "en": "We’ll need to make some trade-offs",
+   "en": "We'll need to make some trade-offs",
    "cn": "我们需要做一些取舍。",
-   "body": "We’ll need to make some trade-offs.  我们需要做一些取舍。"
+   "body": "We'll need to make some trade-offs.  我们需要做一些取舍。"
   },
   {
    "no": 539,
    "idx": 539,
-   "en": "If this is the priority, we’ll need to deprioritize something else",
+   "en": "If this is the priority, we'll need to deprioritize something else",
    "cn": "如果这件事优先，就需要降低其他事项的优先级。",
-   "body": "If this is the priority, we’ll need to deprioritize something else.  如果这件事优先，就需要降低其他事项的优先级。"
+   "body": "If this is the priority, we'll need to deprioritize something else.  如果这件事优先，就需要降低其他事项的优先级。"
   },
   {
    "no": 540,
    "idx": 540,
-   "en": "I’d like to discuss what support we can get",
+   "en": "I'd like to discuss what support we can get",
    "cn": "我想讨论一下我们可以获得哪些支持。",
-   "body": "I’d like to discuss what support we can get.  我想讨论一下我们可以获得哪些支持。"
+   "body": "I'd like to discuss what support we can get.  我想讨论一下我们可以获得哪些支持。"
   },
   {
    "no": 541,
@@ -4071,30 +4071,30 @@
   {
    "no": 544,
    "idx": 544,
-   "en": "I don’t want to overpromise",
+   "en": "I don't want to overpromise",
    "cn": "我不想做出无法保证的承诺。",
-   "body": "I don’t want to overpromise.  我不想做出无法保证的承诺。"
+   "body": "I don't want to overpromise.  我不想做出无法保证的承诺。"
   },
   {
    "no": 545,
    "idx": 545,
-   "en": "I can’t guarantee that yet",
+   "en": "I can't guarantee that yet",
    "cn": "目前我还不能保证。",
-   "body": "I can’t guarantee that yet.  目前我还不能保证。"
+   "body": "I can't guarantee that yet.  目前我还不能保证。"
   },
   {
    "no": 546,
    "idx": 546,
-   "en": "It’s too early to say for sure",
+   "en": "It's too early to say for sure",
    "cn": "现在还太早，暂时无法确定。",
-   "body": "It’s too early to say for sure.  现在还太早，暂时无法确定。"
+   "body": "It's too early to say for sure.  现在还太早，暂时无法确定。"
   },
   {
    "no": 547,
    "idx": 547,
-   "en": "We’re still assessing the situation",
+   "en": "We're still assessing the situation",
    "cn": "我们还在评估情况。",
-   "body": "We’re still assessing the situation.  我们还在评估情况。"
+   "body": "We're still assessing the situation.  我们还在评估情况。"
   },
   {
    "no": 548,
@@ -4106,30 +4106,30 @@
   {
    "no": 549,
    "idx": 549,
-   "en": "At this stage, we’re aiming for Friday",
+   "en": "At this stage, we're aiming for Friday",
    "cn": "现阶段我们的目标是周五完成。",
-   "body": "At this stage, we’re aiming for Friday.  现阶段我们的目标是周五完成。"
+   "body": "At this stage, we're aiming for Friday.  现阶段我们的目标是周五完成。"
   },
   {
    "no": 550,
    "idx": 550,
-   "en": "Friday is possible, but it’ll be tight",
+   "en": "Friday is possible, but it'll be tight",
    "cn": "周五有可能完成，但时间会比较紧。",
-   "body": "Friday is possible, but it’ll be tight.  周五有可能完成，但时间会比较紧。"
+   "body": "Friday is possible, but it'll be tight.  周五有可能完成，但时间会比较紧。"
   },
   {
    "no": 551,
    "idx": 551,
-   "en": "I’d rather give you a realistic date",
+   "en": "I'd rather give you a realistic date",
    "cn": "我更希望给你一个实际可行的日期。",
-   "body": "I’d rather give you a realistic date.  我更希望给你一个实际可行的日期。"
+   "body": "I'd rather give you a realistic date.  我更希望给你一个实际可行的日期。"
   },
   {
    "no": 552,
    "idx": 552,
-   "en": "I’d rather not commit until we have more information",
+   "en": "I'd rather not commit until we have more information",
    "cn": "在掌握更多信息之前，我不想贸然承诺。",
-   "body": "I’d rather not commit until we have more information.  在掌握更多信息之前，我不想贸然承诺。"
+   "body": "I'd rather not commit until we have more information.  在掌握更多信息之前，我不想贸然承诺。"
   },
   {
    "no": 553,
@@ -4155,16 +4155,16 @@
   {
    "no": 556,
    "idx": 556,
-   "en": "There’s still some uncertainty around this",
+   "en": "There's still some uncertainty around this",
    "cn": "这件事目前仍存在一些不确定性。",
-   "body": "There’s still some uncertainty around this.  这件事目前仍存在一些不确定性。"
+   "body": "There's still some uncertainty around this.  这件事目前仍存在一些不确定性。"
   },
   {
    "no": 557,
    "idx": 557,
-   "en": "I want to make sure we’re being realistic",
+   "en": "I want to make sure we're being realistic",
    "cn": "我想确保我们的预期是现实的。",
-   "body": "I want to make sure we’re being realistic.  我想确保我们的预期是现实的。"
+   "body": "I want to make sure we're being realistic.  我想确保我们的预期是现实的。"
   },
   {
    "no": 558,
@@ -4176,16 +4176,16 @@
   {
    "no": 559,
    "idx": 559,
-   "en": "I’ll let you know if the timeline changes",
+   "en": "I'll let you know if the timeline changes",
    "cn": "如果时间安排发生变化，我会告诉你。",
-   "body": "I’ll let you know if the timeline changes.  如果时间安排发生变化，我会告诉你。"
+   "body": "I'll let you know if the timeline changes.  如果时间安排发生变化，我会告诉你。"
   },
   {
    "no": 560,
    "idx": 560,
-   "en": "I’d rather flag this now than surprise you later",
+   "en": "I'd rather flag this now than surprise you later",
    "cn": "我宁愿现在提前说明，也不希望之后让你措手不及。",
-   "body": "I’d rather flag this now than surprise you later.  我宁愿现在提前说明，也不希望之后让你措手不及。"
+   "body": "I'd rather flag this now than surprise you later.  我宁愿现在提前说明，也不希望之后让你措手不及。"
   },
   {
    "no": 561,
@@ -4225,9 +4225,9 @@
   {
    "no": 566,
    "idx": 566,
-   "en": "One thing I’d suggest is",
+   "en": "One thing I'd suggest is",
    "cn": "有一点我建议……",
-   "body": "One thing I’d suggest is ...  有一点我建议……"
+   "body": "One thing I'd suggest is ...  有一点我建议……"
   },
   {
    "no": 567,
@@ -4267,9 +4267,9 @@
   {
    "no": 572,
    "idx": 572,
-   "en": "I’d focus more on the key message",
+   "en": "I'd focus more on the key message",
    "cn": "我会建议更聚焦核心信息。",
-   "body": "I’d focus more on the key message.  我会建议更聚焦核心信息。"
+   "body": "I'd focus more on the key message.  我会建议更聚焦核心信息。"
   },
   {
    "no": 573,
@@ -4295,16 +4295,16 @@
   {
    "no": 576,
    "idx": 576,
-   "en": "You’re definitely moving in the right direction",
+   "en": "You're definitely moving in the right direction",
    "cn": "你的方向是对的。",
-   "body": "You’re definitely moving in the right direction.  你的方向是对的。"
+   "body": "You're definitely moving in the right direction.  你的方向是对的。"
   },
   {
    "no": 577,
    "idx": 577,
-   "en": "I’d encourage you to keep doing this",
+   "en": "I'd encourage you to keep doing this",
    "cn": "我建议你继续保持这一点。",
-   "body": "I’d encourage you to keep doing this.  我建议你继续保持这一点。"
+   "body": "I'd encourage you to keep doing this.  我建议你继续保持这一点。"
   },
   {
    "no": 578,
@@ -4351,79 +4351,79 @@
   {
    "no": 584,
    "idx": 584,
-   "en": "That’s helpful feedback",
+   "en": "That's helpful feedback",
    "cn": "这个反馈很有帮助。",
-   "body": "That’s helpful feedback.  这个反馈很有帮助。"
+   "body": "That's helpful feedback.  这个反馈很有帮助。"
   },
   {
    "no": 585,
    "idx": 585,
-   "en": "That’s a fair point",
+   "en": "That's a fair point",
    "cn": "这个意见很合理。",
-   "body": "That’s a fair point.  这个意见很合理。"
+   "body": "That's a fair point.  这个意见很合理。"
   },
   {
    "no": 586,
    "idx": 586,
-   "en": "I can see where you’re coming from",
+   "en": "I can see where you're coming from",
    "cn": "我能理解你的想法 / 出发点。",
-   "body": "I can see where you’re coming from.  我能理解你的想法 / 出发点。"
+   "body": "I can see where you're coming from.  我能理解你的想法 / 出发点。"
   },
   {
    "no": 587,
    "idx": 587,
-   "en": "I hadn’t thought of it that way",
+   "en": "I hadn't thought of it that way",
    "cn": "我之前没有从这个角度考虑过。",
-   "body": "I hadn’t thought of it that way.  我之前没有从这个角度考虑过。"
+   "body": "I hadn't thought of it that way.  我之前没有从这个角度考虑过。"
   },
   {
    "no": 588,
    "idx": 588,
-   "en": "That’s a good suggestion",
+   "en": "That's a good suggestion",
    "cn": "这是个不错的建议。",
-   "body": "That’s a good suggestion.  这是个不错的建议。"
+   "body": "That's a good suggestion.  这是个不错的建议。"
   },
   {
    "no": 589,
    "idx": 589,
-   "en": "I’ll take that on board",
+   "en": "I'll take that on board",
    "cn": "我会认真考虑并采纳这个意见。",
-   "body": "I’ll take that on board.  我会认真考虑并采纳这个意见。"
+   "body": "I'll take that on board.  我会认真考虑并采纳这个意见。"
   },
   {
    "no": 590,
    "idx": 590,
-   "en": "I’ll keep that in mind",
+   "en": "I'll keep that in mind",
    "cn": "我会记住这一点。",
-   "body": "I’ll keep that in mind.  我会记住这一点。"
+   "body": "I'll keep that in mind.  我会记住这一点。"
   },
   {
    "no": 591,
    "idx": 591,
-   "en": "I’ll work on that",
+   "en": "I'll work on that",
    "cn": "我会改进这一点。",
-   "body": "I’ll work on that.  我会改进这一点。"
+   "body": "I'll work on that.  我会改进这一点。"
   },
   {
    "no": 592,
    "idx": 592,
-   "en": "I’ll make that change",
+   "en": "I'll make that change",
    "cn": "我会做这个修改。",
-   "body": "I’ll make that change.  我会做这个修改。"
+   "body": "I'll make that change.  我会做这个修改。"
   },
   {
    "no": 593,
    "idx": 593,
-   "en": "I’ll take another look at it",
+   "en": "I'll take another look at it",
    "cn": "我会再重新看一下。",
-   "body": "I’ll take another look at it.  我会再重新看一下。"
+   "body": "I'll take another look at it.  我会再重新看一下。"
   },
   {
    "no": 594,
    "idx": 594,
-   "en": "I’ll revise it based on your feedback",
+   "en": "I'll revise it based on your feedback",
    "cn": "我会根据你的反馈进行修改。",
-   "body": "I’ll revise it based on your feedback.  我会根据你的反馈进行修改。"
+   "body": "I'll revise it based on your feedback.  我会根据你的反馈进行修改。"
   },
   {
    "no": 595,
@@ -4435,9 +4435,9 @@
   {
    "no": 596,
    "idx": 596,
-   "en": "That makes sense. I’ll adjust it",
+   "en": "That makes sense. I'll adjust it",
    "cn": "有道理，我会调整。",
-   "body": "That makes sense. I’ll adjust it.  有道理，我会调整。"
+   "body": "That makes sense. I'll adjust it.  有道理，我会调整。"
   },
   {
    "no": 597,
@@ -4463,9 +4463,9 @@
   {
    "no": 600,
    "idx": 600,
-   "en": "I’ll follow up once I’ve made the changes",
+   "en": "I'll follow up once I've made the changes",
    "cn": "修改完成后我会再跟进。",
-   "body": "I’ll follow up once I’ve made the changes.  修改完成后我会再跟进。"
+   "body": "I'll follow up once I've made the changes.  修改完成后我会再跟进。"
   },
   {
    "no": 601,
@@ -4512,9 +4512,9 @@
   {
    "no": 607,
    "idx": 607,
-   "en": "I’m really impressed with this",
+   "en": "I'm really impressed with this",
    "cn": "这个成果让我印象很深。",
-   "body": "I’m really impressed with this.  这个成果让我印象很深。"
+   "body": "I'm really impressed with this.  这个成果让我印象很深。"
   },
   {
    "no": 608,
@@ -4589,9 +4589,9 @@
   {
    "no": 618,
    "idx": 618,
-   "en": "I couldn’t have done this without your help",
+   "en": "I couldn't have done this without your help",
    "cn": "没有你的帮助，我很难完成这件事。",
-   "body": "I couldn’t have done this without your help.  没有你的帮助，我很难完成这件事。"
+   "body": "I couldn't have done this without your help.  没有你的帮助，我很难完成这件事。"
   },
   {
    "no": 619,
@@ -4610,9 +4610,9 @@
   {
    "no": 621,
    "idx": 621,
-   "en": "There’s one thing I wanted to flag",
+   "en": "There's one thing I wanted to flag",
    "cn": "有一点我想提醒一下。",
-   "body": "There’s one thing I wanted to flag.  有一点我想提醒一下。"
+   "body": "There's one thing I wanted to flag.  有一点我想提醒一下。"
   },
   {
    "no": 622,
@@ -4659,9 +4659,9 @@
   {
    "no": 628,
    "idx": 628,
-   "en": "I’m not sure this is quite right",
+   "en": "I'm not sure this is quite right",
    "cn": "我不确定这里是否完全正确。",
-   "body": "I’m not sure this is quite right.  我不确定这里是否完全正确。"
+   "body": "I'm not sure this is quite right.  我不确定这里是否完全正确。"
   },
   {
    "no": 629,
@@ -4687,16 +4687,16 @@
   {
    "no": 632,
    "idx": 632,
-   "en": "I’m a little concerned about this part",
+   "en": "I'm a little concerned about this part",
    "cn": "我对这一部分有一点担心。",
-   "body": "I’m a little concerned about this part.  我对这一部分有一点担心。"
+   "body": "I'm a little concerned about this part.  我对这一部分有一点担心。"
   },
   {
    "no": 633,
    "idx": 633,
-   "en": "I’m not sure this approach will work",
+   "en": "I'm not sure this approach will work",
    "cn": "我不确定这个方法是否可行。",
-   "body": "I’m not sure this approach will work.  我不确定这个方法是否可行。"
+   "body": "I'm not sure this approach will work.  我不确定这个方法是否可行。"
   },
   {
    "no": 634,
@@ -4722,9 +4722,9 @@
   {
    "no": 637,
    "idx": 637,
-   "en": "Let’s make sure we haven’t overlooked anything",
+   "en": "Let's make sure we haven't overlooked anything",
    "cn": "我们确认一下有没有遗漏什么。",
-   "body": "Let’s make sure we haven’t overlooked anything.  我们确认一下有没有遗漏什么。"
+   "body": "Let's make sure we haven't overlooked anything.  我们确认一下有没有遗漏什么。"
   },
   {
    "no": 638,
@@ -4736,9 +4736,9 @@
   {
    "no": 639,
    "idx": 639,
-   "en": "Let’s fix this before we move forward",
+   "en": "Let's fix this before we move forward",
    "cn": "我们先把这个问题解决，再继续推进。",
-   "body": "Let’s fix this before we move forward.  我们先把这个问题解决，再继续推进。"
+   "body": "Let's fix this before we move forward.  我们先把这个问题解决，再继续推进。"
   },
   {
    "no": 640,
@@ -4750,9 +4750,9 @@
   {
    "no": 641,
    "idx": 641,
-   "en": "I understand where you’re coming from",
+   "en": "I understand where you're coming from",
    "cn": "我理解你的出发点。",
-   "body": "I understand where you’re coming from.  我理解你的出发点。"
+   "body": "I understand where you're coming from.  我理解你的出发点。"
   },
   {
    "no": 642,
@@ -4764,16 +4764,16 @@
   {
    "no": 643,
    "idx": 643,
-   "en": "I hear what you’re saying",
+   "en": "I hear what you're saying",
    "cn": "我理解你说的意思。",
-   "body": "I hear what you’re saying.  我理解你说的意思。"
+   "body": "I hear what you're saying.  我理解你说的意思。"
   },
   {
    "no": 644,
    "idx": 644,
-   "en": "I think we’re looking at this differently",
+   "en": "I think we're looking at this differently",
    "cn": "我觉得我们看待这件事的角度不同。",
-   "body": "I think we’re looking at this differently.  我觉得我们看待这件事的角度不同。"
+   "body": "I think we're looking at this differently.  我觉得我们看待这件事的角度不同。"
   },
   {
    "no": 645,
@@ -4785,16 +4785,16 @@
   {
    "no": 646,
    "idx": 646,
-   "en": "I think there’s been a misunderstanding",
+   "en": "I think there's been a misunderstanding",
    "cn": "我觉得这里可能有些误解。",
-   "body": "I think there’s been a misunderstanding.  我觉得这里可能有些误解。"
+   "body": "I think there's been a misunderstanding.  我觉得这里可能有些误解。"
   },
   {
    "no": 647,
    "idx": 647,
-   "en": "Let’s make sure we’re talking about the same thing",
+   "en": "Let's make sure we're talking about the same thing",
    "cn": "我们确认一下讨论的是不是同一件事。",
-   "body": "Let’s make sure we’re talking about the same thing.  我们确认一下讨论的是不是同一件事。"
+   "body": "Let's make sure we're talking about the same thing.  我们确认一下讨论的是不是同一件事。"
   },
   {
    "no": 648,
@@ -4806,9 +4806,9 @@
   {
    "no": 649,
    "idx": 649,
-   "en": "That wasn’t quite what I meant",
+   "en": "That wasn't quite what I meant",
    "cn": "我刚才并不是那个意思。",
-   "body": "That wasn’t quite what I meant.  我刚才并不是那个意思。"
+   "body": "That wasn't quite what I meant.  我刚才并不是那个意思。"
   },
   {
    "no": 650,
@@ -4820,16 +4820,16 @@
   {
    "no": 651,
    "idx": 651,
-   "en": "Let’s focus on the issue, not the person",
+   "en": "Let's focus on the issue, not the person",
    "cn": "我们聚焦问题本身，而不是个人。",
-   "body": "Let’s focus on the issue, not the person.  我们聚焦问题本身，而不是个人。"
+   "body": "Let's focus on the issue, not the person.  我们聚焦问题本身，而不是个人。"
   },
   {
    "no": 652,
    "idx": 652,
-   "en": "Let’s focus on what we can do next",
+   "en": "Let's focus on what we can do next",
    "cn": "我们重点看看下一步能做什么。",
-   "body": "Let’s focus on what we can do next.  我们重点看看下一步能做什么。"
+   "body": "Let's focus on what we can do next.  我们重点看看下一步能做什么。"
   },
   {
    "no": 653,
@@ -4841,9 +4841,9 @@
   {
    "no": 654,
    "idx": 654,
-   "en": "Let’s see where we can find common ground",
+   "en": "Let's see where we can find common ground",
    "cn": "我们看看哪些地方可以达成共识。",
-   "body": "Let’s see where we can find common ground.  我们看看哪些地方可以达成共识。"
+   "body": "Let's see where we can find common ground.  我们看看哪些地方可以达成共识。"
   },
   {
    "no": 655,
@@ -4862,37 +4862,37 @@
   {
    "no": 657,
    "idx": 657,
-   "en": "Let’s look for a solution that works for everyone",
+   "en": "Let's look for a solution that works for everyone",
    "cn": "我们找一个大家都能接受的解决方案。",
-   "body": "Let’s look for a solution that works for everyone.  我们找一个大家都能接受的解决方案。"
+   "body": "Let's look for a solution that works for everyone.  我们找一个大家都能接受的解决方案。"
   },
   {
    "no": 658,
    "idx": 658,
-   "en": "I don’t think we need to decide this right now",
+   "en": "I don't think we need to decide this right now",
    "cn": "我觉得这件事不一定要现在决定。",
-   "body": "I don’t think we need to decide this right now.  我觉得这件事不一定要现在决定。"
+   "body": "I don't think we need to decide this right now.  我觉得这件事不一定要现在决定。"
   },
   {
    "no": 659,
    "idx": 659,
-   "en": "Let’s take some time to think this through",
+   "en": "Let's take some time to think this through",
    "cn": "我们花点时间把这件事考虑清楚。",
-   "body": "Let’s take some time to think this through.  我们花点时间把这件事考虑清楚。"
+   "body": "Let's take some time to think this through.  我们花点时间把这件事考虑清楚。"
   },
   {
    "no": 660,
    "idx": 660,
-   "en": "Let’s come back to this once we’ve had time to think",
+   "en": "Let's come back to this once we've had time to think",
    "cn": "我们考虑一下之后再回来讨论。",
-   "body": "Let’s come back to this once we’ve had time to think.  我们考虑一下之后再回来讨论。"
+   "body": "Let's come back to this once we've had time to think.  我们考虑一下之后再回来讨论。"
   },
   {
    "no": 661,
    "idx": 661,
-   "en": "Could you tell me a little more about what you’re looking for?",
+   "en": "Could you tell me a little more about what you're looking for?",
    "cn": "可以再详细说一下您的需求吗？",
-   "body": "Could you tell me a little more about what you’re looking for?  可以再详细说一下您的需求吗？"
+   "body": "Could you tell me a little more about what you're looking for?  可以再详细说一下您的需求吗？"
   },
   {
    "no": 662,
@@ -4904,16 +4904,16 @@
   {
    "no": 663,
    "idx": 663,
-   "en": "What’s the main objective?",
+   "en": "What's the main objective?",
    "cn": "最主要的目标是什么？",
-   "body": "What’s the main objective?  最主要的目标是什么？"
+   "body": "What's the main objective?  最主要的目标是什么？"
   },
   {
    "no": 664,
    "idx": 664,
-   "en": "What’s most important to you?",
+   "en": "What's most important to you?",
    "cn": "对您来说最重要的是什么？",
-   "body": "What’s most important to you?  对您来说最重要的是什么？"
+   "body": "What's most important to you?  对您来说最重要的是什么？"
   },
   {
    "no": 665,
@@ -4995,16 +4995,16 @@
   {
    "no": 676,
    "idx": 676,
-   "en": "Is there anything else you’d like us to consider?",
+   "en": "Is there anything else you'd like us to consider?",
    "cn": "还有什么希望我们考虑的吗？",
-   "body": "Is there anything else you’d like us to consider?  还有什么希望我们考虑的吗？"
+   "body": "Is there anything else you'd like us to consider?  还有什么希望我们考虑的吗？"
   },
   {
    "no": 677,
    "idx": 677,
-   "en": "Let me make sure I’ve understood your requirements correctly",
+   "en": "Let me make sure I've understood your requirements correctly",
    "cn": "我确认一下是否准确理解了您的需求。",
-   "body": "Let me make sure I’ve understood your requirements correctly.  我确认一下是否准确理解了您的需求。"
+   "body": "Let me make sure I've understood your requirements correctly.  我确认一下是否准确理解了您的需求。"
   },
   {
    "no": 678,
@@ -5016,9 +5016,9 @@
   {
    "no": 679,
    "idx": 679,
-   "en": "Based on what you’ve shared, it sounds like you need",
+   "en": "Based on what you've shared, it sounds like you need",
    "cn": "根据您提供的信息，听起来您需要的是……",
-   "body": "Based on what you’ve shared, it sounds like you need ...  根据您提供的信息，听起来您需要的是……"
+   "body": "Based on what you've shared, it sounds like you need ...  根据您提供的信息，听起来您需要的是……"
   },
   {
    "no": 680,
@@ -5058,16 +5058,16 @@
   {
    "no": 685,
    "idx": 685,
-   "en": "As discussed, I’m sending over",
+   "en": "As discussed, I'm sending over",
    "cn": "按照我们刚才讨论的，我把……发给您。",
-   "body": "As discussed, I’m sending over ...  按照我们刚才讨论的，我把……发给您。"
+   "body": "As discussed, I'm sending over ...  按照我们刚才讨论的，我把……发给您。"
   },
   {
    "no": 686,
    "idx": 686,
-   "en": "As promised, here’s the information you requested",
+   "en": "As promised, here's the information you requested",
    "cn": "按照之前说的，这是您需要的信息。",
-   "body": "As promised, here’s the information you requested.  按照之前说的，这是您需要的信息。"
+   "body": "As promised, here's the information you requested.  按照之前说的，这是您需要的信息。"
   },
   {
    "no": 687,
@@ -5079,9 +5079,9 @@
   {
    "no": 688,
    "idx": 688,
-   "en": "I’m following up regarding",
+   "en": "I'm following up regarding",
    "cn": "我想跟进一下关于……的事情。",
-   "body": "I’m following up regarding ...  我想跟进一下关于……的事情。"
+   "body": "I'm following up regarding ...  我想跟进一下关于……的事情。"
   },
   {
    "no": 689,
@@ -5093,9 +5093,9 @@
   {
    "no": 690,
    "idx": 690,
-   "en": "I’d be happy to answer any questions you may have",
+   "en": "I'd be happy to answer any questions you may have",
    "cn": "如果您有任何问题，我很乐意解答。",
-   "body": "I’d be happy to answer any questions you may have.  如果您有任何问题，我很乐意解答。"
+   "body": "I'd be happy to answer any questions you may have.  如果您有任何问题，我很乐意解答。"
   },
   {
    "no": 691,
@@ -5107,9 +5107,9 @@
   {
    "no": 692,
    "idx": 692,
-   "en": "I’d be happy to provide more details",
+   "en": "I'd be happy to provide more details",
    "cn": "我很乐意提供更多细节。",
-   "body": "I’d be happy to provide more details.  我很乐意提供更多细节。"
+   "body": "I'd be happy to provide more details.  我很乐意提供更多细节。"
   },
   {
    "no": 693,
@@ -5135,23 +5135,23 @@
   {
    "no": 696,
    "idx": 696,
-   "en": "I’ll send over the details shortly",
+   "en": "I'll send over the details shortly",
    "cn": "我稍后把详细信息发给您。",
-   "body": "I’ll send over the details shortly.  我稍后把详细信息发给您。"
+   "body": "I'll send over the details shortly.  我稍后把详细信息发给您。"
   },
   {
    "no": 697,
    "idx": 697,
-   "en": "I’ll check with the team and get back to you",
+   "en": "I'll check with the team and get back to you",
    "cn": "我会和团队确认后回复您。",
-   "body": "I’ll check with the team and get back to you.  我会和团队确认后回复您。"
+   "body": "I'll check with the team and get back to you.  我会和团队确认后回复您。"
   },
   {
    "no": 698,
    "idx": 698,
-   "en": "We’ll get back to you as soon as possible",
+   "en": "We'll get back to you as soon as possible",
    "cn": "我们会尽快回复您。",
-   "body": "We’ll get back to you as soon as possible.  我们会尽快回复您。"
+   "body": "We'll get back to you as soon as possible.  我们会尽快回复您。"
   },
   {
    "no": 699,
@@ -5170,23 +5170,23 @@
   {
    "no": 701,
    "idx": 701,
-   "en": "Let’s talk through the terms",
+   "en": "Let's talk through the terms",
    "cn": "我们具体讨论一下这些条款。",
-   "body": "Let’s talk through the terms.  我们具体讨论一下这些条款。"
+   "body": "Let's talk through the terms.  我们具体讨论一下这些条款。"
   },
   {
    "no": 702,
    "idx": 702,
-   "en": "There are a few points we’d like to discuss",
+   "en": "There are a few points we'd like to discuss",
    "cn": "有几点我们想进一步讨论。",
-   "body": "There are a few points we’d like to discuss.  有几点我们想进一步讨论。"
+   "body": "There are a few points we'd like to discuss.  有几点我们想进一步讨论。"
   },
   {
    "no": 703,
    "idx": 703,
-   "en": "We’d like to revisit the pricing",
+   "en": "We'd like to revisit the pricing",
    "cn": "我们想重新讨论一下价格。",
-   "body": "We’d like to revisit the pricing.  我们想重新讨论一下价格。"
+   "body": "We'd like to revisit the pricing.  我们想重新讨论一下价格。"
   },
   {
    "no": 704,
@@ -5212,23 +5212,23 @@
   {
    "no": 707,
    "idx": 707,
-   "en": "That’s a little higher than we expected",
+   "en": "That's a little higher than we expected",
    "cn": "这个价格比我们预期的稍高。",
-   "body": "That’s a little higher than we expected.  这个价格比我们预期的稍高。"
+   "body": "That's a little higher than we expected.  这个价格比我们预期的稍高。"
   },
   {
    "no": 708,
    "idx": 708,
-   "en": "That’s outside our current budget",
+   "en": "That's outside our current budget",
    "cn": "这超出了我们目前的预算。",
-   "body": "That’s outside our current budget.  这超出了我们目前的预算。"
+   "body": "That's outside our current budget.  这超出了我们目前的预算。"
   },
   {
    "no": 709,
    "idx": 709,
-   "en": "What’s the best you can offer?",
+   "en": "What's the best you can offer?",
    "cn": "你们能提供的最好条件是什么？",
-   "body": "What’s the best you can offer?  你们能提供的最好条件是什么？"
+   "body": "What's the best you can offer?  你们能提供的最好条件是什么？"
   },
   {
    "no": 710,
@@ -5254,9 +5254,9 @@
   {
    "no": 713,
    "idx": 713,
-   "en": "We’d need something in return",
+   "en": "We'd need something in return",
    "cn": "作为交换，我们也需要一些相应条件。",
-   "body": "We’d need something in return.  作为交换，我们也需要一些相应条件。"
+   "body": "We'd need something in return.  作为交换，我们也需要一些相应条件。"
   },
   {
    "no": 714,
@@ -5289,9 +5289,9 @@
   {
    "no": 718,
    "idx": 718,
-   "en": "I’m not sure we can agree to that",
+   "en": "I'm not sure we can agree to that",
    "cn": "我不确定我们能否接受这个条件。",
-   "body": "I’m not sure we can agree to that.  我不确定我们能否接受这个条件。"
+   "body": "I'm not sure we can agree to that.  我不确定我们能否接受这个条件。"
   },
   {
    "no": 719,
@@ -5303,9 +5303,9 @@
   {
    "no": 720,
    "idx": 720,
-   "en": "I think we’re close to an agreement",
+   "en": "I think we're close to an agreement",
    "cn": "我觉得我们离达成一致已经很近了。",
-   "body": "I think we’re close to an agreement.  我觉得我们离达成一致已经很近了。"
+   "body": "I think we're close to an agreement.  我觉得我们离达成一致已经很近了。"
   },
   {
    "no": 721,
@@ -5317,16 +5317,16 @@
   {
    "no": 722,
    "idx": 722,
-   "en": "That’s a valid concern",
+   "en": "That's a valid concern",
    "cn": "这个顾虑很合理。",
-   "body": "That’s a valid concern.  这个顾虑很合理。"
+   "body": "That's a valid concern.  这个顾虑很合理。"
   },
   {
    "no": 723,
    "idx": 723,
-   "en": "I can understand why you’d ask that",
+   "en": "I can understand why you'd ask that",
    "cn": "我能理解您为什么会有这个疑问。",
-   "body": "I can understand why you’d ask that.  我能理解您为什么会有这个疑问。"
+   "body": "I can understand why you'd ask that.  我能理解您为什么会有这个疑问。"
   },
   {
    "no": 724,
@@ -5359,23 +5359,23 @@
   {
    "no": 728,
    "idx": 728,
-   "en": "Here’s how we’re addressing that",
+   "en": "Here's how we're addressing that",
    "cn": "针对这一点，我们是这样处理的。",
-   "body": "Here’s how we’re addressing that.  针对这一点，我们是这样处理的。"
+   "body": "Here's how we're addressing that.  针对这一点，我们是这样处理的。"
   },
   {
    "no": 729,
    "idx": 729,
-   "en": "We’ve taken that into consideration",
+   "en": "We've taken that into consideration",
    "cn": "这一点我们已经考虑到了。",
-   "body": "We’ve taken that into consideration.  这一点我们已经考虑到了。"
+   "body": "We've taken that into consideration.  这一点我们已经考虑到了。"
   },
   {
    "no": 730,
    "idx": 730,
-   "en": "That’s something we’ve already looked into",
+   "en": "That's something we've already looked into",
    "cn": "这个问题我们已经研究过了。",
-   "body": "That’s something we’ve already looked into.  这个问题我们已经研究过了。"
+   "body": "That's something we've already looked into.  这个问题我们已经研究过了。"
   },
   {
    "no": 731,
@@ -5401,23 +5401,23 @@
   {
    "no": 734,
    "idx": 734,
-   "en": "Is there a specific concern you’d like us to address?",
+   "en": "Is there a specific concern you'd like us to address?",
    "cn": "有哪一点具体的顾虑希望我们解决吗？",
-   "body": "Is there a specific concern you’d like us to address?  有哪一点具体的顾虑希望我们解决吗？"
+   "body": "Is there a specific concern you'd like us to address?  有哪一点具体的顾虑希望我们解决吗？"
   },
   {
    "no": 735,
    "idx": 735,
-   "en": "I’d like to understand your concern a little better",
+   "en": "I'd like to understand your concern a little better",
    "cn": "我想进一步了解您的顾虑。",
-   "body": "I’d like to understand your concern a little better.  我想进一步了解您的顾虑。"
+   "body": "I'd like to understand your concern a little better.  我想进一步了解您的顾虑。"
   },
   {
    "no": 736,
    "idx": 736,
-   "en": "Let’s see if we can find a solution that works for you",
+   "en": "Let's see if we can find a solution that works for you",
    "cn": "我们看看能否找到适合您的解决方案。",
-   "body": "Let’s see if we can find a solution that works for you.  我们看看能否找到适合您的解决方案。"
+   "body": "Let's see if we can find a solution that works for you.  我们看看能否找到适合您的解决方案。"
   },
   {
    "no": 737,
@@ -5436,30 +5436,30 @@
   {
    "no": 739,
    "idx": 739,
-   "en": "I’ll check what we can do on our side",
+   "en": "I'll check what we can do on our side",
    "cn": "我会确认一下我们这边能做些什么。",
-   "body": "I’ll check what we can do on our side.  我会确认一下我们这边能做些什么。"
+   "body": "I'll check what we can do on our side.  我会确认一下我们这边能做些什么。"
   },
   {
    "no": 740,
    "idx": 740,
-   "en": "I’ll come back to you with some options",
+   "en": "I'll come back to you with some options",
    "cn": "我整理几个方案后回复您。",
-   "body": "I’ll come back to you with some options.  我整理几个方案后回复您。"
+   "body": "I'll come back to you with some options.  我整理几个方案后回复您。"
   },
   {
    "no": 741,
    "idx": 741,
-   "en": "I’m sorry to hear that",
+   "en": "I'm sorry to hear that",
    "cn": "很抱歉听到这个情况。",
-   "body": "I’m sorry to hear that.  很抱歉听到这个情况。"
+   "body": "I'm sorry to hear that.  很抱歉听到这个情况。"
   },
   {
    "no": 742,
    "idx": 742,
-   "en": "I’m sorry for the inconvenience",
+   "en": "I'm sorry for the inconvenience",
    "cn": "很抱歉给您带来不便。",
-   "body": "I’m sorry for the inconvenience.  很抱歉给您带来不便。"
+   "body": "I'm sorry for the inconvenience.  很抱歉给您带来不便。"
   },
   {
    "no": 743,
@@ -5478,9 +5478,9 @@
   {
    "no": 745,
    "idx": 745,
-   "en": "I’m sorry we didn’t meet your expectations",
+   "en": "I'm sorry we didn't meet your expectations",
    "cn": "很抱歉我们没有达到您的预期。",
-   "body": "I’m sorry we didn’t meet your expectations.  很抱歉我们没有达到您的预期。"
+   "body": "I'm sorry we didn't meet your expectations.  很抱歉我们没有达到您的预期。"
   },
   {
    "no": 746,
@@ -5506,16 +5506,16 @@
   {
    "no": 749,
    "idx": 749,
-   "en": "We’re treating this as a priority",
+   "en": "We're treating this as a priority",
    "cn": "我们正在优先处理这个问题。",
-   "body": "We’re treating this as a priority.  我们正在优先处理这个问题。"
+   "body": "We're treating this as a priority.  我们正在优先处理这个问题。"
   },
   {
    "no": 750,
    "idx": 750,
-   "en": "We’re working to resolve this as quickly as possible",
+   "en": "We're working to resolve this as quickly as possible",
    "cn": "我们正在尽快解决这个问题。",
-   "body": "We’re working to resolve this as quickly as possible.  我们正在尽快解决这个问题。"
+   "body": "We're working to resolve this as quickly as possible.  我们正在尽快解决这个问题。"
   },
   {
    "no": 751,
@@ -5527,44 +5527,44 @@
   {
    "no": 752,
    "idx": 752,
-   "en": "I’ll investigate this and get back to you",
+   "en": "I'll investigate this and get back to you",
    "cn": "我会调查清楚后回复您。",
-   "body": "I’ll investigate this and get back to you.  我会调查清楚后回复您。"
+   "body": "I'll investigate this and get back to you.  我会调查清楚后回复您。"
   },
   {
    "no": 753,
    "idx": 753,
-   "en": "We’ve identified what went wrong",
+   "en": "We've identified what went wrong",
    "cn": "我们已经查明了问题所在。",
-   "body": "We’ve identified what went wrong.  我们已经查明了问题所在。"
+   "body": "We've identified what went wrong.  我们已经查明了问题所在。"
   },
   {
    "no": 754,
    "idx": 754,
-   "en": "We’ve taken steps to address the issue",
+   "en": "We've taken steps to address the issue",
    "cn": "我们已经采取措施处理这个问题。",
-   "body": "We’ve taken steps to address the issue.  我们已经采取措施处理这个问题。"
+   "body": "We've taken steps to address the issue.  我们已经采取措施处理这个问题。"
   },
   {
    "no": 755,
    "idx": 755,
-   "en": "We’re putting measures in place to prevent this from happening again",
+   "en": "We're putting measures in place to prevent this from happening again",
    "cn": "我们正在采取措施避免类似问题再次发生。",
-   "body": "We’re putting measures in place to prevent this from happening again.  我们正在采取措施避免类似问题再次发生。"
+   "body": "We're putting measures in place to prevent this from happening again.  我们正在采取措施避免类似问题再次发生。"
   },
   {
    "no": 756,
    "idx": 756,
-   "en": "Here’s what we can do to make this right",
+   "en": "Here's what we can do to make this right",
    "cn": "我们可以这样解决并弥补这个问题。",
-   "body": "Here’s what we can do to make this right.  我们可以这样解决并弥补这个问题。"
+   "body": "Here's what we can do to make this right.  我们可以这样解决并弥补这个问题。"
   },
   {
    "no": 757,
    "idx": 757,
-   "en": "We’d like to offer you an alternative",
+   "en": "We'd like to offer you an alternative",
    "cn": "我们希望为您提供一个替代方案。",
-   "body": "We’d like to offer you an alternative.  我们希望为您提供一个替代方案。"
+   "body": "We'd like to offer you an alternative.  我们希望为您提供一个替代方案。"
   },
   {
    "no": 758,
@@ -5590,16 +5590,16 @@
   {
    "no": 761,
    "idx": 761,
-   "en": "How’s your day going?",
+   "en": "How's your day going?",
    "cn": "今天过得怎么样？",
-   "body": "How’s your day going?  今天过得怎么样？"
+   "body": "How's your day going?  今天过得怎么样？"
   },
   {
    "no": 762,
    "idx": 762,
-   "en": "How’s your week going?",
+   "en": "How's your week going?",
    "cn": "这周过得怎么样？",
-   "body": "How’s your week going?  这周过得怎么样？"
+   "body": "How's your week going?  这周过得怎么样？"
   },
   {
    "no": 763,
@@ -5681,9 +5681,9 @@
   {
    "no": 774,
    "idx": 774,
-   "en": "It’s been a busy week",
+   "en": "It's been a busy week",
    "cn": "这周挺忙的。",
-   "body": "It’s been a busy week.  这周挺忙的。"
+   "body": "It's been a busy week.  这周挺忙的。"
   },
   {
    "no": 775,
@@ -5695,16 +5695,16 @@
   {
    "no": 776,
    "idx": 776,
-   "en": "It’s good to see you again",
+   "en": "It's good to see you again",
    "cn": "很高兴再次见到你。",
-   "body": "It’s good to see you again.  很高兴再次见到你。"
+   "body": "It's good to see you again.  很高兴再次见到你。"
   },
   {
    "no": 777,
    "idx": 777,
-   "en": "It’s been a while",
+   "en": "It's been a while",
    "cn": "好久不见。",
-   "body": "It’s been a while.  好久不见。"
+   "body": "It's been a while.  好久不见。"
   },
   {
    "no": 778,
@@ -5716,9 +5716,9 @@
   {
    "no": 779,
    "idx": 779,
-   "en": "I’ve heard a lot about your team",
+   "en": "I've heard a lot about your team",
    "cn": "我听说过很多你们团队的事情。",
-   "body": "I’ve heard a lot about your team.  我听说过很多你们团队的事情。"
+   "body": "I've heard a lot about your team.  我听说过很多你们团队的事情。"
   },
   {
    "no": 780,
@@ -5730,16 +5730,16 @@
   {
    "no": 781,
    "idx": 781,
-   "en": "I don’t think we’ve met before",
+   "en": "I don't think we've met before",
    "cn": "我想我们之前应该没见过。",
-   "body": "I don’t think we’ve met before.  我想我们之前应该没见过。"
+   "body": "I don't think we've met before.  我想我们之前应该没见过。"
   },
   {
    "no": 782,
    "idx": 782,
-   "en": "I’m with the marketing team",
+   "en": "I'm with the marketing team",
    "cn": "我是市场团队的。",
-   "body": "I’m with the marketing team.  我是市场团队的。"
+   "body": "I'm with the marketing team.  我是市场团队的。"
   },
   {
    "no": 783,
@@ -5779,9 +5779,9 @@
   {
    "no": 788,
    "idx": 788,
-   "en": "I’d love to hear more about that",
+   "en": "I'd love to hear more about that",
    "cn": "我很想进一步了解。",
-   "body": "I’d love to hear more about that.  我很想进一步了解。"
+   "body": "I'd love to hear more about that.  我很想进一步了解。"
   },
   {
    "no": 789,
@@ -5800,9 +5800,9 @@
   {
    "no": 791,
    "idx": 791,
-   "en": "Let’s keep in touch",
+   "en": "Let's keep in touch",
    "cn": "我们保持联系。",
-   "body": "Let’s keep in touch.  我们保持联系。"
+   "body": "Let's keep in touch.  我们保持联系。"
   },
   {
    "no": 792,
@@ -5814,9 +5814,9 @@
   {
    "no": 793,
    "idx": 793,
-   "en": "I’ll send you my contact details",
+   "en": "I'll send you my contact details",
    "cn": "我把联系方式发给你。",
-   "body": "I’ll send you my contact details.  我把联系方式发给你。"
+   "body": "I'll send you my contact details.  我把联系方式发给你。"
   },
   {
    "no": 794,
@@ -5842,9 +5842,9 @@
   {
    "no": 797,
    "idx": 797,
-   "en": "I’d be happy to make an introduction",
+   "en": "I'd be happy to make an introduction",
    "cn": "我很乐意帮你们引荐。",
-   "body": "I’d be happy to make an introduction.  我很乐意帮你们引荐。"
+   "body": "I'd be happy to make an introduction.  我很乐意帮你们引荐。"
   },
   {
    "no": 798,
@@ -5870,93 +5870,93 @@
   {
    "no": 801,
    "idx": 801,
-   "en": "I’d like to take Friday off",
+   "en": "I'd like to take Friday off",
    "cn": "我想周五请一天假。",
-   "body": "I’d like to take Friday off.  我想周五请一天假。"
+   "body": "I'd like to take Friday off.  我想周五请一天假。"
   },
   {
    "no": 802,
    "idx": 802,
-   "en": "I’m planning to take a few days off next week",
+   "en": "I'm planning to take a few days off next week",
    "cn": "我计划下周休几天假。",
-   "body": "I’m planning to take a few days off next week.  我计划下周休几天假。"
+   "body": "I'm planning to take a few days off next week.  我计划下周休几天假。"
   },
   {
    "no": 803,
    "idx": 803,
-   "en": "I’ll be out of the office tomorrow",
+   "en": "I'll be out of the office tomorrow",
    "cn": "我明天不在办公室。",
-   "body": "I’ll be out of the office tomorrow.  我明天不在办公室。"
+   "body": "I'll be out of the office tomorrow.  我明天不在办公室。"
   },
   {
    "no": 804,
    "idx": 804,
-   "en": "I’ll be on leave next week",
+   "en": "I'll be on leave next week",
    "cn": "我下周休假。",
-   "body": "I’ll be on leave next week.  我下周休假。"
+   "body": "I'll be on leave next week.  我下周休假。"
   },
   {
    "no": 805,
    "idx": 805,
-   "en": "I’ll be away from Monday through Wednesday",
+   "en": "I'll be away from Monday through Wednesday",
    "cn": "我周一到周三不在。",
-   "body": "I’ll be away from Monday through Wednesday.  我周一到周三不在。"
+   "body": "I'll be away from Monday through Wednesday.  我周一到周三不在。"
   },
   {
    "no": 806,
    "idx": 806,
-   "en": "I’ll be back on Thursday",
+   "en": "I'll be back on Thursday",
    "cn": "我周四回来。",
-   "body": "I’ll be back on Thursday.  我周四回来。"
+   "body": "I'll be back on Thursday.  我周四回来。"
   },
   {
    "no": 807,
    "idx": 807,
-   "en": "I’ll have limited access to email while I’m away",
+   "en": "I'll have limited access to email while I'm away",
    "cn": "我休假期间查看邮件会比较有限。",
-   "body": "I’ll have limited access to email while I’m away.  我休假期间查看邮件会比较有限。"
+   "body": "I'll have limited access to email while I'm away.  我休假期间查看邮件会比较有限。"
   },
   {
    "no": 808,
    "idx": 808,
-   "en": "I may be slow to respond while I’m away",
+   "en": "I may be slow to respond while I'm away",
    "cn": "我不在期间回复可能会比较慢。",
-   "body": "I may be slow to respond while I’m away.  我不在期间回复可能会比较慢。"
+   "body": "I may be slow to respond while I'm away.  我不在期间回复可能会比较慢。"
   },
   {
    "no": 809,
    "idx": 809,
-   "en": "I’ll make sure everything is covered before I leave",
+   "en": "I'll make sure everything is covered before I leave",
    "cn": "离开前我会确保所有工作都安排妥当。",
-   "body": "I’ll make sure everything is covered before I leave.  离开前我会确保所有工作都安排妥当。"
+   "body": "I'll make sure everything is covered before I leave.  离开前我会确保所有工作都安排妥当。"
   },
   {
    "no": 810,
    "idx": 810,
-   "en": "I’ll wrap up anything urgent before I go",
+   "en": "I'll wrap up anything urgent before I go",
    "cn": "离开前我会处理完紧急事项。",
-   "body": "I’ll wrap up anything urgent before I go.  离开前我会处理完紧急事项。"
+   "body": "I'll wrap up anything urgent before I go.  离开前我会处理完紧急事项。"
   },
   {
    "no": 811,
    "idx": 811,
-   "en": "I’ll hand this over before I leave",
+   "en": "I'll hand this over before I leave",
    "cn": "离开前我会把这件事交接好。",
-   "body": "I’ll hand this over before I leave.  离开前我会把这件事交接好。"
+   "body": "I'll hand this over before I leave.  离开前我会把这件事交接好。"
   },
   {
    "no": 812,
    "idx": 812,
-   "en": "I’ll hand this over to Sarah while I’m away",
+   "en": "I'll hand this over to Sarah while I'm away",
    "cn": "我不在期间会把这件事交接给 Sarah。",
-   "body": "I’ll hand this over to Sarah while I’m away.  我不在期间会把这件事交接给 Sarah。"
+   "body": "I'll hand this over to Sarah while I'm away.  我不在期间会把这件事交接给 Sarah。"
   },
   {
    "no": 813,
    "idx": 813,
-   "en": "Sarah will be covering for me while I’m away",
+   "en": "Sarah will be covering for me while I'm away",
    "cn": "我不在期间 Sarah 会代我处理相关工作。",
-   "body": "Sarah will be covering for me while I’m away.  我不在期间 Sarah 会代我处理相关工作。"
+   "body": "Sarah will be covering for me while I'm away.  我不在期间 Sarah 会代我处理相关工作。"
   },
   {
    "no": 814,
@@ -5968,9 +5968,9 @@
   {
    "no": 815,
    "idx": 815,
-   "en": "Can I hand this over to you while I’m away?",
+   "en": "Can I hand this over to you while I'm away?",
    "cn": "我不在期间可以把这件事交接给你吗？",
-   "body": "Can I hand this over to you while I’m away?  我不在期间可以把这件事交接给你吗？"
+   "body": "Can I hand this over to you while I'm away?  我不在期间可以把这件事交接给你吗？"
   },
   {
    "no": 816,
@@ -5982,9 +5982,9 @@
   {
    "no": 817,
    "idx": 817,
-   "en": "Here’s a quick handover of what’s in progress",
+   "en": "Here's a quick handover of what's in progress",
    "cn": "我简单交接一下目前正在进行的工作。",
-   "body": "Here’s a quick handover of what’s in progress.  我简单交接一下目前正在进行的工作。"
+   "body": "Here's a quick handover of what's in progress.  我简单交接一下目前正在进行的工作。"
   },
   {
    "no": 818,
@@ -6003,9 +6003,9 @@
   {
    "no": 820,
    "idx": 820,
-   "en": "I’ll pick this back up when I’m back",
+   "en": "I'll pick this back up when I'm back",
    "cn": "我回来后会继续跟进这件事。",
-   "body": "I’ll pick this back up when I’m back.  我回来后会继续跟进这件事。"
+   "body": "I'll pick this back up when I'm back.  我回来后会继续跟进这件事。"
   },
   {
    "no": 821,
@@ -6031,23 +6031,23 @@
   {
    "no": 824,
    "idx": 824,
-   "en": "We can’t hear you",
+   "en": "We can't hear you",
    "cn": "我们听不到你的声音。",
-   "body": "We can’t hear you.  我们听不到你的声音。"
+   "body": "We can't hear you.  我们听不到你的声音。"
   },
   {
    "no": 825,
    "idx": 825,
-   "en": "You’re on mute",
+   "en": "You're on mute",
    "cn": "你静音了。",
-   "body": "You’re on mute.  你静音了。"
+   "body": "You're on mute.  你静音了。"
   },
   {
    "no": 826,
    "idx": 826,
-   "en": "I think you’re still on mute",
+   "en": "I think you're still on mute",
    "cn": "你好像还开着静音。",
-   "body": "I think you’re still on mute.  你好像还开着静音。"
+   "body": "I think you're still on mute.  你好像还开着静音。"
   },
   {
    "no": 827,
@@ -6066,16 +6066,16 @@
   {
    "no": 829,
    "idx": 829,
-   "en": "You’re cutting out a little",
+   "en": "You're cutting out a little",
    "cn": "你的声音有点断断续续。",
-   "body": "You’re cutting out a little.  你的声音有点断断续续。"
+   "body": "You're cutting out a little.  你的声音有点断断续续。"
   },
   {
    "no": 830,
    "idx": 830,
-   "en": "There’s a bit of a delay",
+   "en": "There's a bit of a delay",
    "cn": "有一点延迟。",
-   "body": "There’s a bit of a delay.  有一点延迟。"
+   "body": "There's a bit of a delay.  有一点延迟。"
   },
   {
    "no": 831,
@@ -6094,9 +6094,9 @@
   {
    "no": 833,
    "idx": 833,
-   "en": "I’m having trouble with my audio",
+   "en": "I'm having trouble with my audio",
    "cn": "我的音频出了点问题。",
-   "body": "I’m having trouble with my audio.  我的音频出了点问题。"
+   "body": "I'm having trouble with my audio.  我的音频出了点问题。"
   },
   {
    "no": 834,
@@ -6108,9 +6108,9 @@
   {
    "no": 835,
    "idx": 835,
-   "en": "I’ll drop off and rejoin",
+   "en": "I'll drop off and rejoin",
    "cn": "我先退出再重新加入会议。",
-   "body": "I’ll drop off and rejoin.  我先退出再重新加入会议。"
+   "body": "I'll drop off and rejoin.  我先退出再重新加入会议。"
   },
   {
    "no": 836,
@@ -6122,9 +6122,9 @@
   {
    "no": 837,
    "idx": 837,
-   "en": "I’ll share my screen",
+   "en": "I'll share my screen",
    "cn": "我来共享屏幕。",
-   "body": "I’ll share my screen.  我来共享屏幕。"
+   "body": "I'll share my screen.  我来共享屏幕。"
   },
   {
    "no": 838,
@@ -6199,23 +6199,23 @@
   {
    "no": 848,
    "idx": 848,
-   "en": "Let’s see how it goes",
+   "en": "Let's see how it goes",
    "cn": "我们先看看进展如何。",
-   "body": "Let’s see how it goes.  我们先看看进展如何。"
+   "body": "Let's see how it goes.  我们先看看进展如何。"
   },
   {
    "no": 849,
    "idx": 849,
-   "en": "I’ll take it from here",
+   "en": "I'll take it from here",
    "cn": "接下来交给我处理。",
-   "body": "I’ll take it from here.  接下来交给我处理。"
+   "body": "I'll take it from here.  接下来交给我处理。"
   },
   {
    "no": 850,
    "idx": 850,
-   "en": "We’ll figure it out",
+   "en": "We'll figure it out",
    "cn": "我们会想办法解决的。",
-   "body": "We’ll figure it out.  我们会想办法解决的。"
+   "body": "We'll figure it out.  我们会想办法解决的。"
   }
  ]
 }
