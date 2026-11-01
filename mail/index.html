@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#c8623d">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.json">
-<title>外企邮件英语 · 写作 50 场景 · Rainbow 职场英语学习库</title>
+<title>外企邮件写作库 · Rainbow 职场英语学习库</title>
 <style>
 button{cursor:pointer}
 
@@ -135,7 +135,7 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 /* 音频加载中（超过 0.8 秒还没出声）：柔和呼吸提示 */
 .pbtn.wait{animation:pbtnBreath 1.1s ease-in-out infinite}
 @keyframes pbtnBreath{0%,100%{opacity:1}50%{opacity:.5}}
-.pbtn.spd,.pbtn.slow{width:auto;min-width:56px;padding:0 12px;border-radius:16px;font-size:11px;font-weight:600;letter-spacing:1px}
+.pbtn.spd,.pbtn.slow{width:auto;min-width:62px;padding:0 16px;border-radius:999px;font-size:13px;font-weight:600;min-height:44px}
 .pbtn.spd.sel,.pbtn.slow.sel{background:var(--brand);color:#fff;border-color:var(--brand)}
 .copy{border:1px solid var(--line);background:#fff;color:var(--brand-d);border-radius:8px;
   padding:5px 10px;font-size:12px;cursor:pointer;min-height:32px;margin-top:8px}
@@ -154,6 +154,7 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .gbox .logo{font-size:34px;margin-bottom:10px}
 .gbox h1{font-size:18px;color:#1a1a22;margin-bottom:6px;line-height:1.5}
 .gbox p{font-size:12.5px;color:#8a8a93;margin-bottom:22px;line-height:1.7}
+.gbox p.gsub{margin:-2px 0 10px;font-size:13px;color:#5a5a66;font-weight:600}
 #gateInput{width:100%;border:2px solid #e7d5c2;border-radius:12px;padding:12px 14px;font-size:16px;text-align:center;letter-spacing:2px;outline:none;margin-bottom:12px}
 #gateInput:focus{border-color:#c2410c}
 #gateBtn{width:100%;border:none;background:#c2410c;color:#fff;border-radius:12px;padding:12px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px}
@@ -172,7 +173,8 @@ mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
 <div id="gate">
   <div class="gbox">
     <div class="logo">✉️</div>
-    <h1>外企邮件英语 · 写作 50 场景<br>即抄即用 · 常速慢速真人配音</h1>
+    <h1>外企邮件写作库</h1>
+    <p class="gsub">即抄即用 · 常速慢速真人配音</p>
     <p>本资料为付费内容，请输入购买后收到的口令解锁</p>
     <input id="gateInput" type="password" placeholder="请输入口令" autocomplete="new-password">
     <button id="gateBtn">解锁学习</button>
@@ -182,7 +184,7 @@ mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
 </div>
 
 <header>
-  <h1>外企邮件英语 · 写作 50 场景</h1>
+  <h1>外企邮件写作库</h1>
   <p>Rainbow 聊外企 · 50 个高频场景 · 每场景 📄 完整邮件 / ✅ 可直接抄 / ⬆️ 更地道 / ⚠️ 别这么写 / 💡 中文拆解 · 一键复制</p>
   <div><input class="search" id="search" placeholder="搜索场景或句子，如：跟进、道歉、拒绝"></div>
   <div class="entry-row"><a href="../learn/">学习库总入口 ›</a></div>
@@ -236,7 +238,7 @@ mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
 <footer>
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v1.11</span>
+  <span style="color:#c8aa9a">v1.14</span>
 </footer>
 
 <div id="toast"></div>
@@ -480,6 +482,7 @@ function h256(s){
         prefetch("audio/"+base+(b.classList.contains("slow")?"_s":"_n")+".mp3");
         // 正在播的这一句如果切了语速，先停掉，避免新旧速度混淆
         if(curBtn && curBtn.parentNode===p) stopAudio();
+        say(b.classList.contains("slow")?"已切换为慢速，之后的播放均使用慢速":"已切换为常速，之后的播放均使用常速");
       });
     });
     d.querySelectorAll(".pbtn[data-a]").forEach(function(b){

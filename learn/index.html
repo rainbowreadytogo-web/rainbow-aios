@@ -17,7 +17,12 @@ button{cursor:pointer}
   --brand:#c8623d; --brand-d:#a94e2e; --brand-l:#f9e6dc;
   --bg:#fdf8f5; --card:#fff; --ink:#2a2a2a; --sub:#7a5640; --muted:#8a6a58;
   --brand-a11y:#a94e2e;   /* v1.7：大面积橙底专用（白字对比度 5.5:1，原 #c8623d 仅 3.98:1）*/
-  --line:#c8aa9a; --line-l:#f0e6dc; --soft:#f5ece5;
+  --line:#c8aa9a; --line-l:#e6d6c6; --soft:#f5ece5;
+  /* v1.68：设计 token——间距 / 色阶 / 字号 / 圆角四套体系（全站统一，先主页试点） */
+  --s1:8px; --s2:16px; --s3:24px; --s4:48px;      /* 组内 / 卡内 / 卡间 / 模块间 */
+  --mod:#f3e7dc; --mod-line:#e3d0bd;               /* 模块容器：比页底色深 ≥8%，相邻层级可辨 */
+  --f-xs:12px; --f-s:14px; --f-m:16px; --f-l:20px;
+  --r-s:8px; --r-m:14px; --r-pill:999px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--bg);color:var(--ink);
@@ -75,10 +80,65 @@ header .htext{flex:1;min-width:0}
 }
 
 /* 旅程条 */
-.journey{display:flex;gap:6px;padding:14px 14px 2px;flex-wrap:wrap}
-.jstep{flex:1;min-width:100px;background:var(--card);border:1px solid var(--line-l);border-radius:10px;
-  padding:9px 10px;font-size:11px;color:var(--muted);line-height:1.5}
-.jstep b{display:block;font-size:13px;color:var(--ink)}
+/* v1.29：顶部方形入口——内容整体居中（图标+标题+副题成组，不沉底不空腔）；
+   边界与全页栅格对齐（同 14px 边距，去掉独立限宽），手机 2 列正方 / 电脑 4 列 3:2 */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 14px 0}
+.tile{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;
+  aspect-ratio:1 / 1;min-height:0;padding:12px;background:var(--card);border:1px solid var(--line-l);border-radius:14px;
+  text-decoration:none;color:var(--ink);cursor:pointer;text-align:center;font:inherit;
+  box-shadow:0 1px 2px rgba(90,50,30,.04),0 4px 14px rgba(90,50,30,.05)}
+/* v1.68：模块容器（共同区域原则）
+   分组优先级：留白(48px) > 标题 > 底色。底色只给「密集区」用，避免满页表格感。 */
+.mod{margin:var(--s4) 14px 0;background:var(--mod);border:1px solid var(--mod-line);
+  border-radius:var(--r-m);padding:var(--s2)}
+body>.mod:first-of-type{margin-top:var(--s3)}
+.modhead{display:flex;align-items:baseline;gap:var(--s1);margin:0 0 12px;
+  font-size:var(--f-m);font-weight:700;color:var(--ink);line-height:1.4}
+.modhead em{font-style:normal;font-size:var(--f-xs);color:var(--muted);font-weight:400}
+.mod .tiles{margin:0}
+.mod .journey{padding:0}
+.mod .speedrow{margin:0 0 var(--s1)}
+.mod .card{margin:0}
+.mod .card + .card{margin-top:var(--s3)}
+@media(max-width:640px){
+  .mod{margin-left:10px;margin-right:10px;padding:12px}
+  .mod .card + .card{margin-top:var(--s2)}
+  .modhead{flex-wrap:wrap;row-gap:2px}
+  .modhead em{width:100%}
+}
+.tile:active{background:var(--brand-l);border-color:var(--brand)}
+.tile{transition:background .15s,border-color .15s}
+@media(hover:hover){
+  .tile:hover{background:var(--brand-l);border-color:var(--brand)}
+}
+.tile .tico{width:44px;height:44px;border-radius:12px;background:var(--brand-l);
+  display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.tile .tt b{display:block;font-size:15px;font-weight:700;line-height:1.45;color:var(--ink)}
+.tile .tico svg{width:20px;height:20px}
+.tile .tt em{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5}
+.tile.on{border-color:var(--brand);background:var(--brand-l)}
+.tile.wide{grid-column:1 / -1;aspect-ratio:auto;flex-direction:row;align-items:center;justify-content:flex-start;
+  gap:10px;min-height:56px;padding:10px 14px;text-align:left}
+.tile.wide .tico{width:36px;height:36px;border-radius:10px;margin-bottom:0}
+.tile.wide .tt{flex:1;min-width:0}
+.tile.wide .tt em{margin-top:2px}
+.tile.wide .tar{flex:0 0 auto;margin-left:auto;font-size:16px;color:var(--muted)}
+.tpanel{grid-column:1 / -1;background:var(--card);border:1px solid var(--line-l);border-radius:14px;padding:14px;
+  box-shadow:0 1px 2px rgba(90,50,30,.04),0 4px 14px rgba(90,50,30,.05)}
+.tpanel[hidden]{display:none}
+@media(min-width:768px){
+  .tiles{grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 14px 0}
+  .tile{aspect-ratio:16 / 10;padding:16px}
+  .journey{gap:12px}
+  .jstep{min-height:124px;padding:16px}
+}
+/* v1.32：旅程条提量——与上方方格墙同属一套卡片（同圆角/同阴影/接近的高度），消除「上重下扁」 */
+.journey{display:flex;gap:12px;padding:20px 14px 8px;flex-wrap:wrap}
+.jstep{flex:1;min-width:100px;background:var(--card);border:1px solid var(--line-l);border-radius:14px;
+  padding:16px 14px;min-height:120px;font-size:13px;color:var(--sub);line-height:1.55;
+  box-shadow:0 1px 2px rgba(90,50,30,.04),0 4px 14px rgba(90,50,30,.05)}
+.jstep b{display:block;font-size:15px;color:var(--ink);margin-bottom:4px}
+.jspec{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:7px;opacity:.9}
 .jstep.on{border-color:var(--brand)}
 .jstep.on b{color:var(--brand-d)}
 .jstep.soon{border-style:dashed;background:transparent;border-color:var(--line)}
@@ -88,12 +148,17 @@ header .htext{flex:1;min-width:0}
 .jstep[data-goto]:hover{background:var(--brand-l);border-color:var(--brand)}
 .jstep[data-goto]:active{background:var(--soft)}
 .jstep[data-goto]::after{content:'›';float:right;font-size:16px;line-height:1;color:var(--line)}
+/* 旅程条回到通栏：窄屏 3+1 断行时排成 2×2，保持整齐 */
+@media(max-width:640px){
+  .journey{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .jstep{min-width:0}
+}
 
-.sec{margin:18px 14px 6px;font-size:15px;font-weight:700;color:var(--ink)}
+.sec{margin:24px 14px 6px;font-size:15px;font-weight:700;color:var(--ink)}
 .sec em{font-style:normal;font-size:11px;color:var(--muted);font-weight:400;margin-left:8px}
 
 /* 板块卡 */
-.card{background:var(--card);border:1px solid var(--line-l);border-radius:16px;margin:10px 14px;padding:16px;
+.card{background:var(--card);border:1px solid var(--line-l);border-radius:var(--r-m);margin:0 14px;padding:var(--s2);
   box-shadow:0 1px 2px rgba(90,50,30,.04),0 4px 14px rgba(90,50,30,.05)}
 .card.locked{opacity:.92}
 .badge{display:inline-block;font-size:11px;color:var(--brand-d);background:var(--brand-l);
@@ -108,16 +173,24 @@ header .htext{flex:1;min-width:0}
 /* 试听行 */
 .listen{display:flex;gap:8px;align-items:center;margin-top:8px;background:var(--soft);
   border-radius:10px;padding:9px 12px}
+/* v1.58：说明逐词高亮是面试产品专属功能，避免与其他卡对比产生落差 */
+.hintline{margin-top:8px;font-size:11px;color:var(--sub);line-height:1.5}
 .listen:first-child{margin-top:12px}
 .pbtn{flex:0 0 44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;
   color:var(--brand);font-size:14px;line-height:42px;text-align:center;cursor:pointer}
 .pbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 .lbody{flex:1;min-width:0}
 .len{font-size:14px;line-height:1.45;color:var(--ink)}
+/* v1.56：面试试听卡逐词高亮（复用面试产品页同一套词级时间戳） */
+.len .w{border-radius:4px;transition:background .12s,color .12s}
+.len .w.hi{background:var(--brand);color:#fff}
 .lcn{font-size:11px;color:var(--sub);margin-top:2px}
-.spd{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px 14px;min-width:62px;min-height:44px;
-  font-size:11px;color:var(--sub);cursor:pointer}
-.spd.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+/* v1.57：全局语速选择器（与全库一致——慢速只切语速，不触发播放） */
+.speedrow{display:flex;gap:8px;align-items:center;margin:0 14px 4px}
+.speedrow .slb{font-size:12px;color:var(--sub)}
+.sbtn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 16px;min-width:62px;min-height:44px;
+  font-size:12px;color:var(--sub);cursor:pointer}
+.sbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 .more{display:block;width:100%;margin-top:10px;border:1px dashed var(--line);background:#fff;
   border-radius:10px;padding:13px;font-size:13px;color:var(--brand-d);cursor:pointer}
 .row{display:flex;gap:8px;margin-top:12px}
@@ -127,6 +200,17 @@ header .htext{flex:1;min-width:0}
 .step{display:flex;gap:10px;align-items:baseline;background:var(--soft);border-radius:10px;
   padding:10px 12px;margin-top:8px;font-size:12px;color:var(--sub);line-height:1.6}
 .step b{flex:0 0 auto;color:var(--brand-d);font-size:13px}
+.step>span{flex:1;min-width:0}
+/* v1.49：四行标签同为「前缀符号 + 三个字」（①②③ / 钥匙图标），宽度统一锁 62px，正文起点对齐 */
+#pUnlock .step>b{flex:0 0 62px;white-space:nowrap}
+/* v1.50：主屏面板三行标签统一锁宽 64px，正文起点对齐 */
+#pHome .step>b{flex:0 0 64px;white-space:nowrap}
+/* v1.52：一码通独立副卡——主流程与次要路径分区，输入框不再悬空 */
+.bundlebox{margin-top:12px;padding:12px;border:1.5px solid var(--brand);border-radius:12px;background:#fff}
+.bundlebox .bhead{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--brand-d)}
+.bundlebox .bdesc{margin-top:6px;font-size:12px;color:var(--sub);line-height:1.6}
+.bundlebox .bdesc b{color:var(--brand-d)}
+#pUnlock .step>b .lblkey{display:inline-block;width:14px;height:14px;margin-right:7px;vertical-align:-2px}
 .step .st{flex:0 0 auto;margin-left:auto;font-size:11px;color:var(--muted)}
 .step .st.doing{color:var(--brand-d)}
 /* 加到手机主屏折叠块：与全库统一——折叠 ›、展开 ⌄ */
@@ -145,6 +229,15 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
 .pbtn::before,.play-btn::before{content:"";display:block;width:0;height:0;border-left:15px solid currentColor;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
 .pbtn.on,.play-btn.playing{font-size:0;color:#fff}
 .pbtn.on::before,.play-btn.playing::before{content:"";display:block;width:15px;height:15px;background:currentColor;border:none;border-radius:2.5px;margin:0}
+
+/* 触控热区外补：视觉大小不变，只把可点范围撑到 44px（仅窄屏生效） */
+@media (max-width:768px){
+  .xhscopy,.chip,.seg button,.gbtn,.rbtn,.gtoggle,summary,.notice a{position:relative}
+  .xhscopy::after,.chip::after,.seg button::after,.gbtn::after,.rbtn::after,.gtoggle::after,summary::after,.notice a::after{
+    content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:max(100%,44px);height:max(100%,44px);z-index:1
+  }
+}
 </style>
 </head>
 <body>
@@ -174,56 +267,111 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   </div>
 </header>
 
-<a class="studybar" href="../study/">
-  <span class="st1"><b>我的学习台</b><span class="d">跨全部产品搜句子 · 统一看进度 · 每天推六句</span></span>
-  <span class="go">进入</span>
-</a>
+<div class="mod">
+<div class="modhead">开始使用<em>解锁口令 · 使用指引 · 售后支持</em></div>
+<div class="tiles">
+  <button class="tile" type="button" data-panel="pStudy" aria-expanded="false" aria-controls="pStudy">
+    <span class="tico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 3h10M2 7h10M2 11h6" stroke="#a94e2e" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></span>
+    <span class="tt"><b>我的学习台</b><em>搜句子 · 看进度</em></span>
+  </button>
 
+  <button class="tile" type="button" data-panel="pUnlock" aria-expanded="false" aria-controls="pUnlock">
+    <span class="tico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><rect x="3" y="6" width="8" height="6" rx="1.4" stroke="#a94e2e" stroke-width="1.6" fill="none"/><path d="M5 6V4.6a2 2 0 0 1 4 0V6" stroke="#a94e2e" stroke-width="1.6" fill="none"/></svg></span>
+    <span class="tt"><b>输口令解锁</b><em>三步 · 一码通</em></span>
+  </button>
+
+  <button class="tile" type="button" data-panel="pListen" aria-expanded="false" aria-controls="pListen">
+    <span class="tico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M5 3.4l5 3.6-5 3.6z" fill="#a94e2e"/></svg></span>
+    <span class="tt"><b>先听后买</b><em><span class="pcount">8</span> 款 · 点开就能听</em></span>
+  </button>
+  <button class="tile" type="button" data-panel="pHome" aria-expanded="false" aria-controls="pHome">
+    <span class="tico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><rect x="4.2" y="1.6" width="5.6" height="10.8" rx="1.4" stroke="#a94e2e" stroke-width="1.6" fill="none"/><path d="M6.2 11.4h1.6" stroke="#a94e2e" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+    <span class="tt"><b>加到手机主屏</b><em>像 App 一样点开</em></span>
+  </button>
+
+  <button class="tile wide" type="button" data-panel="pTips" aria-expanded="false" aria-controls="pTips">
+    <span class="tico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.4" stroke="#a94e2e" stroke-width="1.6" fill="none"/><path d="M7 6.2v3.8M7 4.1v1" stroke="#a94e2e" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+    <span class="tt"><b>学习小贴士</b><em>全库 8 款单品通用</em></span>
+    <span class="tar" aria-hidden="true">›</span>
+  </button>
+
+  <div class="tpanel" id="pStudy" hidden>
+    <span class="badge">我的学习台 · 全库内容 一个入口</span>
+    <div class="step"><b>搜句子</b><span>全库句子一个搜索框直达，点开即听</span></div>
+    <div class="step"><b>看进度</b><span>学习记录汇成一份总账，进度一目了然</span></div>
+    <div class="step"><b>每日六句</b><span>从学过的内容里定向推 6 句，学过不再忘</span></div>
+    <div class="row"><a class="btn primary" href="../study/">进入我的学习台</a></div>
+  </div>
+
+  <div class="tpanel" id="pUnlock" hidden>
+    <span class="badge">解锁只需三步 · 口令一次输入 长期有效</span>
+    <div id="howtoSteps">
+      <div class="step"><b>① 买产品</b><span>在小红书搜索 <span class="xhscopy" data-copy="rainbow_work" role="button" tabindex="0">rainbow_work</span>（点击复制），进入账号主页，点「服务」找到商品直接下单</span></div>
+      <div class="step"><b>② 收口令</b><span>下单后系统自动发货，解锁口令即时送达，无需等待人工；已购内容不受后续产品更新影响</span></div>
+      <div class="step"><b>③ 输口令</b><span>回到本页，在对应单品卡上点「进入完整版」输入口令，即可开始学习；内容直接在本页播放，无需网盘下载、无需注册登录</span></div>
+    </div>
+    <div class="bundlebox">
+      <div class="bhead"><svg class="lblkey" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="5.4" cy="6.6" r="2.8"/><path d="M8.2 6.6h4.3M10.7 6.6v2.3"/></svg>一码通 · 全套用户专享</div>
+      <div class="bdesc" id="bIntro">购买全套产品的用户，在此输入一次口令，即可解锁全部产品；后续上架的新品自动加入，无需再次输入。更换设备或浏览器后，首次打开时重新输入口令即可</div>
+      <div id="bForm" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+        <input id="bInput" type="text" inputmode="latin" autocomplete="off" spellcheck="false" placeholder="输入一码通" aria-label="一码通" style="flex:1 1 140px;min-width:120px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:10px;font-size:15px;background:#fff;color:var(--ink)">
+        <button id="bBtn" type="button" style="min-height:44px;padding:0 18px;border:0;border-radius:10px;background:var(--brand-a11y);color:#fff;font-size:15px;cursor:pointer">解锁全部</button>
+      </div>
+    </div>
+    <div class="meta" id="bErr" style="margin-top:10px;color:#b23c3c;display:none"></div>
+    <div id="bLinks" style="display:none;margin-top:12px"></div>
+  </div>
+
+  <div class="tpanel" id="pListen" hidden>
+    <span class="badge">先听后买 · 每款都能先试听</span>
+    <div class="step"><b>先试听</b><span>每款单品都提供免费试听，未解锁也能先听，听到满意再决定</span></div>
+    <div class="step"><b>再下单</b><span>在小红书对应产品笔记下单，系统自动发解锁口令</span></div>
+    <div class="step"><b>永久听</b><span>解锁后全部内容长期可听，已购用户不受任何影响</span></div>
+    <div class="row"><a class="btn primary" href="#shelf">去单品区 · <span class="pcount">8</span> 款</a></div>
+  </div>
+
+  <div class="tpanel" id="pTips" hidden>
+    <span class="badge">学习小贴士 · 全库 8 款单品适用</span>
+    <div class="step"><b>学习节奏</b><span>每天练 1 课或 2–3 题，先用慢速听清结构，再用常速完整练一遍；坚持 2–4 周可完整过一轮</span></div>
+    <div class="step"><b>收藏与浮窗</b><span>把链接收藏到浏览器书签，或在微信里用「浮窗」保存，随时点开接着学</span></div>
+    <div class="step"><b>音频加载</b><span>音频按需加载，首次进入会预热 1–2 秒，属正常现象</span></div>
+    <div class="step"><b>售后支持</b><span>使用过程中遇到任何问题，联系卖家 Rainbow</span></div>
+  </div>
+
+  <div class="tpanel" id="pHome" hidden>
+    <span class="badge">添加到手机主屏 · 一次添加 长期直达</span>
+    <div class="step"><b>① iPhone</b><span>使用 Safari 打开本页，点击底部「分享」，选择「添加到主屏幕」</span></div>
+    <div class="step"><b>② 安卓</b><span>使用 Chrome 打开本页，点击右上角菜单，选择「添加到主屏幕」或「安装应用」</span></div>
+    <div class="step"><b>③ 其他</b><span>使用手机自带浏览器打开本页，在菜单中选择「添加到主屏幕」或「添加到桌面」</span></div>
+    <div class="meta" style="margin-top:10px">添加后，主屏将生成「Rainbow 学习库」图标，点击即可直达本页；后续上架的新品自动收录，无需重复添加。<br>解锁状态与学习进度保存在本机，长期有效。</div>
+  </div>
+</div>
+</div>
+
+<div class="mod">
+<div class="modhead">按职场阶段选购<em>四个职场阶段 · 各配对应单品</em></div>
 <div class="journey">
-  <div class="jstep on" data-goto="#interview"><b>① 求职期</b>面试英语 × STAR</div>
-  <div class="jstep on" data-goto="#shelf"><b>② 入职期</b>300 句 · 850 句</div>
-  <div class="jstep on" data-goto="#c-manual"><b>③ 站稳期</b>生存手册</div>
-  <div class="jstep on" data-goto="#c-mail"><b>④ 进阶期</b>邮件库 · 接待 · 模型 · 外贸</div>
-
+  <div class="jstep on" data-goto="#interview"><b>① 求职期</b>外企面试英语 · STAR<i class="jspec">40 题 · 200 句成品答案</i></div>
+  <div class="jstep on" data-goto="#shelf"><b>② 入职期</b>300 句 · 850 句<i class="jspec">2 款 · 共 1150 句 · 双速音频</i></div>
+  <div class="jstep on" data-goto="#c-manual"><b>③ 站稳期</b>生存手册<i class="jspec">550 句 · 100 短语动词 · 6 章</i></div>
+  <div class="jstep on" data-goto="#c-mail"><b>④ 进阶期</b>邮件库 · 接待 · 模型 · 外贸<i class="jspec">4 款 · 逐词高亮 · 直接套用</i></div>
+</div>
 </div>
 
+<div class="mod">
+<div class="modhead" id="shelf">已上线课程 · 每款都能先听再买<em>点 ▶ 直接听，无需解锁</em></div>
+<div class="speedrow" id="speedRow">
+  <button class="sbtn on" data-s="n">常速</button>
+  <button class="sbtn" data-s="s">慢速</button>
 </div>
-
-<div class="card" id="howto">
-  <span class="badge">先听后买 · 三步解锁</span>
-  <div id="howtoSteps">
-    <div class="step"><b>① 购买</b>在小红书找到对应产品笔记，点击笔记上的商品直接下单；小红书搜索 <span class="xhscopy" data-copy="rainbow_work" role="button" tabindex="0">rainbow_work</span>（点击复制）</div>
-    <div class="step"><b>② 收口令</b>下单后系统自动发货，你会收到一个解锁口令</div>
-    <div class="step"><b>③ 解锁</b>回到本页点下面的「进入完整版」，在页面输入口令即永久解锁</div>
-  </div>
-  <div class="step" id="bIntro" style="margin-top:12px"><b>一码通</b>买了全套的用户在这里输入一次，全部解锁，后续新品自动加入</div>
-  <div class="step" id="bForm" style="flex-wrap:wrap">
-    <input id="bInput" type="text" inputmode="latin" autocomplete="off" spellcheck="false" placeholder="输入一码通" aria-label="一码通" style="flex:1 1 140px;min-width:120px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:10px;font-size:15px;background:#fff;color:var(--ink)">
-    <button id="bBtn" type="button" style="min-height:44px;padding:0 18px;border:0;border-radius:10px;background:var(--brand-a11y);color:#fff;font-size:15px;cursor:pointer">解锁全部</button>
-  </div>
-  <div class="meta" id="bErr" style="margin-top:10px;color:#b23c3c;display:none"></div>
-  <div id="bLinks" style="display:none;margin-top:12px"></div>
-  <div class="meta" style="margin-top:10px">口令长期有效 · 内容持续可听 · 已购用户不受任何影响<br>已购小贴士：同一浏览器自动识别解锁记录，无需重输口令；换设备或换浏览器首次打开需输一次口令，之后永久有效</div>
-</div>
-
-<div class="card" id="homescreen">
-  <span class="badge">加到手机主屏 · 像 App 一样点开</span>
-  <details class="hsbox">
-    <summary><span>怎么用？点开看步骤</span><span class="hschev">›</span></summary>
-    <div class="step"><b>① iPhone</b>用 Safari 打开本页，点底部「分享」，选「添加到主屏幕」</div>
-    <div class="step"><b>② 安卓</b>用 Chrome 打开本页，点右上角菜单，选「安装应用」或「添加到主屏幕」</div>
-    <div class="meta" style="margin-top:10px">添加后主屏会出现「Rainbow 学习库」图标，点开直接进本页；以后买的新品都会出现在这里，不用再装第二个图标。<br>解锁口令和学习进度都存在本机，不会被清掉。</div>
-  </details>
-</div>
-
-<div class="sec" id="shelf">已上线课程 · 每款都能先听再买<em>点 ▶ 直接听，无需解锁</em></div>
 <div class="card" id="interview">
   <span class="price">¥19.98</span>
   <span class="badge">求职期 · 40 题通关</span>
-  <h2>面试英语 × STAR</h2>
-  <p class="desc">40 道外企高频面试题，每题按 STAR 拆成 5 句成品答案，常速+慢速双音频，播放时逐词同步高亮。跳槽、外企面试前用它过一遍。</p>
-  <div class="meta">40 题 · 200 句 · 480 条音频 · 四步训练闭环（听题→开口→对照→标记）· 连读跟读 · 逐词高亮 · 试听：第 1 题「请介绍一下你自己」全部 5 句</div>
+  <h2>外企面试英语 · STAR 40 题</h2>
+  <p class="desc">40 道外企高频面试题，每题按 STAR 结构提供 5 句成品答案，常速与慢速双音频，播放时逐词同步高亮；适合跳槽求职与外企面试前的集中准备。</p>
+  <div class="meta">480 条音频 · 四步训练闭环（听题→开口→对照→标记）· 连读跟读 · 逐词高亮 · 试听：第 1 题「请介绍一下你自己」全部 5 句</div>
   <div id="boxD"></div>
+  <div class="hintline">本卡试听支持逐词高亮 · 完整版同款体验</div>
   <button class="more" data-box="D" data-open="0">展开全部 5 句试听 ›</button>
   <div class="row"><a class="btn primary" href="../interview/">查看完整版 · 40 题完整面试库</a></div>
 </div>
@@ -232,7 +380,7 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
 <div class="card">
   <span class="price">¥5.98</span>
   <span class="badge">入职期 · 每日开口</span>
-  <h2>外企老外职场口语 300 句 · 音频版</h2>
+  <h2>外企老外挂嘴边的 300 句职场口语</h2>
   <p class="desc">30 天 · 每天 10 句最常用的职场口语，场景从早晨打招呼到跨部门沟通，常速+慢速双音频。</p>
   <div class="meta">300 句 · 600 条音频 · 30 天打卡节奏 · 试听：Day 1 全部 10 句</div>
   <div id="boxA"></div>
@@ -254,9 +402,9 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
 <div class="card" id="c-manual">
   <span class="price">¥19.98</span>
   <span class="badge">站稳期 · 体系化生存</span>
-  <h2>外企生存手册 · 音频版</h2>
+  <h2>外企生存手册</h2>
   <p class="desc">6 章 55 节 550 句 + 100 高频短语动词，每句带场景讲解和 Why，外企翻译视角写成，适合想在外企长期站稳的你。</p>
-  <div class="meta">550 句主课 · 100 短语动词 · 2500 条音频 · 6 章 55 节 · 试听：第 1 节「初次见面」前 10 句</div>
+  <div class="meta">55 节 · 2500 条音频 · 试听：第 1 节「初次见面」前 10 句</div>
   <div id="boxC"></div>
   <button class="more" data-box="C" data-open="0">展开全部 10 句试听 ›</button>
   <div class="row"><a class="btn primary" href="../manual/">查看完整版 · 6 章 55 节</a></div>
@@ -265,27 +413,33 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
 <div class="card" id="c-mail">
   <span class="price">¥19.98</span>
   <span class="badge">进阶期 · 拿来就能发</span>
-  <h2>外企邮件 & 写作库</h2>
+  <h2>外企邮件写作库</h2>
   <p class="desc">50 个外企真实邮件场景，每个场景给三步写法指引 + 一封可直接复制的完整邮件 + 中英对照，写完就能发，不用再从零憋句子。</p>
-  <div class="meta">50 场景 · 300 条音频 · 50 篇完整邮件模板 · 一键复制 · 中英对照</div>
+  <div class="meta">50 场景 · 300 条音频 · 50 篇完整邮件模板 · 一键复制 · 中英对照 · 试听：A1「首次联系陌生人」等 5 句</div>
+  <div id="boxE"></div>
+  <button class="more" data-box="E" data-open="0">展开全部 5 句试听 ›</button>
   <div class="row"><a class="btn primary" href="../mail/">查看完整版 · 50 个邮件场景</a></div>
 </div>
 
 <div class="card" id="c-reception">
   <span class="price">¥19.98</span>
   <span class="badge">进阶期 · 接待全流程</span>
-  <h2>外企客户接待英语</h2>
+  <h2>外企接待英语</h2>
   <p class="desc">从接机、公司参观、商务洽谈、用餐到送别，30 个场景 180 句，每句配常速 + 慢速真人配音。客户来了从头到尾都有话说，不用临场憋句子。</p>
-  <div class="meta">30 场景 · 180 句 · 360 条音频 · 场景连播 · 每条用法提示 · 逐词同步高亮</div>
+  <div class="meta">30 场景 · 180 句 · 360 条音频 · 场景连播 · 每条用法提示 · 试听：R01「机场接机」前 5 句</div>
+  <div id="boxF"></div>
+  <button class="more" data-box="F" data-open="0">展开全部 5 句试听 ›</button>
   <div class="row"><a class="btn primary" href="../reception/">查看完整版 · 30 个接待场景</a></div>
 </div>
 
 <div class="card" id="c-models">
   <span class="price">¥19.98</span>
   <span class="badge">进阶期 · 说得有分量</span>
-  <h2>外企进阶手册 · 管理模型篇</h2>
+  <h2>外企管理英语 · 管理模型篇</h2>
   <p class="desc">20 个外企真在用的管理模型（SCQA、BLUF、SBI、GROW 等），每个都给你什么时候用、外企为什么认它，以及能直接套用的英文句式。解决「知道该怎么说，但英文卡住」。</p>
-  <div class="meta">20 模型 · 4 大模块 · 180 句 · 360 条音频 · 三层结构（模板/示范/类似表达）· 常见误区对照 · 逐词高亮</div>
+  <div class="meta">20 模型 · 4 大模块 · 180 句 · 360 条音频 · 三层结构（模板/示范/类似表达）· 常见误区对照 · 试听：M01「SCQA」前 5 句</div>
+  <div id="boxG"></div>
+  <button class="more" data-box="G" data-open="0">展开全部 5 句试听 ›</button>
   <div class="row"><a class="btn primary" href="../models/">查看完整版 · 20 个管理模型</a></div>
 </div>
 
@@ -294,11 +448,15 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <span class="badge">进阶期 · 外贸全流程</span>
   <h2>外贸英语实战</h2>
   <p class="desc">从询盘回复、报价议价、样品订单、付款物流到售后客诉，30 个场景 180 句，全是外贸一线真正在说的话。</p>
-  <div class="meta">30 场景 · 180 句 · 360 条音频 · 场景连播 · 每条用法提示 · 逐词高亮 · 附外贸流程速查表</div>
+  <div class="meta">30 场景 · 180 句 · 360 条音频 · 场景连播 · 每条用法提示 · 附外贸流程速查表 · 试听：T01「回复首次询盘」前 5 句</div>
+  <div id="boxH"></div>
+  <button class="more" data-box="H" data-open="0">展开全部 5 句试听 ›</button>
   <div class="row"><a class="btn primary" href="../trade/">查看完整版 · 30 个外贸场景</a></div>
 </div>
 
 
+
+</div>
 
 <div id="toast"></div>
 
@@ -306,9 +464,10 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   Rainbow 聊外企 · 职场英语学习库<br>
   内容与音频均为本人原创 · 小红书号
   <span id="xhsid" class="xhscopy" data-copy="rainbow_work" role="button" tabindex="0">rainbow_work</span>
-  <span style="opacity:.6"> · v1.23</span>
+  <span style="opacity:.6"> · v1.68</span>
 </footer>
 
+<script src="../interview/data.js"></script>
 <script>
 /* ---------- 试听样本（与各产品 data 逐一核对） ---------- */
 var SAMPLES = {
@@ -335,6 +494,30 @@ var SAMPLES = {
     ["I built a weekly reporting template that cut meeting prep time by about forty percent.","我做了一个周报模板，把会议准备时间减少了大约四成。"],
     ["Last year I supported seventeen departments through two company-wide reviews.","去年我支持了十七个部门完成两轮全公司汇报。"],
     ["That's the background I would bring to this role.","这就是我能带到这个岗位上的背景。"]]},
+  E: { tag:'首次联系陌生人 · 邮件场景 A1', items:[
+    ["Hi David — I'm Rainbow from the localization team. I'm reaching out because we're working on the APAC rollout, and I'd love 15 minutes of your time.","你好 David，我是本地化团队的 Rainbow。我们正在推进 APAC 上线，想约你 15 分钟聊聊。","A1 首次联系陌生人 · 可直接抄"],
+    ["Hi David — a quick one: we're kicking off the APAC rollout and your team's input would really help us get the scope right. Would you be open to a 15-minute chat this week?","开门见山：APAC 项目刚启动，很需要你们团队的输入帮我们把范围定准。这周方便聊 15 分钟吗？","A1 首次联系陌生人 · 更地道"],
+    ["Thanks for the update — quick note below.","谢谢更新——下面简短说几句。","A2 邮件开头 · 可直接抄"],
+    ["Picking this up from our chat earlier — here's where we landed.","接着刚才聊的往下推进——这是目前的结论。","A2 邮件开头 · 更地道"],
+    ["Replying here so everyone has the context.","在这里回复，让大家都能看到上下文。","A3 回复与抄送范围 · 可直接抄"]]},
+  F: { tag:'机场接机 · 接待场景 R01', items:[
+    ["Excuse me, are you Michael by any chance? I'm Rainbow from Sunway.","打扰一下，请问您是 Michael 吗？我是思威公司的 Rainbow。"],
+    ["Welcome to Shanghai — I hope the flight wasn't too tiring.","欢迎来到上海，一路还顺利吧？"],
+    ["Here, let me take that bag for you.","行李我来帮您拿吧。"],
+    ["The car is waiting just outside; it's about forty minutes to the hotel.","车就在外面等着，到酒店大概四十分钟。"],
+    ["Take your time — there's no rush on our side.","您慢慢来，我们这边不赶时间。"]]},
+  G: { tag:'SCQA 汇报开场 · 模型 M01', items:[
+    ["Here's the situation: we're two weeks into the pilot.","目前的情况是：试点已经跑了两周。"],
+    ["The complication is that two of the five sites have dropped out.","麻烦在于，五个点位里有两个退出了。"],
+    ["So the question is whether we extend the timeline or narrow the scope.","所以问题变成了：是延长时间，还是缩小范围。"],
+    ["Here's the situation: we're two weeks into the pilot with five sites.","目前情况是：五个点位的试点已经跑了两周。"],
+    ["The complication is that two sites pulled out, so we've lost about a fifth of the sample.","麻烦是有两个点位退出了，样本少了大约五分之一。"]]},
+  H: { tag:'回复首次询盘 · 外贸场景 T01', items:[
+    ["Thank you for your inquiry — I'm Rainbow, and I handle export sales here.","感谢您的询盘——我是 Rainbow，负责这边的出口业务。"],
+    ["We've been making this product for ten years, so I can answer most questions right away.","这个产品我们做了十年，您的问题我基本能当场回答。"],
+    ["Could you let me know the quantity you have in mind? That affects the price.","方便告诉我您大概要多少数量吗？这会影响价格。"],
+    ["I'll send you a quotation within one working day.","我在一个工作日内给您报价。"],
+    ["If it's urgent, my WhatsApp is at the bottom of this email.","如果比较急，邮件末尾有我的 WhatsApp。"]]},
 };
 
 /* ---------- 音频路径（相对路径复用三品现有文件，零重复存储） ---------- */
@@ -351,8 +534,19 @@ for (var i=1;i<=10;i++){
 for (var k in SRC){ SRC[k] = '../'+SRC[k]; }
 /* D：面试板块（复用新板 audio，零重复存储） */
 for (var i=1;i<=5;i++){ var iv='../interview/audio/i'+String(i).padStart(3,'0'); SRC['d'+i+'n']=iv+'_n.mp3'; SRC['d'+i+'s']=iv+'_s.mp3'; }
+/* v1.62：后四款试听音频（复用各产品现有 audio，零重复存储）
+   E 邮件库（A1_a/A1_b=可直接抄/更地道，A2 同，A3 取可直接抄）
+   F 接待 R01 前 5 句 · G 管理模型 M01 前 5 句 · H 外贸 T01 前 5 句 */
+var EXTRA_SRC = {
+  e1:'mail/audio/A1_a', e2:'mail/audio/A1_b', e3:'mail/audio/A2_a', e4:'mail/audio/A2_b', e5:'mail/audio/A3_a',
+  f1:'reception/audio/R01_1', f2:'reception/audio/R01_2', f3:'reception/audio/R01_3', f4:'reception/audio/R01_4', f5:'reception/audio/R01_5',
+  g1:'models/audio/M01_1', g2:'models/audio/M01_2', g3:'models/audio/M01_3', g4:'models/audio/M01_4', g5:'models/audio/M01_5',
+  h1:'trade/audio/T01_1', h2:'trade/audio/T01_2', h3:'trade/audio/T01_3', h4:'trade/audio/T01_4', h5:'trade/audio/T01_5'
+};
+Object.keys(EXTRA_SRC).forEach(function(k){ SRC[k+'n']='../'+EXTRA_SRC[k]+'_n.mp3'; SRC[k+'s']='../'+EXTRA_SRC[k]+'_s.mp3'; });
 
 var RATE = {n:1.0, s:0.7};
+var TIM = {};   /* v1.56：面试试听词级时间戳，键 'd1'..'d5'，值 {n:[...],s:[...]} */
 
 /* ---------- 渲染试听列表 ---------- */
 Object.keys(SAMPLES).forEach(function(box){
@@ -364,19 +558,29 @@ Object.keys(SAMPLES).forEach(function(box){
     var pb=document.createElement('div'); pb.className='pbtn'; pb.textContent='▶';
     pb.dataset.row=k;                            /* ▶ = 常速 */
     var body=document.createElement('div'); body.className='lbody';
-    var en=document.createElement('div'); en.className='len'; en.textContent=it[0];
+    var en=document.createElement('div'); en.className='len';
+    /* v1.56：面试卡从 interview/data.js 取词级时间戳，渲染成词 span 供播放高亮 */
+    var ivItem=(box==='D'&&window.INTERVIEW&&window.INTERVIEW.questions[0]&&window.INTERVIEW.questions[0].items[i])?window.INTERVIEW.questions[0].items[i]:null;
+    if(ivItem){
+      TIM[k]={n:ivItem.words.n,s:ivItem.words.s};
+      ivItem.words.n.forEach(function(w,j){
+        if(j) en.appendChild(document.createTextNode(' '));
+        var sp=document.createElement('span'); sp.className='w'; sp.textContent=w.w; sp.dataset.i=j;
+        en.appendChild(sp);
+      });
+    } else { en.textContent=it[0]; }
     var cn=document.createElement('div'); cn.className='lcn';
-    cn.textContent=it[1]+' · '+conf.tag+'（第 '+String(i+1).padStart(3,'0')+' 句）';
+    /* v1.62：句子自带标签（it[2]）时用它（如邮件库跨场景），否则用整卡标签 + 序号 */
+    cn.textContent=it[2]?(it[1]+' · '+it[2]):(it[1]+' · '+conf.tag+'（第 '+String(i+1).padStart(3,'0')+' 句）');
     body.appendChild(en); body.appendChild(cn);
-    var sp=document.createElement('button'); sp.className='spd'; sp.textContent='慢速';
-    sp.dataset.row=k;                            /* 慢速 = 慢速音频 */
-    row.appendChild(pb); row.appendChild(body); row.appendChild(sp);
+    row.appendChild(pb); row.appendChild(body);
     host.appendChild(row);
   });
 });
 
 /* ---------- 播放控制 ---------- */
 var cur=null, curRow=null;   /* curRow = 当前播放的行键 */
+var SPD='n';                 /* v1.57：全局语速选择器，'n' 常速 / 's' 慢速 */
 
 function toast(msg){
   var t=document.getElementById('toast');
@@ -385,11 +589,34 @@ function toast(msg){
 }
 function resetBtns(){
   document.querySelectorAll('.pbtn.on').forEach(function(b){b.classList.remove('on');b.textContent='▶';});
-  document.querySelectorAll('.spd.on').forEach(function(b){b.classList.remove('on');});
+}
+/* v1.56：试听逐词高亮（仅面试卡有词级时间戳） */
+var hiEl=null, hiRaf=0;
+function clearHiRow(){
+  if(hiRaf){ try{cancelAnimationFrame(hiRaf);}catch(e){} hiRaf=0; }
+  if(hiEl){ hiEl.querySelectorAll('.w.hi').forEach(function(x){x.classList.remove('hi');}); hiEl._hi=-1; hiEl=null; }
+}
+function tickLearn(a,k){
+  if(cur!==a) return;
+  var t=a.currentTime*1000;
+  var tim=TIM[k.slice(0,-1)]&&TIM[k.slice(0,-1)][k.slice(-1)];
+  if(tim&&hiEl){
+    var spans=hiEl.querySelectorAll('.w'), found=-1;
+    for(var i=0;i<spans.length&&i<tim.length;i++){
+      var w=tim[i];
+      if(t>=w.s&&t<=w.s+w.d+60){ found=i; break; }
+    }
+    if(found!==hiEl._hi){
+      spans.forEach(function(x){x.classList.remove('hi');});
+      if(found>=0&&spans[found]) spans[found].classList.add('hi');
+      hiEl._hi=found;
+    }
+  }
+  if(!a.paused&&!a.ended) hiRaf=requestAnimationFrame(function(){ tickLearn(a,k); });
 }
 function stop(){
   if(cur){ try{cur.pause();}catch(e){} cur=null; }
-  resetBtns(); curRow=null;
+  resetBtns(); curRow=null; clearHiRow();
 }
 function play(k){                              /* k = 'a1n' 或 'a1s' */
   if(curRow===k && cur && !cur.paused){ stop(); return; }
@@ -399,19 +626,27 @@ function play(k){                              /* k = 'a1n' 或 'a1s' */
   cur=a; curRow=k;
   var pb=document.querySelector('.pbtn[data-row="'+k.slice(0,-1)+'"]');
   if(pb){ pb.classList.add('on'); pb.textContent='■'; }
-  if(k.slice(-1)==='s'){
-    var sp=document.querySelector('.spd[data-row="'+k.slice(0,-1)+'"]');
-    if(sp) sp.classList.add('on');
-  }
   a.onended=function(){ stop(); };
   a.onerror=function(){ toast('试听音频加载失败，请检查网络后重试'); stop(); };
   a.play().catch(function(){ toast('播放被浏览器拦截，请再点一次'); stop(); });
+  /* v1.56：面试卡播放时逐词高亮 */
+  if(k.charAt(0)==='d'&&TIM[k.slice(0,-1)]){
+    var row=pb&&pb.closest('.listen');
+    if(row){ hiEl=row.querySelector('.len'); hiEl._hi=-1; hiRaf=requestAnimationFrame(function(){ tickLearn(a,k); }); }
+  }
 }
 document.querySelectorAll('.pbtn').forEach(function(b){
-  b.onclick=function(){ play(b.dataset.row+'n'); };
+  b.onclick=function(){ play(b.dataset.row+SPD); };
 });
-document.querySelectorAll('.spd').forEach(function(b){
-  b.onclick=function(){ play(b.dataset.row+'s'); };
+/* v1.57：全局语速选择器——只切语速不触发播放，与全库一致 */
+document.querySelectorAll('#speedRow .sbtn').forEach(function(b){
+  b.onclick=function(){
+    if(SPD===b.dataset.s) return;
+    SPD=b.dataset.s;
+    document.querySelectorAll('#speedRow .sbtn').forEach(function(x){ x.classList.toggle('on',x===b); });
+    stop();
+    toast(SPD==='s'?'已切换为慢速，之后的播放均使用慢速':'已切换为常速，之后的播放均使用常速');
+  };
 });
 document.querySelectorAll('.more').forEach(function(b){
   b.onclick=function(){
@@ -557,7 +792,7 @@ function h256(s){
     form.style.display="none";
     links.style.display="none";
     var hs=document.getElementById("howtoSteps"); if(hs) hs.style.display="none";
-    intro.innerHTML="<b>已解锁全部内容</b>下方 8 款单品卡已全部变为「已解锁」，点对应卡片的绿色按钮即可进入完整版；后续新品自动加入，无需再输口令";
+    intro.innerHTML="<b>已解锁全部内容</b>下方全部单品卡已变为「已解锁」，点对应卡片的绿色按钮即可进入完整版；后续新品自动加入，无需再输口令";
     if(fresh){
       if(typeof refreshOwned==="function") refreshOwned();
       toast("一码通已解锁，下方全部单品可直接进入");
@@ -571,6 +806,36 @@ function h256(s){
     else{ err.style.display="block"; err.textContent="一码通不对，请检查后重试（注意区分大小写）"; inp.value=""; inp.focus(); }
   });
   inp.addEventListener("keydown",function(e){ if(e.key==="Enter") btn.click(); });
+})();
+/* v1.40：单品数量动态计数——数 #shelf 后连续的 .card，回填页面上的「N 款」，以后增减新品无需改文案 */
+(function(){
+  var sec=document.getElementById("shelf"); if(!sec) return;
+  var n=0, el=sec.nextElementSibling;
+  while(el && el.classList && el.classList.contains("card")){ n++; el=el.nextElementSibling; }
+  if(!n) return;
+  document.querySelectorAll(".pcount").forEach(function(sp){ sp.textContent=n; });
+})();
+/* v1.28：方形入口点开对应说明面板（互斥，再点一次收起） */
+(function(){
+  var tiles=document.querySelectorAll('.tile[data-panel]');
+  if(!tiles.length) return;
+  function closeAll(){
+    document.querySelectorAll('.tpanel').forEach(function(p){ p.hidden=true; });
+    /* .tile 全量清高亮（含「先听后买」锚点方格） */
+    document.querySelectorAll('.tile').forEach(function(t){
+      t.setAttribute('aria-expanded','false'); t.classList.remove('on');
+    });
+  }
+  tiles.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var p=document.getElementById(btn.dataset.panel); if(!p) return;
+      var willOpen=p.hidden;
+      closeAll();
+      if(willOpen){ p.hidden=false; btn.setAttribute('aria-expanded','true'); btn.classList.add('on');
+        try{ p.scrollIntoView({block:'nearest'}); }catch(e){} }
+    });
+  });
+  /* 已解锁用户点「输口令解锁」时，面板里只剩一行已解锁提示，保持可用 */
 })();
 </script>
 </body>

@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#c8623d" data-page-node-id="oVx722cdkJ7nb8xQB3vLa9">
 <meta name="apple-mobile-web-app-capable" content="yes" data-page-node-id="EYsFM3mlaYpLGNaAx0coks">
 <meta name="apple-mobile-web-app-status-bar-style" content="default" data-page-node-id="fatAXlkvVZD9CcsHqp20lx">
-<meta name="apple-mobile-web-app-title" content="300句职场口语" data-page-node-id="ykAEfU4f0Z94f3g2wDzNO0">
+<meta name="apple-mobile-web-app-title" content="300 句职场口语" data-page-node-id="ykAEfU4f0Z94f3g2wDzNO0">
 <link rel="apple-touch-icon" href="icon-180.png" data-page-node-id="MaHPk0vFVTSa3RgfzHb9Ve">
 <link rel="manifest" href="manifest.json" data-page-node-id="Sk69BxlBikL4EFBEb5QmTE">
-<title>外企老外挂嘴边的300句职场口语 · 音频版</title>
+<title>外企老外挂嘴边的 300 句职场口语</title>
 <style>
 button{cursor:pointer}
 
@@ -20,9 +20,11 @@ button{cursor:pointer}
   .topbar .sub{margin:0;color:#9c7d6d;font-size:12px}
   .controls{margin-top:10px;display:flex;gap:8px;align-items:center}
   .search{flex:1;padding:9px 12px;border:1px solid #ead9c9;border-radius:20px;background:#fff;font-size:14px;outline:none}
-  .speed-toggle{display:flex;background:#f0e6dc;border-radius:24px;overflow:hidden;flex-shrink:0}
-  .speed-toggle button{border:none;background:transparent;padding:14px 16px;font-size:13px;color:#9c7d6d;cursor:pointer;font-weight:600}
-  .speed-toggle button.on{background:#c8623d;color:#fff}
+  .speed-toggle{display:flex;gap:8px;background:transparent;border-radius:0;overflow:visible;flex-shrink:0}
+  .speed-toggle button{border:1px solid var(--line);background:#fff;border-radius:999px;
+    padding:10px 16px;min-height:44px;font-size:13px;color:#9c7d6d;cursor:pointer;font-weight:600}
+  .speed-toggle button.on{background:#c8623d;color:#fff;border-color:#c8623d}
+  @media(max-width:360px){.speed-toggle button{padding:10px 12px;font-size:12px;min-width:56px}}
   .help{background:#fff5ed;border:1px solid #f4d4bf;border-radius:12px;padding:12px 14px;margin:12px 16px;font-size:13px;color:#7a5640}
   .help summary{font-weight:700;color:#c8623d;cursor:pointer;list-style:none;outline:none}
   .help summary::-webkit-details-marker{display:none}
@@ -82,7 +84,7 @@ button{cursor:pointer}
 
   /* v1.8：学习库总入口立体按钮（凸起键帽感，按下下沉） */
   .learn-entry-btn{display:inline-block;position:relative;font-size:13px;font-weight:700;color:#a94e2e;text-decoration:none;line-height:1;white-space:nowrap;padding:12px 16px;background:#f9ede2;border-radius:18px;transition:background .15s}
-  .learn-entry-btn::after{content:'';position:absolute;left:0;right:0;top:-3px;bottom:-3px}
+  .learn-entry-btn::after{content:'';position:absolute;left:0;right:0;top:-4px;bottom:-4px}
   .learn-entry-btn:hover{background:#f5e3d3}
   .learn-entry-btn:active{background:#f0d9c9}
 
@@ -107,6 +109,20 @@ button{cursor:pointer}
 .play-all{display:inline-flex;align-items:center;gap:5px}
 .play-all::before{content:"";display:inline-block;width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
 .play-all.playing::before{width:9px;height:9px;border:none;background:currentColor;border-radius:2px}
+
+/* 触控热区外补：视觉大小不变，只把可点范围撑到 44px（仅窄屏生效） */
+@media (max-width:768px){
+  .xhscopy,.chip,.seg button,.gbtn,.rbtn,.gtoggle,summary,.notice a{position:relative}
+  .xhscopy::after,.chip::after,.seg button::after,.gbtn::after,.rbtn::after,.gtoggle::after,summary::after,.notice a::after{
+    content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:max(100%,44px);height:max(100%,44px);z-index:1
+  }
+}
+
+/* 语速切换轻提示（全库统一口径） */
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:#2a2a2a;color:#fff;
+  font-size:13px;padding:10px 16px;border-radius:10px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:99;max-width:88vw;text-align:center}
+#toast.show{opacity:.95}
 </style>
 </head>
 <body data-page-node-id="H7xV3exPtI6xb9EavQxm6o">
@@ -114,7 +130,7 @@ button{cursor:pointer}
 <div id="gate" data-page-node-id="UO3yKx9FwwjTlA6T2rIE6n">
   <div class="gate-box" data-page-node-id="BXOfspaJhwk3ckQAFMV5BE">
     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="9TVifZ3wvK1F5GqH0O56UB"><path d="M3 14v-1a8 8 0 0 1 16 0v1" data-page-node-id="kCXyThW4bKOD1YvBpho9kN"/><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z" data-page-node-id="71hEuqvEMY17ZLriOFykb6"/><path d="M21 14h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z" data-page-node-id="RYOsUIiD7kBWW4JcdvycwZ"/></svg>
-    <h1 data-page-node-id="HAvgNBs4uVOd8qTsIqA8SK">外企老外挂嘴边的<br data-page-node-id="y8HJrJ6KKyqgrL2nWsYbQJ">300句职场口语 · 音频版</h1>
+    <h1 data-page-node-id="HAvgNBs4uVOd8qTsIqA8SK">外企老外挂嘴边的<br data-page-node-id="y8HJrJ6KKyqgrL2nWsYbQJ">300 句职场口语</h1>
     <p class="sub" data-page-node-id="GfjjxqLtjjYi8Hvc1PoIyy">本资料为付费内容，请输入购买后收到的口令解锁</p>
     <input id="codeInput" type="text" placeholder="请输入口令" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text" name="r300code" style="-webkit-autofill:off" data-page-node-id="K2PlMyCZ1ruL2CyEAF8DZv">
     <button id="codeBtn" data-page-node-id="rWEC6cfnn9a95itbXXjnyx">解锁学习</button>
@@ -125,7 +141,7 @@ button{cursor:pointer}
 
 <div id="app" style="display:none" data-page-node-id="xeMxe3ZuD3lhzzsebGuj6d">
   <div class="topbar" data-page-node-id="5wf6I4gMVfl8KmGd39bVYB">
-    <h1 data-page-node-id="8wZQVztcIACQ5tbV9tWewV">外企老外挂嘴边的300句职场口语·音频版</h1>
+    <h1 data-page-node-id="8wZQVztcIACQ5tbV9tWewV">外企老外挂嘴边的 300 句职场口语</h1>
     <p class="sub" data-page-node-id="0kitioikXfcenWbnTKRyME">Rainbow 聊外企 · 29 课 × 双速朗读</p>
     <div class="controls" data-page-node-id="3gm4V0TY7A82jQa1shTPMD">
       <input class="search" id="search" placeholder="搜句子 / 中文…" data-page-node-id="1sivMNmNxSA7E3qaGYrEKk">
@@ -136,18 +152,7 @@ button{cursor:pointer}
     </div>
   </div>
 
-  <details class="help" data-page-node-id="TnA9p4gsmrokQsivOZlZu1">
-    <summary data-page-node-id="cSbSbgVK00RNnFdUO01Bg6">使用帮助（首次使用请点开）</summary>
-    <ul data-page-node-id="CKX9J5rCeaDAp9YuMYtd3H">
-      <li data-page-node-id="PepoWYKpHtz4u3MLZdbXnl"><b data-page-node-id="Nkm3LSSBWSkG1yI4HHKyez">双速切换</b>:顶部「常速/慢速」,跟读练习用慢速(降30%,听清每个词)</li>
-      <li data-page-node-id="ZBIvymaCcwUBAsSrvUqzf1"><b data-page-node-id="orkP5XLmVcZlQCvXEmkByJ">连播本课</b>:每课右上角「连播」,通勤当听力自动放</li>
-      <li data-page-node-id="G1A0EeqvmsRvVCPeobRJK9"><b data-page-node-id="x0v45AaH9A0bQkSSj5Qa9N">搜索</b>:顶部搜索框,中英文都能搜</li>
-      <li data-page-node-id="VBXTJXRxFP6M9yPLPAGftt"><b data-page-node-id="iQ5kYuttMW1Tcg4CBFkxM4">收藏方法</b>:链接收藏到浏览器书签,或微信里「浮窗」保存,随时点开学</li>
-      <li data-page-node-id="rIxTHbHM95qcDv34zACJNz"><b data-page-node-id="X46Z7tb3VBkHYpldge1xzo">学习节奏</b>:每天1课(10句),常速听1遍→慢速跟读3遍→明天先复习再学新课,29课≈1个月</li>
-      <li data-page-node-id="T3iDpdxjvFRAc8xU2iLUdo">使用遇到问题: 联系卖家 Rainbow</li>
-    </ul>
-    <div class="warn" data-page-node-id="yvUvSEGFmS1T0JWKpJt4jO">音频按需加载,首次进入每课会预热 1-2 秒属正常</div>
-  </details>
+  
 
   <div id="weeks" data-page-node-id="5CdmOCgZsmAPTGcX5unJZy"><div class="load-tip" data-page-node-id="F94cdj0HajzQLTBavzSbXi">正在加载 29 课内容…</div></div>
   <div class="no-result" id="noResult" data-page-node-id="K1G2eWH2Z1SgsL9xxltAUV">没有找到匹配「<span id="kw" data-page-node-id="FZZEt5U6GhFn56ZwqmKVKn"></span>」的句子,试试别的词</div>
@@ -473,10 +478,18 @@ function stopPlayAll() {
 /* ============== 常慢速切换 ============== */
 document.getElementById('btnN').addEventListener('click', () => setSpeed('n'));
 document.getElementById('btnS').addEventListener('click', () => setSpeed('s'));
+var toastTimer=null;
+function say(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){ t.classList.remove('show'); },2000);
+}
 function setSpeed(s) {
   curSpeed = s;
   document.getElementById('btnN').classList.toggle('on', s === 'n');
   document.getElementById('btnS').classList.toggle('on', s === 's');
+  say(s === 's' ? '已切换为慢速，之后的播放均使用慢速' : '已切换为常速，之后的播放均使用常速');
   // 当前播放的不变（避免打断）
 }
 
@@ -626,7 +639,7 @@ function escapeAttr(s){return escapeHtml(s);}
     }
   }
   document.addEventListener('play',onPlayMedia,true);
-  /* v1.3 关键修复：页面 new Audio() 的播放器不挂 DOM，play 事件不冒泡经过 document —— 劫持 Audio 构造器，创建时直接挂监听 */
+  /* v1.4 关键修复：页面 new Audio() 的播放器不挂 DOM，play 事件不冒泡经过 document —— 劫持 Audio 构造器，创建时直接挂监听 */
   (function(){
     var Orig=window.Audio;
     window.Audio=function(src){var a=(src===undefined)?new Orig():new Orig(src);a.addEventListener('play',onPlayMedia);return a;};
@@ -634,5 +647,6 @@ function escapeAttr(s){return escapeHtml(s);}
   })();
 })();
 </script>
+<div id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

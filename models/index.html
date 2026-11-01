@@ -198,6 +198,15 @@ mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
 .gbtn[data-all]{display:inline-flex;align-items:center;gap:5px}
 .gbtn[data-all]::before{content:"";display:inline-block;width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
 .gbtn[data-all].sel::before{width:9px;height:9px;border:none;background:currentColor;border-radius:2px}
+
+/* 触控热区外补：视觉大小不变，只把可点范围撑到 44px（仅窄屏生效） */
+@media (max-width:768px){
+  .xhscopy,.chip,.seg button,.gbtn,.rbtn,.gtoggle,summary,.notice a{position:relative}
+  .xhscopy::after,.chip::after,.seg button::after,.gbtn::after,.rbtn::after,.gtoggle::after,summary::after,.notice a::after{
+    content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:max(100%,44px);height:max(100%,44px);z-index:1
+  }
+}
 </style>
 </head>
 <body>
@@ -217,7 +226,6 @@ mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
   <p>20 个模型 · 4 大模块 · 180 句 · 360 条音频</p>
   <input class="search" id="q" placeholder="搜索场景或句子，如：汇报、反馈、决策">
   <div class="gspd">
-    <span class="lab">语速</span>
     <button class="gbtn sel" id="spdN" aria-pressed="true">常速</button>
     <button class="gbtn" id="spdS" aria-pressed="false">慢速</button>
   </div>
@@ -245,7 +253,7 @@ mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
 <footer>
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v1.3</span>
+  <span style="color:#c8aa9a">v1.6</span>
 </footer>
 
 <div id="toast"></div>

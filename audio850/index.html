@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="850 句通勤磨耳朵">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.json">
-<title>职场全英交流·无非这 850 句 · 音频版</title>
+<title>职场全英交流 · 无非这 850 句</title>
 <style>
 button{cursor:pointer}
 
@@ -20,9 +20,11 @@ button{cursor:pointer}
   .topbar .sub{margin:0;color:#9c7d6d;font-size:12px}
   .controls{margin-top:10px;display:flex;gap:8px;align-items:center}
   .search{flex:1;padding:9px 12px;border:1px solid #ead9c9;border-radius:20px;background:#fff;font-size:14px;outline:none}
-  .speed-toggle{display:flex;background:#f0e6dc;border-radius:24px;overflow:hidden;flex-shrink:0}
-  .speed-toggle button{border:none;background:transparent;padding:14px 16px;font-size:13px;color:#9c7d6d;cursor:pointer;font-weight:600}
-  .speed-toggle button.on{background:#c8623d;color:#fff}
+  .speed-toggle{display:flex;gap:8px;background:transparent;border-radius:0;overflow:visible;flex-shrink:0}
+  .speed-toggle button{border:1px solid var(--line);background:#fff;border-radius:999px;
+    padding:10px 16px;min-height:44px;font-size:13px;color:#9c7d6d;cursor:pointer;font-weight:600}
+  .speed-toggle button.on{background:#c8623d;color:#fff;border-color:#c8623d}
+  @media(max-width:360px){.speed-toggle button{padding:10px 12px;font-size:12px;min-width:56px}}
   .help{background:#fff5ed;border:1px solid #f4d4bf;border-radius:12px;padding:12px 14px;margin:12px 16px;font-size:13px;color:#7a5640}
   .help summary{font-weight:700;color:#c8623d;cursor:pointer;list-style:none;outline:none}
   .help summary::-webkit-details-marker{display:none}
@@ -80,7 +82,7 @@ button{cursor:pointer}
 
   /* v1.8：学习库总入口立体按钮（凸起键帽感，按下下沉） */
   .learn-entry-btn{display:inline-block;position:relative;font-size:13px;font-weight:700;color:#a94e2e;text-decoration:none;line-height:1;white-space:nowrap;padding:12px 16px;background:#f9ede2;border-radius:18px;transition:background .15s}
-  .learn-entry-btn::after{content:'';position:absolute;left:0;right:0;top:-3px;bottom:-3px}
+  .learn-entry-btn::after{content:'';position:absolute;left:0;right:0;top:-4px;bottom:-4px}
   .learn-entry-btn:hover{background:#f5e3d3}
   .learn-entry-btn:active{background:#f0d9c9}
 
@@ -105,6 +107,20 @@ button{cursor:pointer}
 .play-all{display:inline-flex;align-items:center;gap:5px}
 .play-all::before{content:"";display:inline-block;width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
 .play-all.playing::before{width:9px;height:9px;border:none;background:currentColor;border-radius:2px}
+
+/* 触控热区外补：视觉大小不变，只把可点范围撑到 44px（仅窄屏生效） */
+@media (max-width:768px){
+  .xhscopy,.chip,.seg button,.gbtn,.rbtn,.gtoggle,summary,.notice a{position:relative}
+  .xhscopy::after,.chip::after,.seg button::after,.gbtn::after,.rbtn::after,.gtoggle::after,summary::after,.notice a::after{
+    content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:max(100%,44px);height:max(100%,44px);z-index:1
+  }
+}
+
+/* 语速切换轻提示（全库统一口径） */
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:#2a2a2a;color:#fff;
+  font-size:13px;padding:10px 16px;border-radius:10px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:99;max-width:88vw;text-align:center}
+#toast.show{opacity:.95}
 </style>
 </head>
 <body>
@@ -112,7 +128,7 @@ button{cursor:pointer}
 <div id="gate">
   <div class="gate-box">
     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-1a8 8 0 0 1 16 0v1"/><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z"/><path d="M21 14h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z"/></svg>
-    <h1>职场全英交流<br>无非这 850 句 · 音频版</h1>
+    <h1>职场全英交流<br>无非这 850 句</h1>
     <p class="sub">43 个真实场景 · 通勤磨耳朵大全<br>请输入购买后收到的口令解锁</p>
     <input id="codeInput" type="text" placeholder="请输入口令" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text" name="r850code" style="-webkit-autofill:off">
     <button id="codeBtn">解锁学习</button>
@@ -123,7 +139,7 @@ button{cursor:pointer}
 
 <div id="app" style="display:none">
   <div class="topbar">
-    <h1>职场全英交流·无非这 850 句·音频版</h1>
+    <h1>职场全英交流 · 无非这 850 句</h1>
     <p class="sub">Rainbow 聊外企 · 43 章节 × 850 句 × 双速朗读</p>
     <div class="controls">
       <input class="search" id="search" placeholder="搜句子 / 中文… (全 850 句)">
@@ -134,18 +150,7 @@ button{cursor:pointer}
     </div>
   </div>
 
-  <details class="help">
-    <summary>使用帮助（首次使用请点开）</summary>
-    <ul>
-      <li><b>双速切换</b>:顶部「常速/慢速」,跟读练习用慢速(降30%,听清每个词)</li>
-      <li><b>连播本章</b>:每课右上角「连播」,通勤当听力自动放</li>
-      <li><b>搜索</b>:顶部搜索框,中英文都能搜</li>
-      <li><b>收藏方法</b>:链接收藏到浏览器书签,或微信里「浮窗」保存,随时点开学</li>
-      <li><b>学习节奏</b>:每天 1-2 章节(约 20-40 句),通勤听常速练耳→跟读用慢速,43 章节≈1-2 个月</li>
-      <li>使用遇到问题: 联系卖家 Rainbow</li>
-    </ul>
-    <div class="warn">音频按需加载,首次进入每课会预热 1-2 秒属正常</div>
-  </details>
+  
 
   <div id="weeks"><div class="load-tip">正在加载 850 句…</div></div>
   <div class="no-result" id="noResult">没有找到匹配「<span id="kw"></span>」的句子,试试别的词</div>
@@ -154,7 +159,7 @@ button{cursor:pointer}
   <div class="footer">
     © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
     仅供个人学习使用·请勿用作商业用途<br>
-    <span style="color:#c8aa9a">v2.0</span>
+    <span style="color:#c8aa9a">v2.3</span>
   </div>
 </div>
 
@@ -469,10 +474,18 @@ function stopPlayAll() {
 /* ============== 常慢速切换 ============== */
 document.getElementById('btnN').addEventListener('click', () => setSpeed('n'));
 document.getElementById('btnS').addEventListener('click', () => setSpeed('s'));
+var toastTimer=null;
+function say(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){ t.classList.remove('show'); },2000);
+}
 function setSpeed(s) {
   curSpeed = s;
   document.getElementById('btnN').classList.toggle('on', s === 'n');
   document.getElementById('btnS').classList.toggle('on', s === 's');
+  say(s === 's' ? '已切换为慢速，之后的播放均使用慢速' : '已切换为常速，之后的播放均使用常速');
   // 当前播放的不变（避免打断）
 }
 
@@ -585,7 +598,7 @@ function escapeAttr(s){return escapeHtml(s);}
     }
   }
   document.addEventListener('play',onPlayMedia,true);
-  /* v1.3 关键修复：页面 new Audio() 的播放器不挂 DOM，play 事件不冒泡经过 document —— 劫持 Audio 构造器，创建时直接挂监听 */
+  /* v1.4 关键修复：页面 new Audio() 的播放器不挂 DOM，play 事件不冒泡经过 document —— 劫持 Audio 构造器，创建时直接挂监听 */
   (function(){
     var Orig=window.Audio;
     window.Audio=function(src){var a=(src===undefined)?new Orig():new Orig(src);a.addEventListener('play',onPlayMedia);return a;};
@@ -593,5 +606,6 @@ function escapeAttr(s){return escapeHtml(s);}
   })();
 })();
 </script>
+<div id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
