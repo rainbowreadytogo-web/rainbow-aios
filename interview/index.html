@@ -298,7 +298,7 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 <footer data-page-node-id="bhk3GTpMfIVHysyTVo1piN">
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br data-page-node-id="IeHp3SV2RAwptCwJ31PPol">
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v2.9.1</span>
+  <span style="color:#c8aa9a">v2.10</span>
 </footer>
 
 <script src="data.js"></script>
@@ -669,6 +669,33 @@ render();
   function rates(sp){ return sp==='s'?0.7:1.0; }
   function csp(){ return (typeof speed!=='undefined')?speed:'n'; }
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  /* 把英文句子渲染成词 span（带 s/d 时间戳）；无数据时退回纯文本 */
+  function tokenizeInto(host, text, words){
+    if(typeof tokenize!=='function' || !words || !words.length){ host.textContent=text; return false; }
+    host.innerHTML='';
+    tokenize(text,words).forEach(function(tk){
+      var s=document.createElement('span');
+      s.textContent=tk.t;
+      if(tk.s!==undefined){ s.className='w'; s.dataset.s=tk.s; s.dataset.d=tk.d; }
+      host.appendChild(s);
+    });
+    return true;
+  }
+  /* 通用逐词高亮：按 currentTime 匹配 s/d，rAF 循环推进 */
+  function tickWords(a, host){
+    if(!host.isConnected) return;
+    var t=a.currentTime*1000, spans=host.querySelectorAll('.w'), found=-1;
+    for(var i=0;i<spans.length;i++){
+      var s=parseFloat(spans[i].dataset.s||'0'), d=parseFloat(spans[i].dataset.d||'0');
+      if(t>=s && t<=s+d+60){ found=i; break; }
+    }
+    if(found!==host._hi){
+      spans.forEach(function(x){ x.classList.remove('hi'); });
+      if(found>=0) spans[found].classList.add('hi');
+      host._hi=found;
+    }
+    if(!a.paused && !a.ended) requestAnimationFrame(function(){ tickWords(a,host); });
+  }
 
   /* ---------- 题目音频（列表内） ---------- */
   var qa=null;
@@ -682,7 +709,17 @@ render();
     var a=new Audio(qsrc(id,csp())); a.playbackRate=rates(csp()); qa=a;
     var el=document.querySelector('#q'+id+' .qplay');
     if(el){ el.classList.add('on'); el.textContent='■'; }
-    a.onended=function(){ clearQBtn(); qa=null; };
+    /* 逐词高亮（与训练模块一致）：播放时按当前语速重建词块 */
+    var host=document.querySelector('#q'+id+' .qen');
+    if(host){
+      var qo=QS.filter(function(x){ return x.id===id; })[0];
+      if(tokenizeInto(host, qo.q_en, (qo.q_words||{})[csp()])){
+        host._hi=-1;
+        a.addEventListener('timeupdate',function(){ if(qa===a) tickWords(a,host); });
+        requestAnimationFrame(function(){ if(qa===a) tickWords(a,host); });
+      }
+    }
+    a.onended=function(){ clearQBtn(); qa=null; document.querySelectorAll('.qen .w.hi').forEach(function(x){ x.classList.remove('hi'); }); };
     a.onerror=function(){ if(typeof toast==='function') toast('题目音频没能加载，请检查网络后重试'); clearQBtn(); };
     a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){}); },250); });
   }
@@ -865,6 +902,8 @@ render();
       }
       if(ta && ta._qid===q.id && ta.paused && !ta.ended){
         var r=ta.play(); if(r&&r.catch) r.catch(function(){});
+        var th=document.getElementById('tq');
+        if(th) requestAnimationFrame(function(){ if(ta) tickWords(ta,th); });
         btn.classList.add('on'); btn.textContent='暂停播放'; return;
       }
       playT(q.id, csp());
@@ -959,6 +998,16 @@ render();
     document.querySelectorAll('#tbody .pbtn').forEach(function(b){ b.classList.remove('on'); b.textContent='▶'; });
     document.querySelectorAll('#tbody .w.hi').forEach(function(w){ w.classList.remove('hi'); });
     var a=new Audio(qsrc(id,sp)); a.playbackRate=rates(sp); ta=a; a._qid=id; a._sp=sp;
+    /* 题目英文逐词高亮：播放时按当前语速重建词块 */
+    var host=document.getElementById('tq');
+    if(host){
+      var qo=curQObj();
+      if(qo && tokenizeInto(host, qo.q_en, (qo.q_words||{})[sp])){
+        host._hi=-1;
+        a.addEventListener('timeupdate',function(){ if(ta===a) tickWords(a,host); });
+        requestAnimationFrame(function(){ if(ta===a) tickWords(a,host); });
+      }
+    }
     a.onended=function(){ if(ta&&ta!==a) return; resetTBtns(); };
     a.onerror=function(){ toast('题目音频没能加载，请检查网络后重试'); if(ta&&ta!==a) return; resetTBtns(); };
     a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){}); },250); });
