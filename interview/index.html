@@ -298,7 +298,7 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 <footer data-page-node-id="bhk3GTpMfIVHysyTVo1piN">
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br data-page-node-id="IeHp3SV2RAwptCwJ31PPol">
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v2.10</span>
+  <span style="color:#c8aa9a">v2.10.1</span>
 </footer>
 
 <script src="data.js"></script>
@@ -845,7 +845,7 @@ render();
     h+='<div><span class="cat">'+esc(q.cat)+'</span></div>';
     h+='<div class="tqc">'+esc(q.q_cn)+'</div>';
     if(T.revealed){
-      h+='<div class="tq">'+esc(q.q_en)+'</div>';
+      h+='<div class="tq" id="tq">'+esc(q.q_en)+'</div>';
     }
     h+='<div class="trow">'
       +'<button class="tbtn" id="tplay">▶ 播放题目</button>'
@@ -1025,6 +1025,8 @@ render();
       return;
     }
     stopTAudio();
+    /* 播答案句时，题目按钮复位（题目音频已被停止） */
+    resetTBtns();
     document.querySelectorAll('#tbody .pbtn').forEach(function(b){ b.classList.remove('on'); b.textContent='▶'; });
     document.querySelectorAll('#tbody .w.hi').forEach(function(w){ w.classList.remove('hi'); });
     document.querySelectorAll('#tbody .tsent').forEach(function(x){ x._hi=-1; });
@@ -1047,8 +1049,8 @@ render();
       }
       a.addEventListener('timeupdate',function(){ tTick(a, host); });
     }
-    a.onerror=function(){ toast('这条音频没能加载，请检查网络后重试'); if(ta&&ta!==a) return; if(btn){ btn.classList.remove('on'); btn.textContent='▶'; } if(a._chainNext){ var fe=a._chainNext; a._chainNext=null; fe(); } };
-    a.onended=function(){ if(ta&&ta!==a) return; if(btn){ btn.classList.remove('on'); btn.textContent='▶'; } if(a._chainNext){ var fc=a._chainNext; a._chainNext=null; fc(); } };
+    a.onerror=function(){ toast('这条音频没能加载，请检查网络后重试'); if(ta&&ta!==a) return; if(btn){ btn.classList.remove('on'); btn.textContent='▶'; } resetTBtns(); if(a._chainNext){ var fe=a._chainNext; a._chainNext=null; fe(); } };
+    a.onended=function(){ if(ta&&ta!==a) return; if(btn){ btn.classList.remove('on'); btn.textContent='▶'; } resetTBtns(); if(a._chainNext){ var fc=a._chainNext; a._chainNext=null; fc(); } };
     a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){}); },250); });
   }
   function tTick(a, host){
