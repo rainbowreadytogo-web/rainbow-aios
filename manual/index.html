@@ -173,7 +173,7 @@ button{cursor:pointer}
   <div class="footer">
     © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
     仅供个人学习使用·请勿用作商业用途<br>
-    <span style="color:#c8aa9a">v1.13</span>
+    <span style="color:#c8aa9a">v1.14</span>
   </div>
 </div>
 
@@ -634,9 +634,12 @@ function escapeAttr(s) { return escapeHtml(s); }
     a.className='learn-entry-btn';
     var row=document.createElement('div');
     row.className='entry-row';
-    row.style.cssText='text-align:right;margin-top:8px';
+    row.style.cssText='display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px';
     row.appendChild(a);
     box.appendChild(row);
+    var sub=box.querySelector('.sub');
+    if(sub&&sub.parentNode===box){ sub.style.flex='1'; sub.style.margin='0'; box.insertBefore(row,sub); row.appendChild(sub); row.appendChild(a); }
+    else { row.style.cssText='text-align:right;margin-top:8px'; box.appendChild(row); }
   });
   function addProg(h,keys,anchor){
     var bar=document.createElement('span');

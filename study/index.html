@@ -33,6 +33,12 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
   .rate-row{margin:0 0 0 auto}
   .entry-row{margin:0}
 }
+@media(max-width:767px){
+  header{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px}
+  header h1,header p{width:100%}
+  .rate-row{margin-top:4px}
+  .entry-row{margin:4px 0 0 auto}
+}
 .rate-row{margin-top:10px;display:flex;align-items:center;gap:8px}
 .rate-row .lb{font-size:12.5px;color:#9c7d6d}
 .rbtn{min-height:36px;padding:8px 15px;border:1px solid var(--line);background:var(--card);
@@ -155,7 +161,7 @@ footer{margin:22px 16px 0;color:var(--muted);font-size:12px;line-height:1.8;text
   </div>
 </div>
 
-<footer>学习中心 · v1.11<br>进度数据只存在你自己的浏览器里，不会上传</footer>
+<footer>学习中心 · v1.12<br>进度数据只存在你自己的浏览器里，不会上传</footer>
 
 <div id="toast" role="status" aria-live="polite"></div>
 
