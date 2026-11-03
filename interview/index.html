@@ -162,6 +162,16 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 #train .tq{font-size:18px;font-weight:600;line-height:1.5;margin:8px 0 4px}
 #train .tqc{font-size:12.5px;color:var(--muted);margin:6px 0 18px}
 #train .trow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+#train .tgrid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+#train .tqcn{font-size:21px;font-weight:700;color:var(--ink);line-height:1.65;margin:10px 0 2px}
+#train .tg{background:var(--soft);border:1px solid var(--line-l);border-radius:12px;padding:12px 14px}
+#train .tg .glab{font-size:11px;letter-spacing:3px;color:var(--muted);margin-bottom:10px}
+#train .tact{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+#train .tbtn.big{width:100%;font-weight:700;font-size:15px;padding:13px 16px}
+@media(max-width:767px){
+  #train .tgrid{display:block}
+  #train .tside{margin-top:14px}
+}
 #train .tbtn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:10px 14px;font-size:13.5px;color:var(--sub);min-height:44px}
 #train .tbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 #train .tbtn.pri{background:var(--brand);color:#fff;border-color:var(--brand)}
@@ -298,7 +308,7 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 <footer data-page-node-id="bhk3GTpMfIVHysyTVo1piN">
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br data-page-node-id="IeHp3SV2RAwptCwJ31PPol">
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v2.10.1</span>
+  <span style="color:#c8aa9a">v2.11</span>
 </footer>
 
 <script src="data.js"></script>
@@ -842,26 +852,35 @@ render();
     document.getElementById('tprog').textContent='第 '+(T.pos+1)+' / '+T.ids.length+' · '+cfg.name;
 
     var h='';
+    h+='<div class="tgrid">';
+    h+='<div class="tmain">';
     h+='<div><span class="cat">'+esc(q.cat)+'</span></div>';
-    h+='<div class="tqc">'+esc(q.q_cn)+'</div>';
+    h+='<div class="tqcn">'+esc(q.q_cn)+'</div>';
     if(T.revealed){
       h+='<div class="tq" id="tq">'+esc(q.q_en)+'</div>';
     }
-    h+='<div class="trow">'
+    h+='</div>';
+    h+='<div class="tside">';
+    h+='<div class="tg"><div class="glab">听题</div><div class="trow" style="margin-top:0">'
       +'<button class="tbtn" id="tplay">▶ 播放题目</button>'
       +'<span class="seg" id="tspeed">'
       +'<button data-s="n"'+(csp()==='n'?' class="on"':'')+'>常速</button>'
       +'<button data-s="s"'+(csp()==='s'?' class="on"':'')+'>慢速</button>'
-      +'</span>'
-      +'</div>';
-    h+='<div class="trow">'
+      +'</span></div></div>';
+    h+='<div class="tg"><div class="glab">计时作答</div><div class="trow" style="margin-top:0">'
       +'<span class="tcount" id="tcount">'+fmt(T.left)+'</span>'
       +'<button class="tbtn'+(T.running?' on':'')+'" id="tstart">'+(T.running?'暂停':'开始计时')+'</button>'
       +'<button class="tbtn" id="treset">重来</button>'
-      +'</div>';
+      +'</div></div>';
     if(!T.revealed){
-      h+='<div class="trow">'+(T.pos>0?'<button class="tbtn" id="tprev">上一题</button>':'')+'<button class="tbtn pri" id="treveal">我答完了，看参考答案</button></div>';
-    }else{
+      h+='<div class="tact">';
+      if(T.pos>0) h+='<button class="tbtn" id="tprev">上一题</button>';
+      h+='<button class="tbtn pri big" id="treveal">我答完了，看参考答案</button>';
+      h+='</div>';
+    }
+    h+='</div>';
+    h+='</div>';
+    if(T.revealed){
       h+='<div class="trev">';
       h+='<div class="lab" style="display:inline-block">参考答案 · STAR 拆句</div>';
       h+='<div class="trow"><button class="tbtn" id="tchain">▶ 连播答案</button></div>';
