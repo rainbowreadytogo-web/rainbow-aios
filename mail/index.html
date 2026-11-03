@@ -140,7 +140,9 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 .copy{border:1px solid var(--line);background:#fff;color:var(--brand-d);border-radius:8px;
   padding:5px 10px;font-size:12px;cursor:pointer;min-height:32px;margin-top:8px}
 .copy:active{background:var(--brand-l)}
-.copyrow{margin-top:8px}
+.copy.sm{margin-top:0;position:relative;padding:6px 12px}
+.copy.sm::after{content:"";position:absolute;left:-6px;right:-6px;top:-6px;bottom:-6px}
+.blk .bhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
 
 .empty{text-align:center;color:var(--muted);font-size:13px;padding:40px 16px;display:none}
 #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:#2a2a2a;color:#fff;
@@ -238,7 +240,7 @@ mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
 <footer>
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v1.15</span>
+  <span style="color:#c8aa9a">v1.16</span>
 </footer>
 
 <div id="toast"></div>
@@ -423,7 +425,9 @@ function h256(s){
       var ix=en.indexOf("｜");
       if(ix>-1){ gloss=en.slice(ix+1); en=en.slice(0,ix); }
     }
-    var h='<div class="blk '+cls+'"><span class="blab">'+lab+'</span>';
+    var h='<div class="blk '+cls+'"><div class="bhead"><span class="blab">'+lab+'</span>'
+      +((en && tier!=="NOAUDIO")?'<button class="copy sm" data-copy="'+esc(en)+'">复制句子</button>':'')
+      +'</div>';
     if(en && tier!=="NOAUDIO"){
       h+='<div class="item"><div class="abtns">'
         +'<button class="pbtn" data-a="'+scene+'_'+tier+'" aria-label="播放（当前所选语速）">▶</button>'
@@ -431,7 +435,7 @@ function h256(s){
       +'<button class="pbtn slow" aria-label="选择慢速" aria-pressed="false">慢速</button>'
         +'</div><div class="ibody"><div class="en">'+esc(en)+'</div>'
         +(gloss?'<div class="gloss">'+esc(gloss)+'</div>':'')
-        +'<div class="copyrow"><button class="copy" data-copy="'+esc(en)+'">复制句子</button></div>'
+        +''
         +'</div></div>';
     } else if(en){
       h+='<div class="en">'+esc(en)+'</div>'+(gloss?'<div class="gloss">'+esc(gloss)+'</div>':'');
