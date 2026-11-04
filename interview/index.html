@@ -63,6 +63,17 @@ header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
 
 .seg button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 
+/* v2.13：底部悬浮迷你条——滚动过工具栏后出现，任意位置可切播放模式与语速 */
+#mini{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:150;display:none;
+  width:max-content;background:var(--card);border:1px solid var(--line-l);border-radius:999px;
+  box-shadow:0 8px 28px rgba(61,44,35,.18);padding:8px 14px;gap:10px}
+#mini.show{display:flex}
+#mini .seg button{padding:9px 14px;min-height:44px;white-space:nowrap}
+@media(max-width:480px){
+  #mini{bottom:12px;max-width:calc(100vw - 24px);padding:6px 10px;gap:8px}
+  #mini .seg button{padding:9px 11px;font-size:12.5px}
+}
+
 /* 题目卡：题头条与在售三品 week-h 同款（标题左 + › 箭头右，旋转展开） */
 .qcard{background:var(--card);border:1px solid var(--line-l);border-radius:14px;margin:0 14px 14px;padding:12px}
 .qcard:not(.open) .qbody{display:none}
@@ -127,11 +138,18 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 .mrow .et{display:block;font-size:13px;font-weight:600;color:var(--ink)}
 .mrow .ed{display:block;font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
 .mrow .ec{display:block;font-size:11px;color:var(--brand-d);margin-top:3px}
-.howtoBox{background:#fff5ed;border:1px solid #f4d4bf;border-radius:12px;margin:12px 14px;padding:12px 14px}
-.howtoBox summary{font-weight:700;color:#c8623d;cursor:pointer;list-style:none;outline:none}
+/* v2.13：使用说明收成一行小入口，弱化视觉；展开后恢复卡片观感保证可读性 */
+.howtoBox{background:transparent;border:0;border-radius:12px;margin:2px 14px 0;padding:0}
+.howtoBox summary{font-weight:600;font-size:13px;color:#a4836f;cursor:pointer;list-style:none;outline:none;
+  display:flex;align-items:center;min-height:44px}
 .howtoBox summary::-webkit-details-marker{display:none}
-.howtoBox summary::before{content:"! ";display:inline-block;width:18px;height:18px;border-radius:50%;
-  background:#c8623d;color:#fff;text-align:center;line-height:18px;font-weight:700;margin-right:4px;font-size:12px}
+.howtoBox summary::before{content:"!";display:inline-block;width:16px;height:16px;border-radius:50%;flex:0 0 16px;
+  background:#e8cbb6;color:#fff;text-align:center;line-height:16px;font-weight:700;margin-right:7px;font-size:11px}
+.howtoBox summary::after{content:"›";margin-left:auto;color:#cbb2a2;font-size:16px;transition:transform .2s}
+.howtoBox[open] summary::after{transform:rotate(90deg)}
+.howtoBox[open]{background:#fff5ed;border:1px solid #f4d4bf;margin:8px 14px 0;padding:12px 14px}
+.howtoBox[open] summary{color:#c8623d}
+.howtoBox[open] summary::before{background:#c8623d}
 .ecard{background:var(--card);border:1px solid var(--line-l);border-radius:14px;padding:12px;text-align:left;cursor:pointer;min-height:44px}
 .ecard .et{display:block;font-size:14px;font-weight:600;color:var(--ink)}
 .ecard .ed{display:block;font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.55}
@@ -230,7 +248,7 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 
 <!-- 使用说明 + STAR 讲解（v2.9 合并为一卡） -->
 <details class="howtoBox" id="howto">
-  <summary>怎么用这套题 · 首次使用点开</summary>
+  <summary>怎么用这套题 · 含 STAR 讲解</summary>
   <div style="margin-top:10px">
     <p class="ssub" style="margin:0 0 8px">不要急着背答案。这套题的用法是先练嘴，再对照。</p>
     <div class="step"><span class="snum">1</span><div class="stext"><b>听题</b>：点每题上的「听题训练」，先听题目音频。没听清就再放一遍，英文原文点一下才显示——这一关考的是耳朵。</div></div>
@@ -300,6 +318,17 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
   <div class="gnotice" id="gnotice">题目共 <b>6 个大类</b>，点组名可展开或收起；题卡上的标签为该题的<b>考点</b>，每个大类包含多个考点。</div>
 </div>
 </div>
+<!-- v2.13：滚动过工具栏后出现的底部悬浮迷你条（播放模式 + 语速快捷切换，与顶部按钮状态同步） -->
+<div id="mini">
+  <div class="seg" id="mmode">
+    <button data-m="ktv">逐词高亮</button>
+    <button data-m="blank">挖空练习</button>
+  </div>
+  <div class="seg" id="mspeed">
+    <button data-s="n">常速</button>
+    <button data-s="s">慢速</button>
+  </div>
+</div>
 <div id="list" data-page-node-id="qEE71K7eAWD3bQUnPxXlld"></div>
 <div id="nores" style="display:none;margin:20px 18px;text-align:center;color:#9c7d6d;font-size:13px">没找到相关内容，换个词试试</div>
 
@@ -308,7 +337,7 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 <footer data-page-node-id="bhk3GTpMfIVHysyTVo1piN">
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br data-page-node-id="IeHp3SV2RAwptCwJ31PPol">
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v2.12</span>
+  <span style="color:#c8aa9a">v2.13</span>
 </footer>
 
 <script src="data.js"></script>
@@ -634,14 +663,46 @@ function next(){
     if(ns!==preSrc){ pre=new Audio(ns); pre.preload='auto'; preSrc=ns; try{pre.load();}catch(e){} }
   }
 }
+/* v2.13：底部悬浮迷你条——点击转发给顶部按钮（复用全部原有逻辑），状态单向同步 */
+var mini=document.getElementById('mini'),
+    mmode=document.getElementById('mmode'),
+    mspeed=document.getElementById('mspeed');
+function syncMini(){
+  [].forEach.call(mmode.children,function(x){x.classList.toggle('on',x.dataset.m===mode);});
+  [].forEach.call(mspeed.children,function(x){x.classList.toggle('on',x.dataset.s===speed);});
+}
+mmode.onclick=function(e){
+  var t=e.target.closest('button'); if(!t) return;
+  var top=document.querySelector('#mode button[data-m="'+t.dataset.m+'"]');
+  /* 已是当前模式时不转发，避免误停播放 */
+  if(top && !top.classList.contains('on')) top.click();
+};
+mspeed.onclick=function(e){
+  var t=e.target.closest('button'); if(!t) return;
+  if(t.dataset.s===speed){ syncMini(); return; }
+  var top=document.querySelector('#speed button[data-s="'+t.dataset.s+'"]');
+  if(top) top.click();
+};
+/* 滚动过工具栏后显示迷你条，回到顶部自动隐藏；训练浮层/口令门层级更高，自然盖住 */
+(function(){
+  var bar=document.querySelector('.toolbar');
+  if('IntersectionObserver' in window && bar){
+    new IntersectionObserver(function(en){
+      mini.classList.toggle('show',!en[0].isIntersecting);
+    }).observe(bar);
+  }else if(bar){
+    window.addEventListener('scroll',function(){
+      mini.classList.toggle('show',bar.getBoundingClientRect().bottom<0);
+    },{passive:true});
+  }
+})();
 document.getElementById('mode').onclick=function(e){
   var t=e.target.closest('button'); if(!t) return;
   mode=t.dataset.m;
   [].forEach.call(this.children,function(x){x.classList.toggle('on',x===t);});
   stopAll(); render();
-  document.getElementById('hint').textContent = mode==='ktv'
-    ? '点句子左边的 ▶ 单独播放，或点「连播本题」从头跟读；播放时说到哪个词，哪个词会高亮。'
-    : '关键词已挖空，点空格看答案；建议先连播听一遍再自测。';
+  /* v2.13：旧版 hint 提示元素已随改版移除，此处不再引用 */
+  syncMini();
 };
 document.getElementById('speed').onclick=function(e){
   var t=e.target.closest('button'); if(!t) return;
@@ -653,6 +714,7 @@ document.getElementById('speed').onclick=function(e){
   if(audio && !audio.ended && !audio.paused){ spdRenderPending=true; }
   else { spdRenderPending=false; stopAll(); render(); }
   toast(speed==='s'?'已切换为慢速，之后的播放均使用慢速':'已切换为常速，之后的播放均使用常速');
+  syncMini();
 };
 var gt=document.getElementById('gtoggle'), gb=document.getElementById('gbody');
 gt.onclick=function(){
@@ -945,6 +1007,7 @@ render();
       speed=t.dataset.s;
       [].forEach.call(this.children,function(x){ x.classList.toggle('on',x===t); });
       document.querySelectorAll('#speed button').forEach(function(x){ x.classList.toggle('on', x.dataset.s===speed); });
+      if(typeof syncMini==='function') syncMini();
       /* v2.12：不打断当前训练句——正在播的题目/答案句播完后，下一句自动用新语速 */
       toast(speed==='s'?'已切换为慢速，之后的播放均使用慢速':'已切换为常速，之后的播放均使用常速');
     };
