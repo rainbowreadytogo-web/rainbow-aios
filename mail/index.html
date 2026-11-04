@@ -241,7 +241,7 @@ mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
 <footer>
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br>
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v1.17</span>
+  <span style="color:#c8aa9a">v1.18</span>
 </footer>
 
 <div id="toast"></div>
@@ -487,8 +487,7 @@ function h256(s){
         b.classList.add("sel"); b.setAttribute("aria-pressed","true");
         var base=p.querySelector(".pbtn[data-a]").dataset.a;
         prefetch("audio/"+base+(b.classList.contains("slow")?"_s":"_n")+".mp3");
-        // 正在播的这一句如果切了语速，先停掉，避免新旧速度混淆
-        if(curBtn && curBtn.parentNode===p) stopAudio();
+        /* v1.18：切换语速不打断当前句——正在播的这句继续播完，下一句起用新语速 */
         say(b.classList.contains("slow")?"已切换为慢速，之后的播放均使用慢速":"已切换为常速，之后的播放均使用常速");
       });
     });

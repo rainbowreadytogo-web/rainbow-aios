@@ -308,7 +308,7 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 <footer data-page-node-id="bhk3GTpMfIVHysyTVo1piN">
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br data-page-node-id="IeHp3SV2RAwptCwJ31PPol">
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v2.11</span>
+  <span style="color:#c8aa9a">v2.12</span>
 </footer>
 
 <script src="data.js"></script>
@@ -364,7 +364,7 @@ function groupsVisible(){
   return any;
 }
 var BOARDS_REMOVED=0; /* 品类预告 chips 已移至学习库 learn/ */
-var mode='ktv', speed='n';
+var mode='ktv', speed='n', spdRenderPending=false;
 var openQ={}; /* 折叠状态：默认收起，mode/speed 切换重渲染时保留 */
 function toggleQ(id){
   var card=document.getElementById('q'+id); if(!card) return;
@@ -565,6 +565,12 @@ function stopAll(){
   document.querySelectorAll('.btn.on').forEach(function(b){ if(b.textContent.indexOf('连播')>=0){b.classList.remove('on');b.textContent='连播本题';} });
   playing=false; curQ=null; queue=[];
 }
+/* v2.12：播放中切换语速不打断当前句——播完后再按新语速重渲染词块，下一句起新语速生效 */
+function applySpdRender(){
+  if(!spdRenderPending) return;
+  spdRenderPending=false; render();
+  if(playing&&curQ){ var b=document.querySelector('#q'+curQ+' .btn'); if(b){ b.classList.add('on'); b.textContent='停止连播'; } }
+}
 function toggleMain(i){
   if(playing){ /* 连播进行中点单句：结束连播并单独播放该句 */
     stopAll();
@@ -590,17 +596,19 @@ function toggleMain(i){
 }
 function playOne(i){
   stopAll(); /* 复位连播状态与按钮（audio/queue/playing/连播钮文字） */
+  applySpdRender();
   var a=new Audio(src(i,speed));
   a.preload='auto';
   a.playbackRate=rate(speed); a.dataset.id=i; audio=a;
   markItem(i);
   a.addEventListener('timeupdate',function(){ tick(a); });
-  a.onended=function(){ clearHi(); var el=document.getElementById('it'+i); if(el) el.classList.remove('playing'); clearPlayBtn(); };
+  a.onended=function(){ clearHi(); var el=document.getElementById('it'+i); if(el) el.classList.remove('playing'); applySpdRender(); clearPlayBtn(); };
   a.onerror=function(){ toast('这条音频没能加载，请检查网络后重试'); clearPlayBtn(); };
   a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){}); },250); });
 }
 function startQ(qid){
   stopAll();
+  applySpdRender();
   var q=QS.filter(function(x){return x.id===qid;})[0]; if(!q) return;
   openCard(document.getElementById('q'+qid));
   curQ=qid; playing=true;
@@ -618,7 +626,7 @@ function next(){
   a.playbackRate=rate(speed); a.dataset.id=i; audio=a;
   markItem(i);
   a.addEventListener('timeupdate',function(){ tick(a); });
-  a.onended=function(){ clearHi(); var el=document.getElementById('it'+i); if(el) el.classList.remove('playing'); if(playing) next(); };
+  a.onended=function(){ clearHi(); var el=document.getElementById('it'+i); if(el) el.classList.remove('playing'); applySpdRender(); if(playing) next(); };
   a.onerror=function(){ toast('第 '+i+' 句音频加载失败，已跳过'); if(playing) next(); };
   a.play().catch(function(){ setTimeout(function(){ a.play().catch(function(){ if(playing) next(); }); },250); });
   if(queue.length){
@@ -640,7 +648,10 @@ document.getElementById('speed').onclick=function(e){
   if(speed===t.dataset.s) return;
   speed=t.dataset.s;
   [].forEach.call(this.children,function(x){x.classList.toggle('on',x===t);});
-  pre=null; preSrc=''; stopAll(); render();
+  pre=null; preSrc='';
+  /* v2.12：播放中不打断当前句，播完再按新语速重渲染；未播放时立即重渲染 */
+  if(audio && !audio.ended && !audio.paused){ spdRenderPending=true; }
+  else { spdRenderPending=false; stopAll(); render(); }
   toast(speed==='s'?'已切换为慢速，之后的播放均使用慢速':'已切换为常速，之后的播放均使用常速');
 };
 var gt=document.getElementById('gtoggle'), gb=document.getElementById('gbody');
@@ -934,9 +945,7 @@ render();
       speed=t.dataset.s;
       [].forEach.call(this.children,function(x){ x.classList.toggle('on',x===t); });
       document.querySelectorAll('#speed button').forEach(function(x){ x.classList.toggle('on', x.dataset.s===speed); });
-      stopTAudio(); tq=[]; setChainBtn(false); resetTBtns();
-      document.querySelectorAll('#tbody .pbtn').forEach(function(b){ b.classList.remove('on'); b.textContent='▶'; });
-      document.querySelectorAll('#tbody .w.hi').forEach(function(w){ w.classList.remove('hi'); });
+      /* v2.12：不打断当前训练句——正在播的题目/答案句播完后，下一句自动用新语速 */
       toast(speed==='s'?'已切换为慢速，之后的播放均使用慢速':'已切换为常速，之后的播放均使用常速');
     };
     if(ta && ta._qid===q.id && !ta.paused && !ta.ended){

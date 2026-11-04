@@ -644,7 +644,7 @@ document.querySelectorAll('#speedRow .sbtn').forEach(function(b){
     if(SPD===b.dataset.s) return;
     SPD=b.dataset.s;
     document.querySelectorAll('#speedRow .sbtn').forEach(function(x){ x.classList.toggle('on',x===b); });
-    stop();
+    /* v1.70：切换语速不打断当前句——正在播的这句继续播完，下一句起用新语速 */
     toast(SPD==='s'?'已切换为慢速，之后的播放均使用慢速':'已切换为常速，之后的播放均使用常速');
   };
 });

@@ -161,7 +161,7 @@ footer{margin:22px 16px 0;color:var(--muted);font-size:12px;line-height:1.8;text
   </div>
 </div>
 
-<footer>学习中心 · v1.12<br>进度数据只存在你自己的浏览器里，不会上传</footer>
+<footer>学习中心 · v1.13<br>进度数据只存在你自己的浏览器里，不会上传</footer>
 
 <div id="toast" role="status" aria-live="polite"></div>
 
@@ -441,13 +441,8 @@ Array.prototype.forEach.call(document.querySelectorAll('.rbtn'), function(b){
     Array.prototype.forEach.call(document.querySelectorAll('.rbtn'), function(x){ x.classList.remove('on'); });
     b.classList.add('on');
     RATE = b.dataset.r;
-    // v1.9：语速按钮只是选择器。切换时停掉当前播放、不自动重播，新的语速从下一次播放起生效
-    if (audio || playingEl){
-      if (audio) { audio.pause(); audio = null; }
-      if (playingEl) playingEl.classList.remove('playing');
-      playingEl = null; playingBase = null;
-      toast(RATE === 's' ? '已切换为慢速，之后的播放均使用慢速' : '已切换为常速，之后的播放均使用常速');
-    }
+    // v1.13：语速按钮只是选择器。切换不打断当前句——正在播的这句继续播完，下一句起用新语速
+    toast(RATE === 's' ? '已切换为慢速，之后的播放均使用慢速' : '已切换为常速，之后的播放均使用常速');
   });
 });
 
