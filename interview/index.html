@@ -337,7 +337,7 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 <footer data-page-node-id="bhk3GTpMfIVHysyTVo1piN">
   © Rainbow 聊外企 · 拍摄/搬运/传播未授权必究<br data-page-node-id="IeHp3SV2RAwptCwJ31PPol">
   仅供个人学习使用·请勿用作商业用途<br>
-  <span style="color:#c8aa9a">v2.13</span>
+  <span style="color:#c8aa9a">v2.14</span>
 </footer>
 
 <script src="data.js"></script>
@@ -683,18 +683,18 @@ mspeed.onclick=function(e){
   var top=document.querySelector('#speed button[data-s="'+t.dataset.s+'"]');
   if(top) top.click();
 };
-/* 滚动过工具栏后显示迷你条，回到顶部自动隐藏；训练浮层/口令门层级更高，自然盖住 */
+/* v2.14：工具卡一旦被吸顶标题栏遮住就显示迷你条（不留「两边都看不到按钮」的空档），滚回可见自动隐藏 */
 (function(){
   var bar=document.querySelector('.toolbar');
-  if('IntersectionObserver' in window && bar){
-    new IntersectionObserver(function(en){
-      mini.classList.toggle('show',!en[0].isIntersecting);
-    }).observe(bar);
-  }else if(bar){
-    window.addEventListener('scroll',function(){
-      mini.classList.toggle('show',bar.getBoundingClientRect().bottom<0);
-    },{passive:true});
+  var hdr=document.querySelector('header');
+  function updMini(){
+    if(!bar) return;
+    var limit = hdr ? hdr.offsetHeight : 0;
+    mini.classList.toggle('show', bar.getBoundingClientRect().bottom <= limit + 2);
   }
+  window.addEventListener('scroll',updMini,{passive:true});
+  window.addEventListener('resize',updMini,{passive:true});
+  updMini();
 })();
 document.getElementById('mode').onclick=function(e){
   var t=e.target.closest('button'); if(!t) return;
