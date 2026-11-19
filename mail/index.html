@@ -168,6 +168,21 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 
 /* ---- 搜索关键词高亮 ---- */
 mark.qhl{background:#ffe08a;color:inherit;border-radius:3px;padding:0 1px}
+
+/* v1.19 · 触控热区 ≥44px + 刘海屏安全区（纯显示层：不改内容、数据、口令与播放行为）
+   按钮本身的视觉尺寸不变，仅窄屏用伪元素把纵向可点范围撑到 44px；
+   横向不外扩，避免同排标签互相抢点击。
+   .mrow 两排标签的行距对齐热区外扩量，避免上下两排热区重叠导致误触。*/
+@media (max-width:768px){
+  .mchip,.gbtn,.copy:not(.sm){position:relative}
+  .mchip::after,.gbtn::after,.copy:not(.sm)::after{
+    content:"";position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);
+    height:max(100%,44px);z-index:1
+  }
+  .mrow{row-gap:18px}
+}
+/* 桌面端 env() 为 0，等价于原有 56px，视觉无变化 */
+body{padding-bottom:calc(56px + env(safe-area-inset-bottom))}
 </style>
 </head>
 <body>

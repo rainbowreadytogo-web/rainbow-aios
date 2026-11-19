@@ -459,7 +459,12 @@ function playQueue() {
   const advance = () => {
     c.classList.remove('playing');
     btn.classList.remove('playing');
-    if (playAllQueue.length) { setTimeout(playQueue, 150); }
+    if (playAllQueue.length) {
+      /* 通勤听：页面进入后台后定时器会被系统冻结，改在 ended 事件内立即续播；
+         前台仍保留原有 150ms 间隔，可见行为与音效完全不变。 */
+      if (document.hidden) { playQueue(); }
+      else { setTimeout(playQueue, 150); }
+    }
     else { stopPlayAll(); }
   };
   a.onended = advance;

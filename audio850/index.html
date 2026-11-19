@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#c8623d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -121,6 +121,9 @@ button{cursor:pointer}
 #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:#2a2a2a;color:#fff;
   font-size:13px;padding:10px 16px;border-radius:10px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:99;max-width:88vw;text-align:center}
 #toast.show{opacity:.95}
+
+/* v2.5 · 刘海屏底部安全区（纯显示层，不改变布局与行为） */
+body{padding-bottom:env(safe-area-inset-bottom)}
 </style>
 </head>
 <body>
@@ -130,7 +133,7 @@ button{cursor:pointer}
     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-1a8 8 0 0 1 16 0v1"/><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z"/><path d="M21 14h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z"/></svg>
     <h1>职场全英交流<br>无非这 850 句</h1>
     <p class="sub">43 个真实场景 · 通勤磨耳朵大全<br>请输入购买后收到的口令解锁</p>
-    <input id="codeInput" type="text" placeholder="请输入口令" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text" name="r850code" style="-webkit-autofill:off">
+    <input id="codeInput" type="password" placeholder="请输入口令" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text" name="r850code" style="-webkit-autofill:off">
     <button id="codeBtn">解锁学习</button>
     <div class="err" id="err">口令错误，请联系卖家获取</div>
     <div class="brand">Rainbow聊外企 · 仅供购买者本人使用<br>口令问题请联系卖家</div>
@@ -144,8 +147,8 @@ button{cursor:pointer}
     <div class="controls">
       <input class="search" id="search" placeholder="搜句子 / 中文… (全 850 句)">
       <div class="speed-toggle">
-        <button id="btnN" class="on">常速</button>
-        <button id="btnS">慢速</button>
+        <button id="btnN" class="on" aria-label="选择常速" aria-pressed="true">常速</button>
+        <button id="btnS" aria-label="选择慢速" aria-pressed="false">慢速</button>
       </div>
     </div>
   </div>
@@ -455,7 +458,12 @@ function playQueue() {
   const advance = () => {
     c.classList.remove('playing');
     btn.classList.remove('playing');
-    if (playAllQueue.length) { setTimeout(playQueue, 150); }
+    if (playAllQueue.length) {
+      /* 通勤听：页面进入后台后定时器会被系统冻结，改在 ended 事件内立即续播；
+         前台仍保留原有 150ms 间隔，可见行为与音效完全不变。 */
+      if (document.hidden) { playQueue(); }
+      else { setTimeout(playQueue, 150); }
+    }
     else { stopPlayAll(); }
   };
   a.onended = advance;
@@ -485,6 +493,8 @@ function setSpeed(s) {
   curSpeed = s;
   document.getElementById('btnN').classList.toggle('on', s === 'n');
   document.getElementById('btnS').classList.toggle('on', s === 's');
+  document.getElementById('btnN').setAttribute('aria-pressed', s === 'n' ? 'true' : 'false');
+  document.getElementById('btnS').setAttribute('aria-pressed', s === 's' ? 'true' : 'false');
   say(s === 's' ? '已切换为慢速，之后的播放均使用慢速' : '已切换为常速，之后的播放均使用常速');
   // 当前播放的不变（避免打断）
 }
