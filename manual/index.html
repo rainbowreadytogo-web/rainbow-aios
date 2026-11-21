@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#8f3f24">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -135,6 +135,8 @@ button{cursor:pointer}
 #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:#2a2a2a;color:#fff;
   font-size:13px;padding:10px 16px;border-radius:10px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:99;max-width:88vw;text-align:center}
 #toast.show{opacity:.95}
+/* 刘海屏底部安全区（纯显示层，不改变布局与行为） */
+body{padding-bottom:env(safe-area-inset-bottom)}
 </style>
 </head>
 <body>
@@ -144,7 +146,7 @@ button{cursor:pointer}
     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-1a8 8 0 0 1 16 0v1"/><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z"/><path d="M21 14h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z"/></svg>
     <h1>外企生存手册</h1>
     <p class="sub">本资料为付费内容，请输入购买后收到的口令解锁</p>
-    <input id="codeInput" type="text" placeholder="请输入口令" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text" name="rmancode" style="-webkit-autofill:off">
+    <input id="codeInput" type="password" placeholder="请输入口令" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text" name="rmancode" style="-webkit-autofill:off">
     <button id="codeBtn">解锁学习</button>
     <div class="err" id="err">口令错误，请联系卖家获取</div>
     <div class="brand">Rainbow聊外企 · 仅供购买者本人使用<br>口令问题请联系卖家</div>
