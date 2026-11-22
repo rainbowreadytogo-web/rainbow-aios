@@ -26,7 +26,7 @@ button{cursor:pointer}
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding-bottom:40px}
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding-bottom:calc(40px + env(safe-area-inset-bottom))}
 header{padding:26px 18px 18px;background:var(--brand-a11y);color:#fff}
 header .kicker{font-size:13px;letter-spacing:3px;font-weight:800;opacity:.95;margin-bottom:8px}
 header h1{margin:0;font-size:22px;font-weight:700;line-height:1.4}

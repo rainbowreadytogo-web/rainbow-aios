@@ -22,7 +22,7 @@ button{cursor:pointer}
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding-bottom:56px}
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding-bottom:calc(56px + env(safe-area-inset-bottom))}
 header{position:sticky;top:0;z-index:50;padding:14px 16px 10px;background:rgba(253,248,245,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #f0e6dc;color:#3d2c23}
 header h1{margin:0 0 2px;font-size:18px;font-weight:700}
 header p{margin:0;color:#9c7d6d;font-size:12px;line-height:1.6}
