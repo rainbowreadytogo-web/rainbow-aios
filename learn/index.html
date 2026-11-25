@@ -59,6 +59,12 @@ header .htext{flex:1;min-width:0}
 /* 页内所有小红书号：点击复制（无下划线，与页脚一致） */
 .xhscopy{color:var(--brand-d);cursor:pointer;font-weight:600}
 .xhscopy:active{opacity:.7}
+/* 微信导流行（v1.30）：与小红书行并列，含二维码 + 点击复制微信号 */
+.ipcard .ipwx{display:flex;gap:10px;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--line-l)}
+.ipcard .ipwxqr{width:56px;height:56px;border-radius:8px;background:#fff;border:1px solid var(--line-l);padding:3px;flex:0 0 auto;display:block}
+.wxcopy{color:var(--brand-d);cursor:pointer;font-weight:600;min-height:44px;display:inline-flex;align-items:center}
+.wxcopy:active{opacity:.7}
+@media(min-width:768px){ .ipcard .ipwxqr{width:64px;height:64px} }
 /* 桌面端：加大标题、左文右卡垂直居中，压缩纵向留白 */
 @media(min-width:768px){
   header{padding:22px 24px 20px}
@@ -261,6 +267,13 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
         <div class="ip3t">
           <b>小红书 @rainbow_work</b>
           <span>点击复制小红书号</span>
+        </div>
+      </div>
+      <div class="ipwx">
+        <img class="ipwxqr" src="wechat_qr.jpg" alt="Rainbow 的微信二维码，扫码加好友">
+        <div class="ip3t">
+          <b>微信 <span class="wxcopy" data-copy="wyhhirainbow" role="button" tabindex="0" aria-label="复制微信号 wyhhirainbow">wyhhirainbow</span></b>
+          <span>扫码或点击复制 · 答疑 / 更新 / 售后</span>
         </div>
       </div>
     </div>
@@ -735,6 +748,29 @@ var refreshOwned;
       ta.style.position='fixed'; ta.style.opacity='0';
       document.body.appendChild(ta); ta.select();
       try{ document.execCommand('copy'); done(); }catch(e){ toast('小红书号：'+txt); }
+      document.body.removeChild(ta);
+    }
+  }
+  els.forEach(function(el){
+    el.onclick=function(){ copy(el); };
+    el.onkeydown=function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); copy(el); } };
+  });
+})();
+
+/* ---------- 微信号点击复制（顶部名片微信行，独立提示） ---------- */
+(function(){
+  var els=document.querySelectorAll('.wxcopy'); if(!els.length) return;
+  function copy(el){
+    var txt=el.getAttribute('data-copy')||el.textContent.trim();
+    var done=function(){ toast('微信号已复制：'+txt); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var ta=document.createElement('textarea'); ta.value=txt;
+      ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){ toast('微信号：'+txt); }
       document.body.removeChild(ta);
     }
   }

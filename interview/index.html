@@ -232,6 +232,16 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
 .howtoBox .gsub{font-size:12px;color:var(--muted);margin:3px 0 0;line-height:1.6}
 .guide-inner{margin-top:10px;background:var(--card);border:1px solid var(--line-l);border-radius:12px;padding:12px 14px}
 .guide-inner .gtoggle{margin-top:10px}
+/* v3.0 · 电子版下载入口（位于解锁后内容内，未解锁不可见） */
+.dlcard{margin:14px 16px 0;background:rgba(255,255,255,.96);border:1px solid #ead9c9;border-radius:14px;padding:14px 16px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.dlcard h3{margin:0 0 4px;font-size:15px;color:#c8623d;font-weight:700}
+.dlcard .dldesc{margin:0 0 6px;font-size:12px;color:#9c7d6d;line-height:1.6}
+.dlrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+.dlrow .dlname{font-size:12px;color:#7a5640;font-weight:600;min-width:52px}
+.dlbtn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 18px;border-radius:10px;background:#c8623d;color:#fff;text-decoration:none;font-size:13px;font-weight:700}
+.dlbtn.bk{background:#fff;color:#c8623d;border:1px solid #c8623d}
+.dlcode{font-size:12px;color:#2a2a2a;background:#f5ece5;border:1px dashed #d8bfae;border-radius:6px;padding:3px 8px;letter-spacing:1px}
+.dlcard .dltip{margin:10px 0 0;font-size:11px;color:#9c7d6d;line-height:1.6}
 </style>
 </head>
 <body data-page-node-id="NcPYkMb1L8msZKIHV4o4vd">
@@ -243,6 +253,7 @@ footer{padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.8;text-
     <a href="../learn/" style="display:inline-flex;align-items:center;min-height:44px;padding:12px 16px;background:#f9ede2;color:#a94e2e;border-radius:18px;font-size:13px;font-weight:700;text-decoration:none">学习库总入口 ›</a>
   </div>
 </header>
+<div class="dlcard"><h3>电子版 PDF 下载</h3><p class="dldesc">购买后可下载本册 PDF，保存到本地随时查看。</p><div class="dlrow"><span class="dlname">夸克网盘</span><a class="dlbtn" href="https://pan.quark.cn/s/0703e6bc3924?pwd=kB2G" target="_blank" rel="noopener">立即下载</a><span class="dlcode">提取码 kB2G</span></div><div class="dlrow"><span class="dlname">百度网盘</span><a class="dlbtn bk" href="https://pan.baidu.com/s/10dtyHNdSj1y_pHEe5nckfA?pwd=aezg" target="_blank" rel="noopener">备用下载</a><span class="dlcode">提取码 aezg</span></div><p class="dltip">链接或提取码失效，请加微信 wyhhirainbow 补发。</p></div>
 
 <!-- V2 首屏：主推卡 + 次入口 -->
 <div class="hero" id="hero">
