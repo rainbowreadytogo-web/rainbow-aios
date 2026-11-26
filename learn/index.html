@@ -532,9 +532,7 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
 
 <footer>
   Rainbow 聊外企 · 职场英语学习库<br>
-  内容与音频均为本人原创 · 小红书号
-  <span id="xhsid" class="xhscopy" data-copy="rainbow_work" role="button" tabindex="0">rainbow_work</span>
-  <span style="opacity:.6"> · v1.68</span>
+  内容与音频均为本人原创 · 版权所有 · v1.68
 </footer>
 
 <script src="../interview/data.js"></script>
@@ -761,6 +759,9 @@ var refreshOwned;
       card.dataset.seenDone='1';
     }
     if(owned){
+      /* 已解锁时目录副标题改为复习引导，不再显示购买引导语 */
+      var tocHint=card.querySelector('.toc-h');
+      if(tocHint) tocHint.textContent='已解锁 · 点开复习目录';
       /* v1.4：已解锁隐藏试听区，突出进入完整版 */
       var box=card.querySelector('[id^="box"]');
       if(box) box.style.display='none';
