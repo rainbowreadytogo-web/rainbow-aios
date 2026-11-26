@@ -46,25 +46,31 @@ header .htext{flex:1;min-width:0}
 .ipcard{flex:0 0 auto;max-width:300px;background:rgba(255,255,255,.96);color:var(--ink);
   border-radius:12px;padding:10px 12px;box-shadow:0 2px 10px rgba(0,0,0,.12)}
 .ipcard .iptop{display:flex;gap:10px;align-items:center}
+.ipcard .iptop-txt{min-width:0}
 .ipcard .ipavatar{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-l);flex:0 0 auto}
 .ipcard .ip1{font-size:13px;font-weight:700;line-height:1.5;color:var(--ink)}
 .ipcard .ip2{font-size:11px;color:var(--sub);margin-top:3px;line-height:1.6}
-.ipcard .ip3{display:flex;gap:10px;align-items:center;margin-top:8px;padding-top:8px;
-  border-top:1px solid var(--line-l);cursor:pointer}
-.ipcard .ip3:active{opacity:.75}
-.ipcard .ipqr{width:56px;height:56px;border-radius:8px;background:#fff;border:1px solid var(--line-l);padding:3px;flex:0 0 auto;display:block}
-.ipcard .ip3t{min-width:0}
-.ipcard .ip3t b{display:block;font-size:12px;font-weight:700;line-height:1.5;color:var(--brand-d)}
-.ipcard .ip3t span{display:block;font-size:10.5px;color:var(--muted);margin-top:2px;line-height:1.5}
+/* 双渠道并排：小红书 / 微信平等并列，突出个人IP学习库，不做小红书专属 */
+.ipcard .ipline{height:1px;background:var(--line-l);margin:9px 0 10px}
+.ipcard .duo{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;justify-items:center}
+.ipcard .duocard{text-align:center;min-width:0;width:100%}
+.ipcard .duocard .qr{width:100px;height:100px;object-fit:contain;display:block;margin:0 auto;
+  background:#fff;border:1px solid var(--line-l);border-radius:8px;padding:3px}
+.ipcard .duocopy{cursor:pointer;display:block;margin-top:5px;min-height:44px}
+.ipcard .duocopy:active{opacity:.7}
+.ipcard .duocopy .nm{display:block;font-size:12px;font-weight:700;color:var(--ink);line-height:1.4}
+.ipcard .duocopy .id{display:block;font-size:10.5px;color:var(--brand-d);line-height:1.5;margin-top:1px;
+  word-break:break-all;font-weight:600}
+.ipcard .duocopy .use{display:block;font-size:10px;color:var(--muted);line-height:1.5;margin-top:2px}
 /* 页内所有小红书号：点击复制（无下划线，与页脚一致） */
 .xhscopy{color:var(--brand-d);cursor:pointer;font-weight:600}
 .xhscopy:active{opacity:.7}
-/* 微信导流行（v1.30）：与小红书行并列，含二维码 + 点击复制微信号 */
-.ipcard .ipwx{display:flex;gap:10px;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--line-l)}
-.ipcard .ipwxqr{width:56px;height:56px;border-radius:8px;background:#fff;border:1px solid var(--line-l);padding:3px;flex:0 0 auto;display:block}
 .wxcopy{color:var(--brand-d);cursor:pointer;font-weight:600;min-height:44px;display:inline-flex;align-items:center}
 .wxcopy:active{opacity:.7}
-@media(min-width:768px){ .ipcard .ipwxqr{width:64px;height:64px} }
+/* 并排卡内覆盖微信行默认样式，两码视觉一致 */
+.ipcard .duocopy.wxcopy{min-height:0;display:block}
+@media(min-width:641px){ .ipcard .duo{gap:8px} .ipcard .duocard .qr{width:84px;height:84px} }
+@media(max-width:360px){ .ipcard .duocard .qr{width:92px;height:92px} }
 /* 桌面端：加大标题、左文右卡垂直居中，压缩纵向留白 */
 @media(min-width:768px){
   header{padding:22px 24px 20px}
@@ -75,10 +81,10 @@ header .htext{flex:1;min-width:0}
   .ipcard{max-width:330px;padding:12px 14px}
   .ipcard .ip1{font-size:14px}
   .ipcard .ip2{font-size:12px}
-  .ipcard .ip3t b{font-size:13px}
-  .ipcard .ip3t span{font-size:11px}
+  .ipcard .duocopy .nm{font-size:13px}
+  .ipcard .duocopy .id{font-size:11px}
+  .ipcard .duocopy .use{font-size:10.5px}
   .ipcard .ipavatar{width:52px;height:52px}
-  .ipcard .ipqr{width:64px;height:64px}
 }
 @media(max-width:640px){
   header .hwrap{flex-direction:column;gap:12px}
@@ -279,23 +285,28 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
     <div class="ipcard">
       <div class="iptop">
         <img class="ipavatar" src="xhs-avatar.png" alt="Rainbow 头像">
-        <div>
-          <div class="ip1">Rainbow · 外企翻译 &amp; 团队管理</div>
-          <div class="ip2">7 年外企一线实战 · TEM-8 · BEC 高级</div>
+        <div class="iptop-txt">
+          <div class="ip1">Rainbow 聊外企 · 职场英语学习库</div>
+          <div class="ip2">外企翻译 &amp; 团队管理 · 7 年一线实战 · TEM-8 · BEC 高级</div>
         </div>
       </div>
-      <div class="ip3 xhscopy" data-copy="rainbow_work" role="button" tabindex="0" aria-label="复制小红书号 rainbow_work">
-        <img class="ipqr" src="xhs-qr.png" alt="Rainbow 的小红书二维码">
-        <div class="ip3t">
-          <b>小红书 @rainbow_work</b>
-          <span>点击复制小红书号</span>
+      <div class="ipline"></div>
+      <div class="duo">
+        <div class="duocard">
+          <img class="qr" src="xhs-qr.png" alt="Rainbow 小红书二维码">
+          <span class="duocopy xhscopy" data-copy="rainbow_work" role="button" tabindex="0" aria-label="复制小红书号 rainbow_work">
+            <span class="nm">小红书</span>
+            <span class="id">@rainbow_work</span>
+            <span class="use">扫码看笔记 · 下单</span>
+          </span>
         </div>
-      </div>
-      <div class="ipwx">
-        <img class="ipwxqr" src="wechat_qr.jpg" alt="Rainbow 的微信二维码，扫码加好友">
-        <div class="ip3t">
-          <b>微信 <span class="wxcopy" data-copy="wyhhirainbow" role="button" tabindex="0" aria-label="复制微信号 wyhhirainbow">wyhhirainbow</span></b>
-          <span>扫码或点击复制 · 答疑 / 更新 / 售后</span>
+        <div class="duocard">
+          <img class="qr" src="wechat_qr.jpg" alt="Rainbow 微信二维码">
+          <span class="duocopy wxcopy" data-copy="wyhhirainbow" role="button" tabindex="0" aria-label="复制微信号 wyhhirainbow">
+            <span class="nm">微信</span>
+            <span class="id">wyhhirainbow</span>
+            <span class="use">扫码加好友 · 答疑售后</span>
+          </span>
         </div>
       </div>
     </div>
