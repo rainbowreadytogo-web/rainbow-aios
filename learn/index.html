@@ -244,6 +244,28 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
     width:max(100%,44px);height:max(100%,44px);z-index:1
   }
 }
+
+/* ===== 目录折叠预览（标题层，仅学习库货架页） ===== */
+.toc{border:1px solid var(--line-l);border-radius:12px;margin-top:12px;overflow:hidden}
+.toc-head{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:13px 14px;min-height:48px;cursor:pointer;background:#fff;user-select:none}
+.toc-head .toc-t{font-size:13.5px;color:var(--brand-d);font-weight:700}
+.toc-head .toc-h{font-size:11px;color:var(--muted);font-weight:400;margin-left:6px}
+.toc-chev{font-size:16px;color:var(--muted);transition:transform .2s}
+.toc.open .toc-chev{transform:rotate(90deg)}
+.toc-body{display:none;border-top:1px solid var(--line-l);background:var(--soft);padding:4px 14px 10px}
+.toc.open .toc-body{display:block}
+.toc-mod{margin-top:12px}
+.toc-modname{font-size:12px;font-weight:700;color:var(--brand-d);margin-bottom:6px;
+  display:flex;justify-content:space-between;gap:8px}
+.toc-modname span{color:var(--muted);font-weight:400;font-size:11px;flex:0 0 auto}
+.toc-list{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px}
+.toc-item{font-size:12px;color:var(--sub);line-height:1.5;display:flex;gap:6px}
+.toc-item .c{color:var(--muted);flex:0 0 auto;font-variant-numeric:tabular-nums}
+.toc-note{font-size:11px;color:var(--muted);line-height:1.6;margin-top:12px;
+  padding-top:10px;border-top:1px dashed var(--line)}
+@media(max-width:360px){.toc-list{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -398,6 +420,11 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <div class="meta">300 句 · 600 条音频 · 30 天打卡节奏 · 试听：Day 1 全部 10 句</div>
   <div id="boxA"></div>
   <button class="more" data-box="A" data-open="0">展开全部 10 句试听 ›</button>
+  <div class="toc" data-toc="a300">
+    <div class="toc-head" role="button" tabindex="0" aria-expanded="false"><div><span class="toc-t">看看这 30 天的主题 ›</span><span class="toc-h">先看目录再决定</span></div><span class="toc-chev">›</span></div>
+    <div class="toc-body"></div>
+  </div>
+
   <div class="row"><a class="btn primary" href="../audio300/">查看完整版 · 共 300 句</a></div>
 </div>
 
@@ -409,6 +436,11 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <div class="meta">850 句 · 1700 条音频 · 43 章节 · 试听：第 1 章「听懂与澄清」前 10 句</div>
   <div id="boxB"></div>
   <button class="more" data-box="B" data-open="0">展开全部 10 句试听 ›</button>
+  <div class="toc" data-toc="a850">
+    <div class="toc-head" role="button" tabindex="0" aria-expanded="false"><div><span class="toc-t">看看这 43 个章节 ›</span><span class="toc-h">先看目录再决定</span></div><span class="toc-chev">›</span></div>
+    <div class="toc-body"></div>
+  </div>
+
   <div class="row"><a class="btn primary" href="../audio850/">查看完整版 · 共 850 句</a></div>
 </div>
 
@@ -420,6 +452,11 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <div class="meta">55 节 · 2500 条音频 · 试听：第 1 节「初次见面」前 10 句</div>
   <div id="boxC"></div>
   <button class="more" data-box="C" data-open="0">展开全部 10 句试听 ›</button>
+  <div class="toc" data-toc="manual">
+    <div class="toc-head" role="button" tabindex="0" aria-expanded="false"><div><span class="toc-t">看看 6 章 55 节 ›</span><span class="toc-h">先看目录再决定</span></div><span class="toc-chev">›</span></div>
+    <div class="toc-body"></div>
+  </div>
+
   <div class="row"><a class="btn primary" href="../manual/">查看完整版 · 6 章 55 节</a></div>
 </div>
 
@@ -431,6 +468,11 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <div class="meta">50 场景 · 300 条音频 · 50 篇完整邮件模板 · 一键复制 · 中英对照 · 试听：A1「首次联系陌生人」等 5 句</div>
   <div id="boxE"></div>
   <button class="more" data-box="E" data-open="0">展开全部 5 句试听 ›</button>
+  <div class="toc" data-toc="mail">
+    <div class="toc-head" role="button" tabindex="0" aria-expanded="false"><div><span class="toc-t">看看这 50 个场景 ›</span><span class="toc-h">先看目录再决定</span></div><span class="toc-chev">›</span></div>
+    <div class="toc-body"></div>
+  </div>
+
   <div class="row"><a class="btn primary" href="../mail/">查看完整版 · 50 个邮件场景</a></div>
 </div>
 
@@ -442,6 +484,11 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <div class="meta">30 场景 · 180 句 · 360 条音频 · 场景连播 · 每条用法提示 · 试听：R01「机场接机」前 5 句</div>
   <div id="boxF"></div>
   <button class="more" data-box="F" data-open="0">展开全部 5 句试听 ›</button>
+  <div class="toc" data-toc="reception">
+    <div class="toc-head" role="button" tabindex="0" aria-expanded="false"><div><span class="toc-t">看看这 30 个接待场景 ›</span><span class="toc-h">先看目录再决定</span></div><span class="toc-chev">›</span></div>
+    <div class="toc-body"></div>
+  </div>
+
   <div class="row"><a class="btn primary" href="../reception/">查看完整版 · 30 个接待场景</a></div>
 </div>
 
@@ -453,6 +500,11 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <div class="meta">20 模型 · 4 大模块 · 180 句 · 360 条音频 · 三层结构（模板/示范/类似表达）· 常见误区对照 · 试听：M01「SCQA」前 5 句</div>
   <div id="boxG"></div>
   <button class="more" data-box="G" data-open="0">展开全部 5 句试听 ›</button>
+  <div class="toc" data-toc="models">
+    <div class="toc-head" role="button" tabindex="0" aria-expanded="false"><div><span class="toc-t">看看这 20 个管理模型 ›</span><span class="toc-h">先看目录再决定</span></div><span class="toc-chev">›</span></div>
+    <div class="toc-body"></div>
+  </div>
+
   <div class="row"><a class="btn primary" href="../models/">查看完整版 · 20 个管理模型</a></div>
 </div>
 
@@ -464,6 +516,11 @@ footer{padding:20px 18px 8px;font-size:12px;color:var(--muted);line-height:1.8;t
   <div class="meta">30 场景 · 180 句 · 360 条音频 · 场景连播 · 每条用法提示 · 附外贸流程速查表 · 试听：T01「回复首次询盘」前 5 句</div>
   <div id="boxH"></div>
   <button class="more" data-box="H" data-open="0">展开全部 5 句试听 ›</button>
+  <div class="toc" data-toc="trade">
+    <div class="toc-head" role="button" tabindex="0" aria-expanded="false"><div><span class="toc-t">看看这 30 个外贸场景 ›</span><span class="toc-h">先看目录再决定</span></div><span class="toc-chev">›</span></div>
+    <div class="toc-body"></div>
+  </div>
+
   <div class="row"><a class="btn primary" href="../trade/">查看完整版 · 30 个外贸场景</a></div>
 </div>
 
@@ -873,6 +930,33 @@ function h256(s){
   });
   /* 已解锁用户点「输口令解锁」时，面板里只剩一行已解锁提示，保持可用 */
 })();
+</script>
+
+<script>
+
+/* ===== 目录折叠预览：数据仅标题层 ===== */
+(function(){
+  var TOC_DATA={"a300": {"groups": [{"name": "第1周·生存篇", "items": [["D1", "万能回应·收到就要有回音"], ["D2", "万能回应·态度副词（上）"], ["D3", "万能回应·态度副词（下）"], ["D4", "职场沟通·跟进进展"], ["D5", "职场沟通·推进会议话题"], ["D6", "职场沟通·协作与授权"], ["D7", "职场沟通·时间与细节"]]}, {"name": "第2周·融入篇", "items": [["D8", "赞同理解·基础赞同"], ["D9", "赞同理解·强烈赞同"], ["D10", "赞同理解·理解与共情"], ["D11", "委婉拒绝·缓冲话术"], ["D12", "委婉拒绝·表达顾虑"], ["D13", "情绪感叹·正面赞叹"], ["D14", "情绪感叹·震惊与负面"], ["D15", "情绪感叹·松口气与安慰"]]}, {"name": "第3周·进阶篇", "items": [["D16", "等待催促·请稍等"], ["D17", "等待催促·加速推进"], ["D18", "日常闲聊·寒暄开场"], ["D19", "日常闲聊·闲聊收尾"], ["D20", "会议讨论·开场与聚焦"], ["D21", "会议讨论·总结与决策"], ["D22", "邮件书面·开头与引用"]]}, {"name": "第4周·精通篇", "items": [["D23", "邮件书面·请求与催办"], ["D24", "请求提议·礼貌请求与安排"], ["D25", "请求提议·征求意见与提方案"], ["D26", "反馈建议·正面反馈"], ["D27", "反馈建议·改进反馈"], ["D28", "问候告别·每日问候与道别"], ["D29", "问候告别·祝福语全集"]]}], "note": "每天 10 句，常速+慢速双音频，30 天打卡节奏。"}, "a850": {"groups": [{"name": "43 个职场章节", "items": [["01", "听懂与澄清"], ["02", "表达观点与建议"], ["03", "同意与不同意"], ["04", "开会与会议推进"], ["05", "汇报与进度跟进"], ["06", "邮件与日常沟通"], ["07", "会议开场与议程"], ["08", "发言与接话"], ["09", "提问与澄清"], ["10", "总结与确认下一步"], ["11", "分配任务与明确职责"], ["12", "Deadline与时间安排"], ["13", "催进度与跟进"], ["14", "优先级调整"], ["15", "延期与时间协商"], ["16", "问题与 Blocker"], ["17", "风险与预警"], ["18", "跨部门协作"], ["19", "请求帮助与支持"], ["20", "提供帮助与支持"], ["21", "信息同步"], ["22", "文件与资料沟通"], ["23", "修改、审核与确认"], ["24", "向老板汇报"], ["25", "请示与决策"], ["26", "提出方案与解决思路"], ["27", "争取资源与支持"], ["28", "管理预期"], ["29", "给 Feedback"], ["30", "接受 Feedback"], ["31", "表扬与认可"], ["32", "委婉指出问题"], ["33", "处理分歧与冲突"], ["34", "客户需求确认"], ["35", "客户沟通与跟进"], ["36", "谈判与条件沟通"], ["37", "客户异议与疑虑"], ["38", "投诉、道歉与补救"], ["39", "职场 Small Talk"], ["40", "Networking 与建立联系"], ["41", "请假、休假与工作交接"], ["42", "线上会议与技术问题"], ["43", "外企高频日常表达"]]}], "note": "每章 20 句，覆盖会议、邮件、汇报、闲聊等全场景。"}, "manual": {"groups": [{"name": "新人入职", "items": [["", "第一次认识同事"], ["", "新人自我介绍"], ["", "熟悉办公环境"], ["", "向同事请教"], ["", "第一周高频表达"]]}, {"name": "日常办公", "items": [["", "开始一天的工作"], ["", "安排工作"], ["", "汇报工作进度"], ["", "跟进工作"], ["", "确认事项"], ["", "团队协作"], ["", "请同事帮忙"], ["", "回复同事"], ["", "表达同意与不同意"], ["", "结束工作"]]}, {"name": "会议沟通", "items": [["", "会议开始"], ["", "表达观点"], ["", "提问与确认"], ["", "回应他人观点"], ["", "主持会议"], ["", "会议总结"], ["", "线上会议"], ["", "讨论方案"], ["", "分配行动事项"], ["", "会议结束"]]}, {"name": "邮件沟通", "items": [["", "邮件开头"], ["", "回复邮件"], ["", "发送附件"], ["", "催回复"], ["", "请求帮助"], ["", "提供信息"], ["", "确认与回复"], ["", "邮件结尾"], ["", "抄送"], ["", "延期与致歉"]]}, {"name": "电话 & Teams & Slack 沟通", "items": [["", "发起沟通"], ["", "即时回复"], ["", "发消息沟通"], ["", "电话沟通"], ["", "电话结束"], ["", "协作沟通"], ["", "催进度"], ["", "解决问题"], ["", "协调工作"], ["", "结束沟通"]]}, {"name": "外企高频职场口语", "items": [["", "接受任务"], ["", "表达感谢"], ["", "委婉拒绝"], ["", "提出建议"], ["", "处理突发情况"], ["", "鼓励同事"], ["", "表达压力"], ["", "请假与调休"], ["", "绩效反馈"], ["", "日常寒暄"]]}], "note": "6 章 55 节，每句带场景讲解和 Why。"}, "reception": {"groups": [{"name": "迎接 · 抵达", "items": [["R01", "机场接机"], ["R02", "车上破冰"], ["R03", "前台登记与接待"], ["R04", "介绍参会人员"], ["R05", "递名片与加微信"]]}, {"name": "公司介绍", "items": [["R06", "会议室落座"], ["R07", "公司介绍开场"], ["R08", "讲业务与规模"], ["R09", "讲优势与差异化"], ["R10", "答疑"], ["R11", "赠送资料与礼品"]]}, {"name": "参观 · 走访", "items": [["R12", "参观前的安全提醒"], ["R13", "办公区参观"], ["R14", "工厂与产线参观"], ["R15", "讲设备与产能"], ["R16", "讲质量把控"], ["R17", "参观间隙的闲聊"]]}, {"name": "商务洽谈", "items": [["R18", "摸清对方需求"], ["R19", "报价与付款方式"], ["R20", "谈交期"], ["R21", "处理异议与让步"], ["R22", "收尾与下一步"]]}, {"name": "商务用餐", "items": [["R23", "到餐厅与就座"], ["R24", "点菜与介绍中餐"], ["R25", "餐桌上的分寸"], ["R26", "处理忌口"]]}, {"name": "应变 · 送别", "items": [["R27", "陪同城市观光"], ["R28", "行程变更与延误"], ["R29", "化解尴尬与救场"], ["R30", "送别与后续跟进"]]}], "note": "30 个接待场景，每场景配常速+慢速音频。"}, "trade": {"groups": [{"name": "询盘与回复", "items": [["T01", "回复首次询盘"], ["T02", "问清需求与规格"], ["T03", "发目录与图片"], ["T04", "说清起订量 MOQ"], ["T05", "客户迟迟不回"], ["T06", "判断询盘真假"]]}, {"name": "报价与议价", "items": [["T07", "首次报价"], ["T08", "报价有效期与汇率"], ["T09", "客户嫌贵"], ["T10", "还价与折中"], ["T11", "量大给折扣"], ["T12", "涨价通知"]]}, {"name": "样品与订单", "items": [["T13", "寄样与运费"], ["T14", "样品确认"], ["T15", "下单与 PI"], ["T16", "确认规格与包装"], ["T17", "改单与追加"], ["T18", "大货与产前样"]]}, {"name": "付款与物流", "items": [["T19", "谈付款方式"], ["T20", "定金与尾款"], ["T21", "催款升级"], ["T22", "交期与排产"], ["T23", "发货通知与提单"], ["T24", "清关与单证"]]}, {"name": "售后与客诉", "items": [["T25", "到货破损"], ["T26", "数量短少"], ["T27", "质量异议"], ["T28", "退货与换货"], ["T29", "客户要赔偿"], ["T30", "维护关系与返单"]]}], "note": "30 个外贸场景，覆盖询盘到售后全流程。"}, "models": {"groups": [{"name": "向上汇报与表达", "items": [["M01", "SCQA"], ["M02", "BLUF"], ["M03", "PREP"], ["M04", "金字塔 · MECE"], ["M05", "5W2H"]]}, {"name": "目标与执行", "items": [["M06", "SMART"], ["M07", "OKR"], ["M08", "PDCA"], ["M09", "RACI"], ["M10", "四象限 · MoSCoW"]]}, {"name": "反馈与带教", "items": [["M11", "SBI"], ["M12", "DESC"], ["M13", "GROW"], ["M14", "Radical Candor"], ["M15", "为什么外企不用「三明治反馈」"]]}, {"name": "会议与协作", "items": [["M16", "会议三要素"], ["M17", "六顶思考帽"], ["M18", "立场与利益"], ["M19", "RAPID · DACI"], ["M20", "冲突处理"]]}], "note": "20 个外企管理模型，每个给用法、背景与英文句式。"}, "mail": {"groups": [{"name": "开口与收尾", "items": [["A1", "首次联系陌生人"], ["A2", "邮件开头"], ["A3", "回复 vs 回复所有人"], ["A4", "邮件结尾"], ["A5", "休假自动回复（OOO）"], ["A6", "转发邮件"], ["A7", "群发通知"], ["A8", "关闭邮件线程"]]}, {"name": "请求与推动", "items": [["B1", "请同事帮忙（小事）"], ["B2", "请老板批准 / 给资源"], ["B3", "要资料 / 要文件"], ["B4", "催进度（第一次）"], ["B5", "催进度（第二次 / 升级）"], ["B6", "催供应商 / 外部合作方"], ["B7", "约会议"], ["B8", "请对方确认"], ["B9", "加急请求"]]}, {"name": "同步与汇报", "items": [["C1", "周报 / 进度同步"], ["C2", "完成交付"], ["C3", "风险预警"], ["C4", "数据汇报"], ["C5", "会后书面确认（纪要邮件）"], ["C6", "上线 / 发布通知"], ["C7", "变更通知"], ["C8", "请假 / 离岗交接"]]}, {"name": "拒绝与协商", "items": [["D1", "拒绝额外任务（排期满）"], ["D2", "申请延期"], ["D3", "砍范围 / 减需求"], ["D4", "拒绝不合理的 deadline"], ["D5", "不在职责范围"], ["D6", "婉拒会议"], ["D7", "温和反对"], ["D8", "有条件地答应"]]}, {"name": "道歉与补救", "items": [["E1", "小失误"], ["E2", "严重失误"], ["E3", "延迟交付"], ["E4", "发错邮件 / 发错附件"], ["E5", "解释误会"], ["E6", "安抚客户情绪"], ["E7", "复盘与改进"], ["E8", "补救收尾致谢"]]}, {"name": "向上与对外", "items": [["F1", "向老板请示"], ["F2", "汇报坏消息"], ["F3", "向老板要资源"], ["F4", "主动汇报（不等老板问）"], ["F5", "给客户的第一封邮件"], ["F6", "客户催单 / 投诉"], ["F7", "催客户回签 / 付款"], ["F8", "拒绝客户额外要求"], ["F9", "跨部门协调（对方不配合）"]]}], "note": "50 个真实邮件场景，每个给三步写法 + 完整邮件模板。"}};
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  document.querySelectorAll('.toc[data-toc]').forEach(function(toc){
+    var key=toc.getAttribute('data-toc'), d=TOC_DATA[key]; if(!d) return;
+    var body=toc.querySelector('.toc-body'), html='';
+    d.groups.forEach(function(g){
+      html+='<div class="toc-mod"><div class="toc-modname">'+esc(g.name)+'<span>'+g.items.length+' 个</span></div><div class="toc-list">';
+      g.items.forEach(function(it){
+        html+='<div class="toc-item">'+(it[0]?'<span class="c">'+esc(it[0])+'</span>':'')+'<span>'+esc(it[1])+'</span></div>';
+      });
+      html+='</div></div>';
+    });
+    if(d.note) html+='<div class="toc-note">'+esc(d.note)+'</div>';
+    body.innerHTML=html;
+    var head=toc.querySelector('.toc-head');
+    function toggle(){var open=toc.classList.toggle('open');head.setAttribute('aria-expanded',open?'true':'false');}
+    head.addEventListener('click',toggle);
+    head.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+  });
+})();
+
 </script>
 </body>
 </html>
